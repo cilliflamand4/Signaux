@@ -167,9 +167,10 @@
   footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--trait);font-size:14px;color:var(--papier-2)}
   footer p{margin-bottom:6px}
   /* ===== deux portes : ami·e / parent ===== */
-  .portes{display:grid;grid-template-columns:1fr 1fr;gap:6px;background:var(--nuit-2);border-radius:999px;padding:5px;margin-bottom:20px}
-  .porte{font:inherit;font-size:14px;font-weight:800;color:var(--papier-2);background:transparent;border:0;border-radius:999px;padding:10px 8px;cursor:pointer;line-height:1.2}
-  .porte.on{background:var(--abricot);color:var(--nuit)}
+  .portes-titre{font-family:var(--display);font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--papier-2);margin-bottom:8px}
+  .portes{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:22px}
+  .porte{font:inherit;font-family:var(--display);font-size:16px;font-weight:800;color:var(--papier);background:var(--nuit-2);border:2px solid color-mix(in srgb,var(--lilas) 55%,transparent);border-radius:18px;padding:14px 10px;cursor:pointer;line-height:1.2;min-height:64px}
+  .porte.on{background:var(--abricot);color:var(--nuit);border-color:var(--abricot);box-shadow:0 8px 24px rgba(255,165,82,.35)}
   .porte:focus-visible{outline:3px solid var(--abricot);outline-offset:2px}
 
   /* ===== bloc secondaire « Et si c'est pour toi ? » ===== */
@@ -196,6 +197,7 @@
 <!-- ACCUEIL -->
 <section class="screen on" id="accueil">
   <div class="marque"><i></i>Signaux</div>
+  <div class="portes-titre">Deux parcours — choisis le tien</div>
   <div class="portes" role="tablist" aria-label="Qui es-tu ?">
     <button class="porte on" aria-selected="true">💬 Un·e ami·e m'a écrit</button>
     <button class="porte" data-go="parents">👪 Je suis parent ou proche</button>
@@ -225,6 +227,7 @@
 <!-- ACCUEIL PARENTS -->
 <section class="screen" id="parents">
   <div class="marque"><i></i>Signaux</div>
+  <div class="portes-titre">Deux parcours — choisissez le vôtre</div>
   <div class="portes" role="tablist" aria-label="Qui êtes-vous ?">
     <button class="porte" data-go="accueil">💬 Un·e ami·e m'a écrit</button>
     <button class="porte on" aria-selected="true">👪 Je suis parent ou proche</button>
