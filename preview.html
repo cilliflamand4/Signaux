@@ -160,6 +160,8 @@
   .appel.rouge small{color:#fff}
   .urgence{border:2px solid var(--rouge);border-radius:var(--r);padding:16px;margin:26px 0;background:rgba(255,59,48,.1);display:grid;gap:10px}
   .urgence p{margin:0;font-weight:800;color:#fff;font-size:17px}
+  .urgence .ecoute{margin-top:10px;padding-top:12px;border-top:1px dashed rgba(255,255,255,.35);color:var(--papier);font-weight:700}
+  .urgence .ecoute p{color:var(--papier);font-size:16px;font-weight:700}
 
   .toi{background:color-mix(in srgb,var(--abricot) 16%,var(--nuit-2));border-radius:var(--r);padding:16px 16px 16px 18px;margin-top:30px;border-left:6px solid var(--abricot);font-size:17px;line-height:1.45}
   .toi p:last-child{margin:0}
@@ -236,7 +238,7 @@
     <ul class="tuiles petites">
       <li style="--c:var(--abricot)"><button class="tuile" data-go="moi"><span class="emo" aria-hidden="true">🫶</span><span class="t"><b>C'est moi qui vais mal</b><span>Ouvrir la porte « C'est pour moi » : maison, harcèlement, violences, lycée, peur de parler</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     </ul>
-    <p class="perso-note">Version 16.2 · prototype en cours de validation. Tests avec des jeunes et des parents prévus pour le pilote 2027.</p>
+    <p class="perso-note">Version 16.3 · prototype en cours de validation. Tests avec des jeunes et des parents prévus pour le pilote 2027.</p>
   </div>
 </section>
 
@@ -264,7 +266,7 @@
     <li style="--c:var(--ciel)"><button class="tuile" data-go="apres"><span class="emo" aria-hidden="true">🌙</span><span class="t"><b>J'ai parlé, et ce soir ça va pas</b><span>J'en ai parlé à quelqu'un, je suis rentré·e, et ça ne va pas</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--menthe)"><button class="tuile" data-go="suivi"><span class="emo" aria-hidden="true">👩‍⚕️</span><span class="t"><b>Je suis suivi·e, mais ça va moins bien</b><span>J'ai déjà un psy, mais je n'ose pas le déranger, ou il/elle n'est pas joignable</span></span><span class="chev" aria-hidden="true">›</span></button></li>
   </ul>
-  <p class="perso-note">Version 16.2 · prototype en cours de validation. Cette page ne demande ni compte ni données.</p>
+  <p class="perso-note">Version 16.3 · prototype en cours de validation. Cette page ne demande ni compte ni données.</p>
 </section>
 
 <!-- ACCUEIL PARENTS -->
@@ -298,10 +300,13 @@
     <p class="intro">Une phrase lâchée, un message vu par hasard, « de toute façon je serai plus là ». Vous avez peur, et vous avez raison de prendre ça au sérieux, même sans être sûr·e. Ce soir, vous n'avez pas à être psy. Vous avez à rester, et à faire venir l'aide.</p></div>
 
   <div class="urgence">
-    <p>S'il/elle a déjà fait quelque chose, ou va le faire :</p>
-    <a class="appel rouge" href="tel:15"><span class="ic">📞</span><span><b>15</b><small>SAMU, tout de suite</small></span></a>
-    <p>S'il/elle parle de mourir, a un moyen sous la main, ou si vous n'arrivez plus à le/la joindre :</p>
-    <a class="appel rouge" href="tel:3114"><span class="ic">📞</span><span><b>3114</b><small>24h/24, ils vous guident minute par minute</small></span></a>
+    <p>Danger maintenant : il/elle a déjà fait quelque chose, a un moyen sous la main et dit vouloir s'en servir, ou ne répond plus après un message d'adieu.</p>
+    <a class="appel rouge" href="tel:15"><span class="ic">📞</span><span><b>15</b><small>SAMU, tout de suite. Dites où il/elle est</small></span></a>
+    <a class="appel rouge" href="tel:112"><span class="ic">📞</span><span><b>112</b><small>Si le 15 ne passe pas</small></span></a>
+    <div class="ecoute">
+    <p>Il/elle parle de mourir, mais rien n'est engagé : pour écouter, évaluer et savoir quoi faire ce soir.</p>
+    <a class="appel" href="tel:3114"><span class="ic">📞</span><span><b>3114</b><small>24h/24, gratuit, aussi pour les parents. Ça ne remplace pas le 15 si le danger est là</small></span></a>
+    </div>
   </div>
 
   <h3><span class="emo">⚡</span>Maintenant</h3>
@@ -352,9 +357,12 @@
     <p class="intro">Des marques, un aveu, un message d'un·e ami·e. Se faire du mal peut être une façon de faire face à une souffrance. Ce n'est ni une manipulation, ni un caprice. Ça mérite une aide, parfois des soins urgents, et votre réaction de ce soir compte.</p></div>
 
   <div class="urgence">
-    <p>Si ça saigne beaucoup, s'il/elle a pris quelque chose, ou s'il/elle parle aussi de mourir :</p>
-    <a class="appel rouge" href="tel:15"><span class="ic">📞</span><span><b>15</b><small>SAMU</small></span></a>
-    <a class="appel rouge" href="tel:3114"><span class="ic">📞</span><span><b>3114</b><small>24h/24, gratuit</small></span></a>
+    <p>Si ça saigne beaucoup, s'il/elle a pris quelque chose, ou si un geste grave est en cours :</p>
+    <a class="appel rouge" href="tel:15"><span class="ic">📞</span><span><b>15</b><small>SAMU, tout de suite</small></span></a>
+    <div class="ecoute">
+    <p>S'il/elle parle aussi de mourir, sans danger immédiat : pour écouter et évaluer.</p>
+    <a class="appel" href="tel:3114"><span class="ic">📞</span><span><b>3114</b><small>24h/24, gratuit. Si le danger est là, le 15 d'abord</small></span></a>
+    </div>
   </div>
 
   <h3><span class="emo">⚡</span>Maintenant</h3>
@@ -602,7 +610,7 @@
     <div class="pied">Aucun message n'est envoyé depuis SIGNAUX.</div>
   </div>
 
-  <h3><span class="emo">📞</span>Sans dire ton nom</h3>
+  <h3><span class="emo">📞</span>Des personnes pour t'aider</h3>
   <div class="appels">
     <a class="appel" href="tel:0800235236"><span class="ic">📞</span><span><b>Fil Santé Jeunes</b><small>0 800 235 236, anonyme, gratuit, 9h-23h</small></span></a>
     <a class="appel web" href="https://www.filsantejeunes.com" target="_blank" rel="noopener"><span class="ic">💬</span><span><b>Tchat Fil Santé Jeunes</b><small>Par écrit, sur filsantejeunes.com — 9h-22h</small></span></a>
@@ -644,10 +652,15 @@
 
   <h3><span class="emo">📞</span>Cette nuit</h3>
   <div class="appels">
-    <a class="appel rouge" href="tel:119"><span class="ic">📞</span><span><b>119</b><small>Si c'est à la maison que ça se passe. 24h/24, gratuit, n'apparaît pas sur la facture</small></span></a>
-    <a class="appel web" href="https://www.allo119.gouv.fr" target="_blank" rel="noopener"><span class="ic">💬</span><span><b>Tchat 119</b><small>Par écrit, sur allo119.gouv.fr — ouvert l'après-midi et le soir, horaires et conditions sur le site</small></span></a>
-    <a class="appel rouge" href="tel:3114"><span class="ic">📞</span><span><b>3114</b><small>Idées noires, 24h/24, gratuit</small></span></a>
+    <a class="appel rouge" href="tel:119"><span class="ic">📞</span><span><b>119</b><small>Si c'est à la maison que ça se passe. Téléphone 24h/24, gratuit, n'apparaît pas sur la facture</small></span></a>
+    <a class="appel" href="tel:3114"><span class="ic">📞</span><span><b>3114</b><small>Idées noires, 24h/24, gratuit. Si tu vas faire un geste : le 15</small></span></a>
     <a class="appel" href="sms:114"><span class="ic">💬</span><span><b>114 par SMS</b><small>Urgence seulement, si tu ne peux pas parler : police, pompiers, SAMU par écrit. Ce n'est pas un tchat d'écoute</small></span></a>
+  </div>
+
+  <h3><span class="emo">💬</span>Par écrit, aux heures d'ouverture</h3>
+  <div class="appels">
+    <a class="appel web" href="https://www.allo119.gouv.fr" target="_blank" rel="noopener"><span class="ic">💬</span><span><b>Tchat 119</b><small>Sur allo119.gouv.fr — l'après-midi et en soirée, pas la nuit ; horaires et conditions sur le site</small></span></a>
+    <a class="appel web" href="https://www.filsantejeunes.com" target="_blank" rel="noopener"><span class="ic">💬</span><span><b>Tchat Fil Santé Jeunes</b><small>Sur filsantejeunes.com — 9h-22h</small></span></a>
   </div>
 
   <h3><span class="emo">🌅</span>Et demain</h3>
@@ -685,7 +698,7 @@
 
   <h3><span class="emo">📞</span>Si ton psy ne répond pas aujourd'hui</h3>
   <div class="appels">
-    <a class="appel rouge" href="tel:3114"><span class="ic">📞</span><span><b>3114</b><small>24h/24, gratuit : ils évaluent avec toi et t'orientent, même si tu es déjà suivi·e</small></span></a>
+    <a class="appel" href="tel:3114"><span class="ic">📞</span><span><b>3114</b><small>24h/24, gratuit : ils évaluent avec toi et t'orientent, même si tu es déjà suivi·e</small></span></a>
     <a class="appel" href="tel:0493261092"><span class="ic">🏠</span><span><b>Maison des ados 06</b><small>2A rue Raynardi, Nice — 04 93 26 10 92, lun-ven 9h-17h</small></span></a>
     <a class="appel" href="sms:0785273531"><span class="ic">💬</span><span><b>SMS Maison des ados</b><small>07 85 27 35 31 — SMS uniquement, lun-ven 9h-17h, pas de réponse d'urgence</small></span></a>
     <a class="appel" href="tel:15"><span class="ic">📞</span><span><b>15</b><small>Si tu es en danger, ou si tu n'arrives plus à manger ni à boire</small></span></a>
@@ -724,7 +737,7 @@
 
   <h3><span class="emo">📞</span>Qui appeler</h3>
   <div class="appels">
-    <a class="appel rouge" href="tel:3114"><span class="ic">📞</span><span><b>3114</b><small>Prévention du suicide, 24h/24, gratuit — pour les proches aussi</small></span></a>
+    <a class="appel" href="tel:3114"><span class="ic">📞</span><span><b>3114</b><small>Prévention du suicide, 24h/24, gratuit — pour les proches aussi</small></span></a>
     <a class="appel rouge" href="tel:15"><span class="ic">📞</span><span><b>15</b><small>Danger immédiat, ou impossible de manger ou de boire</small></span></a>
     <a class="appel" href="tel:0493261092"><span class="ic">🏠</span><span><b>Maison des ados 06</b><small>2A rue Raynardi, Nice — 04 93 26 10 92, lun-ven 9h-17h ; reçoit aussi les parents</small></span></a>
     <a class="appel" href="sms:0785273531"><span class="ic">💬</span><span><b>SMS Maison des ados</b><small>07 85 27 35 31 — SMS uniquement, lun-ven 9h-17h, pas de réponse d'urgence</small></span></a>
@@ -746,7 +759,7 @@
   <div class="appels">
     <a class="appel rouge" href="tel:15"><span class="ic">📞</span><span><b>15</b><small>SAMU — blessure, saignement, malaise, médicaments, ou quelqu'un qui va passer à l'acte</small></span></a>
     <a class="appel rouge" href="tel:17"><span class="ic">📞</span><span><b>17</b><small>Police — si quelqu'un est menacé, frappé ou violent maintenant</small></span></a>
-    <a class="appel rouge" href="tel:3114"><span class="ic">📞</span><span><b>3114</b><small>Idées de mort — écoute, évaluation, orientation, 24h/24. Ce n'est pas une ambulance : si c'est imminent, le 15</small></span></a>
+    <a class="appel" href="tel:3114"><span class="ic">📞</span><span><b>3114</b><small>Idées de mort, sans geste engagé — écoute, évaluation, orientation, 24h/24. Ce n'est pas une ambulance : si c'est imminent, le 15</small></span></a>
     <a class="appel" href="tel:112"><span class="ic">📞</span><span><b>112</b><small>Numéro d'urgence européen — si le 15 ou le 17 ne passent pas, ou depuis l'étranger</small></span></a>
     <a class="appel" href="tel:119"><span class="ic">📞</span><span><b>119</b><small>Moins de 18 ans en danger, à la maison ou ailleurs, quel que soit l'auteur — 24h/24, gratuit</small></span></a>
     <a class="appel web" href="https://www.allo119.gouv.fr" target="_blank" rel="noopener"><span class="ic">💬</span><span><b>Tchat 119</b><small>Par écrit, sur allo119.gouv.fr — ouvert l'après-midi et le soir, horaires et conditions sur le site</small></span></a>
@@ -769,10 +782,13 @@
     <p class="intro">Un message qui ressemble à un adieu, un compte à rebours, un « c'est fini », une phrase que tu ne comprends pas mais qui te fait peur : tu le prends au sérieux, même si tu n'es pas sûr·e. Se tromper coûte moins cher que se taire.</p></div>
 
   <div class="urgence">
-    <p>S'il/elle a déjà fait quelque chose, ou va le faire :</p>
+    <p>Danger maintenant : il/elle a déjà fait quelque chose, a un moyen sous la main et dit vouloir s'en servir, ou ne répond plus après un message d'adieu.</p>
     <a class="appel rouge" href="tel:15"><span class="ic">📞</span><span><b>15</b><small>SAMU, tout de suite. Dis où il/elle est</small></span></a>
-    <p>S'il/elle parle de mourir, a un moyen sous la main, ou ne répond plus :</p>
-    <a class="appel rouge" href="tel:3114"><span class="ic">📞</span><span><b>3114</b><small>24h/24 : ils évaluent avec toi et te disent quoi faire, maintenant</small></span></a>
+    <a class="appel rouge" href="tel:112"><span class="ic">📞</span><span><b>112</b><small>Si le 15 ne passe pas</small></span></a>
+    <div class="ecoute">
+    <p>Il/elle parle de mourir, mais rien n'est engagé : pour écouter, évaluer et savoir quoi faire ce soir. Un simple silence sans message d'adieu n'est pas une urgence : écris, rappelle, et demande.</p>
+    <a class="appel" href="tel:3114"><span class="ic">📞</span><span><b>3114</b><small>24h/24, gratuit, pour toi aussi. Ça ne remplace pas le 15 si le danger est là</small></span></a>
+    </div>
   </div>
 
   <h3><span class="emo">⚡</span>Maintenant</h3>
@@ -780,7 +796,7 @@
     <li>Réponds dès que tu vois le message, même court. Si tu le vois tard, réponds maintenant : ce n'est pas trop tard.</li>
     <li>Demande directement. Poser la question ne donne pas l'idée, ça soulage : « Est-ce que tu penses à mourir ? »</li>
     <li>Demande où il/elle est et s'il/elle est seul·e.</li>
-    <li>Ne promets pas de garder le secret. Dis-lui que tu vas chercher de l'aide <em>avec</em> lui/elle.</li>
+    <li>Ne promets pas de garder le secret. Dis-lui que tu vas chercher de l'aide <em>avec</em> lui/elle. Si un geste est engagé, tu appelles le 15 sans attendre son accord.</li>
   </ol>
 
   <h3><span class="emo">💬</span>Tu peux écrire</h3>
@@ -824,9 +840,12 @@
     <p class="intro">Souvent ça arrive comme ça : « je viens de le faire », une photo, « dis rien ». Tu n'as rien à réparer ce soir. Tu as juste à rester là, et à savoir quand appeler.</p></div>
 
   <div class="urgence">
-    <p>Si ça saigne beaucoup, si il/elle a pris quelque chose, ou si il/elle parle aussi de mourir :</p>
-    <a class="appel rouge" href="tel:15"><span class="ic">📞</span><span><b>15</b><small>SAMU</small></span></a>
-    <a class="appel rouge" href="tel:3114"><span class="ic">📞</span><span><b>3114</b><small>24h/24, gratuit</small></span></a>
+    <p>Si ça saigne beaucoup, si il/elle a pris quelque chose, ou si un geste grave est en cours :</p>
+    <a class="appel rouge" href="tel:15"><span class="ic">📞</span><span><b>15</b><small>SAMU, tout de suite</small></span></a>
+    <div class="ecoute">
+    <p>S'il/elle parle aussi de mourir, sans danger immédiat : pour écouter et évaluer, avec toi.</p>
+    <a class="appel" href="tel:3114"><span class="ic">📞</span><span><b>3114</b><small>24h/24, gratuit. Si le danger est là, le 15 d'abord</small></span></a>
+    </div>
   </div>
 
   <h3><span class="emo">⚡</span>Maintenant</h3>
@@ -1114,9 +1133,12 @@
     <p class="intro">Des moqueries qui ne s'arrêtent pas, un groupe qui l'exclut, des messages la nuit, une photo qui circule, des menaces. Le harcèlement, c'est quand ça se répète et qu'il/elle ne peut plus s'en protéger. Ta place est simple : ne pas rire, ne pas regarder ailleurs, et faire venir un adulte.</p></div>
 
   <div class="urgence">
-    <p>S'il/elle est menacé·e pour ce soir, ou s'il/elle parle de mourir :</p>
+    <p>S'il/elle est menacé·e pour ce soir :</p>
     <a class="appel rouge" href="tel:17"><span class="ic">📞</span><span><b>17</b><small>Police — tout de suite</small></span></a>
-    <a class="appel rouge" href="tel:3114"><span class="ic">📞</span><span><b>3114</b><small>Idées de mort — 24h/24, gratuit</small></span></a>
+    <div class="ecoute">
+    <p>S'il/elle parle de mourir : pour écouter et évaluer. Si un geste est engagé, le 15.</p>
+    <a class="appel" href="tel:3114"><span class="ic">📞</span><span><b>3114</b><small>24h/24, gratuit</small></span></a>
+    </div>
   </div>
 
   <div class="choix-titre">Qu'est-ce qu'on lui fait ?</div>
@@ -1314,9 +1336,13 @@
     <p class="intro">Tu n'es pas bizarre, et tu n'es pas seul·e à avoir ces pensées. Elles disent que ça déborde, pas que tu dois partir. Ce soir, une seule chose : ne reste pas seul·e avec ça.</p></div>
 
   <div class="urgence">
-    <p>Si tu as déjà fait quelque chose, ou si tu as un moyen sous la main :</p>
-    <a class="appel rouge" href="tel:15"><span class="ic">📞</span><span><b>15</b><small>tout de suite</small></span></a>
-    <a class="appel rouge" href="tel:3114"><span class="ic">📞</span><span><b>3114</b><small>24h/24, gratuit, confidentiel — ils restent avec toi</small></span></a>
+    <p>Si tu as déjà fait quelque chose, ou si tu vas le faire maintenant :</p>
+    <a class="appel rouge" href="tel:15"><span class="ic">📞</span><span><b>15</b><small>SAMU, tout de suite. Dis où tu es</small></span></a>
+    <a class="appel rouge" href="tel:112"><span class="ic">📞</span><span><b>112</b><small>Si le 15 ne passe pas</small></span></a>
+    <div class="ecoute">
+    <p>Si tu penses à mourir et que tu as besoin de parler, maintenant :</p>
+    <a class="appel" href="tel:3114"><span class="ic">📞</span><span><b>3114</b><small>24h/24, gratuit, confidentiel. Ils restent avec toi, et ils appellent les secours avec toi si besoin</small></span></a>
+    </div>
   </div>
 
   <h3><span class="emo">⚡</span>Maintenant</h3>
@@ -1400,7 +1426,7 @@
   </div>
 
 
-  <h3><span class="emo">📞</span>Sans dire ton nom</h3>
+  <h3><span class="emo">📞</span>Des personnes pour t'aider</h3>
   <div class="appels">
     <a class="appel" href="tel:0800235236"><span class="ic">📞</span><span><b>Fil Santé Jeunes</b><small>0 800 235 236 — anonyme, gratuit, 9h-23h</small></span></a>
     <a class="appel web" href="https://www.filsantejeunes.com" target="_blank" rel="noopener"><span class="ic">💬</span><span><b>Tchat Fil Santé Jeunes</b><small>Par écrit, sur filsantejeunes.com — 9h-22h</small></span></a>
@@ -1421,9 +1447,12 @@
     <p class="intro">On se moque, on t'exclut, on parle de toi, tu reçois des messages, une photo circule, on te menace. Tu te demandes si tu exagères. Non. Quand ça se répète et que tu ne peux plus t'en protéger, c'est du harcèlement, et ce n'est pas à toi de le supporter.</p></div>
 
   <div class="urgence">
-    <p>Si on te menace pour ce soir, ou si tu penses à mourir :</p>
+    <p>Si on te menace pour ce soir :</p>
     <a class="appel rouge" href="tel:17"><span class="ic">📞</span><span><b>17</b><small>Police — tout de suite</small></span></a>
-    <a class="appel rouge" href="tel:3114"><span class="ic">📞</span><span><b>3114</b><small>Idées de mort — 24h/24, gratuit, échange confidentiel</small></span></a>
+    <div class="ecoute">
+    <p>Si tu penses à mourir : pour parler et évaluer. Si tu vas faire un geste, le 15.</p>
+    <a class="appel" href="tel:3114"><span class="ic">📞</span><span><b>3114</b><small>24h/24, gratuit, échange confidentiel</small></span></a>
+    </div>
   </div>
 
   <div class="choix-titre">Qu'est-ce qu'ils te font ?</div>
@@ -1649,7 +1678,7 @@
     <div class="pied">Aucun message n'est envoyé depuis SIGNAUX.</div>
   </div>
 
-  <h3><span class="emo">📞</span>Sans dire ton nom</h3>
+  <h3><span class="emo">📞</span>Des personnes pour t'aider</h3>
   <div class="appels">
     <a class="appel rouge" href="tel:119"><span class="ic">📞</span><span><b>119</b><small>Mineur en danger, quel que soit l'auteur — téléphone 24h/24, gratuit, confidentiel</small></span></a>
     <a class="appel web" href="https://www.allo119.gouv.fr" target="_blank" rel="noopener"><span class="ic">💬</span><span><b>Tchat 119</b><small>Par écrit, sur allo119.gouv.fr — ouvert l'après-midi et le soir, horaires et conditions sur le site</small></span></a>
@@ -1671,9 +1700,12 @@
   <div class="hero"><span class="emo" aria-hidden="true">🩸</span><h2>Tu t'es fait du mal</h2>
     <p class="intro">Tu viens de le faire, ou tu y penses. Se faire du mal peut être une façon de faire face à une souffrance. Ça mérite une aide, parfois des soins. Ce soir, on s'occupe du corps d'abord, et tu n'as pas à t'expliquer.</p></div>
   <div class="urgence">
-    <p>Si ça saigne beaucoup, si tu as pris quelque chose, ou si tu penses à mourir :</p>
-    <a class="appel rouge" href="tel:15"><span class="ic">📞</span><span><b>15</b><small>SAMU — les soins, tout de suite</small></span></a>
-    <a class="appel rouge" href="tel:3114"><span class="ic">📞</span><span><b>3114</b><small>Si tu penses à mourir — 24h/24, gratuit, confidentiel</small></span></a>
+    <p>Si ça saigne beaucoup, si tu as pris quelque chose, ou si tu vas faire un geste grave :</p>
+    <a class="appel rouge" href="tel:15"><span class="ic">📞</span><span><b>15</b><small>SAMU, les soins, tout de suite</small></span></a>
+    <div class="ecoute">
+    <p>Si tu penses à mourir, sans danger immédiat : pour parler et évaluer, maintenant.</p>
+    <a class="appel" href="tel:3114"><span class="ic">📞</span><span><b>3114</b><small>24h/24, gratuit, confidentiel. Si le danger est là, le 15 d'abord</small></span></a>
+    </div>
   </div>
   <h3><span class="emo">⚡</span>Maintenant</h3>
   <ol class="etapes">
@@ -1747,9 +1779,12 @@
   <div class="hero"><span class="emo" aria-hidden="true">🎯</span><h2>Votre ado est harcelé·e</h2>
     <p class="intro">Des moqueries qui ne s'arrêtent pas, un groupe qui l'exclut, des messages la nuit, une photo qui circule, la peur d'aller en cours. Le harcèlement, c'est quand ça se répète et que votre ado ne peut plus s'en protéger. Votre rôle n'est pas de régler ça avec les autres familles : c'est de le/la croire, et de faire agir l'école.</p></div>
   <div class="urgence">
-    <p>S'il y a des menaces pour ce soir, ou si votre ado parle de mourir :</p>
+    <p>S'il y a des menaces pour ce soir :</p>
     <a class="appel rouge" href="tel:17"><span class="ic">📞</span><span><b>17</b><small>Police — en cas de menace</small></span></a>
-    <a class="appel rouge" href="tel:3114"><span class="ic">📞</span><span><b>3114</b><small>Idées de mort — 24h/24, aussi pour les parents</small></span></a>
+    <div class="ecoute">
+    <p>Si votre ado parle de mourir : pour écouter et évaluer. Si un geste est engagé, le 15.</p>
+    <a class="appel" href="tel:3114"><span class="ic">📞</span><span><b>3114</b><small>24h/24, aussi pour les parents</small></span></a>
+    </div>
   </div>
   <h3><span class="emo">⚡</span>Maintenant</h3>
   <ol class="etapes">
