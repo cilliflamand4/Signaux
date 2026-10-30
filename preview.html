@@ -19,7 +19,7 @@
     --papier:#F7F3EA;
     --papier-2:#C9C4B8;
     --abricot:#FFA552;
-    --rouge:#FF3B30;
+    --rouge:#D7261C;
     --alerte:#FF4D6D;
     --menthe:#2EE6B0;
     --lilas:#A98BFF;
@@ -85,11 +85,11 @@
     padding-top:10px;padding-bottom:calc(12px + env(safe-area-inset-bottom,0px));
     background:linear-gradient(to top,var(--nuit) 70%,transparent)}
   .sos{max-width:520px;margin:0 auto;display:flex;align-items:center;gap:12px;
-    font:inherit;font-family:var(--display);font-weight:800;font-size:17px;color:#fff;
+    font:inherit;font-family:var(--display);font-weight:800;font-size:18px;color:#fff;
     background:var(--rouge);border:0;border-radius:999px;padding:14px 18px;cursor:pointer;width:100%;
     box-shadow:0 8px 28px rgba(255,59,48,.5)}
   .sos .emo{font-size:22px;line-height:1}
-  .sos small{display:block;font-family:var(--body);font-weight:700;font-size:13px;opacity:.9}
+  .sos small{display:block;font-family:var(--body);font-weight:700;font-size:14px}
   .sosbar[hidden]{display:none!important}
 
   /* ===== écrans intérieurs ===== */
@@ -158,7 +158,7 @@
   .appel small{display:block;font-weight:600;font-size:14px;color:var(--papier-2);margin-top:4px;line-height:1.3}
   .appel.rouge{background:var(--rouge);color:#fff;border-color:transparent;box-shadow:0 8px 24px rgba(255,59,48,.35)}
   .appel.rouge .ic{background:rgba(255,255,255,.2)}
-  .appel.rouge small{color:#fff;opacity:.92}
+  .appel.rouge small{color:#fff}
   .urgence{border:2px solid var(--rouge);border-radius:var(--r);padding:16px;margin:26px 0;background:rgba(255,59,48,.1);display:grid;gap:10px}
   .urgence p{margin:0;font-weight:800;color:#fff;font-size:17px}
 
@@ -194,7 +194,11 @@
   .chip-tip{display:none;background:color-mix(in srgb,var(--c) 18%,var(--nuit-2));border-left:5px solid var(--c);border-radius:16px;padding:12px 14px;margin:12px 0 4px;font-size:16.5px;line-height:1.45;font-weight:600;color:var(--papier)}
   .chip-tip.on{display:block}
   /* ===== sortie rapide ===== */
-  .quitter{position:fixed;top:max(10px,env(safe-area-inset-top,0px));right:12px;z-index:30;font:inherit;font-family:var(--display);font-weight:800;font-size:12.5px;color:var(--papier);background:var(--nuit-3);border:1px solid var(--trait);border-radius:999px;padding:7px 12px;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.35)}
+  .quitter{position:fixed;top:max(10px,env(safe-area-inset-top,0px));right:12px;z-index:30;font:inherit;font-family:var(--display);font-weight:800;font-size:13px;color:var(--papier);background:var(--nuit-3);border:1px solid var(--trait);border-radius:999px;padding:0 14px;min-height:44px;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.35)}
+  .appel.web{border-color:color-mix(in srgb,var(--ciel) 60%,transparent)}
+  .appel.web .ic{background:color-mix(in srgb,var(--ciel) 30%,var(--nuit))}
+  .lien{font:inherit;font-weight:800;color:var(--c,var(--abricot));background:none;border:0;border-bottom:2px solid currentColor;padding:0;cursor:pointer}
+  h1:focus,h2:focus{outline:none}
   .bandeau{background:color-mix(in srgb,var(--abricot) 14%,var(--nuit-2));border:1px dashed color-mix(in srgb,var(--abricot) 60%,transparent);border-radius:14px;padding:8px 12px;font-size:13px;color:var(--papier-2);margin-bottom:14px;font-weight:700}
   @media (prefers-reduced-motion:no-preference){
     .screen.on{animation:app .22s ease-out}
@@ -212,9 +216,9 @@
 <section class="screen on" id="accueil">
   <div class="marque"><i></i>Signaux</div>
   <div class="portes-titre">Trois portes — choisis la tienne</div>
-  <div class="portes" role="tablist" aria-label="Pour qui ?">
+  <div class="portes" role="group" aria-label="Pour qui ?">
     <button class="porte" data-go="moi"><span class="pe">🫶</span>C'est pour moi</button>
-    <button class="porte on" aria-selected="true"><span class="pe">👀</span>Je m'inquiète pour quelqu'un</button>
+    <button class="porte on" aria-current="page"><span class="pe">👀</span>Je m'inquiète pour quelqu'un</button>
     <button class="porte" data-go="parents"><span class="pe">👪</span>Je suis parent ou proche</button>
   </div>
   <h1>Tu t'inquiètes pour quelqu'un, <em>et tu ne sais pas quoi faire.</em></h1>
@@ -236,7 +240,7 @@
     <ul class="tuiles petites">
       <li style="--c:var(--abricot)"><button class="tuile" data-go="moi"><span class="emo" aria-hidden="true">🫶</span><span class="t"><b>C'est moi qui vais mal</b><span>Ouvrir la porte « C'est pour moi » : maison, harcèlement, violences, lycée, peur de parler</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     </ul>
-    <p class="perso-note">Version 16 · en test avec des jeunes et des parents pour le pilote 2027.</p>
+    <p class="perso-note">Version 16.1 · prototype en cours de validation. Tests avec des jeunes et des parents prévus pour le pilote 2027.</p>
   </div>
 </section>
 
@@ -244,8 +248,8 @@
 <section class="screen" id="moi">
   <div class="marque"><i></i>Signaux</div>
   <div class="portes-titre">Trois portes — choisis la tienne</div>
-  <div class="portes" role="tablist" aria-label="Pour qui ?">
-    <button class="porte on" aria-selected="true"><span class="pe">🫶</span>C'est pour moi</button>
+  <div class="portes" role="group" aria-label="Pour qui ?">
+    <button class="porte on" aria-current="page"><span class="pe">🫶</span>C'est pour moi</button>
     <button class="porte" data-go="accueil"><span class="pe">👀</span>Je m'inquiète pour quelqu'un</button>
     <button class="porte" data-go="parents"><span class="pe">👪</span>Je suis parent ou proche</button>
   </div>
@@ -253,6 +257,8 @@
   <p class="lead">Tu n'as pas besoin de savoir comment ça s'appelle. Dis-nous juste ce que tu vis.</p>
   <ul class="tuiles">
     <li class="grave" style="--c:var(--alerte)"><button class="tuile" data-go="m-mourir"><span class="emo" aria-hidden="true">🆘</span><span class="t"><b>Je pense à mourir</b><span>Des idées noires, l'envie que ça s'arrête</span></span><span class="chev" aria-hidden="true">›</span></button></li>
+    <li class="grave" style="--c:var(--alerte)"><button class="tuile" data-go="m-mal"><span class="emo" aria-hidden="true">🩸</span><span class="t"><b>Je me suis fait du mal</b><span>Blessure, automutilation, prise de quelque chose</span></span><span class="chev" aria-hidden="true">›</span></button></li>
+    <li style="--c:var(--ciel)"><button class="tuile" data-go="m-panique"><span class="emo" aria-hidden="true">😱</span><span class="t"><b>Je panique</b><span>Cœur qui s'emballe, je n'arrive plus à respirer ou à me calmer</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--abricot)"><button class="tuile" data-go="m-maison"><span class="emo" aria-hidden="true">🏠</span><span class="t"><b>Ça va pas à la maison</b><span>Disputes, peur, coups, envie de fuguer</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--corail)"><button class="tuile" data-go="m-harcele"><span class="emo" aria-hidden="true">🎯</span><span class="t"><b>On me harcèle</b><span>Au lycée, sur les réseaux, menaces, photo qui circule</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li class="grave" style="--c:var(--alerte)"><button class="tuile" data-go="m-violence"><span class="emo" aria-hidden="true">✋</span><span class="t"><b>Quelqu'un me fait du mal</b><span>Coups, menaces, contrôle, gestes que je ne veux pas</span></span><span class="chev" aria-hidden="true">›</span></button></li>
@@ -262,17 +268,17 @@
     <li style="--c:var(--ciel)"><button class="tuile" data-go="apres"><span class="emo" aria-hidden="true">🌙</span><span class="t"><b>J'ai parlé, et ce soir ça va pas</b><span>J'en ai parlé à quelqu'un, je suis rentré·e, et ça ne va pas</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--menthe)"><button class="tuile" data-go="suivi"><span class="emo" aria-hidden="true">👩‍⚕️</span><span class="t"><b>Je suis suivi·e, mais ça va moins bien</b><span>J'ai déjà un psy, mais je n'ose pas le déranger, ou il/elle n'est pas joignable</span></span><span class="chev" aria-hidden="true">›</span></button></li>
   </ul>
-  <p class="perso-note">Version 16 · en test avec des jeunes pour le pilote 2027. Rien de ce que tu fais ici n'est enregistré par cette page.</p>
+  <p class="perso-note">Version 16.1 · prototype en cours de validation. Cette page ne demande ni compte ni données.</p>
 </section>
 
 <!-- ACCUEIL PARENTS -->
 <section class="screen" id="parents">
   <div class="marque"><i></i>Signaux</div>
   <div class="portes-titre">Trois portes — choisissez la vôtre</div>
-  <div class="portes" role="tablist" aria-label="Pour qui ?">
+  <div class="portes" role="group" aria-label="Pour qui ?">
     <button class="porte" data-go="moi"><span class="pe">🫶</span>C'est pour moi</button>
     <button class="porte" data-go="accueil"><span class="pe">👀</span>Je m'inquiète pour quelqu'un</button>
-    <button class="porte on" aria-selected="true"><span class="pe">👪</span>Je suis parent ou proche</button>
+    <button class="porte on" aria-current="page"><span class="pe">👪</span>Je suis parent ou proche</button>
   </div>
   <h1>Votre ado va mal, <em>et vous ne savez pas quoi faire.</em></h1>
   <p class="lead">Vous n'avez pas à poser un diagnostic. Dites-nous juste ce qui se passe.</p>
@@ -280,6 +286,7 @@
     <li class="grave" style="--c:var(--alerte)"><button class="tuile" data-go="p-mourir"><span class="emo" aria-hidden="true">🆘</span><span class="t"><b>Parle de mourir</b><span>Mon ado parle de mourir, d'en finir, ou a écrit quelque chose qui ressemble à un adieu</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li class="grave" style="--c:var(--alerte)"><button class="tuile" data-go="p-mal"><span class="emo" aria-hidden="true">🩸</span><span class="t"><b>S'est fait du mal</b><span>Mon ado s'est fait du mal, j'ai vu des marques, ou on me l'a dit</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--menthe)"><button class="tuile" data-go="p-relation"><span class="emo" aria-hidden="true">💬</span><span class="t"><b>Sa relation</b><span>Sa relation amoureuse m'inquiète</span></span><span class="chev" aria-hidden="true">›</span></button></li>
+    <li style="--c:var(--corail)"><button class="tuile" data-go="p-harcele"><span class="emo" aria-hidden="true">🎯</span><span class="t"><b>On le/la harcèle</b><span>Au collège, au lycée, sur les réseaux : moqueries, exclusion, menaces, photo</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--lilas)"><button class="tuile" data-go="p-chambre"><span class="emo" aria-hidden="true">🔕</span><span class="t"><b>Ne sort plus</b><span>Mon ado ne sort plus de sa chambre, ne va plus en cours, ne parle plus</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--ciel)"><button class="tuile" data-go="p-panique"><span class="emo" aria-hidden="true">😱</span><span class="t"><b>Panique</b><span>Mon ado panique, n'arrive plus à respirer ou à se calmer</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--citron)"><button class="tuile" data-go="p-doute"><span class="emo" aria-hidden="true">🤔</span><span class="t"><b>Pas sûr·e</b><span>Je ne sais pas si c'est grave</span></span><span class="chev" aria-hidden="true">›</span></button></li>
@@ -293,6 +300,13 @@
   <button class="retour" data-go="parents">Retour</button>
   <div class="hero"><span class="emo" aria-hidden="true">🆘</span><h2>Votre ado parle de mourir</h2>
     <p class="intro">Une phrase lâchée, un message vu par hasard, « de toute façon je serai plus là ». Vous avez peur, et vous avez raison de prendre ça au sérieux, même sans être sûr·e. Ce soir, vous n'avez pas à être psy. Vous avez à rester, et à faire venir l'aide.</p></div>
+
+  <div class="urgence">
+    <p>S'il/elle a déjà fait quelque chose, ou va le faire :</p>
+    <a class="appel rouge" href="tel:15"><span class="ic">📞</span><span><b>15</b><small>SAMU, tout de suite</small></span></a>
+    <p>S'il/elle parle de mourir, a un moyen sous la main, ou si vous n'arrivez plus à le/la joindre :</p>
+    <a class="appel rouge" href="tel:3114"><span class="ic">📞</span><span><b>3114</b><small>24h/24, ils vous guident minute par minute</small></span></a>
+  </div>
 
   <h3><span class="emo">⚡</span>Maintenant</h3>
   <ol class="etapes">
@@ -315,11 +329,6 @@
     <div class="saisie"><div class="plus">+</div><div class="champ"><span>Message</span><span>🎤</span></div></div>
   </div>
 
-  <div class="urgence">
-    <p>S'il/elle a déjà fait quelque chose, a un moyen sous la main, ou si vous n'arrivez plus à le/la joindre :</p>
-    <a class="appel rouge" href="tel:15"><span class="ic">📞</span><span><b>15</b><small>tout de suite</small></span></a>
-    <a class="appel rouge" href="tel:3114"><span class="ic">📞</span><span><b>3114</b><small>24h/24, ils vous guident minute par minute</small></span></a>
-  </div>
 
   <h3><span class="emo">🚫</span>Ce qui ne marche pas</h3>
   <ul class="simple nope">
@@ -332,6 +341,7 @@
   <p class="note">Même si ça va mieux au matin, ça compte. Rendez-vous chez le médecin généraliste ou à la Maison des ados dans la journée. Prévenez l'école qu'il y a une fragilité, sans détails.</p>
   <div class="appels">
     <a class="appel" href="tel:0493261092"><span class="ic">🏠</span><span><b>Maison des ados 06</b><small>2A rue Raynardi, Nice — 04 93 26 10 92, lun-ven 9h-17h</small></span></a>
+    <a class="appel" href="sms:0785273531"><span class="ic">💬</span><span><b>SMS Maison des ados</b><small>07 85 27 35 31 — SMS uniquement, lun-ven 9h-17h, pas de réponse d'urgence</small></span></a>
     <a class="appel" href="tel:3114"><span class="ic">📞</span><span><b>3114</b><small>Aussi pour vous : comment tenir les prochains jours</small></span></a>
   </div>
 
@@ -344,7 +354,13 @@
 <section class="screen" id="p-mal" style="--c:var(--alerte)">
   <button class="retour" data-go="parents">Retour</button>
   <div class="hero"><span class="emo" aria-hidden="true">🩸</span><h2>Votre ado s'est fait du mal</h2>
-    <p class="intro">Des marques, un aveu, un message d'un·e ami·e. Se faire du mal est presque toujours une façon de tenir quand ça déborde. Ce n'est ni une manipulation, ni un caprice. Ça se soigne, et votre réaction de ce soir compte.</p></div>
+    <p class="intro">Des marques, un aveu, un message d'un·e ami·e. Se faire du mal peut être une façon de faire face à une souffrance. Ce n'est ni une manipulation, ni un caprice. Ça mérite une aide, parfois des soins urgents, et votre réaction de ce soir compte.</p></div>
+
+  <div class="urgence">
+    <p>Si ça saigne beaucoup, s'il/elle a pris quelque chose, ou s'il/elle parle aussi de mourir :</p>
+    <a class="appel rouge" href="tel:15"><span class="ic">📞</span><span><b>15</b><small>SAMU</small></span></a>
+    <a class="appel rouge" href="tel:3114"><span class="ic">📞</span><span><b>3114</b><small>24h/24, gratuit</small></span></a>
+  </div>
 
   <h3><span class="emo">⚡</span>Maintenant</h3>
   <ol class="etapes">
@@ -367,11 +383,6 @@
     <div class="saisie"><div class="plus">+</div><div class="champ"><span>Message</span><span>🎤</span></div></div>
   </div>
 
-  <div class="urgence">
-    <p>Si ça saigne beaucoup, s'il/elle a pris quelque chose, ou s'il/elle parle aussi de mourir :</p>
-    <a class="appel rouge" href="tel:15"><span class="ic">📞</span><span><b>15</b><small>SAMU</small></span></a>
-    <a class="appel rouge" href="tel:3114"><span class="ic">📞</span><span><b>3114</b><small>24h/24, gratuit</small></span></a>
-  </div>
 
   <h3><span class="emo">🚫</span>Ce qui ne marche pas</h3>
   <ul class="simple nope">
@@ -384,7 +395,9 @@
   <p class="note">Un rendez-vous dans la journée chez le médecin généraliste : il examine, et il oriente. Si votre ado est déjà suivi·e, un message court à son psy aujourd'hui.</p>
   <div class="appels">
     <a class="appel" href="tel:0493261092"><span class="ic">🏠</span><span><b>Maison des ados 06</b><small>2A rue Raynardi, Nice — 04 93 26 10 92, lun-ven 9h-17h</small></span></a>
+    <a class="appel" href="sms:0785273531"><span class="ic">💬</span><span><b>SMS Maison des ados</b><small>07 85 27 35 31 — SMS uniquement, lun-ven 9h-17h, pas de réponse d'urgence</small></span></a>
     <a class="appel" href="tel:0800235236"><span class="ic">📞</span><span><b>Fil Santé Jeunes</b><small>0 800 235 236 — votre ado peut y appeler seul·e, anonymement</small></span></a>
+    <a class="appel web" href="https://www.filsantejeunes.com" target="_blank" rel="noopener"><span class="ic">💬</span><span><b>Tchat Fil Santé Jeunes</b><small>Par écrit, sur filsantejeunes.com — 9h-22h</small></span></a>
   </div>
 
   <div class="toi">
@@ -412,7 +425,7 @@
   <ol class="etapes">
     <li>Ne dites pas « quitte-le/la », n'attaquez pas l'autre. Vous deviendriez l'ennemi, et il/elle se tairait.</li>
     <li>Dites que ce n'est pas lui/elle le problème. C'est la phrase dont il/elle a besoin.</li>
-    <li>Ne contactez ni le/la partenaire, ni ses parents, sans l'accord de votre ado.</li>
+    <li>Ne contactez ni le/la partenaire, ni ses parents. Toute démarche peut alerter l'auteur et exposer votre ado : demandez d'abord conseil à un professionnel (3919, Maison des ados).</li>
     <li>Demandez si, là, tout de suite, il/elle est en sécurité.</li>
   </ol>
 
@@ -433,13 +446,17 @@
     <p>S'il y a des menaces, des coups, ou si votre ado a peur :</p>
     <a class="appel rouge" href="tel:17"><span class="ic">📞</span><span><b>17</b><small>Police — si quelqu'un est menacé ou violent maintenant</small></span></a>
     <a class="appel rouge" href="tel:119"><span class="ic">📞</span><span><b>119</b><small>Mineur en danger, quel que soit l'auteur — 24h/24, gratuit, aussi pour les parents</small></span></a>
+    <a class="appel web" href="https://www.allo119.gouv.fr" target="_blank" rel="noopener"><span class="ic">💬</span><span><b>Tchat 119</b><small>Par écrit, sur allo119.gouv.fr — ouvert l'après-midi et le soir, horaires et conditions sur le site</small></span></a>
     <a class="appel" href="tel:3919"><span class="ic">📞</span><span><b>3919</b><small>Violences dans le couple : écoute et orientation pour les femmes et leurs proches. Ce n'est pas un numéro d'urgence</small></span></a>
+    <a class="appel" href="tel:116006"><span class="ic">📞</span><span><b>116 006</b><small>France Victimes — tous âges, tous publics, 9h-20h, 7j/7, gratuit. Si tu as plus de 18 ans, c'est ta porte d'entrée</small></span></a>
   </div>
 
   <h3><span class="emo">🌅</span>Et demain</h3>
   <div class="appels">
     <a class="appel" href="tel:0493261092"><span class="ic">🏠</span><span><b>Maison des ados 06</b><small>2A rue Raynardi, Nice — 04 93 26 10 92, lun-ven 9h-17h</small></span></a>
-    <a class="appel" href="tel:3018"><span class="ic">📱</span><span><b>3018</b><small>Harcèlement, contrôle par le téléphone, photos qui circulent — 9h-23h, 7j/7, tchat sur 3018.fr</small></span></a>
+    <a class="appel" href="sms:0785273531"><span class="ic">💬</span><span><b>SMS Maison des ados</b><small>07 85 27 35 31 — SMS uniquement, lun-ven 9h-17h, pas de réponse d'urgence</small></span></a>
+    <a class="appel" href="tel:3018"><span class="ic">📱</span><span><b>3018</b><small>Harcèlement, contrôle par le téléphone, photos qui circulent — 9h-23h, 7j/7</small></span></a>
+    <a class="appel web" href="https://www.3018.fr" target="_blank" rel="noopener"><span class="ic">💬</span><span><b>Tchat 3018</b><small>Par écrit, sur 3018.fr — 9h-23h, 7j/7</small></span></a>
   </div>
 
   <div class="toi">
@@ -485,7 +502,9 @@
   <p class="note">Si ça s'installe, ou si c'est brutal, ne laissez pas passer : généraliste ou Maison des ados dès cette semaine. Et l'infirmière scolaire est une alliée qu'on oublie.</p>
   <div class="appels">
     <a class="appel" href="tel:0493261092"><span class="ic">🏠</span><span><b>Maison des ados 06</b><small>2A rue Raynardi, Nice — 04 93 26 10 92, lun-ven 9h-17h</small></span></a>
+    <a class="appel" href="sms:0785273531"><span class="ic">💬</span><span><b>SMS Maison des ados</b><small>07 85 27 35 31 — SMS uniquement, lun-ven 9h-17h, pas de réponse d'urgence</small></span></a>
     <a class="appel" href="tel:0800235236"><span class="ic">📞</span><span><b>Fil Santé Jeunes</b><small>0 800 235 236 — votre ado peut y appeler seul·e</small></span></a>
+    <a class="appel web" href="https://www.filsantejeunes.com" target="_blank" rel="noopener"><span class="ic">💬</span><span><b>Tchat Fil Santé Jeunes</b><small>Par écrit, sur filsantejeunes.com — 9h-22h</small></span></a>
   </div>
 
   <div class="toi">
@@ -497,14 +516,19 @@
 <section class="screen" id="p-panique" style="--c:var(--ciel)">
   <button class="retour" data-go="parents">Retour</button>
   <div class="hero"><span class="emo" aria-hidden="true">😱</span><h2>Votre ado panique</h2>
-    <p class="intro">Cœur qui s'emballe, souffle court, « je vais mourir », « je deviens fou/folle » : une crise de panique fait très peur et passe souvent en 10 à 20 minutes. Votre calme aide beaucoup. Mais vous n'avez pas à deviner : si vous avez un doute, on fait vérifier.</p></div>
+    <p class="intro">Cœur qui s'emballe, souffle court, « je vais mourir », « je deviens fou/folle » : une crise de panique fait très peur. Souvent elle passe, mais ce n'est pas à vous de deviner si c'en est une.</p></div>
+
+  <div class="urgence">
+    <p>Douleur dans la poitrine, malaise, grande difficulté à respirer, première fois, ou si vous n'êtes pas sûr·e que c'est de l'angoisse : n'attendez pas.</p>
+    <a class="appel rouge" href="tel:15"><span class="ic">📞</span><span><b>15</b><small>SAMU — on fait vérifier, ce n'est jamais « pour rien »</small></span></a>
+  </div>
 
   <h3><span class="emo">⚡</span>Maintenant</h3>
   <ol class="etapes">
     <li>Restez là. Parlez bas et lentement, ne multipliez pas les questions.</li>
-    <li>Dites que ça va passer, que vous restez jusqu'à la fin.</li>
-    <li>Respirez avec lui/elle : inspire 4, souffle 6, plusieurs fois.</li>
-    <li>Si c'est la première fois, si ça ne passe pas en 20 minutes, s'il y a une douleur dans la poitrine, un malaise, ou si vous n'êtes pas sûr·e que c'est de l'angoisse : 15.</li>
+    <li>Dites que vous restez, et que vous appelez de l'aide si ça ne passe pas.</li>
+    <li>Proposez de respirer calmement, sans forcer : ni trop profond, ni trop vite.</li>
+    <li>Si ça ne passe pas, ou si ça revient très fort : 15. On ne compte pas les minutes.</li>
   </ol>
 
   <h3><span class="emo">💬</span>Vous pouvez écrire</h3>
@@ -514,7 +538,7 @@
       <div class="date">Aujourd'hui</div>
       <div class="recu"><span class="pts"><i></i><i></i><i></i></span></div>
       <div class="aide">Appuyez sur un message pour le copier</div>
-      <button class="bulle"><q>Je suis là. Ça va passer. On respire ensemble, je reste au téléphone.</q></button>
+      <button class="bulle"><q>Je suis là. On respire calmement, et si ça ne passe pas j'appelle de l'aide.</q></button>
     </div>
     <div class="saisie"><div class="plus">+</div><div class="champ"><span>Message</span><span>🎤</span></div></div>
   </div>
@@ -523,10 +547,11 @@
   <p class="note">Si ça revient chaque matin avant l'école, ce n'est pas un caprice, et ça se soigne bien. Généraliste, infirmière scolaire ou Maison des ados.</p>
   <div class="appels">
     <a class="appel" href="tel:0493261092"><span class="ic">🏠</span><span><b>Maison des ados 06</b><small>2A rue Raynardi, Nice — 04 93 26 10 92, lun-ven 9h-17h</small></span></a>
+    <a class="appel" href="sms:0785273531"><span class="ic">💬</span><span><b>SMS Maison des ados</b><small>07 85 27 35 31 — SMS uniquement, lun-ven 9h-17h, pas de réponse d'urgence</small></span></a>
   </div>
 
   <div class="toi">
-    <p><strong>💛 Et vous ?</strong>Vous n'avez rien provoqué. Rester calme à côté de quelqu'un qui panique est une vraie compétence, et vous venez de la pratiquer.</p>
+    <p><strong>💛 Et vous ?</strong>Rester calme à côté de quelqu'un qui panique est une vraie compétence, et vous venez de la pratiquer.</p>
   </div>
 </section>
 
@@ -556,6 +581,7 @@
   <div class="appels">
     <a class="appel" href="tel:3114"><span class="ic">📞</span><span><b>3114</b><small>Vous pouvez appeler pour votre ado, 24h/24 : ils vous aident à évaluer</small></span></a>
     <a class="appel" href="tel:0493261092"><span class="ic">🏠</span><span><b>Maison des ados 06</b><small>2A rue Raynardi, Nice — 04 93 26 10 92, lun-ven 9h-17h ; reçoit aussi les parents</small></span></a>
+    <a class="appel" href="sms:0785273531"><span class="ic">💬</span><span><b>SMS Maison des ados</b><small>07 85 27 35 31 — SMS uniquement, lun-ven 9h-17h, pas de réponse d'urgence</small></span></a>
   </div>
 </section>
 
@@ -569,9 +595,9 @@
   <ol class="etapes">
     <li>Choisis une personne, pas la meilleure. Une qui est là : l'infirmière, un prof, la CPE, le parent d'un·e ami·e, un oncle, une tante.</li>
     <li>Dis une phrase, pas tout. Tu n'as pas à expliquer. Tu as juste à commencer.</li>
-    <li>Si tu préfères que personne ne sache qui tu es, appelle un numéro anonyme. Ils ne demandent pas ton nom.</li>
+    <li>Si tu préfères ne pas dire qui tu es, Fil Santé Jeunes est anonyme. Les autres numéros sont confidentiels : ils ne racontent pas ta vie, mais ils peuvent agir pour te protéger.</li>
     <li>Si tu as des idées noires, ne les garde pas pour ce soir : le 3114, tout de suite.</li>
-    <li>Si ce qui te retient, c'est la peur de ce qui arrivera après : va sur « J'ai peur de parler ». Il y a des façons de parler sans te mettre en danger.</li>
+    <li>Si ce qui te retient, c'est la peur de ce qui arrivera après : <button class="lien" data-go="peur">ouvre « J'ai peur de parler »</button>. Il y a des façons de parler sans te mettre en danger.</li>
   </ol>
 
   <h3><span class="emo">💬</span>Tu peux écrire</h3>
@@ -590,12 +616,14 @@
   <h3><span class="emo">📞</span>Sans dire ton nom</h3>
   <div class="appels">
     <a class="appel" href="tel:0800235236"><span class="ic">📞</span><span><b>Fil Santé Jeunes</b><small>0 800 235 236, anonyme, gratuit, 9h-23h</small></span></a>
-    <a class="appel" href="tel:3114"><span class="ic">📞</span><span><b>3114</b><small>Si tu penses à mourir. 24h/24, gratuit, anonyme</small></span></a>
+    <a class="appel web" href="https://www.filsantejeunes.com" target="_blank" rel="noopener"><span class="ic">💬</span><span><b>Tchat Fil Santé Jeunes</b><small>Par écrit, sur filsantejeunes.com — 9h-22h</small></span></a>
+    <a class="appel" href="tel:3114"><span class="ic">📞</span><span><b>3114</b><small>Si tu penses à mourir. 24h/24, gratuit, confidentiel</small></span></a>
     <a class="appel" href="tel:0493261092"><span class="ic">🏠</span><span><b>Maison des ados 06</b><small>2A rue Raynardi, Nice — 04 93 26 10 92, lun-ven 9h-17h</small></span></a>
+    <a class="appel" href="sms:0785273531"><span class="ic">💬</span><span><b>SMS Maison des ados</b><small>07 85 27 35 31 — SMS uniquement, lun-ven 9h-17h, pas de réponse d'urgence</small></span></a>
   </div>
 
   <div class="toi">
-    <p><strong>💛 Et toi ?</strong>Demander de l'aide, ce n'est pas se plaindre. C'est la chose la plus courageuse de ta semaine, et personne ne te le reprochera.</p>
+    <p><strong>💛 Et toi ?</strong>Demander de l'aide, ce n'est pas se plaindre. Tu mérites de l'aide, et personne ne te le reprochera.</p>
   </div>
 </section>
 
@@ -629,8 +657,9 @@
   <h3><span class="emo">📞</span>Cette nuit</h3>
   <div class="appels">
     <a class="appel rouge" href="tel:119"><span class="ic">📞</span><span><b>119</b><small>Si c'est à la maison que ça se passe. 24h/24, gratuit, n'apparaît pas sur la facture</small></span></a>
+    <a class="appel web" href="https://www.allo119.gouv.fr" target="_blank" rel="noopener"><span class="ic">💬</span><span><b>Tchat 119</b><small>Par écrit, sur allo119.gouv.fr — ouvert l'après-midi et le soir, horaires et conditions sur le site</small></span></a>
     <a class="appel rouge" href="tel:3114"><span class="ic">📞</span><span><b>3114</b><small>Idées noires, 24h/24, gratuit</small></span></a>
-    <a class="appel" href="sms:114"><span class="ic">💬</span><span><b>114 par SMS</b><small>Si tu ne peux pas parler à voix haute</small></span></a>
+    <a class="appel" href="sms:114"><span class="ic">💬</span><span><b>114 par SMS</b><small>Urgence seulement, si tu ne peux pas parler : police, pompiers, SAMU par écrit. Ce n'est pas un tchat d'écoute</small></span></a>
   </div>
 
   <h3><span class="emo">🌅</span>Et demain</h3>
@@ -651,7 +680,7 @@
   <ol class="etapes">
     <li>Écris à ton psy un message court. Il ou elle préfère cent fois un message « ça va moins bien » qu'un silence jusqu'au rendez-vous.</li>
     <li>Ne reste pas suspendu·e à la réponse. Un psy n'est pas toujours joignable le jour même, et ce n'est pas contre toi. En attendant, il y a d'autres relais, et ils sont là pour ça.</li>
-    <li>Si tu penses à mourir, ou si tu ne manges plus depuis plusieurs jours : ce n'est pas « jusqu'au prochain rendez-vous ». C'est aujourd'hui, avec un médecin ou le 3114.</li>
+    <li>Si tu penses à mourir, ou si tu n'arrives plus à manger ni à boire : ce n'est pas « jusqu'au prochain rendez-vous ». C'est aujourd'hui, avec un médecin ou le 3114.</li>
   </ol>
 
   <h3><span class="emo">💬</span>Tu peux écrire</h3>
@@ -671,7 +700,8 @@
   <div class="appels">
     <a class="appel rouge" href="tel:3114"><span class="ic">📞</span><span><b>3114</b><small>24h/24, gratuit : ils évaluent avec toi et t'orientent, même si tu es déjà suivi·e</small></span></a>
     <a class="appel" href="tel:0493261092"><span class="ic">🏠</span><span><b>Maison des ados 06</b><small>2A rue Raynardi, Nice — 04 93 26 10 92, lun-ven 9h-17h</small></span></a>
-    <a class="appel" href="tel:15"><span class="ic">📞</span><span><b>15</b><small>Si tu es en danger, ou si tu n'as plus mangé depuis plusieurs jours</small></span></a>
+    <a class="appel" href="sms:0785273531"><span class="ic">💬</span><span><b>SMS Maison des ados</b><small>07 85 27 35 31 — SMS uniquement, lun-ven 9h-17h, pas de réponse d'urgence</small></span></a>
+    <a class="appel" href="tel:15"><span class="ic">📞</span><span><b>15</b><small>Si tu es en danger, ou si tu n'arrives plus à manger ni à boire</small></span></a>
   </div>
 
   <div class="toi">
@@ -688,7 +718,7 @@
   <h3><span class="emo">⚡</span>Aujourd'hui, pas la semaine prochaine</h3>
   <ol class="etapes">
     <li>Appelez le 3114. Vous pouvez appeler pour votre enfant, 24h/24 : ils évaluent avec vous et vous disent vers qui aller, dans quel délai.</li>
-    <li>Prenez un rendez-vous chez le médecin généraliste dans la journée. Des idées noires et plusieurs jours sans manger, ça se regarde vite, par quelqu'un qui peut examiner.</li>
+    <li>Prenez un rendez-vous chez le médecin généraliste dans la journée. Des idées noires, ne plus manger, ne plus dormir : ça se regarde vite, par quelqu'un qui peut examiner.</li>
     <li>Si votre enfant est déjà suivi·e, écrivez à son professionnel. Un message court suffit, et n'attendez pas la réponse pour faire les deux premiers points.</li>
     <li>Si vous avez peur pour sa vie maintenant : 15 ou 112. Les urgences ne sont pas un « extrême » : c'est un lieu où l'on évalue.</li>
   </ol>
@@ -709,9 +739,11 @@
   <h3><span class="emo">📞</span>Qui appeler</h3>
   <div class="appels">
     <a class="appel rouge" href="tel:3114"><span class="ic">📞</span><span><b>3114</b><small>Prévention du suicide, 24h/24, gratuit — pour les proches aussi</small></span></a>
-    <a class="appel rouge" href="tel:15"><span class="ic">📞</span><span><b>15</b><small>Danger immédiat, ou plusieurs jours sans manger ni boire</small></span></a>
+    <a class="appel rouge" href="tel:15"><span class="ic">📞</span><span><b>15</b><small>Danger immédiat, ou impossible de manger ou de boire</small></span></a>
     <a class="appel" href="tel:0493261092"><span class="ic">🏠</span><span><b>Maison des ados 06</b><small>2A rue Raynardi, Nice — 04 93 26 10 92, lun-ven 9h-17h ; reçoit aussi les parents</small></span></a>
+    <a class="appel" href="sms:0785273531"><span class="ic">💬</span><span><b>SMS Maison des ados</b><small>07 85 27 35 31 — SMS uniquement, lun-ven 9h-17h, pas de réponse d'urgence</small></span></a>
     <a class="appel" href="tel:0800235236"><span class="ic">📞</span><span><b>Fil Santé Jeunes</b><small>0 800 235 236 — votre enfant peut y appeler seul·e, anonymement</small></span></a>
+    <a class="appel web" href="https://www.filsantejeunes.com" target="_blank" rel="noopener"><span class="ic">💬</span><span><b>Tchat Fil Santé Jeunes</b><small>Par écrit, sur filsantejeunes.com — 9h-22h</small></span></a>
   </div>
 
   <div class="toi">
@@ -721,9 +753,9 @@
 
 <!-- DANGER -->
 <section class="screen" id="danger" style="--c:var(--rouge)">
-  <button class="retour" data-go="accueil">Retour</button>
-  <div class="hero"><span class="emo" aria-hidden="true">🚨</span><h2>Si quelqu'un risque d'être blessé maintenant</h2>
-    <p class="intro">Tu n'as pas à décider seul·e si c'est « assez grave ». Appelle. Ils ont l'habitude et ils ne te jugeront pas.</p></div>
+  <button class="retour" data-go="back">Retour</button>
+  <div class="hero"><span class="emo" aria-hidden="true">🚨</span><h2>Si toi, ou quelqu'un, risque d'être blessé maintenant</h2>
+    <p class="intro">Tu n'as pas à décider seul·e si c'est « assez grave ». Appelle. Ils ont l'habitude et ils ne te jugeront pas. Si tu ne peux pas parler : le 114 par SMS.</p></div>
   <h3><span class="emo">📞</span>Appelle</h3>
   <div class="appels">
     <a class="appel rouge" href="tel:15"><span class="ic">📞</span><span><b>15</b><small>SAMU — blessure, saignement, malaise, médicaments, ou quelqu'un qui va passer à l'acte</small></span></a>
@@ -731,14 +763,16 @@
     <a class="appel rouge" href="tel:3114"><span class="ic">📞</span><span><b>3114</b><small>Idées de mort — écoute, évaluation, orientation, 24h/24. Ce n'est pas une ambulance : si c'est imminent, le 15</small></span></a>
     <a class="appel" href="tel:112"><span class="ic">📞</span><span><b>112</b><small>Numéro d'urgence européen — si le 15 ou le 17 ne passent pas, ou depuis l'étranger</small></span></a>
     <a class="appel" href="tel:119"><span class="ic">📞</span><span><b>119</b><small>Moins de 18 ans en danger, à la maison ou ailleurs, quel que soit l'auteur — 24h/24, gratuit</small></span></a>
-    <a class="appel" href="tel:3018"><span class="ic">📱</span><span><b>3018</b><small>Harcèlement, menaces, photo qui circule — 9h-23h, 7j/7, tchat sur 3018.fr</small></span></a>
-    <a class="appel" href="sms:114"><span class="ic">💬</span><span><b>114 par SMS</b><small>Si tu ne peux pas parler à voix haute</small></span></a>
+    <a class="appel web" href="https://www.allo119.gouv.fr" target="_blank" rel="noopener"><span class="ic">💬</span><span><b>Tchat 119</b><small>Par écrit, sur allo119.gouv.fr — ouvert l'après-midi et le soir, horaires et conditions sur le site</small></span></a>
+    <a class="appel" href="tel:3018"><span class="ic">📱</span><span><b>3018</b><small>Harcèlement, menaces, photo qui circule — 9h-23h, 7j/7</small></span></a>
+    <a class="appel web" href="https://www.3018.fr" target="_blank" rel="noopener"><span class="ic">💬</span><span><b>Tchat 3018</b><small>Par écrit, sur 3018.fr — 9h-23h, 7j/7</small></span></a>
+    <a class="appel" href="sms:114"><span class="ic">💬</span><span><b>114 par SMS</b><small>Urgence seulement, si tu ne peux pas parler : police, pompiers, SAMU par écrit. Ce n'est pas un tchat d'écoute</small></span></a>
   </div>
   <h3><span class="emo">⚡</span>Pendant que tu appelles</h3>
   <ol class="etapes">
-    <li>Reste en contact avec ton ami·e : « Je suis là, je ne raccroche pas. »</li>
-    <li>Si tu sais où il/elle est, dis-le à la personne au téléphone.</li>
-    <li>Ne pars pas seul·e sur place. Préviens un adulte, même en pleine nuit.</li>
+    <li>Si c'est pour toi : dis où tu es, reste en ligne, et préviens une personne proche, même en pleine nuit.</li>
+    <li>Si c'est pour quelqu'un d'autre : reste en contact avec lui/elle, « je suis là, je ne raccroche pas », et dis où il/elle est si tu le sais.</li>
+    <li>Ne pars pas seul·e sur place. Préviens un adulte. Si le danger est immédiat, tu n'as pas besoin de son accord pour appeler.</li>
   </ol>
 </section>
 
@@ -747,6 +781,13 @@
   <button class="retour" data-go="accueil">Retour</button>
   <div class="hero"><span class="emo" aria-hidden="true">🆘</span><h2>Il/elle parle de mourir</h2>
     <p class="intro">Un message qui ressemble à un adieu, un compte à rebours, un « c'est fini », une phrase que tu ne comprends pas mais qui te fait peur : tu le prends au sérieux, même si tu n'es pas sûr·e. Se tromper coûte moins cher que se taire.</p></div>
+
+  <div class="urgence">
+    <p>S'il/elle a déjà fait quelque chose, ou va le faire :</p>
+    <a class="appel rouge" href="tel:15"><span class="ic">📞</span><span><b>15</b><small>SAMU, tout de suite. Dis où il/elle est</small></span></a>
+    <p>S'il/elle parle de mourir, a un moyen sous la main, ou ne répond plus :</p>
+    <a class="appel rouge" href="tel:3114"><span class="ic">📞</span><span><b>3114</b><small>24h/24 : ils évaluent avec toi et te disent quoi faire, maintenant</small></span></a>
+  </div>
 
   <h3><span class="emo">⚡</span>Maintenant</h3>
   <ol class="etapes">
@@ -763,18 +804,13 @@
       <div class="date">Aujourd'hui</div>
       <div class="recu"><span class="pts"><i></i><i></i><i></i></span></div>
       <div class="aide">Appuie sur un message pour le copier</div>
-      <button class="bulle"><q>Je suis là. Je reste avec toi ce soir.</q></button>
+      <button class="bulle"><q>Je suis là maintenant, et je vais chercher un adulte avec toi.</q></button>
       <button class="bulle"><q>Est-ce que tu penses à mourir ? Tu peux me le dire.</q></button>
       <button class="bulle"><q>Je ne vais pas te laisser seul·e avec ça. On appelle le 3114 ensemble, je reste en ligne.</q></button>
     </div>
     <div class="saisie"><div class="plus">+</div><div class="champ"><span>Message</span><span>🎤</span></div></div>
   </div>
 
-  <div class="urgence">
-    <p>Si il/elle a déjà fait quelque chose, a un moyen sous la main, ou ne répond plus :</p>
-    <a class="appel rouge" href="tel:15"><span class="ic">📞</span><span><b>15</b><small>tout de suite</small></span></a>
-    <a class="appel rouge" href="tel:3114"><span class="ic">📞</span><span><b>3114</b><small>ils te disent quoi faire, à toi aussi</small></span></a>
-  </div>
 
   <h3><span class="emo">🚫</span>Ce qui ne marche pas</h3>
   <ul class="simple nope">
@@ -787,6 +823,7 @@
   <p class="note">Même si ça va mieux au matin, ça compte. Dis-lui : « On va voir quelqu'un ensemble. » La Maison des ados reçoit les ados avec ou sans leurs parents ; appelle avant, pour savoir quand venir.</p>
   <div class="appels">
     <a class="appel" href="tel:0493261092"><span class="ic">🏠</span><span><b>Maison des ados 06</b><small>2A rue Raynardi, Nice — 04 93 26 10 92, lun-ven 9h-17h</small></span></a>
+    <a class="appel" href="sms:0785273531"><span class="ic">💬</span><span><b>SMS Maison des ados</b><small>07 85 27 35 31 — SMS uniquement, lun-ven 9h-17h, pas de réponse d'urgence</small></span></a>
     <a class="appel" href="tel:3114"><span class="ic">📞</span><span><b>3114</b><small>Aussi pour toi, pour savoir comment l'accompagner</small></span></a>
   </div>
 
@@ -800,6 +837,12 @@
   <button class="retour" data-go="accueil">Retour</button>
   <div class="hero"><span class="emo" aria-hidden="true">🩸</span><h2>Il/elle s'est fait du mal</h2>
     <p class="intro">Souvent ça arrive comme ça : « je viens de le faire », une photo, « dis rien ». Tu n'as rien à réparer ce soir. Tu as juste à rester là, et à savoir quand appeler.</p></div>
+
+  <div class="urgence">
+    <p>Si ça saigne beaucoup, si il/elle a pris quelque chose, ou si il/elle parle aussi de mourir :</p>
+    <a class="appel rouge" href="tel:15"><span class="ic">📞</span><span><b>15</b><small>SAMU</small></span></a>
+    <a class="appel rouge" href="tel:3114"><span class="ic">📞</span><span><b>3114</b><small>24h/24, gratuit</small></span></a>
+  </div>
 
   <h3><span class="emo">⚡</span>Maintenant</h3>
   <ol class="etapes">
@@ -823,11 +866,6 @@
     <div class="saisie"><div class="plus">+</div><div class="champ"><span>Message</span><span>🎤</span></div></div>
   </div>
 
-  <div class="urgence">
-    <p>Si ça saigne beaucoup, si il/elle a pris quelque chose, ou si il/elle parle aussi de mourir :</p>
-    <a class="appel rouge" href="tel:15"><span class="ic">📞</span><span><b>15</b><small>SAMU</small></span></a>
-    <a class="appel rouge" href="tel:3114"><span class="ic">📞</span><span><b>3114</b><small>24h/24, gratuit</small></span></a>
-  </div>
 
   <h3><span class="emo">📷</span>La photo</h3>
   <ul class="simple">
@@ -836,10 +874,12 @@
   </ul>
 
   <h3><span class="emo">🌅</span>Et demain</h3>
-  <p class="note">Se faire du mal, c'est presque toujours une façon de tenir quand ça déborde. Ça se soigne, et ça commence par en parler à quelqu'un qui sait. Propose d'y aller ensemble.</p>
+  <p class="note">Se faire du mal peut être une façon de faire face à une souffrance. Ça mérite une aide, parfois des soins, et ça commence par en parler à quelqu'un qui sait. Propose d'y aller ensemble.</p>
   <div class="appels">
     <a class="appel" href="tel:0493261092"><span class="ic">🏠</span><span><b>Maison des ados 06</b><small>2A rue Raynardi, Nice — 04 93 26 10 92, lun-ven 9h-17h</small></span></a>
+    <a class="appel" href="sms:0785273531"><span class="ic">💬</span><span><b>SMS Maison des ados</b><small>07 85 27 35 31 — SMS uniquement, lun-ven 9h-17h, pas de réponse d'urgence</small></span></a>
     <a class="appel" href="tel:0800235236"><span class="ic">📞</span><span><b>Fil Santé Jeunes</b><small>0 800 235 236, anonyme, gratuit, 9h-23h</small></span></a>
+    <a class="appel web" href="https://www.filsantejeunes.com" target="_blank" rel="noopener"><span class="ic">💬</span><span><b>Tchat Fil Santé Jeunes</b><small>Par écrit, sur filsantejeunes.com — 9h-22h</small></span></a>
   </div>
 
   <div class="toi">
@@ -889,13 +929,17 @@
     <p>S'il y a des menaces, des coups, ou si il/elle a peur de rentrer :</p>
     <a class="appel rouge" href="tel:17"><span class="ic">📞</span><span><b>17</b><small>Police — si quelqu'un est menacé ou violent maintenant</small></span></a>
     <a class="appel rouge" href="tel:119"><span class="ic">📞</span><span><b>119</b><small>Moins de 18 ans et en danger, quel que soit l'auteur — 24h/24, gratuit</small></span></a>
+    <a class="appel web" href="https://www.allo119.gouv.fr" target="_blank" rel="noopener"><span class="ic">💬</span><span><b>Tchat 119</b><small>Par écrit, sur allo119.gouv.fr — ouvert l'après-midi et le soir, horaires et conditions sur le site</small></span></a>
     <a class="appel" href="tel:3919"><span class="ic">📞</span><span><b>3919</b><small>Violences dans le couple : écoute et orientation pour les femmes et leurs proches. Ce n'est pas un numéro d'urgence</small></span></a>
+    <a class="appel" href="tel:116006"><span class="ic">📞</span><span><b>116 006</b><small>France Victimes — tous âges, tous publics, 9h-20h, 7j/7, gratuit. Si tu as plus de 18 ans, c'est ta porte d'entrée</small></span></a>
   </div>
 
   <h3><span class="emo">🌅</span>Et demain</h3>
   <div class="appels">
     <a class="appel" href="tel:0493261092"><span class="ic">🏠</span><span><b>Maison des ados 06</b><small>2A rue Raynardi, Nice — 04 93 26 10 92, lun-ven 9h-17h</small></span></a>
-    <a class="appel" href="tel:3018"><span class="ic">📱</span><span><b>3018</b><small>Harcèlement, contrôle par le téléphone, photos qui circulent — 9h-23h, 7j/7, tchat sur 3018.fr</small></span></a>
+    <a class="appel" href="sms:0785273531"><span class="ic">💬</span><span><b>SMS Maison des ados</b><small>07 85 27 35 31 — SMS uniquement, lun-ven 9h-17h, pas de réponse d'urgence</small></span></a>
+    <a class="appel" href="tel:3018"><span class="ic">📱</span><span><b>3018</b><small>Harcèlement, contrôle par le téléphone, photos qui circulent — 9h-23h, 7j/7</small></span></a>
+    <a class="appel web" href="https://www.3018.fr" target="_blank" rel="noopener"><span class="ic">💬</span><span><b>Tchat 3018</b><small>Par écrit, sur 3018.fr — 9h-23h, 7j/7</small></span></a>
   </div>
 
   <div class="toi">
@@ -933,7 +977,9 @@
   <p class="note">Si ça s'installe, ou si c'est brutal, n'attends pas : dis-le à un adulte qui le/la connaît. Ce n'est pas le/la balancer, c'est faire venir de l'aide.</p>
   <div class="appels">
     <a class="appel" href="tel:0493261092"><span class="ic">🏠</span><span><b>Maison des ados 06</b><small>2A rue Raynardi, Nice — 04 93 26 10 92, lun-ven 9h-17h</small></span></a>
+    <a class="appel" href="sms:0785273531"><span class="ic">💬</span><span><b>SMS Maison des ados</b><small>07 85 27 35 31 — SMS uniquement, lun-ven 9h-17h, pas de réponse d'urgence</small></span></a>
     <a class="appel" href="tel:0800235236"><span class="ic">📞</span><span><b>Fil Santé Jeunes</b><small>0 800 235 236</small></span></a>
+    <a class="appel web" href="https://www.filsantejeunes.com" target="_blank" rel="noopener"><span class="ic">💬</span><span><b>Tchat Fil Santé Jeunes</b><small>Par écrit, sur filsantejeunes.com — 9h-22h</small></span></a>
   </div>
 
   <div class="toi">
@@ -945,14 +991,19 @@
 <section class="screen" id="panique" style="--c:var(--ciel)">
   <button class="retour" data-go="accueil">Retour</button>
   <div class="hero"><span class="emo" aria-hidden="true">😱</span><h2>Il/elle panique</h2>
-    <p class="intro">Cœur qui bat fort, souffle court, impression de mourir ou de devenir fou/folle : une crise de panique fait très peur et passe souvent en 10 à 20 minutes. Ta voix calme aide beaucoup. Mais tu n'as pas à deviner : si tu as un doute, on fait vérifier.</p></div>
+    <p class="intro">Cœur qui bat fort, souffle court, impression de mourir ou de devenir fou/folle : une crise de panique fait très peur. Souvent elle passe, mais ce n'est pas à toi de deviner si c'en est une.</p></div>
+
+  <div class="urgence">
+    <p>Douleur dans la poitrine, malaise, grande difficulté à respirer, première fois, ou si tu n'es pas sûr·e que c'est de l'angoisse : n'attends pas.</p>
+    <a class="appel rouge" href="tel:15"><span class="ic">📞</span><span><b>15</b><small>SAMU — on fait vérifier, ce n'est jamais « pour rien »</small></span></a>
+  </div>
 
   <h3><span class="emo">⚡</span>Maintenant</h3>
   <ol class="etapes">
     <li>Passe en appel ou en vocal si tu peux. Parle lentement.</li>
-    <li>Dis que ça va passer, que tu restes jusqu'à ce que ça passe.</li>
-    <li>Respire avec lui/elle : inspire 4, souffle 6, plusieurs fois.</li>
-    <li>Si c'est la première fois, si ça ne passe pas en 20 minutes, s'il y a une douleur dans la poitrine, un malaise, ou si tu n'es pas sûr·e que c'est de l'angoisse : 15.</li>
+    <li>Dis que tu restes là, et que tu vas chercher de l'aide avec lui/elle si ça ne passe pas.</li>
+    <li>Propose de respirer calmement, sans forcer : ni trop profond, ni trop vite.</li>
+    <li>Si ça ne passe pas, ou si ça revient très fort : 15. On ne compte pas les minutes.</li>
   </ol>
 
   <h3><span class="emo">💬</span>Tu peux écrire</h3>
@@ -962,7 +1013,7 @@
       <div class="date">Aujourd'hui</div>
       <div class="recu"><span class="pts"><i></i><i></i><i></i></span></div>
       <div class="aide">Appuie sur un message pour le copier</div>
-      <button class="bulle"><q>Je reste avec toi. Ça va passer. On respire ensemble.</q></button>
+      <button class="bulle"><q>Je suis là. On respire calmement, et si ça ne passe pas on appelle de l'aide.</q></button>
     </div>
     <div class="saisie"><div class="plus">+</div><div class="champ"><span>Message</span><span>🎤</span></div></div>
   </div>
@@ -971,6 +1022,7 @@
   <p class="note">Si ça revient chaque matin avant le lycée, ce n'est pas un caprice, ça se soigne bien. Propose d'en parler à l'infirmerie ou à la Maison des ados.</p>
   <div class="appels">
     <a class="appel" href="tel:0493261092"><span class="ic">🏠</span><span><b>Maison des ados 06</b><small>2A rue Raynardi, Nice — 04 93 26 10 92, lun-ven 9h-17h</small></span></a>
+    <a class="appel" href="sms:0785273531"><span class="ic">💬</span><span><b>SMS Maison des ados</b><small>07 85 27 35 31 — SMS uniquement, lun-ven 9h-17h, pas de réponse d'urgence</small></span></a>
   </div>
 </section>
 
@@ -1000,7 +1052,9 @@
   <div class="appels">
     <a class="appel" href="tel:3114"><span class="ic">📞</span><span><b>3114</b><small>Tu peux appeler pour un·e ami·e, ils t'aident à y voir clair</small></span></a>
     <a class="appel" href="tel:0800235236"><span class="ic">📞</span><span><b>Fil Santé Jeunes</b><small>0 800 235 236</small></span></a>
+    <a class="appel web" href="https://www.filsantejeunes.com" target="_blank" rel="noopener"><span class="ic">💬</span><span><b>Tchat Fil Santé Jeunes</b><small>Par écrit, sur filsantejeunes.com — 9h-22h</small></span></a>
     <a class="appel" href="tel:0493261092"><span class="ic">🏠</span><span><b>Maison des ados 06</b><small>2A rue Raynardi, Nice — 04 93 26 10 92, lun-ven 9h-17h</small></span></a>
+    <a class="appel" href="sms:0785273531"><span class="ic">💬</span><span><b>SMS Maison des ados</b><small>07 85 27 35 31 — SMS uniquement, lun-ven 9h-17h, pas de réponse d'urgence</small></span></a>
   </div>
 </section>
 
@@ -1010,6 +1064,13 @@
   <div class="hero"><span class="emo" aria-hidden="true">🏠</span><h2>Ça va pas chez lui/elle</h2>
     <p class="intro">Il/elle t'a écrit que ses parents se battent, qu'on le/la frappe, qu'il/elle a peur de rentrer ou envie de partir. C'est lourd à recevoir. Tu n'as pas à régler sa famille. Tu as à le/la croire, et à faire venir un adulte.</p></div>
 
+  <div class="urgence">
+    <p>S'il y a des coups maintenant, s'il/elle est blessé·e, ou s'il/elle a peur de rentrer ce soir :</p>
+    <a class="appel rouge" href="tel:17"><span class="ic">📞</span><span><b>17</b><small>Police — tout de suite</small></span></a>
+    <a class="appel rouge" href="tel:119"><span class="ic">📞</span><span><b>119</b><small>Enfant en danger — téléphone 24h/24, gratuit, n'apparaît pas sur la facture</small></span></a>
+    <a class="appel web" href="https://www.allo119.gouv.fr" target="_blank" rel="noopener"><span class="ic">💬</span><span><b>Tchat 119</b><small>Par écrit, sur allo119.gouv.fr — ouvert l'après-midi et le soir, horaires et conditions sur le site</small></span></a>
+  </div>
+
   <div class="choix-titre">Qu'est-ce qui se passe chez lui/elle ?</div>
   <div class="choix">
     <button class="chip" data-tip="Vivre dans les cris tous les soirs, ça abîme, même sans coups. Ce n'est pas « moins grave ». Le 119 écoute aussi pour ça.">Ses parents se disputent tout le temps</button>
@@ -1017,8 +1078,8 @@
     <button class="chip" data-tip="Les insultes et les humiliations répétées sont une violence. Il/elle a le droit d'appeler le 119 pour ça.">On lui crie dessus, on l'insulte</button>
     <button class="chip" data-tip="Demande s'il/elle est blessé·e et en sécurité maintenant. Coups en cours ou blessure : 17 ou 15. Sinon : 119 ce soir, et un adulte de l'école demain.">On le/la frappe, ou on frappe quelqu'un chez lui/elle</button>
     <button class="chip" data-tip="Ne le/la laisse pas choisir entre rentrer et la rue. Le 119 cherche avec lui/elle un endroit sûr pour la nuit.">Il/elle a peur de rentrer</button>
-    <button class="chip" data-tip="Ne pars pas avec lui/elle, et ne l'héberge pas en secret. Appelle le 119 avec lui/elle : ils trouvent une solution sans partir seul·e la nuit.">Il/elle veut fuguer</button>
-    <button class="chip" data-tip="Il/elle n'est pas obligé·e. Un adulte de l'école, le 119 ou la Maison des ados peuvent agir sans passer par ses parents.">Il/elle ne peut pas en parler à ses parents</button>
+    <button class="chip" data-tip="S'il/elle est en danger maintenant : d'abord à l'abri chez un adulte sûr, ou le 17. Ensuite, le 119 avec lui/elle, pour une solution sûre. Ne pars pas avec lui/elle, et n'héberge pas en secret.">Il/elle veut fuguer</button>
+    <button class="chip" data-tip="Il/elle n'est pas obligé·e de commencer par eux. Un adulte de l'école, le 119 ou la Maison des ados peuvent l'écouter d'abord. Il/elle peut leur demander ce qu'ils garderont pour eux, et dans quels cas ils devront chercher de l'aide pour le/la protéger.">Il/elle ne peut pas en parler à ses parents</button>
   </div>
   <div class="chip-tip" aria-live="polite"></div>
 
@@ -1026,8 +1087,8 @@
   <ol class="etapes">
     <li>Crois-le/la. Pas de « t'exagères », pas de « c'est tes parents quand même ». Juste : « Je te crois. »</li>
     <li>Demande s'il/elle est en sécurité, là, ce soir. S'il/elle est blessé·e ou a peur pour sa vie : 17 ou 112.</li>
-    <li>Parle-lui du 119. Appel ou tchat, gratuit, 24h/24, et ça n'apparaît pas sur la facture. Tu peux aussi appeler pour lui/elle.</li>
-    <li>S'il/elle parle de mourir ou de disparaître : va sur « Parle de mourir ». Le 3114 répond 24h/24.</li>
+    <li>Parle-lui du 119. Téléphone 24h/24, gratuit, et ça n'apparaît pas sur la facture ; un tchat existe aussi, l'après-midi et le soir. Tu peux appeler pour lui/elle.</li>
+    <li>S'il/elle parle de mourir ou de disparaître : <button class="lien" data-go="mourir">ouvre « Parle de mourir »</button>. Le 3114 répond 24h/24.</li>
   </ol>
 
   <h3><span class="emo">💬</span>Tu peux écrire</h3>
@@ -1045,11 +1106,6 @@
     <div class="saisie"><div class="plus">+</div><div class="champ"><span>Message</span><span>🎤</span></div></div>
   </div>
 
-  <div class="urgence">
-    <p>S'il y a des coups maintenant, s'il/elle est blessé·e, ou s'il/elle a peur de rentrer ce soir :</p>
-    <a class="appel rouge" href="tel:17"><span class="ic">📞</span><span><b>17</b><small>Police — tout de suite</small></span></a>
-    <a class="appel rouge" href="tel:119"><span class="ic">📞</span><span><b>119</b><small>Enfant en danger — 24h/24, gratuit, appel ou tchat, n'apparaît pas sur la facture</small></span></a>
-  </div>
 
   <h3><span class="emo">🚫</span>Ce qui ne marche pas</h3>
   <ul class="simple nope">
@@ -1063,7 +1119,8 @@
   <p class="note">Un adulte de l'école : l'infirmière, la CPE, l'assistante sociale. C'est leur rôle de le/la protéger, et ils savent faire. Tu peux l'accompagner jusqu'à la porte.</p>
   <div class="appels">
     <a class="appel" href="tel:0493261092"><span class="ic">🏠</span><span><b>Maison des ados 06</b><small>2A rue Raynardi, Nice — 04 93 26 10 92, lun-ven 9h-17h</small></span></a>
-    <a class="appel" href="tel:3114"><span class="ic">📞</span><span><b>3114</b><small>Si tu penses à mourir — 24h/24, gratuit, anonyme</small></span></a>
+    <a class="appel" href="sms:0785273531"><span class="ic">💬</span><span><b>SMS Maison des ados</b><small>07 85 27 35 31 — SMS uniquement, lun-ven 9h-17h, pas de réponse d'urgence</small></span></a>
+    <a class="appel" href="tel:3114"><span class="ic">📞</span><span><b>3114</b><small>Si tu penses à mourir — 24h/24, gratuit, échange confidentiel avec un professionnel</small></span></a>
   </div>
 
   <div class="toi">
@@ -1077,14 +1134,20 @@
   <div class="hero"><span class="emo" aria-hidden="true">🎯</span><h2>On le/la harcèle</h2>
     <p class="intro">Des moqueries qui ne s'arrêtent pas, un groupe qui l'exclut, des messages la nuit, une photo qui circule, des menaces. Le harcèlement, c'est quand ça se répète et qu'il/elle ne peut plus s'en protéger. Ta place est simple : ne pas rire, ne pas regarder ailleurs, et faire venir un adulte.</p></div>
 
+  <div class="urgence">
+    <p>S'il/elle est menacé·e pour ce soir, ou s'il/elle parle de mourir :</p>
+    <a class="appel rouge" href="tel:17"><span class="ic">📞</span><span><b>17</b><small>Police — tout de suite</small></span></a>
+    <a class="appel rouge" href="tel:3114"><span class="ic">📞</span><span><b>3114</b><small>Idées de mort — 24h/24, gratuit</small></span></a>
+  </div>
+
   <div class="choix-titre">Qu'est-ce qu'on lui fait ?</div>
   <div class="choix">
-    <button class="chip" data-tip="Même « pour rire ». Si ça revient et que ça le/la blesse, c'est du harcèlement. Dis-le au groupe, ou quitte-le.">On se moque de lui/elle</button>
-    <button class="chip" data-tip="Rumeurs, surnoms, « on a parlé de toi sur les réseaux » : ne relaie rien, ne demande pas « c'est vrai ? ». Et gardez les preuves : captures avec la date.">On raconte des choses sur lui/elle</button>
+    <button class="chip" data-tip="Même « pour rire ». Si ça revient et que ça le/la blesse, c'est du harcèlement. Tu n'as pas à affronter le groupe : ne ris pas avec eux, et reste à côté de ton ami·e.">On se moque de lui/elle</button>
+    <button class="chip" data-tip="Rumeurs, surnoms, « on a parlé de toi sur les réseaux » : ne relaie rien, ne demande pas « c'est vrai ? ». Si c'est possible en sécurité, notez ce qui a été dit, par qui et quand.">On raconte des choses sur lui/elle</button>
     <button class="chip" data-tip="Être mis·e à l'écart, c'est une violence qui ne se voit pas. Invite-le/la, mange avec lui/elle, reste à côté : ça change tout.">On l'exclut d'un groupe</button>
-    <button class="chip" data-tip="Ne réponds pas à sa place. Faites des captures avec l'heure et le nom, puis le 3018 : ils savent faire retirer les contenus.">Il/elle reçoit des messages méchants</button>
+    <button class="chip" data-tip="Ne réponds pas à sa place. Le 3018 explique comment conserver les messages utiles et faire retirer les contenus.">Il/elle reçoit des messages méchants</button>
     <button class="chip" data-tip="Une menace, c'est un adulte aujourd'hui, pas demain. Si la menace est pour ce soir : 17.">On le/la menace</button>
-    <button class="chip" data-tip="Ne la regarde pas, ne la transfère pas, et ne la supprimez pas avant d'avoir fait une capture. Le 3018 peut la faire retirer, même sans porter plainte.">Une photo circule</button>
+    <button class="chip" data-tip="Ne la regarde pas, ne la transfère pas. Il/elle n'est pas obligé·e de la garder sur son téléphone : le 3018 explique comment faire retirer le contenu et conserver ce qui est utile, sans le rediffuser.">Une photo circule</button>
     <button class="chip" data-tip="Dis-lui de ne rien envoyer de plus et de ne rien payer. Le chantage à la photo est un délit : 3018 tout de suite, ils gèrent.">On lui fait du chantage</button>
     <button class="chip" data-tip="Il/elle ne doit pas y aller seul·e. Propose d'y aller ensemble, et prévenez un adulte avant d'entrer.">Il/elle a peur d'aller en cours</button>
   </div>
@@ -1094,7 +1157,7 @@
   <ol class="etapes">
     <li>Dis-lui que tu as vu, et que tu es de son côté. Le harcèlement tient sur le silence des autres.</li>
     <li>Ne te venge pas, ne réponds pas aux harceleurs. Ça nourrit.</li>
-    <li>Gardez les preuves : captures avec date, heure et noms. N'effacez rien.</li>
+    <li>Si son téléphone n'est pas surveillé, gardez les preuves : captures avec date, heure et noms. Sinon, le 3018 explique comment conserver ce qui est utile en sécurité.</li>
     <li>Appelez le 3018 ensemble, ou dis-le à un adulte de l'école aujourd'hui. L'école a l'obligation d'agir.</li>
   </ol>
 
@@ -1112,16 +1175,13 @@
     <div class="saisie"><div class="plus">+</div><div class="champ"><span>Message</span><span>🎤</span></div></div>
   </div>
 
-  <div class="urgence">
-    <p>S'il/elle est menacé·e pour ce soir, ou s'il/elle parle de mourir :</p>
-    <a class="appel rouge" href="tel:17"><span class="ic">📞</span><span><b>17</b><small>Police — tout de suite</small></span></a>
-    <a class="appel rouge" href="tel:3114"><span class="ic">📞</span><span><b>3114</b><small>Idées de mort — 24h/24, gratuit</small></span></a>
-  </div>
 
   <h3><span class="emo">📞</span>Le relais</h3>
   <div class="appels">
-    <a class="appel rouge" href="tel:3018"><span class="ic">📱</span><span><b>3018</b><small>Harcèlement à l'école et en ligne — 9h-23h, 7j/7, gratuit, anonyme, tchat sur 3018.fr. Ils font retirer les contenus</small></span></a>
+    <a class="appel rouge" href="tel:3018"><span class="ic">📱</span><span><b>3018</b><small>Harcèlement à l'école et en ligne — 9h-23h, 7j/7, gratuit, anonyme. Ils font retirer les contenus</small></span></a>
+    <a class="appel web" href="https://www.3018.fr" target="_blank" rel="noopener"><span class="ic">💬</span><span><b>Tchat 3018</b><small>Par écrit, sur 3018.fr — 9h-23h, 7j/7</small></span></a>
     <a class="appel" href="tel:119"><span class="ic">📞</span><span><b>119</b><small>Si l'adulte de l'école ne réagit pas, ou si c'est trop lourd — 24h/24, gratuit</small></span></a>
+    <a class="appel web" href="https://www.allo119.gouv.fr" target="_blank" rel="noopener"><span class="ic">💬</span><span><b>Tchat 119</b><small>Par écrit, sur allo119.gouv.fr — ouvert l'après-midi et le soir, horaires et conditions sur le site</small></span></a>
   </div>
 
   <h3><span class="emo">🚫</span>Ce qui ne marche pas</h3>
@@ -1132,9 +1192,10 @@
   </ul>
 
   <h3><span class="emo">🌅</span>Et demain</h3>
-  <p class="note">Un adulte de l'école, avec les captures. Il y a un référent harcèlement dans chaque collège et lycée. Si rien ne bouge, le 3018 sait à qui écrire.</p>
+  <p class="note">Un adulte de l'école, avec ce que vous avez pu garder. Il y a un référent harcèlement dans chaque collège et lycée. Si rien ne bouge, le 3018 sait à qui écrire.</p>
   <div class="appels">
     <a class="appel" href="tel:0493261092"><span class="ic">🏠</span><span><b>Maison des ados 06</b><small>2A rue Raynardi, Nice — 04 93 26 10 92, lun-ven 9h-17h</small></span></a>
+    <a class="appel" href="sms:0785273531"><span class="ic">💬</span><span><b>SMS Maison des ados</b><small>07 85 27 35 31 — SMS uniquement, lun-ven 9h-17h, pas de réponse d'urgence</small></span></a>
   </div>
 
   <div class="toi">
@@ -1148,11 +1209,17 @@
   <div class="hero"><span class="emo" aria-hidden="true">✋</span><h2>Quelqu'un lui fait du mal</h2>
     <p class="intro">Son copain, sa copine, un parent, un proche, un adulte, quelqu'un du lycée. Des coups, des menaces, des humiliations, des gestes qu'il/elle ne voulait pas. Il/elle te l'a dit, ou à moitié. Tu n'as pas besoin d'être sûr·e de ce que c'est. Tu as à le/la croire, et à ne pas rester seul·e avec ça.</p></div>
 
+  <div class="urgence">
+    <p>S'il y a eu des coups ou une agression aujourd'hui, ou si la personne est là :</p>
+    <a class="appel rouge" href="tel:17"><span class="ic">📞</span><span><b>17</b><small>Police — tout de suite</small></span></a>
+    <a class="appel rouge" href="tel:15"><span class="ic">📞</span><span><b>15</b><small>Blessure, ou après une agression sexuelle : les soins d'abord. Si possible, ne pas se laver avant, pour garder les preuves. Même après, les soins et l'aide restent possibles</small></span></a>
+  </div>
+
   <div class="choix-titre">Qu'est-ce que cette personne lui fait ?</div>
   <div class="choix">
     <button class="chip" data-tip="Un coup, même un seul, c'est une violence. Demande s'il/elle est blessé·e. Blessure ou danger ce soir : 15 ou 17. Sinon : 119 s'il/elle a moins de 18 ans, et un adulte demain.">Elle le/la frappe</button>
     <button class="chip" data-tip="« Si tu parles… », « je te retrouverai » : une menace sert à faire taire. Prenez-la au sérieux : 17 si c'est pour ce soir, 119 sinon.">Elle le/la menace</button>
-    <button class="chip" data-tip="Rabaisser, surveiller, isoler, décider à sa place : c'est de la violence psychologique, et c'est souvent le début du reste. Ce n'est pas lui/elle le problème.">Elle l'humilie ou le/la contrôle</button>
+    <button class="chip" data-tip="Rabaisser, surveiller, isoler, décider à sa place : c'est de la violence psychologique, même sans coups. Ce n'est pas lui/elle le problème.">Elle l'humilie ou le/la contrôle</button>
     <button class="chip" data-tip="Tout geste sexuel sans accord est interdit, quel que soit l'âge, la relation, ou ce qui s'est passé avant. Ce n'est jamais sa faute. Le 119 écoute aussi pour ça.">Elle le/la touche sans son accord</button>
     <button class="chip" data-tip="Être forcé·e à faire, envoyer, montrer ou subir quelque chose, c'est une agression, même sans coups. Dis-lui qu'il/elle a le droit de refuser et d'en parler.">Elle le/la force à faire quelque chose</button>
     <button class="chip" data-tip="Avoir peur de quelqu'un, c'est déjà un signal suffisant. On n'attend pas que ça « aille plus loin ».">Il/elle a peur d'elle</button>
@@ -1182,17 +1249,15 @@
     <div class="saisie"><div class="plus">+</div><div class="champ"><span>Message</span><span>🎤</span></div></div>
   </div>
 
-  <div class="urgence">
-    <p>S'il y a eu des coups ou une agression aujourd'hui, ou si la personne est là :</p>
-    <a class="appel rouge" href="tel:17"><span class="ic">📞</span><span><b>17</b><small>Police — tout de suite</small></span></a>
-    <a class="appel rouge" href="tel:15"><span class="ic">📞</span><span><b>15</b><small>Blessure, ou après une agression sexuelle : les soins d'abord. Si possible, ne pas se laver avant, pour garder les preuves</small></span></a>
-  </div>
 
   <h3><span class="emo">📞</span>Le relais</h3>
   <div class="appels">
-    <a class="appel rouge" href="tel:119"><span class="ic">📞</span><span><b>119</b><small>Moins de 18 ans, quel que soit l'auteur — 24h/24, gratuit, tchat jusqu'à 21 ans</small></span></a>
+    <a class="appel rouge" href="tel:119"><span class="ic">📞</span><span><b>119</b><small>Moins de 18 ans, quel que soit l'auteur — téléphone 24h/24, gratuit, confidentiel</small></span></a>
+    <a class="appel web" href="https://www.allo119.gouv.fr" target="_blank" rel="noopener"><span class="ic">💬</span><span><b>Tchat 119</b><small>Par écrit, sur allo119.gouv.fr — ouvert l'après-midi et le soir, horaires et conditions sur le site</small></span></a>
     <a class="appel" href="tel:3919"><span class="ic">📞</span><span><b>3919</b><small>Violences dans le couple : écoute et orientation pour les femmes et leurs proches. Ce n'est pas un numéro d'urgence</small></span></a>
+    <a class="appel" href="tel:116006"><span class="ic">📞</span><span><b>116 006</b><small>France Victimes — tous âges, tous publics, 9h-20h, 7j/7, gratuit. Si tu as plus de 18 ans, c'est ta porte d'entrée</small></span></a>
     <a class="appel" href="tel:3018"><span class="ic">📱</span><span><b>3018</b><small>Si des photos ou des messages servent au chantage ou aux menaces — 9h-23h, 7j/7</small></span></a>
+    <a class="appel web" href="https://www.3018.fr" target="_blank" rel="noopener"><span class="ic">💬</span><span><b>Tchat 3018</b><small>Par écrit, sur 3018.fr — 9h-23h, 7j/7</small></span></a>
   </div>
 
   <h3><span class="emo">🚫</span>Ce qui ne marche pas</h3>
@@ -1206,6 +1271,7 @@
   <p class="note">Un adulte qui sait protéger : l'infirmière, l'assistante sociale de l'école, la Maison des ados, un médecin. Pas forcément les parents. L'important, c'est quelqu'un en dehors du cercle de la personne qui fait du mal.</p>
   <div class="appels">
     <a class="appel" href="tel:0493261092"><span class="ic">🏠</span><span><b>Maison des ados 06</b><small>2A rue Raynardi, Nice — 04 93 26 10 92, lun-ven 9h-17h</small></span></a>
+    <a class="appel" href="sms:0785273531"><span class="ic">💬</span><span><b>SMS Maison des ados</b><small>07 85 27 35 31 — SMS uniquement, lun-ven 9h-17h, pas de réponse d'urgence</small></span></a>
   </div>
 
   <div class="toi">
@@ -1222,10 +1288,10 @@
   <div class="choix-titre">Qu'est-ce qui se passe ?</div>
   <div class="choix">
     <button class="chip" data-tip="La solitude au lycée se voit peu et pèse beaucoup. Un « tu viens manger avec nous ? » vaut plus qu'un long message.">Il/elle est seul·e</button>
-    <button class="chip" data-tip="Les embrouilles de groupe font très mal à cet âge. Ne prends pas parti devant tout le monde ; sois là en privé. Si ça devient de l'exclusion répétée : « On le/la harcèle ».">Un problème avec ses amis</button>
+    <button class="chip" data-tip="Les embrouilles de groupe font très mal à cet âge. Ne prends pas parti devant tout le monde ; sois là en privé. Si ça devient de l'exclusion répétée, c'est du harcèlement : la tuile « On le/la harcèle » est faite pour ça.">Un problème avec ses amis</button>
     <button class="chip" data-tip="Un adulte qui humilie, menace ou met mal à l'aise, c'est à signaler à un autre adulte : CPE, direction, infirmière. Il/elle a le droit d'être cru·e, même face à un prof.">Un prof ou un adulte lui fait peur</button>
-    <button class="chip" data-tip="Demande ce qui s'est passé, pas pourquoi. Et propose d'y aller ensemble demain, avec un adulte prévenu. Si ça dure, l'école doit aménager, pas punir.">Il/elle ne veut plus aller en cours</button>
-    <button class="chip" data-tip="Ventre noué le matin, pleurs le dimanche soir : le corps parle avant les mots. L'infirmière scolaire est là pour ça, sans diagnostic.">Il/elle se sent mal là-bas, sans savoir pourquoi</button>
+    <button class="chip" data-tip="Demande ce qui s'est passé, pas pourquoi. Et propose d'y aller ensemble demain, avec un adulte prévenu. Si ça dure, il/elle peut demander une évaluation et un aménagement adapté.">Il/elle ne veut plus aller en cours</button>
+    <button class="chip" data-tip="Ventre noué le matin, pleurs le dimanche soir : ça compte, même sans explication. L'infirmière scolaire est là pour ça, sans diagnostic.">Il/elle se sent mal là-bas, sans savoir pourquoi</button>
   </div>
   <div class="chip-tip" aria-live="polite"></div>
 
@@ -1234,7 +1300,7 @@
     <li>Demande ce qui se passe, sans forcer. « Qu'est-ce qui est le plus dur en ce moment ? »</li>
     <li>Propose quelque chose de petit : le trajet ensemble, la cantine, une pause.</li>
     <li>Repère avec lui/elle un adulte sûr dans l'établissement : infirmière, CPE, un prof qui écoute. Un seul suffit.</li>
-    <li>Si tu vois des idées noires, des marques, ou un groupe qui s'acharne : va sur la tuile qui correspond.</li>
+    <li>Si tu vois des idées noires, des marques, ou un groupe qui s'acharne : <button class="lien" data-go="mourir">Parle de mourir</button>, <button class="lien" data-go="mal">S'est fait du mal</button> ou <button class="lien" data-go="harcele">On le/la harcèle</button>.</li>
   </ol>
 
   <h3><span class="emo">💬</span>Tu peux écrire</h3>
@@ -1253,8 +1319,11 @@
   <h3><span class="emo">📞</span>Le relais</h3>
   <div class="appels">
     <a class="appel" href="tel:0800235236"><span class="ic">📞</span><span><b>Fil Santé Jeunes</b><small>0 800 235 236 — anonyme, gratuit, il/elle peut appeler seul·e</small></span></a>
+    <a class="appel web" href="https://www.filsantejeunes.com" target="_blank" rel="noopener"><span class="ic">💬</span><span><b>Tchat Fil Santé Jeunes</b><small>Par écrit, sur filsantejeunes.com — 9h-22h</small></span></a>
     <a class="appel" href="tel:0493261092"><span class="ic">🏠</span><span><b>Maison des ados 06</b><small>2A rue Raynardi, Nice — 04 93 26 10 92, lun-ven 9h-17h</small></span></a>
+    <a class="appel" href="sms:0785273531"><span class="ic">💬</span><span><b>SMS Maison des ados</b><small>07 85 27 35 31 — SMS uniquement, lun-ven 9h-17h, pas de réponse d'urgence</small></span></a>
     <a class="appel" href="tel:3018"><span class="ic">📱</span><span><b>3018</b><small>Si c'est du harcèlement — 9h-23h, 7j/7</small></span></a>
+    <a class="appel web" href="https://www.3018.fr" target="_blank" rel="noopener"><span class="ic">💬</span><span><b>Tchat 3018</b><small>Par écrit, sur 3018.fr — 9h-23h, 7j/7</small></span></a>
   </div>
 
   <div class="toi">
@@ -1268,9 +1337,15 @@
   <div class="hero"><span class="emo" aria-hidden="true">🆘</span><h2>Tu penses à mourir</h2>
     <p class="intro">Tu n'es pas bizarre, et tu n'es pas seul·e à avoir ces pensées. Elles disent que ça déborde, pas que tu dois partir. Ce soir, une seule chose : ne reste pas seul·e avec ça.</p></div>
 
+  <div class="urgence">
+    <p>Si tu as déjà fait quelque chose, ou si tu as un moyen sous la main :</p>
+    <a class="appel rouge" href="tel:15"><span class="ic">📞</span><span><b>15</b><small>tout de suite</small></span></a>
+    <a class="appel rouge" href="tel:3114"><span class="ic">📞</span><span><b>3114</b><small>24h/24, gratuit, confidentiel — ils restent avec toi</small></span></a>
+  </div>
+
   <h3><span class="emo">⚡</span>Maintenant</h3>
   <ol class="etapes">
-    <li>Appelle ou écris au 3114. Gratuit, 24h/24, ils ne demandent pas ton nom, et ils ont l'habitude.</li>
+    <li>Appelle le 3114. Gratuit, 24h/24, échange confidentiel avec un professionnel qui a l'habitude.</li>
     <li>Éloigne ce qui pourrait te faire du mal, ou demande à quelqu'un de le garder.</li>
     <li>Dis-le à une personne, même par message : « ça va pas, je pense à mourir ». Pas la meilleure, une qui est là.</li>
     <li>Si tu as déjà fait quelque chose, ou que tu vas le faire : 15, maintenant.</li>
@@ -1289,21 +1364,18 @@
     <div class="saisie"><div class="plus">+</div><div class="champ"><span>Message</span><span>🎤</span></div></div>
   </div>
 
-  <div class="urgence">
-    <p>Si tu as déjà fait quelque chose, ou si tu as un moyen sous la main :</p>
-    <a class="appel rouge" href="tel:15"><span class="ic">📞</span><span><b>15</b><small>tout de suite</small></span></a>
-    <a class="appel rouge" href="tel:3114"><span class="ic">📞</span><span><b>3114</b><small>24h/24, gratuit, anonyme — ils restent avec toi</small></span></a>
-  </div>
 
   <h3><span class="emo">🌅</span>Et demain</h3>
   <p class="note">Même si ça va mieux au matin, ça compte. Un médecin, la Maison des ados, l'infirmière scolaire : quelqu'un qui sait, dans la journée.</p>
   <div class="appels">
     <a class="appel" href="tel:0493261092"><span class="ic">🏠</span><span><b>Maison des ados 06</b><small>2A rue Raynardi, Nice — 04 93 26 10 92, lun-ven 9h-17h</small></span></a>
+    <a class="appel" href="sms:0785273531"><span class="ic">💬</span><span><b>SMS Maison des ados</b><small>07 85 27 35 31 — SMS uniquement, lun-ven 9h-17h, pas de réponse d'urgence</small></span></a>
     <a class="appel" href="tel:0800235236"><span class="ic">📞</span><span><b>Fil Santé Jeunes</b><small>0 800 235 236 — anonyme, gratuit, 9h-23h</small></span></a>
+    <a class="appel web" href="https://www.filsantejeunes.com" target="_blank" rel="noopener"><span class="ic">💬</span><span><b>Tchat Fil Santé Jeunes</b><small>Par écrit, sur filsantejeunes.com — 9h-22h</small></span></a>
   </div>
 
   <div class="toi">
-    <p><strong>💛 Et toi ?</strong>Demander de l'aide quand on pense à mourir, c'est la chose la plus forte que tu puisses faire ce soir.</p>
+    <p><strong>💛 Et toi ?</strong>Tu mérites de l'aide, ce soir, maintenant. Pas quand ça ira mieux.</p>
   </div>
 </section>
 
@@ -1313,6 +1385,13 @@
   <div class="hero"><span class="emo" aria-hidden="true">🏠</span><h2>Ça va pas à la maison</h2>
     <p class="intro">Des cris tous les soirs, des coups, des insultes, des portes qui claquent, la peur de rentrer. Peut-être que ce n'est pas sur toi, mais entre tes parents, ou sur ton frère ou ta sœur. Ça compte quand même. Grandir dans une maison où l'on a peur, ça fait mal, et ce n'est jamais de ta faute.</p></div>
 
+  <div class="urgence">
+    <p>Si ça se passe maintenant, ou si tu as peur de rentrer ce soir :</p>
+    <a class="appel rouge" href="tel:17"><span class="ic">📞</span><span><b>17</b><small>Police — tout de suite</small></span></a>
+    <a class="appel rouge" href="tel:119"><span class="ic">📞</span><span><b>119</b><small>Enfant en danger — téléphone 24h/24, gratuit, n'apparaît pas sur la facture</small></span></a>
+    <a class="appel web" href="https://www.allo119.gouv.fr" target="_blank" rel="noopener"><span class="ic">💬</span><span><b>Tchat 119</b><small>Par écrit, sur allo119.gouv.fr — ouvert l'après-midi et le soir, horaires et conditions sur le site</small></span></a>
+  </div>
+
   <div class="choix-titre">Qu'est-ce qui se passe chez toi ?</div>
   <div class="choix">
     <button class="chip" data-tip="Même sans coups, vivre dans les cris abîme. Tu n'as pas à choisir un camp ni à les calmer. Le 119 écoute aussi pour ça.">Mes parents se disputent tout le temps</button>
@@ -1320,17 +1399,17 @@
     <button class="chip" data-tip="Les insultes et les humiliations répétées sont une violence, pas une « éducation ». Tu as le droit d'appeler le 119 pour ça.">On me crie dessus, on m'insulte</button>
     <button class="chip" data-tip="Si tu es blessé·e ou que ça se passe maintenant : 17 ou 15. Sinon : 119 ce soir, ils t'aident à savoir quoi faire, et un adulte de l'école demain.">On me frappe, ou on frappe quelqu'un chez moi</button>
     <button class="chip" data-tip="Tu n'as pas à choisir entre rentrer et la rue. Le 119 cherche avec toi un endroit sûr pour la nuit.">J'ai peur de rentrer</button>
-    <button class="chip" data-tip="Appelle le 119 avant de partir. Partir seul·e la nuit te met en danger, et il existe d'autres solutions, sans retourner dans la peur.">J'ai envie de fuguer</button>
-    <button class="chip" data-tip="Tu n'es pas obligé·e. Un adulte de l'école, le 119, la Maison des ados peuvent agir sans passer par tes parents. Personne ne te forcera à les affronter.">Je ne peux pas en parler à mes parents</button>
+    <button class="chip" data-tip="Si tu es en danger maintenant, mets-toi d'abord à l'abri, chez quelqu'un de sûr, ou appelle le 17. Ensuite, le 119 cherche avec toi une solution sûre : tu n'as pas à choisir entre la peur et la rue, seul·e la nuit.">J'ai envie de fuguer</button>
+    <button class="chip" data-tip="Tu n'es pas obligé·e de commencer par eux. Un adulte de l'école, le 119, la Maison des ados peuvent t'écouter d'abord. Demande-leur ce qu'ils garderont pour eux, et dans quels cas ils devront chercher de l'aide pour te protéger.">Je ne peux pas en parler à mes parents</button>
   </div>
   <div class="chip-tip" aria-live="polite"></div>
 
   <h3><span class="emo">⚡</span>Ce soir</h3>
   <ol class="etapes">
     <li>Si tu es en danger maintenant : 17 ou 112.</li>
-    <li>Le 119, c'est pour toi. Appel ou tchat, gratuit, 24h/24, ça n'apparaît pas sur la facture. Tu peux juste dire : « Chez moi, ça va pas. »</li>
+    <li>Le 119, c'est pour toi. Téléphone 24h/24, gratuit, ça n'apparaît pas sur la facture ; un tchat existe aussi, l'après-midi et le soir. Tu peux juste dire : « Chez moi, ça va pas. »</li>
     <li>Repère un endroit où te mettre à l'abri, et une personne à qui envoyer un message si ça monte.</li>
-    <li>Si tu as envie de mourir ou de disparaître : le 3114 répond toute la nuit.</li>
+    <li>Si tu as envie de mourir ou de disparaître : <button class="lien" data-go="m-mourir">ouvre « Je pense à mourir »</button>. Le 3114 répond toute la nuit.</li>
   </ol>
 
   <h3><span class="emo">💬</span>Tu peux écrire</h3>
@@ -1346,17 +1425,14 @@
     <div class="saisie"><div class="plus">+</div><div class="champ"><span>Message</span><span>🎤</span></div></div>
   </div>
 
-  <div class="urgence">
-    <p>Si ça se passe maintenant, ou si tu as peur de rentrer ce soir :</p>
-    <a class="appel rouge" href="tel:17"><span class="ic">📞</span><span><b>17</b><small>Police — tout de suite</small></span></a>
-    <a class="appel rouge" href="tel:119"><span class="ic">📞</span><span><b>119</b><small>Enfant en danger — 24h/24, gratuit, appel ou tchat, n'apparaît pas sur la facture</small></span></a>
-  </div>
 
   <h3><span class="emo">📞</span>Sans dire ton nom</h3>
   <div class="appels">
     <a class="appel" href="tel:0800235236"><span class="ic">📞</span><span><b>Fil Santé Jeunes</b><small>0 800 235 236 — anonyme, gratuit, 9h-23h</small></span></a>
-    <a class="appel" href="tel:3114"><span class="ic">📞</span><span><b>3114</b><small>Si tu penses à mourir — 24h/24, gratuit, anonyme</small></span></a>
+    <a class="appel web" href="https://www.filsantejeunes.com" target="_blank" rel="noopener"><span class="ic">💬</span><span><b>Tchat Fil Santé Jeunes</b><small>Par écrit, sur filsantejeunes.com — 9h-22h</small></span></a>
+    <a class="appel" href="tel:3114"><span class="ic">📞</span><span><b>3114</b><small>Si tu penses à mourir — 24h/24, gratuit, échange confidentiel avec un professionnel</small></span></a>
     <a class="appel" href="tel:0493261092"><span class="ic">🏠</span><span><b>Maison des ados 06</b><small>2A rue Raynardi, Nice — 04 93 26 10 92, lun-ven 9h-17h</small></span></a>
+    <a class="appel" href="sms:0785273531"><span class="ic">💬</span><span><b>SMS Maison des ados</b><small>07 85 27 35 31 — SMS uniquement, lun-ven 9h-17h, pas de réponse d'urgence</small></span></a>
   </div>
 
   <div class="toi">
@@ -1370,14 +1446,20 @@
   <div class="hero"><span class="emo" aria-hidden="true">🎯</span><h2>On me harcèle</h2>
     <p class="intro">On se moque, on t'exclut, on parle de toi, tu reçois des messages, une photo circule, on te menace. Tu te demandes si tu exagères. Non. Quand ça se répète et que tu ne peux plus t'en protéger, c'est du harcèlement, et ce n'est pas à toi de le supporter.</p></div>
 
+  <div class="urgence">
+    <p>Si on te menace pour ce soir, ou si tu penses à mourir :</p>
+    <a class="appel rouge" href="tel:17"><span class="ic">📞</span><span><b>17</b><small>Police — tout de suite</small></span></a>
+    <a class="appel rouge" href="tel:3114"><span class="ic">📞</span><span><b>3114</b><small>Idées de mort — 24h/24, gratuit, échange confidentiel</small></span></a>
+  </div>
+
   <div class="choix-titre">Qu'est-ce qu'ils te font ?</div>
   <div class="choix">
     <button class="chip" data-tip="Même « pour rire ». Si ça revient et que ça te blesse, ça compte. Tu n'as pas à rire avec eux.">On se moque de moi</button>
-    <button class="chip" data-tip="Rumeurs, surnoms, « on a parlé de toi sur les réseaux » : ne réponds pas, ne te justifie pas. Fais des captures avec la date.">On raconte des choses sur moi</button>
-    <button class="chip" data-tip="Être mis·e à l'écart est une violence invisible. Ce n'est pas que tu ne vaux rien, c'est que le groupe a besoin d'une cible. Ça se dit à un adulte.">On m'exclut d'un groupe</button>
-    <button class="chip" data-tip="Ne réponds pas. Capture avec l'heure et le nom, bloque, et appelle le 3018 : ils font retirer les contenus.">Je reçois des messages méchants</button>
+    <button class="chip" data-tip="Rumeurs, surnoms, « on a parlé de toi sur les réseaux » : ne réponds pas, ne te justifie pas. Si c'est possible en sécurité, note ce qui a été dit, par qui et quand.">On raconte des choses sur moi</button>
+    <button class="chip" data-tip="Être mis·e à l'écart est une violence invisible. Ce n'est pas que tu ne vaux rien. Ça se dit à un adulte.">On m'exclut d'un groupe</button>
+    <button class="chip" data-tip="Ne réponds pas. Si c'est possible en sécurité, garde les messages ; sinon le 3018 t'explique comment faire. Et bloque.">Je reçois des messages méchants</button>
     <button class="chip" data-tip="Une menace, c'est un adulte aujourd'hui, pas demain. Si c'est pour ce soir : 17.">On me menace</button>
-    <button class="chip" data-tip="Ne la supprime pas avant d'avoir fait une capture. Le 3018 peut la faire retirer des plateformes, même si tu ne portes pas plainte. Ce n'est pas ta faute qu'elle circule.">Une photo circule</button>
+    <button class="chip" data-tip="Tu n'es pas obligé·e de garder cette image sur ton téléphone. Le 3018 t'explique comment faire retirer le contenu et conserver ce qui est utile, sans le rediffuser. Ce n'est pas ta faute qu'elle circule.">Une photo circule</button>
     <button class="chip" data-tip="N'envoie rien de plus, ne paie rien. Le chantage à la photo est un délit, et tu n'es pas coupable. 3018 tout de suite.">On me fait du chantage</button>
     <button class="chip" data-tip="Tu as le droit d'avoir peur. Fais-toi accompagner demain, et préviens un adulte avant d'entrer. L'école doit te protéger, c'est la loi.">J'ai peur d'aller en cours</button>
   </div>
@@ -1386,9 +1468,9 @@
   <h3><span class="emo">⚡</span>Maintenant</h3>
   <ol class="etapes">
     <li>Ne réponds pas aux harceleurs et ne te venge pas. Ça nourrit.</li>
-    <li>Garde les preuves : captures avec date, heure et noms. N'efface rien.</li>
+    <li>Si ton téléphone n'est pas surveillé, garde les preuves : captures avec date, heure et noms. Si quelqu'un regarde ton téléphone, n'y stocke rien : le 3018 t'explique comment conserver ce qui est utile en sécurité.</li>
     <li>Appelle ou tchatte avec le 3018 : ils t'écoutent, et ils savent faire retirer les contenus.</li>
-    <li>Dis-le à un adulte de l'école aujourd'hui, avec les captures. L'école a l'obligation d'agir.</li>
+    <li>Dis-le à un adulte de l'école aujourd'hui, avec ce que tu as pu garder. L'école a l'obligation d'agir.</li>
   </ol>
 
   <h3><span class="emo">💬</span>Tu peux écrire</h3>
@@ -1404,29 +1486,27 @@
     <div class="saisie"><div class="plus">+</div><div class="champ"><span>Message</span><span>🎤</span></div></div>
   </div>
 
-  <div class="urgence">
-    <p>Si on te menace pour ce soir, ou si tu penses à mourir :</p>
-    <a class="appel rouge" href="tel:17"><span class="ic">📞</span><span><b>17</b><small>Police — tout de suite</small></span></a>
-    <a class="appel rouge" href="tel:3114"><span class="ic">📞</span><span><b>3114</b><small>Idées de mort — 24h/24, gratuit, anonyme</small></span></a>
-  </div>
 
   <h3><span class="emo">📞</span>Le relais</h3>
   <div class="appels">
-    <a class="appel rouge" href="tel:3018"><span class="ic">📱</span><span><b>3018</b><small>Harcèlement à l'école et en ligne — 9h-23h, 7j/7, gratuit, anonyme, tchat sur 3018.fr. Ils font retirer les contenus</small></span></a>
+    <a class="appel rouge" href="tel:3018"><span class="ic">📱</span><span><b>3018</b><small>Harcèlement à l'école et en ligne — 9h-23h, 7j/7, gratuit, anonyme. Ils font retirer les contenus</small></span></a>
+    <a class="appel web" href="https://www.3018.fr" target="_blank" rel="noopener"><span class="ic">💬</span><span><b>Tchat 3018</b><small>Par écrit, sur 3018.fr — 9h-23h, 7j/7</small></span></a>
     <a class="appel" href="tel:119"><span class="ic">📞</span><span><b>119</b><small>Si l'école ne réagit pas, ou si c'est trop lourd — 24h/24, gratuit</small></span></a>
+    <a class="appel web" href="https://www.allo119.gouv.fr" target="_blank" rel="noopener"><span class="ic">💬</span><span><b>Tchat 119</b><small>Par écrit, sur allo119.gouv.fr — ouvert l'après-midi et le soir, horaires et conditions sur le site</small></span></a>
   </div>
 
   <h3><span class="emo">🚫</span>Ce qu'on va te dire, et qui est faux</h3>
   <ul class="simple nope">
     <li>« Ignore-les, ça va passer. » Ça ne passe pas tout seul.</li>
     <li>« Réponds-leur, défends-toi. » Répondre ou menacer en retour nourrit le truc.</li>
-    <li>« Supprime tout, oublie. » Les messages sont tes preuves. Garde-les.</li>
+    <li>« Supprime tout, oublie. » Les messages peuvent servir de preuves : demande au 3018 comment les conserver en sécurité.</li>
   </ul>
 
   <h3><span class="emo">🌅</span>Et demain</h3>
   <p class="note">Il y a un référent harcèlement dans chaque collège et lycée. Si tu ne sais pas qui c'est, l'infirmière ou la CPE le savent. Et si rien ne bouge, le 3018 sait à qui écrire.</p>
   <div class="appels">
     <a class="appel" href="tel:0493261092"><span class="ic">🏠</span><span><b>Maison des ados 06</b><small>2A rue Raynardi, Nice — 04 93 26 10 92, lun-ven 9h-17h</small></span></a>
+    <a class="appel" href="sms:0785273531"><span class="ic">💬</span><span><b>SMS Maison des ados</b><small>07 85 27 35 31 — SMS uniquement, lun-ven 9h-17h, pas de réponse d'urgence</small></span></a>
   </div>
 
   <div class="toi">
@@ -1439,6 +1519,12 @@
   <button class="retour" data-go="moi">Retour</button>
   <div class="hero"><span class="emo" aria-hidden="true">✋</span><h2>Quelqu'un me fait du mal</h2>
     <p class="intro">Ton copain, ta copine, un parent, un proche, un adulte, quelqu'un du lycée. Des coups, des menaces, des humiliations, des gestes que tu ne voulais pas. Tu ne sais peut-être pas comment ça s'appelle, et tu te demandes si c'est « assez grave ». Si ça te fait mal, si ça te fait peur, ça compte. Et ce n'est pas ta faute.</p></div>
+
+  <div class="urgence">
+    <p>Si la personne est là, ou s'il y a eu des coups ou une agression aujourd'hui :</p>
+    <a class="appel rouge" href="tel:17"><span class="ic">📞</span><span><b>17</b><small>Police — tout de suite</small></span></a>
+    <a class="appel rouge" href="tel:15"><span class="ic">📞</span><span><b>15</b><small>SAMU — blessure, ou après une agression</small></span></a>
+  </div>
 
   <div class="choix-titre">Qu'est-ce que cette personne te fait subir ?</div>
   <div class="choix">
@@ -1455,9 +1541,9 @@
   <h3><span class="emo">⚡</span>Ce soir</h3>
   <ol class="etapes">
     <li>Si cette personne est là et que tu as peur maintenant : 17 ou 112.</li>
-    <li>Si tu es blessé·e, ou après une agression sexuelle : 15. Les soins d'abord. Si possible, ne te lave pas avant, pour garder les preuves.</li>
+    <li>Si tu es blessé·e, ou après une agression sexuelle : 15. Les soins d'abord. Si possible, ne te lave pas avant, pour garder les preuves. Et même si tu t'es déjà lavé·e ou changé·e, tu peux recevoir des soins et demander de l'aide.</li>
     <li>Trouve un adulte sûr, en dehors du cercle de la personne qui te fait du mal. Si c'est un parent, ça peut être l'école, le 119, un médecin.</li>
-    <li>Note ce qui s'est passé, avec la date, dans un endroit que cette personne ne voit pas.</li>
+    <li>Si c'est possible sans risque, note ce qui s'est passé, avec la date, dans un endroit que cette personne ne peut pas voir.</li>
   </ol>
 
   <h3><span class="emo">💬</span>Tu peux écrire</h3>
@@ -1473,30 +1559,29 @@
     <div class="saisie"><div class="plus">+</div><div class="champ"><span>Message</span><span>🎤</span></div></div>
   </div>
 
-  <div class="urgence">
-    <p>Si la personne est là, ou s'il y a eu des coups ou une agression aujourd'hui :</p>
-    <a class="appel rouge" href="tel:17"><span class="ic">📞</span><span><b>17</b><small>Police — tout de suite</small></span></a>
-    <a class="appel rouge" href="tel:15"><span class="ic">📞</span><span><b>15</b><small>SAMU — blessure, ou après une agression</small></span></a>
-  </div>
 
   <h3><span class="emo">📞</span>Le relais</h3>
   <div class="appels">
-    <a class="appel rouge" href="tel:119"><span class="ic">📞</span><span><b>119</b><small>Moins de 18 ans, quel que soit l'auteur — 24h/24, gratuit, anonyme, tchat jusqu'à 21 ans</small></span></a>
+    <a class="appel rouge" href="tel:119"><span class="ic">📞</span><span><b>119</b><small>Moins de 18 ans, quel que soit l'auteur — téléphone 24h/24, gratuit, confidentiel</small></span></a>
+    <a class="appel web" href="https://www.allo119.gouv.fr" target="_blank" rel="noopener"><span class="ic">💬</span><span><b>Tchat 119</b><small>Par écrit, sur allo119.gouv.fr — ouvert l'après-midi et le soir, horaires et conditions sur le site</small></span></a>
     <a class="appel" href="tel:3919"><span class="ic">📞</span><span><b>3919</b><small>Violences dans le couple : écoute et orientation pour les femmes et leurs proches. Ce n'est pas un numéro d'urgence</small></span></a>
+    <a class="appel" href="tel:116006"><span class="ic">📞</span><span><b>116 006</b><small>France Victimes — tous âges, tous publics, 9h-20h, 7j/7, gratuit. Si tu as plus de 18 ans, c'est ta porte d'entrée</small></span></a>
     <a class="appel" href="tel:3018"><span class="ic">📱</span><span><b>3018</b><small>Si des photos ou des messages servent au chantage ou aux menaces — 9h-23h, 7j/7</small></span></a>
+    <a class="appel web" href="https://www.3018.fr" target="_blank" rel="noopener"><span class="ic">💬</span><span><b>Tchat 3018</b><small>Par écrit, sur 3018.fr — 9h-23h, 7j/7</small></span></a>
   </div>
 
   <h3><span class="emo">🚫</span>Ce qu'on va te dire, et qui est faux</h3>
   <ul class="simple nope">
     <li>« Tu l'as bien cherché. » Non.</li>
     <li>« Tu avais accepté avant. » Un oui d'avant n'est pas un oui pour toujours.</li>
-    <li>« Si tu parles, ça va être pire. » Parler à un adulte qui sait protéger, c'est ce qui fait que ça s'arrête.</li>
+    <li>« Si tu parles, ça va être pire. » Parler à un adulte qui sait protéger, c'est ce qui peut faire que ça s'arrête. Et tu n'es pas responsable si tu n'as pas pu parler avant.</li>
   </ul>
 
   <h3><span class="emo">🌅</span>Et demain</h3>
   <p class="note">Un médecin peut constater, soigner, et écrire ce qu'il voit. Tu n'es pas obligé·e de porter plainte pour être aidé·e. La Maison des ados reçoit aussi pour ça.</p>
   <div class="appels">
     <a class="appel" href="tel:0493261092"><span class="ic">🏠</span><span><b>Maison des ados 06</b><small>2A rue Raynardi, Nice — 04 93 26 10 92, lun-ven 9h-17h</small></span></a>
+    <a class="appel" href="sms:0785273531"><span class="ic">💬</span><span><b>SMS Maison des ados</b><small>07 85 27 35 31 — SMS uniquement, lun-ven 9h-17h, pas de réponse d'urgence</small></span></a>
   </div>
 
   <div class="toi">
@@ -1513,10 +1598,10 @@
   <div class="choix-titre">Qu'est-ce qui se passe ?</div>
   <div class="choix">
     <button class="chip" data-tip="La solitude se voit peu et pèse beaucoup. Un club, une option, la personne qui est aussi seule au fond de la classe : un seul lien suffit pour commencer.">Je suis seul·e</button>
-    <button class="chip" data-tip="Les embrouilles de groupe font très mal à cet âge, et ce n'est pas de l'enfantillage. Si ça devient de l'exclusion répétée, va sur « On me harcèle ».">J'ai un problème avec mes amis</button>
+    <button class="chip" data-tip="Les embrouilles de groupe font très mal à cet âge, et ce n'est pas de l'enfantillage. Si ça devient de l'exclusion répétée, c'est du harcèlement : la tuile « On me harcèle » est faite pour ça.">J'ai un problème avec mes amis</button>
     <button class="chip" data-tip="Un adulte qui t'humilie, te menace ou te met mal à l'aise, c'est à signaler à un autre adulte : CPE, direction, infirmière. Tu as le droit d'être cru·e, même face à un prof.">Un professeur ou un adulte me fait peur</button>
-    <button class="chip" data-tip="Ventre noué, envie de vomir le matin : ce n'est pas de la flemme. L'école doit aménager, pas punir. Dis-le à l'infirmière ou à la CPE, ou demande à un adulte de le faire pour toi.">Je ne veux plus aller en cours</button>
-    <button class="chip" data-tip="Le corps parle avant les mots : pleurs le dimanche soir, maux de ventre, insomnies. L'infirmière scolaire est là pour ça, sans diagnostic et sans dossier.">Je me sens mal là-bas, sans savoir pourquoi</button>
+    <button class="chip" data-tip="Ventre noué, envie de vomir le matin : ce n'est pas de la flemme. Tu peux demander une évaluation et un aménagement adapté : l'infirmière ou la CPE savent faire, ou demande à un adulte de le faire pour toi.">Je ne veux plus aller en cours</button>
+    <button class="chip" data-tip="Pleurs le dimanche soir, maux de ventre, insomnies : ça compte, même sans explication. L'infirmière scolaire est là pour ça, sans diagnostic.">Je me sens mal là-bas, sans savoir pourquoi</button>
   </div>
   <div class="chip-tip" aria-live="polite"></div>
 
@@ -1525,7 +1610,7 @@
     <li>Trouve un adulte dans l'établissement : infirmière, CPE, un prof qui écoute. Un seul suffit.</li>
     <li>Dis une phrase, pas tout : « ça va pas au lycée en ce moment ».</li>
     <li>Demande un aménagement si tu n'arrives plus à y aller. C'est possible, et ce n'est pas un échec.</li>
-    <li>Si tu as des idées noires, si tu te fais du mal, ou si un groupe s'acharne : va sur la tuile qui correspond.</li>
+    <li>Si tu as des idées noires, si tu te fais du mal, ou si un groupe s'acharne : <button class="lien" data-go="m-mourir">Je pense à mourir</button>, <button class="lien" data-go="m-mal">Je me suis fait du mal</button> ou <button class="lien" data-go="m-harcele">On me harcèle</button>.</li>
   </ol>
 
   <h3><span class="emo">💬</span>Tu peux écrire</h3>
@@ -1544,8 +1629,11 @@
   <h3><span class="emo">📞</span>Le relais</h3>
   <div class="appels">
     <a class="appel" href="tel:0800235236"><span class="ic">📞</span><span><b>Fil Santé Jeunes</b><small>0 800 235 236 — anonyme, gratuit, 9h-23h</small></span></a>
+    <a class="appel web" href="https://www.filsantejeunes.com" target="_blank" rel="noopener"><span class="ic">💬</span><span><b>Tchat Fil Santé Jeunes</b><small>Par écrit, sur filsantejeunes.com — 9h-22h</small></span></a>
     <a class="appel" href="tel:0493261092"><span class="ic">🏠</span><span><b>Maison des ados 06</b><small>2A rue Raynardi, Nice — 04 93 26 10 92, lun-ven 9h-17h</small></span></a>
+    <a class="appel" href="sms:0785273531"><span class="ic">💬</span><span><b>SMS Maison des ados</b><small>07 85 27 35 31 — SMS uniquement, lun-ven 9h-17h, pas de réponse d'urgence</small></span></a>
     <a class="appel" href="tel:3018"><span class="ic">📱</span><span><b>3018</b><small>Si c'est du harcèlement — 9h-23h, 7j/7</small></span></a>
+    <a class="appel web" href="https://www.3018.fr" target="_blank" rel="noopener"><span class="ic">💬</span><span><b>Tchat 3018</b><small>Par écrit, sur 3018.fr — 9h-23h, 7j/7</small></span></a>
   </div>
 
   <div class="toi">
@@ -1561,18 +1649,18 @@
 
   <div class="choix-titre">De quoi tu as peur ?</div>
   <div class="choix">
-    <button class="chip" data-tip="Choisis un adulte en dehors du cercle de cette personne, et dis-le dès le début : « je ne veux pas que ça lui revienne ». Le 119 et le 3018 ne la préviennent pas.">Que la personne l'apprenne</button>
-    <button class="chip" data-tip="Tu n'as pas besoin de preuves pour être écouté·e. Les professionnels du 119, du 3018 et du 3114 commencent par te croire : c'est leur métier.">Qu'on ne me croie pas</button>
-    <button class="chip" data-tip="Tu n'as pas à parler à la maison. Un adulte de l'école, le 119, la Maison des ados peuvent agir sans passer par chez toi.">Que ça fasse exploser la maison</button>
-    <button class="chip" data-tip="Dis-le tout de suite : « je ne veux pas que mes parents soient prévenus pour l'instant ». Ce n'est pas automatique, et on te dira ce qui est possible avant d'agir.">Que mes parents soient prévenus</button>
-    <button class="chip" data-tip="Ce que tu imagines est rare. Dans la grande majorité des cas, en parler sert à faire cesser ce qui se passe, pas à te séparer des tiens. Le 119 t'explique ce qui se passe vraiment, avant.">Qu'on m'enlève de chez moi</button>
-    <button class="chip" data-tip="Le silence, c'est ce qui permet que ça continue. Parler à quelqu'un qui sait protéger, c'est ce qui fait que ça s'arrête. Tu peux commencer par un numéro anonyme.">Que ça empire</button>
+    <button class="chip" data-tip="Choisis un adulte en dehors du cercle de cette personne, et dis-le dès le début : « je ne veux pas que ça lui revienne ». Demande-lui ce qu'il pourra garder confidentiel, et dans quelles situations il devra chercher de l'aide pour te protéger.">Que la personne l'apprenne</button>
+    <button class="chip" data-tip="Tu n'as pas besoin de preuves pour être écouté·e. Les professionnels du 119, du 3018 et du 3114 sont formés pour entendre ce que tu dis. Si la première personne ne t'aide pas, tu peux en contacter une autre.">Qu'on ne me croie pas</button>
+    <button class="chip" data-tip="Tu n'es pas obligé·e de commencer par la maison. Un adulte de l'école, le 119, la Maison des ados peuvent t'écouter d'abord, et chercher avec toi comment demander de l'aide en limitant les risques.">Que ça fasse exploser la maison</button>
+    <button class="chip" data-tip="Dis-le tout de suite : « je ne veux pas que mes parents soient prévenus pour l'instant ». Demande ce qui est possible et ce qui ne l'est pas : un professionnel peut devoir agir pour te protéger, mais il doit te l'expliquer.">Que mes parents soient prévenus</button>
+    <button class="chip" data-tip="Tu as le droit de poser la question avant. Le 119 peut t'expliquer ce qui se passe vraiment après un appel, et ce qui est décidé avec toi. Tu n'as pas besoin de tout raconter d'un coup.">Qu'on m'enlève de chez moi</button>
+    <button class="chip" data-tip="Ta peur mérite d'être prise au sérieux. Tu n'es pas responsable des violences, ni du fait de ne pas avoir pu parler. Un professionnel peut chercher avec toi comment demander de l'aide en limitant les risques.">Que ça empire</button>
   </div>
   <div class="chip-tip" aria-live="polite"></div>
 
   <h3><span class="emo">⚡</span>Parler sans te mettre en danger</h3>
   <ol class="etapes">
-    <li>Commence anonyme si tu veux : 119, 3018, 3114, Fil Santé Jeunes. Ils ne demandent pas ton nom, et ils te disent ce qui se passera si tu vas plus loin.</li>
+    <li>Commence par un numéro si tu veux : 119, 3018, 3114, Fil Santé Jeunes. Tu peux demander ce qu'ils gardent pour eux avant d'en dire plus.</li>
     <li>Choisis un adulte en dehors du cercle qui te fait peur. Pas forcément un parent : infirmière, CPE, assistante sociale, médecin, Maison des ados.</li>
     <li>Pose tes conditions avant : « je veux savoir ce que vous allez faire avec ce que je vous dis ». Tu as le droit de demander.</li>
     <li>Si tu es en danger ce soir : 17 ou 112. La peur de parler ne doit pas t'empêcher d'être protégé·e.</li>
@@ -1593,10 +1681,13 @@
 
   <h3><span class="emo">📞</span>Sans dire ton nom</h3>
   <div class="appels">
-    <a class="appel rouge" href="tel:119"><span class="ic">📞</span><span><b>119</b><small>Mineur en danger, quel que soit l'auteur — 24h/24, gratuit, anonyme, tchat jusqu'à 21 ans</small></span></a>
-    <a class="appel" href="tel:3018"><span class="ic">📱</span><span><b>3018</b><small>Harcèlement, menaces, photos — 9h-23h, 7j/7, anonyme, tchat sur 3018.fr</small></span></a>
-    <a class="appel" href="tel:3114"><span class="ic">📞</span><span><b>3114</b><small>Si tu penses à mourir — 24h/24, gratuit, anonyme</small></span></a>
+    <a class="appel rouge" href="tel:119"><span class="ic">📞</span><span><b>119</b><small>Mineur en danger, quel que soit l'auteur — téléphone 24h/24, gratuit, confidentiel</small></span></a>
+    <a class="appel web" href="https://www.allo119.gouv.fr" target="_blank" rel="noopener"><span class="ic">💬</span><span><b>Tchat 119</b><small>Par écrit, sur allo119.gouv.fr — ouvert l'après-midi et le soir, horaires et conditions sur le site</small></span></a>
+    <a class="appel" href="tel:3018"><span class="ic">📱</span><span><b>3018</b><small>Harcèlement, menaces, photos — 9h-23h, 7j/7, anonyme</small></span></a>
+    <a class="appel web" href="https://www.3018.fr" target="_blank" rel="noopener"><span class="ic">💬</span><span><b>Tchat 3018</b><small>Par écrit, sur 3018.fr — 9h-23h, 7j/7</small></span></a>
+    <a class="appel" href="tel:3114"><span class="ic">📞</span><span><b>3114</b><small>Si tu penses à mourir — 24h/24, gratuit, échange confidentiel avec un professionnel</small></span></a>
     <a class="appel" href="tel:0800235236"><span class="ic">📞</span><span><b>Fil Santé Jeunes</b><small>0 800 235 236 — anonyme, gratuit, 9h-23h</small></span></a>
+    <a class="appel web" href="https://www.filsantejeunes.com" target="_blank" rel="noopener"><span class="ic">💬</span><span><b>Tchat Fil Santé Jeunes</b><small>Par écrit, sur filsantejeunes.com — 9h-22h</small></span></a>
   </div>
 
   <div class="toi">
@@ -1604,10 +1695,134 @@
   </div>
 </section>
 
+<!-- M-MAL -->
+<section class="screen" id="m-mal" style="--c:var(--alerte)">
+  <button class="retour" data-go="moi">Retour</button>
+  <div class="hero"><span class="emo" aria-hidden="true">🩸</span><h2>Tu t'es fait du mal</h2>
+    <p class="intro">Tu viens de le faire, ou tu y penses. Se faire du mal peut être une façon de faire face à une souffrance. Ça mérite une aide, parfois des soins. Ce soir, on s'occupe du corps d'abord, et tu n'as pas à t'expliquer.</p></div>
+  <div class="urgence">
+    <p>Si ça saigne beaucoup, si tu as pris quelque chose, ou si tu penses à mourir :</p>
+    <a class="appel rouge" href="tel:15"><span class="ic">📞</span><span><b>15</b><small>SAMU — les soins, tout de suite</small></span></a>
+    <a class="appel rouge" href="tel:3114"><span class="ic">📞</span><span><b>3114</b><small>Si tu penses à mourir — 24h/24, gratuit, confidentiel</small></span></a>
+  </div>
+  <h3><span class="emo">⚡</span>Maintenant</h3>
+  <ol class="etapes">
+    <li>Regarde la blessure. Si ça saigne beaucoup, si c'est profond, ou si tu as pris quelque chose : 15, sans attendre.</li>
+    <li>Nettoie et protège la blessure si elle est légère. Ce n'est pas rien, et tu as le droit d'en prendre soin.</li>
+    <li>Dis-le à une personne, même par message : « je me suis fait du mal ce soir ». Pas pour t'expliquer, pour ne pas rester seul·e.</li>
+    <li>Demain, un médecin, l'infirmière scolaire ou la Maison des ados. Ils connaissent, et ils ne te feront pas la morale.</li>
+  </ol>
+  <h3><span class="emo">💬</span>Tu peux écrire</h3>
+  <div class="imsg">
+    <div class="top"><div class="av">👤</div><b>Quelqu'un qui est là</b></div>
+    <div class="fil">
+      <div class="date">Aujourd'hui</div>
+      <div class="recu"><span class="pts"><i></i><i></i><i></i></span></div>
+      <div class="aide">Appuie sur un message pour le copier</div>
+      <button class="bulle"><q>Je me suis fait du mal ce soir. J'ai pas envie d'en parler longtemps, mais je veux pas rester seul·e.</q></button>
+      <button class="bulle"><q>Est-ce que tu peux m'aider à voir quelqu'un demain ? Je sais pas par où commencer.</q></button>
+    </div>
+    <div class="saisie"><div class="plus">+</div><div class="champ"><span>Message</span><span>🎤</span></div></div>
+  </div>
+  <h3><span class="emo">📞</span>Le relais</h3>
+  <div class="appels">
+    <a class="appel" href="tel:0800235236"><span class="ic">📞</span><span><b>Fil Santé Jeunes</b><small>0 800 235 236 — anonyme, gratuit, 9h-23h</small></span></a>
+    <a class="appel web" href="https://www.filsantejeunes.com" target="_blank" rel="noopener"><span class="ic">💬</span><span><b>Tchat Fil Santé Jeunes</b><small>Par écrit, sur filsantejeunes.com — 9h-22h</small></span></a>
+    <a class="appel" href="tel:0493261092"><span class="ic">🏠</span><span><b>Maison des ados 06</b><small>2A rue Raynardi, Nice — 04 93 26 10 92, lun-ven 9h-17h</small></span></a>
+    <a class="appel" href="sms:0785273531"><span class="ic">💬</span><span><b>SMS Maison des ados</b><small>07 85 27 35 31 — SMS uniquement, lun-ven 9h-17h, pas de réponse d'urgence</small></span></a>
+  </div>
+  <div class="toi">
+    <p><strong>💛 Et toi ?</strong>Tu mérites de l'aide, et pas seulement pour la blessure. Ce qui déborde a le droit d'être entendu.</p>
+  </div>
+</section>
+
+<!-- M-PANIQUE -->
+<section class="screen" id="m-panique" style="--c:var(--ciel)">
+  <button class="retour" data-go="moi">Retour</button>
+  <div class="hero"><span class="emo" aria-hidden="true">😱</span><h2>Tu paniques</h2>
+    <p class="intro">Cœur qui s'emballe, souffle court, impression de mourir ou de devenir fou/folle. Une crise de panique fait très peur. Souvent elle passe, mais ce n'est pas à toi de deviner si c'en est une.</p></div>
+  <div class="urgence">
+    <p>Douleur dans la poitrine, malaise, grande difficulté à respirer, première fois, ou si tu n'es pas sûr·e que c'est de l'angoisse : n'attends pas.</p>
+    <a class="appel rouge" href="tel:15"><span class="ic">📞</span><span><b>15</b><small>SAMU — on fait vérifier, ce n'est jamais « pour rien »</small></span></a>
+  </div>
+  <h3><span class="emo">⚡</span>Maintenant</h3>
+  <ol class="etapes">
+    <li>Pose-toi, si tu peux, et préviens quelqu'un, même par message : « je panique, reste avec moi ».</li>
+    <li>Respire calmement, sans forcer : ni trop profond, ni trop vite. Pose une main sur ton ventre.</li>
+    <li>Regarde autour de toi et nomme cinq choses que tu vois. Ça ramène ici.</li>
+    <li>Si ça ne passe pas, ou si ça revient très fort : 15. On ne compte pas les minutes.</li>
+  </ol>
+  <h3><span class="emo">💬</span>Tu peux écrire</h3>
+  <div class="imsg">
+    <div class="top"><div class="av">👤</div><b>Quelqu'un qui est là</b></div>
+    <div class="fil">
+      <div class="date">Aujourd'hui</div>
+      <div class="recu"><span class="pts"><i></i><i></i><i></i></span></div>
+      <div class="aide">Appuie sur un message pour le copier</div>
+      <button class="bulle"><q>Je panique, là. Tu peux m'appeler ou rester en message avec moi ?</q></button>
+    </div>
+    <div class="saisie"><div class="plus">+</div><div class="champ"><span>Message</span><span>🎤</span></div></div>
+  </div>
+  <h3><span class="emo">🌅</span>Et demain</h3>
+  <p class="note">Si ça revient souvent, ou chaque matin avant les cours, ce n'est pas un caprice, et ça se soigne bien. Généraliste, infirmière scolaire ou Maison des ados.</p>
+  <div class="appels">
+    <a class="appel" href="tel:0493261092"><span class="ic">🏠</span><span><b>Maison des ados 06</b><small>2A rue Raynardi, Nice — 04 93 26 10 92, lun-ven 9h-17h</small></span></a>
+    <a class="appel" href="sms:0785273531"><span class="ic">💬</span><span><b>SMS Maison des ados</b><small>07 85 27 35 31 — SMS uniquement, lun-ven 9h-17h, pas de réponse d'urgence</small></span></a>
+    <a class="appel" href="tel:0800235236"><span class="ic">📞</span><span><b>Fil Santé Jeunes</b><small>0 800 235 236 — anonyme, gratuit, 9h-23h</small></span></a>
+    <a class="appel web" href="https://www.filsantejeunes.com" target="_blank" rel="noopener"><span class="ic">💬</span><span><b>Tchat Fil Santé Jeunes</b><small>Par écrit, sur filsantejeunes.com — 9h-22h</small></span></a>
+  </div>
+</section>
+
+<!-- P-HARCÈLEMENT -->
+<section class="screen" id="p-harcele" style="--c:var(--corail)">
+  <button class="retour" data-go="parents">Retour</button>
+  <div class="hero"><span class="emo" aria-hidden="true">🎯</span><h2>Votre ado est harcelé·e</h2>
+    <p class="intro">Des moqueries qui ne s'arrêtent pas, un groupe qui l'exclut, des messages la nuit, une photo qui circule, la peur d'aller en cours. Le harcèlement, c'est quand ça se répète et que votre ado ne peut plus s'en protéger. Votre rôle n'est pas de régler ça avec les autres familles : c'est de le/la croire, et de faire agir l'école.</p></div>
+  <div class="urgence">
+    <p>S'il y a des menaces pour ce soir, ou si votre ado parle de mourir :</p>
+    <a class="appel rouge" href="tel:17"><span class="ic">📞</span><span><b>17</b><small>Police — en cas de menace</small></span></a>
+    <a class="appel rouge" href="tel:3114"><span class="ic">📞</span><span><b>3114</b><small>Idées de mort — 24h/24, aussi pour les parents</small></span></a>
+  </div>
+  <h3><span class="emo">⚡</span>Maintenant</h3>
+  <ol class="etapes">
+    <li>Croyez-le/la, sans minimiser et sans enquêter. « Merci de me le dire. Ce n'est pas ta faute. »</li>
+    <li>Ne contactez ni les harceleurs, ni leurs parents, ni les réseaux. Ça expose votre ado. Demandez conseil au 3018 d'abord.</li>
+    <li>Si c'est possible sans risque, conservez ce qui existe : messages, dates, noms. Le 3018 explique comment, et fait retirer les contenus en ligne.</li>
+    <li>Écrivez à l'établissement aujourd'hui, et demandez un rendez-vous avec le référent harcèlement. L'école a l'obligation d'agir.</li>
+  </ol>
+  <h3><span class="emo">💬</span>Vous pouvez écrire</h3>
+  <div class="imsg">
+    <div class="top"><div class="av">👤</div><b>L'établissement</b></div>
+    <div class="fil">
+      <div class="date">Aujourd'hui</div>
+      <div class="recu"><span class="pts"><i></i><i></i><i></i></span></div>
+      <div class="aide">Appuyez sur un message pour le copier</div>
+      <button class="bulle"><q>Bonjour, mon enfant [prénom], en classe de [classe], subit depuis [durée] des faits répétés : [faits]. Je demande un rendez-vous rapide avec le référent harcèlement et la mise en place d'une protection.</q></button>
+    </div>
+    <div class="saisie"><div class="plus">+</div><div class="champ"><span>Message</span><span>🎤</span></div></div>
+  </div>
+  <h3><span class="emo">📞</span>Le relais</h3>
+  <div class="appels">
+    <a class="appel rouge" href="tel:3018"><span class="ic">📱</span><span><b>3018</b><small>Harcèlement à l'école et en ligne — 9h-23h, 7j/7, gratuit. Aussi pour les parents</small></span></a>
+    <a class="appel web" href="https://www.3018.fr" target="_blank" rel="noopener"><span class="ic">💬</span><span><b>Tchat 3018</b><small>Par écrit, sur 3018.fr — 9h-23h, 7j/7</small></span></a>
+    <a class="appel" href="tel:0493261092"><span class="ic">🏠</span><span><b>Maison des ados 06</b><small>2A rue Raynardi, Nice — 04 93 26 10 92, lun-ven 9h-17h ; reçoit aussi les parents</small></span></a>
+    <a class="appel" href="sms:0785273531"><span class="ic">💬</span><span><b>SMS Maison des ados</b><small>07 85 27 35 31 — SMS uniquement, lun-ven 9h-17h, pas de réponse d'urgence</small></span></a>
+  </div>
+  <h3><span class="emo">🚫</span>Ce qui ne marche pas</h3>
+  <ul class="simple nope">
+    <li>« Défends-toi », « ignore-les ». Ça laisse votre ado seul·e face au groupe.</li>
+    <li>Confisquer le téléphone « pour le/la protéger » : c'est souvent son lien avec les amis qui restent.</li>
+    <li>Aller voir les autres parents ou les harceleurs. Demandez conseil avant toute démarche.</li>
+  </ul>
+  <div class="toi">
+    <p><strong>💛 Et vous ?</strong>Découvrir que son enfant est harcelé·e, c'est violent pour un parent aussi. Vous avez le droit d'appeler le 3018 pour vous, pour savoir comment tenir et quoi faire.</p>
+  </div>
+</section>
+
 <footer>
   <p>Cette page n'est pas un service d'urgence et ne remplace pas une personne. Elle ne demande ni compte ni données, et n'enregistre rien de ce que tu choisis. Comme pour tout site, l'hébergeur peut garder des traces techniques.</p>
-  <p>Si quelqu'un regarde ton téléphone : le bouton « Quitter » en haut t'envoie sur une page neutre, mais il n'efface pas l'historique. Pense à l'effacer, ou ouvre cette page en navigation privée, ou depuis un autre téléphone.</p>
-  <p>SIGNAUX — prototype, Nice, 2026. Conçu par <strong>Cilli Flamand</strong>, psychologue clinicienne, avec des jeunes du territoire.</p>
+  <p>« Quitter », en haut, ouvre une page neutre. Ça n'efface pas toutes les traces de ta visite. Si ton téléphone est surveillé, utilise si possible un appareil auquel cette personne n'a pas accès. Évite de changer des réglages ou d'effacer des traces si ça risque d'attirer son attention. Un message copié ou envoyé peut aussi laisser une trace.</p>
+  <p>SIGNAUX — prototype, Nice, 2026. Conçu par <strong>Cilli Flamand</strong>, psychologue clinicienne, à partir de retours de jeunes du territoire.</p>
   <p>© 2026 Cilli Flamand — textes, parcours et design. Tous droits réservés. Reproduction et adaptation interdites sans accord écrit.</p>
 </footer>
 </main>
@@ -1618,13 +1833,21 @@
 </div>
 
 <script>
-  const show = id => {
+  // Pile de navigation en mémoire de session uniquement (rien n'est écrit sur l'appareil).
+  const pile = [];
+  const show = (id, retour) => {
+    const actuel = document.querySelector('.screen.on');
+    if (id === 'back') { id = pile.pop() || 'accueil'; retour = true; }
+    else if (actuel && !retour) pile.push(actuel.id);
     document.querySelectorAll('.screen').forEach(s => s.classList.remove('on'));
-    document.getElementById(id).classList.add('on');
+    const cible = document.getElementById(id);
+    cible.classList.add('on');
     document.getElementById('sosbar').hidden = (id === 'danger');
     window.scrollTo({top:0, behavior:'instant'});
+    const titre = cible.querySelector('h1, h2');
+    if (titre) { titre.setAttribute('tabindex', '-1'); titre.focus({preventScroll:true}); }
   };
-  document.querySelectorAll('[data-go]').forEach(b => b.addEventListener('click', () => show(b.dataset.go)));
+  document.querySelectorAll('[data-go]').forEach(b => b.addEventListener('click', () => show(b.dataset.go, b.classList.contains('retour') || b.classList.contains('porte'))));
 
   // Sous-choix : une phrase que le jeune reconnaît → un conseil ciblé juste en dessous
   document.querySelectorAll('.choix').forEach(c => {
