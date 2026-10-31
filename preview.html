@@ -192,6 +192,30 @@
   .chip{font:inherit;font-size:15px;font-weight:700;color:var(--papier);background:var(--nuit-2);border:1.5px solid color-mix(in srgb,var(--c) 55%,transparent);border-radius:999px;padding:9px 13px;cursor:pointer;text-align:left;line-height:1.25}
   .chip.on{background:var(--c);color:var(--nuit);border-color:var(--c)}
   .chip:focus-visible{outline:3px solid var(--abricot);outline-offset:2px}
+  /* Recherche locale */
+  .cherche{margin:-8px 0 22px}
+  .cherche label{display:grid;grid-template-columns:40px 1fr;align-items:center;gap:8px;background:var(--nuit-2);border:2px solid color-mix(in srgb,var(--lilas) 45%,transparent);border-radius:18px;padding:6px 10px 6px 6px;cursor:text}
+  .cherche label:focus-within{border-color:var(--abricot);box-shadow:0 0 0 4px rgba(255,165,82,.18)}
+  .cherche .loupe{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font-size:20px;line-height:1;background:var(--nuit-3)}
+  .cherche .lbl{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  .cherche input{font:inherit;font-size:17px;font-weight:700;color:var(--papier);background:none;border:0;min-height:44px;width:100%;outline:none}
+  .cherche input::placeholder{color:var(--papier-2);font-weight:600;opacity:.9}
+  .cherche input::-webkit-search-cancel-button{-webkit-appearance:none}
+  .cherche .lbl-visible{display:block;font-family:var(--display);font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--papier-2);margin:0 0 8px}
+  .resultats{display:grid;gap:8px;margin-top:10px}
+  .resultats:empty{display:none}
+  .res{font:inherit;text-align:left;cursor:pointer;color:var(--papier);background:var(--nuit-2);border:1.5px solid color-mix(in srgb,var(--c,var(--abricot)) 55%,transparent);border-radius:16px;padding:10px 12px;display:grid;grid-template-columns:36px 1fr;gap:10px;align-items:center;min-height:56px}
+  .res .emo{font-size:24px;line-height:1;text-align:center}
+  .res b{font-family:var(--display);font-size:17px;line-height:1.15;color:var(--c,var(--abricot));display:block}
+  .res small{display:block;font-size:13px;font-weight:700;color:var(--papier-2);margin-top:3px}
+  .res:focus-visible{outline:3px solid var(--abricot);outline-offset:2px}
+  .res.danger{--c:var(--rouge)}
+  .res.danger b{color:#fff}
+  .res.danger{background:color-mix(in srgb,var(--rouge) 45%,var(--nuit-2));border-color:var(--rouge)}
+  .rien{background:var(--nuit-2);border-radius:16px;padding:12px 14px;font-size:15px;font-weight:600;color:var(--papier-2);line-height:1.4}
+  .rien .actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+  .rien .chip{font-size:14px}
+  .cherche-note{font-size:12.5px;color:var(--papier-2);margin-top:8px;font-weight:600}
   .chip-tip{display:none;background:color-mix(in srgb,var(--c) 18%,var(--nuit-2));border-left:5px solid var(--c);border-radius:16px;padding:12px 14px;margin:12px 0 4px;font-size:16.5px;line-height:1.45;font-weight:600;color:var(--papier)}
   .chip-tip.on{display:block}
   /* ===== sortie rapide ===== */
@@ -219,6 +243,12 @@
     <button class="porte on" aria-current="page"><span class="pe">👀</span>Je m'inquiète pour quelqu'un</button>
     <button class="porte" data-go="parents"><span class="pe">👪</span>Je suis parent ou proche</button>
   </div>
+  <form class="cherche" role="search" autocomplete="off" data-ph="téléphone, jalousie, photo, peur…">
+    <div class="lbl-visible" aria-hidden="true">Chercher une situation</div>
+    <label><span class="loupe" aria-hidden="true">🔍</span><span class="lbl">Chercher une situation</span><input type="search" placeholder="téléphone, jalousie, photo, peur…" aria-label="Chercher une situation" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="search"></label>
+    <div class="resultats" aria-live="polite"></div>
+    <div class="cherche-note">La recherche se fait sur ton téléphone. Rien n'est envoyé ni enregistré.</div>
+  </form>
   <h1>Tu t'inquiètes pour quelqu'un, <em>et tu ne sais pas quoi faire.</em></h1>
   <p class="lead">Un message, un changement, un silence. Tu n'as pas besoin de savoir si c'est grave. Dis-nous juste ce qui se passe.</p>
   <ul class="tuiles">
@@ -236,9 +266,9 @@
   <div class="perso">
     <h3 class="perso-titre"><span class="emo">💛</span>Et si c'est pour toi ?</h3>
     <ul class="tuiles petites">
-      <li style="--c:var(--abricot)"><button class="tuile" data-go="moi"><span class="emo" aria-hidden="true">🫶</span><span class="t"><b>C'est moi qui vais mal</b><span>Ouvrir la porte « C'est pour moi » : maison, harcèlement, violences, lycée, peur de parler</span></span><span class="chev" aria-hidden="true">›</span></button></li>
+      <li style="--c:var(--abricot)"><button class="tuile" data-go="moi"><span class="emo" aria-hidden="true">🫶</span><span class="t"><b>C'est moi qui vais mal</b><span>Ouvrir la porte « C'est pour moi » : maison, harcèlement, violences, ma relation, lycée, peur de parler</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     </ul>
-    <p class="perso-note">Version 16.3 · prototype en cours de validation. Tests avec des jeunes et des parents prévus pour le pilote 2027.</p>
+    <p class="perso-note">Version 16.4 · prototype en cours de validation. Tests avec des jeunes et des parents prévus pour le pilote 2027.</p>
   </div>
 </section>
 
@@ -251,6 +281,12 @@
     <button class="porte" data-go="accueil"><span class="pe">👀</span>Je m'inquiète pour quelqu'un</button>
     <button class="porte" data-go="parents"><span class="pe">👪</span>Je suis parent ou proche</button>
   </div>
+  <form class="cherche" role="search" autocomplete="off" data-ph="jalousie, localisation, il insiste…">
+    <div class="lbl-visible" aria-hidden="true">Chercher une situation</div>
+    <label><span class="loupe" aria-hidden="true">🔍</span><span class="lbl">Chercher une situation</span><input type="search" placeholder="jalousie, localisation, il insiste…" aria-label="Chercher une situation" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="search"></label>
+    <div class="resultats" aria-live="polite"></div>
+    <div class="cherche-note">La recherche se fait sur ton téléphone. Rien n'est envoyé ni enregistré.</div>
+  </form>
   <h1>Ça va pas, <em>et c'est pour toi.</em></h1>
   <p class="lead">Tu n'as pas besoin de savoir comment ça s'appelle. Dis-nous juste ce que tu vis.</p>
   <ul class="tuiles">
@@ -260,13 +296,14 @@
     <li style="--c:var(--abricot)"><button class="tuile" data-go="m-maison"><span class="emo" aria-hidden="true">🏠</span><span class="t"><b>Ça va pas à la maison</b><span>Disputes, peur, coups, envie de fuguer</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--corail)"><button class="tuile" data-go="m-harcele"><span class="emo" aria-hidden="true">🎯</span><span class="t"><b>On me harcèle</b><span>Au lycée, sur les réseaux, menaces, photo qui circule</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li class="grave" style="--c:var(--alerte)"><button class="tuile" data-go="m-violence"><span class="emo" aria-hidden="true">✋</span><span class="t"><b>Quelqu'un me fait du mal</b><span>Coups, menaces, contrôle, gestes que je ne veux pas</span></span><span class="chev" aria-hidden="true">›</span></button></li>
+    <li style="--c:var(--menthe)"><button class="tuile" data-go="m-relation"><span class="emo" aria-hidden="true">💬</span><span class="t"><b>Je me pose des questions sur ma relation</b><span>Jalousie, contrôle, pression, peur de dire non…</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--sauge)"><button class="tuile" data-go="m-lycee"><span class="emo" aria-hidden="true">🏫</span><span class="t"><b>Ça va pas au collège/lycée</b><span>Peur d'y aller, seul·e, mes amis, un adulte</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--lilas)"><button class="tuile" data-go="peur"><span class="emo" aria-hidden="true">🤐</span><span class="t"><b>J'ai peur de parler</b><span>J'ai peur de ce qui arrivera si j'en parle</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--citron)"><button class="tuile" data-go="oser"><span class="emo" aria-hidden="true">🫣</span><span class="t"><b>Je sais pas comment en parler</b><span>Je vais mal, mais je ne sais pas par où commencer</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--ciel)"><button class="tuile" data-go="apres"><span class="emo" aria-hidden="true">🌙</span><span class="t"><b>J'ai parlé, et ce soir ça va pas</b><span>J'en ai parlé à quelqu'un, je suis rentré·e, et ça ne va pas</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--menthe)"><button class="tuile" data-go="suivi"><span class="emo" aria-hidden="true">👩‍⚕️</span><span class="t"><b>Je suis suivi·e, mais ça va moins bien</b><span>J'ai déjà un psy, mais je n'ose pas le déranger, ou il/elle n'est pas joignable</span></span><span class="chev" aria-hidden="true">›</span></button></li>
   </ul>
-  <p class="perso-note">Version 16.3 · prototype en cours de validation. Cette page ne demande ni compte ni données.</p>
+  <p class="perso-note">Version 16.4 · prototype en cours de validation. Cette page ne demande ni compte ni données.</p>
 </section>
 
 <!-- ACCUEIL PARENTS -->
@@ -278,6 +315,12 @@
     <button class="porte" data-go="accueil"><span class="pe">👀</span>Je m'inquiète pour quelqu'un</button>
     <button class="porte on" aria-current="page"><span class="pe">👪</span>Je suis parent ou proche</button>
   </div>
+  <form class="cherche" role="search" autocomplete="off" data-ph="harcèlement, chambre, relation…">
+    <div class="lbl-visible" aria-hidden="true">Chercher une situation</div>
+    <label><span class="loupe" aria-hidden="true">🔍</span><span class="lbl">Chercher une situation</span><input type="search" placeholder="harcèlement, chambre, relation…" aria-label="Chercher une situation" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="search"></label>
+    <div class="resultats" aria-live="polite"></div>
+    <div class="cherche-note">La recherche se fait sur votre téléphone. Rien n'est envoyé ni enregistré.</div>
+  </form>
   <h1>Votre ado va mal, <em>et vous ne savez pas quoi faire.</em></h1>
   <p class="lead">Vous n'avez pas à poser un diagnostic. Dites-nous juste ce qui se passe.</p>
   <ul class="tuiles">
@@ -786,7 +829,7 @@
     <a class="appel rouge" href="tel:15"><span class="ic">📞</span><span><b>15</b><small>SAMU, tout de suite. Dis où il/elle est</small></span></a>
     <a class="appel rouge" href="tel:112"><span class="ic">📞</span><span><b>112</b><small>Si le 15 ne passe pas</small></span></a>
     <div class="ecoute">
-    <p>Il/elle parle de mourir, mais rien n'est engagé : pour écouter, évaluer et savoir quoi faire ce soir. Un simple silence sans message d'adieu n'est pas une urgence : écris, rappelle, et demande.</p>
+    <p>Il/elle parle de mourir, mais rien n'est engagé : pour écouter, évaluer et savoir quoi faire ce soir. Une absence de réponse, à elle seule, ne suffit pas à conclure à une urgence. Essaie de reprendre contact. Si d'autres signes te font craindre un danger immédiat, appelle le 15 ou le 112.</p>
     <a class="appel" href="tel:3114"><span class="ic">📞</span><span><b>3114</b><small>24h/24, gratuit, pour toi aussi. Ça ne remplace pas le 15 si le danger est là</small></span></a>
     </div>
   </div>
@@ -1590,6 +1633,83 @@
   </div>
 </section>
 
+<!-- M-RELATION (nouveau en v16.4, textes nouveaux à valider) -->
+<section class="screen" id="m-relation" style="--c:var(--menthe)">
+  <button class="retour" data-go="moi">Retour</button>
+  <div class="hero"><span class="emo" aria-hidden="true">💬</span><h2>Tu te poses des questions sur ta relation</h2>
+    <p class="intro">« Il vérifie mon téléphone. » « Elle veut plus que je voie mes potes. » « Je sais plus si c'est moi qui exagère. » Une menace, un coup, une agression, même une seule fois, c'est déjà grave. Et quand ça revient, s'accumule et se resserre, c'est un signal à ne pas laisser passer.</p></div>
+
+  <div class="choix-titre">Qu'est-ce qui te fait te poser la question ?</div>
+  <div class="choix">
+    <button class="chip" data-tip="Regarder ton téléphone, exiger ta position, tes mots de passe : ce n'est pas une preuve d'amour, c'est de la surveillance. Tu as le droit à une vie à toi, même en couple. Le 3018 connaît bien ces situations.">Il/elle vérifie mon téléphone ou ma localisation</button>
+    <button class="chip" data-tip="Décider de ce que tu portes, de qui tu vois, de quand tu sors : ce n'est pas de la jalousie, c'est du contrôle. Si tu changes tes habitudes pour éviter une crise, c'est déjà un signal.">Il/elle décide de mes sorties ou de mes vêtements</button>
+    <button class="chip" data-tip="Tu as le droit de ne pas répondre tout de suite. Si un retard déclenche des reproches, des appels en boucle ou des menaces, ce n'est pas toi qui exagères.">Je dois répondre tout de suite, sinon c'est la crise</button>
+    <button class="chip" data-tip="Avoir envie souvent, ce n'est pas le problème. Le repère, c'est ton droit de dire non, et ce qui se passe quand tu le dis. Insister, bouder, menacer d'aller voir ailleurs, dire « si tu m'aimais… » : ce n'est pas du désir, c'est une pression. Un oui obtenu comme ça n'est pas un oui.">Il/elle insiste pour du sexe quand je ne veux pas</button>
+    <button class="chip" data-tip="« Si tu m'aimais… », « tu vas me faire du mal », « je peux pas vivre sans toi » : c'est un chantage. L'amour ne se prouve pas en faisant ce que tu ne veux pas. Tu peux aimer quelqu'un et dire non.">« Si tu m'aimais, tu le ferais »</button>
+    <button class="chip" data-tip="Quand tu doutes et que tu finis par te dire que c'est toi le problème, c'est souvent le signal le plus sûr. Tu n'as pas besoin du bon mot pour en parler.">Je ne sais plus si c'est moi qui exagère</button>
+  </div>
+  <div class="chip-tip" aria-live="polite"></div>
+
+  <h3><span class="emo">👀</span>Les six signaux</h3>
+  <ul class="simple">
+    <li>Il/elle veut savoir où je suis, avec qui, et vérifie.</li>
+    <li>Je vois moins mes potes, et c'est toujours lié à lui/elle.</li>
+    <li>Je change ma façon de m'habiller, de parler, de sortir pour éviter une crise.</li>
+    <li>Génial·e, puis horrible, puis génial·e : je marche sur des œufs.</li>
+    <li>Quand je doute, je finis par me dire que c'est moi le problème.</li>
+    <li>Je pense à sa réaction avant de décider quoi que ce soit.</li>
+  </ul>
+  <p class="note">S'il y a des coups, des menaces, ou des gestes que tu ne veux pas : <button class="lien" data-go="m-violence">voir « Quelqu'un me fait du mal »</button>.</p>
+
+  <h3><span class="emo">⚡</span>Maintenant</h3>
+  <ol class="etapes">
+    <li>Dis-le à une personne de confiance, sans tout raconter. Juste « je me pose des questions sur ma relation ». Un·e ami·e, un adulte, ou le 3018.</li>
+    <li>Garde une vie à toi : tes potes, tes messages, tes sorties. Ce n'est pas trahir, c'est normal.</li>
+    <li>Si tu as peur de sa réaction, ne le/la confronte pas seul·e. Et ne change pas tes réglages d'un coup si ça peut attirer son attention.</li>
+    <li>Si là, tout de suite, tu n'es pas tranquille : 17 ou 119.</li>
+  </ol>
+
+  <h3><span class="emo">💬</span>Tu peux écrire</h3>
+  <div class="imsg">
+    <div class="top"><div class="av">👤</div><b>Un·e ami·e ou un adulte sûr</b></div>
+    <div class="fil">
+      <div class="date">Aujourd'hui</div>
+      <div class="aide">Messages à copier et à envoyer toi-même</div>
+      <button class="bulle"><q>Je me pose des questions sur ma relation. Je peux t'en parler, sans que tu juges ?</q></button>
+      <button class="bulle"><q>Je ne sais pas si j'exagère. Tu peux m'aider à y voir clair ?</q></button>
+    </div>
+    <div class="pied">Aucun message n'est envoyé depuis SIGNAUX.</div>
+  </div>
+
+  <div class="urgence">
+    <p>S'il y a des menaces, des coups, ou si tu as peur de le/la retrouver :</p>
+    <a class="appel rouge" href="tel:17"><span class="ic">📞</span><span><b>17</b><small>Police — si quelqu'un est menacé ou violent maintenant</small></span></a>
+    <a class="appel rouge" href="tel:119"><span class="ic">📞</span><span><b>119</b><small>Moins de 18 ans et en danger, quel que soit l'auteur — 24h/24, gratuit</small></span></a>
+    <a class="appel web" href="https://www.allo119.gouv.fr" target="_blank" rel="noopener"><span class="ic">💬</span><span><b>Tchat 119</b><small>Par écrit, sur allo119.gouv.fr — ouvert l'après-midi et le soir, horaires et conditions sur le site</small></span></a>
+    <a class="appel" href="tel:3919"><span class="ic">📞</span><span><b>3919</b><small>Violences dans le couple : écoute et orientation pour les femmes et leurs proches. Ce n'est pas un numéro d'urgence</small></span></a>
+    <a class="appel" href="tel:116006"><span class="ic">📞</span><span><b>116 006</b><small>France Victimes — tous âges, tous publics, 9h-20h, 7j/7, gratuit. Si tu as plus de 18 ans, c'est ta porte d'entrée</small></span></a>
+  </div>
+
+  <h3><span class="emo">🚫</span>Ce qu'on va te dire, et qui est faux</h3>
+  <ul class="simple nope">
+    <li>« C'est parce qu'il/elle t'aime. » La jalousie qui enferme n'est pas une preuve d'amour.</li>
+    <li>« Tu avais accepté avant. » Un oui d'avant n'est pas un oui pour toujours.</li>
+    <li>« Tout le monde fait ça en couple. » Non. Se sentir surveillé·e, contrôlé·e ou forcé·e, ce n'est pas normal, même si on le voit partout.</li>
+  </ul>
+
+  <h3><span class="emo">🌅</span>Et demain</h3>
+  <div class="appels">
+    <a class="appel" href="tel:0493261092"><span class="ic">🏠</span><span><b>Maison des ados 06</b><small>2A rue Raynardi, Nice — 04 93 26 10 92, lun-ven 9h-17h</small></span></a>
+    <a class="appel" href="sms:0785273531"><span class="ic">💬</span><span><b>SMS Maison des ados</b><small>07 85 27 35 31 — SMS uniquement, lun-ven 9h-17h, pas de réponse d'urgence</small></span></a>
+    <a class="appel" href="tel:3018"><span class="ic">📱</span><span><b>3018</b><small>Harcèlement, contrôle par le téléphone, photos qui circulent — 9h-23h, 7j/7</small></span></a>
+    <a class="appel web" href="https://www.3018.fr" target="_blank" rel="noopener"><span class="ic">💬</span><span><b>Tchat 3018</b><small>Par écrit, sur 3018.fr — 9h-23h, 7j/7</small></span></a>
+  </div>
+
+  <div class="toi">
+    <p><strong>💛 Et toi ?</strong>Tu n'as pas à être sûr·e que c'est grave pour en parler. Si tu te poses la question, c'est déjà une raison.</p>
+  </div>
+</section>
+
 <!-- M-LYCÉE -->
 <section class="screen" id="m-lycee" style="--c:var(--sauge)">
   <button class="retour" data-go="moi">Retour</button>
@@ -1822,7 +1942,7 @@
 </section>
 
 <footer>
-  <p>Cette page n'est pas un service d'urgence et ne remplace pas une personne. Elle ne demande ni compte ni données, et n'enregistre rien de ce que tu choisis. Comme pour tout site, l'hébergeur peut garder des traces techniques.</p>
+  <p>Cette page n'est pas un service d'urgence et ne remplace pas une personne. Elle ne demande ni compte ni données, et n'enregistre rien de ce que tu choisis ou de ce que tu cherches. Comme pour tout site, l'hébergeur peut garder des traces techniques.</p>
   <p>« Quitter », en haut, ouvre une page neutre. Ça n'efface pas toutes les traces de ta visite. Si ton téléphone est surveillé, utilise si possible un appareil auquel cette personne n'a pas accès. Évite de changer des réglages ou d'effacer des traces si ça risque d'attirer son attention. Un message copié ou envoyé peut aussi laisser une trace.</p>
   <p>SIGNAUX — prototype, Nice, 2026. Conçu par <strong>Cilli Flamand</strong>, psychologue clinicienne, à partir de retours de jeunes du territoire.</p>
   <p>© 2026 Cilli Flamand — textes, parcours et design. Tous droits réservés. Reproduction et adaptation interdites sans accord écrit.</p>
@@ -1850,6 +1970,121 @@
     if (titre) { titre.setAttribute('tabindex', '-1'); titre.focus({preventScroll:true}); }
   };
   document.querySelectorAll('[data-go]').forEach(b => b.addEventListener('click', () => show(b.dataset.go, b.classList.contains('retour') || b.classList.contains('porte'))));
+
+  // ---- Ressources facultatives (vidéo, audio, article) : rien n'est affiché tant qu'aucun contenu réel n'a été fourni et validé.
+  // Format : RESSOURCES['id-de-fiche'] = [{type:'video'|'audio'|'article', titre:'…', source:'…', url:'https://…'}]
+  const RESSOURCES = {};
+  const ICONES = {video:'🎬', audio:'🎧', article:'📄'};
+  Object.entries(RESSOURCES).forEach(([id, liste]) => {
+    const fiche = document.getElementById(id); if (!fiche) return;
+    const ok = (liste || []).filter(r => r && r.titre && r.source && /^https:\/\//.test(r.url || ''));
+    if (!ok.length) return;
+    const h = document.createElement('h3'); h.innerHTML = '<span class="emo">📎</span>Pour aller plus loin';
+    const box = document.createElement('div'); box.className = 'appels';
+    ok.forEach(r => { const a = document.createElement('a'); a.className = 'appel web'; a.href = r.url; a.target = '_blank'; a.rel = 'noopener';
+      a.innerHTML = '<span class="ic">' + (ICONES[r.type] || '🔗') + '</span><span><b></b><small></small></span>';
+      a.querySelector('b').textContent = r.titre; a.querySelector('small').textContent = r.source; box.appendChild(a); });
+    const toi = fiche.querySelector('.toi');
+    if (toi) { fiche.insertBefore(h, toi); fiche.insertBefore(box, toi); } else { fiche.appendChild(h); fiche.appendChild(box); }
+  });
+
+  // ---- Recherche locale : dans les textes des fiches déjà présentes sur la page. Sans IA, sans envoi, sans conservation.
+  const norm = s => (s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[’']/g, ' ');
+  const PARCOURS = {accueil:'Pour quelqu\u2019un', moi:'C\u2019est pour moi', parents:'Parent ou proche'};
+  const SYNO = {
+    'localisation': ['position', 'geoloc', 'gps', 'ou je suis', 'trace', 'suivre', 'surveille', 'controle'],
+    'jalousie': ['jaloux', 'jalouse', 'possessif', 'possessive', 'couple', 'copain', 'copine', 'mec', 'meuf', 'relation', 'amour', 'amoureuse', 'amoureux', 'ex'],
+    'photo': ['photos', 'nude', 'nudes', 'video', 'capture', 'screen', 'circule', 'diffuse', 'revenge', 'chantage'],
+    'il insiste': ['insiste', 'insister', 'force', 'forcer', 'pression', 'sexe', 'sexuel', 'sexuelle', 'coucher', 'faire l amour', 'non', 'refuser', 'consentement', 'oblige'],
+    'peur': ['angoisse', 'angoisse', 'flippe', 'stress', 'terrifie', 'trouille', 'menace', 'menaces'],
+    'harcelement': ['harcele', 'harcelee', 'harceler', 'moquer', 'moquerie', 'moqueries', 'humilie', 'insultes', 'insulte', 'rumeur', 'rumeurs', 'exclu', 'exclue', 'cyber', 'cyberharcelement', 'reseaux', 'tiktok', 'insta', 'snap', 'snapchat', 'groupe'],
+    'telephone': ['tel', 'portable', 'messages', 'mot de passe', 'mdp', 'compte', 'verifie', 'fouille'],
+    'mourir': ['suicide', 'suicider', 'se tuer', 'en finir', 'idees noires', 'adieu', 'disparaitre', 'plus envie de vivre', 'mort'],
+    'mal': ['scarification', 'scarifie', 'se couper', 'coupe', 'blessure', 'medicaments', 'cachets', 'alcool', 'drogue', 'overdose'],
+    'maison': ['parents', 'pere', 'mere', 'beau pere', 'belle mere', 'famille', 'frere', 'soeur', 'fugue', 'fuguer', 'partir de chez moi', 'disputes', 'coups'],
+    'lycee': ['college', 'ecole', 'cours', 'prof', 'professeur', 'classe', 'cpe', 'ami', 'amis', 'seul', 'seule', 'cantine'],
+    'panique': ['crise', 'respirer', 'respiration', 'coeur', 'etouffe', 'tremble', 'malaise'],
+    'retrait': ['disparait', 'repond plus', 'isole', 'chambre', 'sort plus', 'silence', 'dort'],
+    'parler': ['dire', 'raconter', 'avouer', 'oser', 'secret', 'honte', 'psy', 'suivi', 'medecin'],
+    'violence': ['frappe', 'tape', 'gifle', 'coup', 'coups', 'agression', 'agresse', 'viol', 'touche', 'attouchement', 'inceste'],
+    'danger': ['urgence', 'urgent', 'tout de suite', 'maintenant', '15', '17', '112', '114', 'samu', 'police', 'pompiers', '3114', '119', '3018']
+  };
+  const EXTRA = {
+    'm-relation': ['localisation', 'jalousie', 'il insiste', 'telephone', 'peur'], 'relation': ['localisation', 'jalousie', 'il insiste', 'telephone'], 'p-relation': ['localisation', 'jalousie', 'telephone'],
+    'harcele': ['harcelement', 'photo', 'telephone', 'peur'], 'm-harcele': ['harcelement', 'photo', 'telephone', 'peur'], 'p-harcele': ['harcelement', 'photo', 'telephone'],
+    'violence': ['violence', 'il insiste', 'peur', 'photo'], 'm-violence': ['violence', 'il insiste', 'peur', 'photo'],
+    'mourir': ['mourir'], 'm-mourir': ['mourir'], 'p-mourir': ['mourir'], 'danger': ['danger', 'mourir', 'violence'],
+    'mal': ['mal'], 'm-mal': ['mal'], 'p-mal': ['mal'],
+    'maison': ['maison', 'violence', 'peur'], 'm-maison': ['maison', 'violence', 'peur'],
+    'lycee': ['lycee', 'harcelement'], 'm-lycee': ['lycee', 'harcelement'],
+    'panique': ['panique', 'peur'], 'm-panique': ['panique', 'peur'], 'p-panique': ['panique', 'peur'],
+    'retrait': ['retrait'], 'p-chambre': ['retrait'],
+    'peur': ['parler', 'peur'], 'oser': ['parler'], 'apres': ['parler'], 'suivi': ['parler'], 'parent': ['danger', 'parler'], 'doute': ['peur'], 'p-doute': ['peur']
+  };
+  const INDEX = [];
+  const HUBS = ['accueil', 'moi', 'parents'];
+  HUBS.forEach(hub => document.querySelectorAll('#' + hub + ' .tuiles:not(.petites) .tuile[data-go]').forEach(t => {
+    const id = t.dataset.go, fiche = document.getElementById(id); if (!fiche || HUBS.includes(id)) return;
+    const titre = t.querySelector('b').textContent.trim(), sous = t.querySelector('.t span').textContent.trim(), emo = t.querySelector('.emo').textContent;
+    const corps = [fiche.querySelector('.intro')?.textContent, ...[...fiche.querySelectorAll('.chip, ul.simple li, .choix-titre')].map(e => e.textContent)].join(' ');
+    const syn = (EXTRA[id] || []).flatMap(k => [k, ...(SYNO[k] || [])]).join(' ');
+    INDEX.push({id, hub, emo, titre, sous, t: norm(titre + ' ' + sous), s: norm(syn), c: norm(corps)});
+  }));
+  INDEX.push({id:'danger', hub:'accueil', emo:'🚨', titre:'Il y a peut-être un danger maintenant', sous:'Les numéros, tout de suite', t:norm('danger urgence maintenant'), s:norm(['danger', ...SYNO.danger, 'mourir', ...SYNO.mourir].join(' ')), c:''});
+  const chercher = (q, hub) => {
+    const VIDES = new Set(['il','elle','ils','elles','je','tu','on','me','te','se','mon','ma','mes','ton','ta','tes','son','sa','ses','le','la','les','un','une','des','de','du','et','ou','que','qui','est','ce','ca','en','pas','ne','plus','pour','avec','dans','sur','moi','toi','lui','mais','quand','trop','tout','toute','fait','fais','faire','veut','dit','est','suis','sont','ai','as','a']);
+    const mots = norm(q).split(/\s+/).filter(m => (m.length >= 2 && !VIDES.has(m)) || /^\d+$/.test(m));
+    if (!mots.length) return [];
+    return INDEX.map(f => {
+      let sc = 0;
+      for (const m of mots) {
+        const inT = f.t.includes(m), inS = f.s.includes(m), inC = f.c.includes(m);
+        if (!(inT || inS || inC)) return null;
+        sc += (inT ? 3 : 0) + (inS ? 2 : 0) + (inC ? 1 : 0);
+      }
+      if (f.hub === hub) sc += 1.5;
+      if (f.id === 'danger') sc += 0.5;
+      return {f, sc};
+    }).filter(Boolean).sort((a, b) => b.sc - a.sc).slice(0, 6).map(x => x.f);
+  };
+  document.querySelectorAll('form.cherche').forEach(form => {
+    const hub = form.closest('.screen').id, input = form.querySelector('input'), zone = form.querySelector('.resultats');
+    const vous = hub === 'parents';
+    const rendre = () => {
+      const q = input.value.trim(); zone.textContent = '';
+      if (q.length < 2) return;
+      const res = chercher(q, hub);
+      if (!res.length) {
+        const d = document.createElement('div'); d.className = 'rien';
+        d.textContent = (vous ? 'Aucune fiche ne correspond à « ' : 'Aucune fiche ne correspond à « ') + q + (vous ? ' ». Vous pouvez parcourir les situations ci-dessous, ou revenir à l\u2019accueil.' : ' ». Tu peux parcourir les situations ci-dessous, ou revenir à l\u2019accueil.');
+        const act = document.createElement('div'); act.className = 'actions';
+        const b1 = document.createElement('button'); b1.type = 'button'; b1.className = 'chip'; b1.textContent = 'Parcourir les situations';
+        b1.addEventListener('click', () => { input.value = ''; zone.textContent = ''; const t = form.closest('.screen').querySelector('.tuiles .tuile'); if (t) { t.scrollIntoView({behavior:'smooth', block:'start'}); t.focus({preventScroll:true}); } });
+        const b2 = document.createElement('button'); b2.type = 'button'; b2.className = 'chip'; b2.textContent = (vous ? 'Retour à l\u2019accueil' : 'Retour à l\u2019accueil');
+        b2.addEventListener('click', () => { input.value = ''; zone.textContent = ''; show('accueil', true); });
+        const b3 = document.createElement('button'); b3.type = 'button'; b3.className = 'chip'; b3.textContent = '🚨 Danger maintenant';
+        b3.addEventListener('click', () => { show('danger'); });
+        act.append(b1, b2, b3); d.appendChild(act); zone.appendChild(d); return;
+      }
+      res.forEach(f => {
+        const b = document.createElement('button'); b.type = 'button'; b.className = 'res' + (f.id === 'danger' ? ' danger' : '');
+        const li = document.querySelector('#' + f.hub + ' .tuile[data-go="' + f.id + '"]')?.closest('li');
+        if (li && li.style.getPropertyValue('--c')) b.style.setProperty('--c', li.style.getPropertyValue('--c'));
+        b.innerHTML = '<span class="emo" aria-hidden="true"></span><span><b></b><small></small></span>';
+        b.querySelector('.emo').textContent = f.emo; b.querySelector('b').textContent = f.titre;
+        b.querySelector('small').textContent = (f.id === 'danger' ? 'Numéros d\u2019urgence' : 'Parcours « ' + PARCOURS[f.hub] + ' »') + ' · ' + f.sous;
+        b.addEventListener('click', () => { show(f.id); });
+        zone.appendChild(b);
+      });
+    };
+    input.addEventListener('input', rendre);
+    input.addEventListener('keydown', e => {
+      if (e.key === 'Escape') { input.value = ''; zone.textContent = ''; }
+      if (e.key === 'ArrowDown') { const r = zone.querySelector('.res, .chip'); if (r) { e.preventDefault(); r.focus(); } }
+    });
+    form.addEventListener('submit', e => { e.preventDefault(); const r = zone.querySelector('.res'); if (r) r.click(); else rendre(); });
+    form.addEventListener('reset', () => { zone.textContent = ''; });
+  });
 
   // Sous-choix : une phrase que le jeune reconnaît → un conseil ciblé juste en dessous
   document.querySelectorAll('.choix').forEach(c => {
