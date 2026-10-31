@@ -41,11 +41,12 @@
     line-height:1.5;font-size:18px;-webkit-font-smoothing:antialiased;min-height:100%;
     padding-left:max(16px,env(safe-area-inset-left,0px));
     padding-right:max(16px,env(safe-area-inset-right,0px));
-    padding-block:20px 120px;
+    padding-block:20px calc(var(--sos-h,90px) + 16px);
   }
   main{max-width:520px;margin:0 auto}
   h1{font-family:var(--display);font-size:36px;line-height:1.08;font-weight:800;letter-spacing:-.02em;margin-bottom:10px;text-wrap:balance}
   h1 em{color:var(--abricot)}
+  h1.court{font-size:24px;margin:0 0 12px}
   h2{font-family:var(--display);font-size:27px;line-height:1.15;font-weight:800;letter-spacing:-.02em;margin:0;text-wrap:balance}
   p{margin-bottom:12px}
   em{font-style:normal;font-weight:800}
@@ -53,7 +54,7 @@
   .screen{display:none}
   .screen.on{display:block}
 
-  .marque{display:flex;align-items:center;gap:10px;margin-bottom:18px;color:var(--papier-2);font-family:var(--display);font-size:13px;font-weight:800;letter-spacing:.16em;text-transform:uppercase}
+  .marque{display:flex;align-items:center;gap:10px;margin-bottom:12px;min-height:44px;padding-right:120px;color:var(--papier-2);font-family:var(--display);font-size:13px;font-weight:800;letter-spacing:.16em;text-transform:uppercase}
   .marque i{width:12px;height:12px;border-radius:50%;background:var(--abricot);box-shadow:0 0 0 5px rgba(255,165,82,.18)}
 
   /* ===== tuiles d'accueil ===== */
@@ -82,14 +83,16 @@
   /* ===== bouton danger fixé ===== */
   .sosbar{position:fixed;left:0;right:0;bottom:0;z-index:20;
     padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
-    padding-top:10px;padding-bottom:calc(12px + env(safe-area-inset-bottom,0px));
+    padding-top:8px;padding-bottom:calc(10px + env(safe-area-inset-bottom,0px));
     background:linear-gradient(to top,var(--nuit) 70%,transparent)}
-  .sos{max-width:520px;margin:0 auto;display:flex;align-items:center;gap:12px;
-    font:inherit;font-family:var(--display);font-weight:800;font-size:18px;color:#fff;
-    background:var(--rouge);border:0;border-radius:999px;padding:14px 18px;cursor:pointer;width:100%;
-    box-shadow:0 8px 28px rgba(255,59,48,.5)}
-  .sos .emo{font-size:22px;line-height:1}
-  .sos small{display:block;font-family:var(--body);font-weight:700;font-size:14px}
+  html{scroll-padding-bottom:var(--sos-h,90px)}
+  .sos{max-width:520px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:10px;
+    font:inherit;font-family:var(--display);font-weight:800;font-size:16px;line-height:1.2;color:#fff;
+    background:var(--rouge);border:0;border-radius:999px;padding:10px 16px;min-height:48px;cursor:pointer;width:100%;
+    box-shadow:0 8px 28px rgba(255,59,48,.5);text-align:left}
+  .sos > span:last-child{display:flex;flex-wrap:wrap;align-items:baseline;gap:0 8px}
+  .sos .emo{font-size:20px;line-height:1}
+  .sos small{display:inline;font-family:var(--body);font-weight:700;font-size:14px;opacity:.95}
   .sosbar[hidden]{display:none!important}
 
   /* ===== écrans intérieurs ===== */
@@ -170,10 +173,10 @@
   footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--trait);font-size:14px;color:var(--papier-2)}
   footer p{margin-bottom:6px}
   /* ===== deux portes : ami·e / parent ===== */
-  .portes-titre{font-family:var(--display);font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--papier-2);margin-bottom:8px}
-  .portes{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:22px}
-  .porte{font:inherit;font-family:var(--display);font-size:13.5px;font-weight:800;color:var(--papier);background:var(--nuit-2);border:2px solid color-mix(in srgb,var(--lilas) 55%,transparent);border-radius:16px;padding:10px 6px;cursor:pointer;line-height:1.2;min-height:70px;display:grid;place-items:center;text-align:center}
-  .porte .pe{display:block;font-size:22px;line-height:1;margin-bottom:4px}
+  .portes-titre{font-family:var(--display);font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--papier-2);margin-bottom:6px}
+  .portes{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:14px}
+  .porte{font:inherit;font-family:var(--display);font-size:13px;font-weight:800;color:var(--papier);background:var(--nuit-2);border:2px solid color-mix(in srgb,var(--lilas) 55%,transparent);border-radius:14px;padding:6px 4px;cursor:pointer;line-height:1.15;min-height:54px;display:grid;place-items:center;text-align:center}
+  .porte .pe{display:block;font-size:17px;line-height:1;margin-bottom:3px}
   .porte.on{background:var(--abricot);color:var(--nuit);border-color:var(--abricot);box-shadow:0 8px 24px rgba(255,165,82,.35)}
   .porte:focus-visible{outline:3px solid var(--abricot);outline-offset:2px}
 
@@ -193,7 +196,7 @@
   .chip.on{background:var(--c);color:var(--nuit);border-color:var(--c)}
   .chip:focus-visible{outline:3px solid var(--abricot);outline-offset:2px}
   /* Recherche locale */
-  .cherche{margin:-8px 0 22px}
+  .cherche{margin:0 0 16px}
   .cherche label{display:grid;grid-template-columns:40px 1fr;align-items:center;gap:8px;background:var(--nuit-2);border:2px solid color-mix(in srgb,var(--lilas) 45%,transparent);border-radius:18px;padding:6px 10px 6px 6px;cursor:text}
   .cherche label:focus-within{border-color:var(--abricot);box-shadow:0 0 0 4px rgba(255,165,82,.18)}
   .cherche .loupe{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font-size:20px;line-height:1;background:var(--nuit-3)}
@@ -215,11 +218,14 @@
   .rien{background:var(--nuit-2);border-radius:16px;padding:12px 14px;font-size:15px;font-weight:600;color:var(--papier-2);line-height:1.4}
   .rien .actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
   .rien .chip{font-size:14px}
-  .cherche-note{font-size:12.5px;color:var(--papier-2);margin-top:8px;font-weight:600}
+  .screen.en-recherche > h1, .screen.en-recherche > .tuiles, .screen.en-recherche > .perso, .screen.en-recherche > .perso-note{display:none}
+  .resultats .tout{justify-self:start;margin-top:4px}
+  .resultats .titre-res{font-family:var(--display);font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--papier-2)}
   .chip-tip{display:none;background:color-mix(in srgb,var(--c) 18%,var(--nuit-2));border-left:5px solid var(--c);border-radius:16px;padding:12px 14px;margin:12px 0 4px;font-size:16.5px;line-height:1.45;font-weight:600;color:var(--papier)}
   .chip-tip.on{display:block}
   /* ===== sortie rapide ===== */
-  .quitter{position:fixed;top:max(10px,env(safe-area-inset-top,0px));right:12px;z-index:30;font:inherit;font-family:var(--display);font-weight:800;font-size:13px;color:var(--papier);background:var(--nuit-3);border:1px solid var(--trait);border-radius:999px;padding:0 14px;min-height:44px;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.35)}
+  .quitter{position:fixed;top:max(10px,env(safe-area-inset-top,0px));right:max(12px,env(safe-area-inset-right,0px));z-index:30;font:inherit;font-family:var(--display);font-weight:800;font-size:13px;color:var(--papier);background:var(--nuit-3);border:1px solid var(--trait);border-radius:999px;padding:0 14px;min-height:44px;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.35)}
+  .retour{margin-right:120px}
   .appel.web{border-color:color-mix(in srgb,var(--ciel) 60%,transparent)}
   .appel.web .ic{background:color-mix(in srgb,var(--ciel) 30%,var(--nuit))}
   .lien{font:inherit;font-weight:800;color:var(--c,var(--abricot));background:none;border:0;border-bottom:2px solid currentColor;padding:0;cursor:pointer}
@@ -244,13 +250,11 @@
     <button class="porte" data-go="parents"><span class="pe">👪</span>Je suis parent ou proche</button>
   </div>
   <form class="cherche" role="search" autocomplete="off" data-ph="téléphone, jalousie, photo, peur…">
-    <div class="lbl-visible" aria-hidden="true">Chercher une situation</div>
-    <label><span class="loupe" aria-hidden="true">🔍</span><span class="lbl">Chercher une situation</span><input type="search" placeholder="téléphone, jalousie, photo, peur…" aria-label="Chercher une situation" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="search"></label>
+    <div class="lbl-visible" aria-hidden="true">Tape un mot pour chercher</div>
+    <label><span class="loupe" aria-hidden="true">🔍</span><span class="lbl">Chercher une situation</span><input type="search" placeholder="Jalousie, téléphone, peur…" aria-label="Chercher une situation" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="search"></label>
     <div class="resultats" aria-live="polite"></div>
-    <div class="cherche-note">La recherche se fait sur ton téléphone. Rien n'est envoyé ni enregistré.</div>
   </form>
-  <h1>Tu t'inquiètes pour quelqu'un, <em>et tu ne sais pas quoi faire.</em></h1>
-  <p class="lead">Un message, un changement, un silence. Tu n'as pas besoin de savoir si c'est grave. Dis-nous juste ce qui se passe.</p>
+  <h1 class="court">Qu'est-ce qui se passe ?</h1>
   <ul class="tuiles">
     <li class="grave" style="--c:var(--alerte)"><button class="tuile" data-go="mourir"><span class="emo" aria-hidden="true">🆘</span><span class="t"><b>Parle de mourir</b><span>Parle d'en finir, envoie un message d'adieu</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li class="grave" style="--c:var(--alerte)"><button class="tuile" data-go="mal"><span class="emo" aria-hidden="true">🩸</span><span class="t"><b>S'est fait du mal</b><span>Blessures, automutilation, prise de substances</span></span><span class="chev" aria-hidden="true">›</span></button></li>
@@ -268,7 +272,7 @@
     <ul class="tuiles petites">
       <li style="--c:var(--abricot)"><button class="tuile" data-go="moi"><span class="emo" aria-hidden="true">🫶</span><span class="t"><b>C'est moi qui vais mal</b><span>Ouvrir la porte « C'est pour moi » : maison, harcèlement, violences, ma relation, lycée, peur de parler</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     </ul>
-    <p class="perso-note">Version 16.4 · prototype en cours de validation. Tests avec des jeunes et des parents prévus pour le pilote 2027.</p>
+    <p class="perso-note">Version 16.5 · prototype en cours de validation. Tests avec des jeunes et des parents prévus pour le pilote 2027.</p>
   </div>
 </section>
 
@@ -282,13 +286,11 @@
     <button class="porte" data-go="parents"><span class="pe">👪</span>Je suis parent ou proche</button>
   </div>
   <form class="cherche" role="search" autocomplete="off" data-ph="jalousie, localisation, il insiste…">
-    <div class="lbl-visible" aria-hidden="true">Chercher une situation</div>
-    <label><span class="loupe" aria-hidden="true">🔍</span><span class="lbl">Chercher une situation</span><input type="search" placeholder="jalousie, localisation, il insiste…" aria-label="Chercher une situation" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="search"></label>
+    <div class="lbl-visible" aria-hidden="true">Tape un mot pour chercher</div>
+    <label><span class="loupe" aria-hidden="true">🔍</span><span class="lbl">Chercher une situation</span><input type="search" placeholder="Jalousie, téléphone, peur…" aria-label="Chercher une situation" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="search"></label>
     <div class="resultats" aria-live="polite"></div>
-    <div class="cherche-note">La recherche se fait sur ton téléphone. Rien n'est envoyé ni enregistré.</div>
   </form>
-  <h1>Ça va pas, <em>et c'est pour toi.</em></h1>
-  <p class="lead">Tu n'as pas besoin de savoir comment ça s'appelle. Dis-nous juste ce que tu vis.</p>
+  <h1 class="court">Qu'est-ce qui se passe ?</h1>
   <ul class="tuiles">
     <li class="grave" style="--c:var(--alerte)"><button class="tuile" data-go="m-mourir"><span class="emo" aria-hidden="true">🆘</span><span class="t"><b>Je pense à mourir</b><span>Des idées noires, l'envie que ça s'arrête</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li class="grave" style="--c:var(--alerte)"><button class="tuile" data-go="m-mal"><span class="emo" aria-hidden="true">🩸</span><span class="t"><b>Je me suis fait du mal</b><span>Blessure, automutilation, prise de quelque chose</span></span><span class="chev" aria-hidden="true">›</span></button></li>
@@ -303,7 +305,7 @@
     <li style="--c:var(--ciel)"><button class="tuile" data-go="apres"><span class="emo" aria-hidden="true">🌙</span><span class="t"><b>J'ai parlé, et ce soir ça va pas</b><span>J'en ai parlé à quelqu'un, je suis rentré·e, et ça ne va pas</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--menthe)"><button class="tuile" data-go="suivi"><span class="emo" aria-hidden="true">👩‍⚕️</span><span class="t"><b>Je suis suivi·e, mais ça va moins bien</b><span>J'ai déjà un psy, mais je n'ose pas le déranger, ou il/elle n'est pas joignable</span></span><span class="chev" aria-hidden="true">›</span></button></li>
   </ul>
-  <p class="perso-note">Version 16.4 · prototype en cours de validation. Cette page ne demande ni compte ni données.</p>
+  <p class="perso-note">Version 16.5 · prototype en cours de validation. Cette page ne demande ni compte ni données.</p>
 </section>
 
 <!-- ACCUEIL PARENTS -->
@@ -316,13 +318,11 @@
     <button class="porte on" aria-current="page"><span class="pe">👪</span>Je suis parent ou proche</button>
   </div>
   <form class="cherche" role="search" autocomplete="off" data-ph="harcèlement, chambre, relation…">
-    <div class="lbl-visible" aria-hidden="true">Chercher une situation</div>
-    <label><span class="loupe" aria-hidden="true">🔍</span><span class="lbl">Chercher une situation</span><input type="search" placeholder="harcèlement, chambre, relation…" aria-label="Chercher une situation" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="search"></label>
+    <div class="lbl-visible" aria-hidden="true">Tapez un mot pour chercher</div>
+    <label><span class="loupe" aria-hidden="true">🔍</span><span class="lbl">Chercher une situation</span><input type="search" placeholder="Jalousie, téléphone, peur…" aria-label="Chercher une situation" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="search"></label>
     <div class="resultats" aria-live="polite"></div>
-    <div class="cherche-note">La recherche se fait sur votre téléphone. Rien n'est envoyé ni enregistré.</div>
   </form>
-  <h1>Votre ado va mal, <em>et vous ne savez pas quoi faire.</em></h1>
-  <p class="lead">Vous n'avez pas à poser un diagnostic. Dites-nous juste ce qui se passe.</p>
+  <h1 class="court">Qu'est-ce qui se passe ?</h1>
   <ul class="tuiles">
     <li class="grave" style="--c:var(--alerte)"><button class="tuile" data-go="p-mourir"><span class="emo" aria-hidden="true">🆘</span><span class="t"><b>Parle de mourir</b><span>Mon ado parle de mourir, d'en finir, ou a écrit quelque chose qui ressemble à un adieu</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li class="grave" style="--c:var(--alerte)"><button class="tuile" data-go="p-mal"><span class="emo" aria-hidden="true">🩸</span><span class="t"><b>S'est fait du mal</b><span>Mon ado s'est fait du mal, j'ai vu des marques, ou on me l'a dit</span></span><span class="chev" aria-hidden="true">›</span></button></li>
@@ -663,7 +663,7 @@
   </div>
 
   <div class="toi">
-    <p><strong>💛 Et toi ?</strong>Demander de l'aide, ce n'est pas se plaindre. Tu mérites de l'aide, et personne ne te le reprochera.</p>
+    <p><strong>💛 Et toi ?</strong>Demander de l'aide, ce n'est pas se plaindre. Tu mérites de l'aide. Si la première personne minimise ou ne t'aide pas, tu peux te tourner vers une autre personne ou un service d'écoute.</p>
   </div>
 </section>
 
@@ -1646,7 +1646,7 @@
     <button class="chip" data-tip="Tu as le droit de ne pas répondre tout de suite. Si un retard déclenche des reproches, des appels en boucle ou des menaces, ce n'est pas toi qui exagères.">Je dois répondre tout de suite, sinon c'est la crise</button>
     <button class="chip" data-tip="Avoir envie souvent, ce n'est pas le problème. Le repère, c'est ton droit de dire non, et ce qui se passe quand tu le dis. Insister, bouder, menacer d'aller voir ailleurs, dire « si tu m'aimais… » : ce n'est pas du désir, c'est une pression. Un oui obtenu comme ça n'est pas un oui.">Il/elle insiste pour du sexe quand je ne veux pas</button>
     <button class="chip" data-tip="« Si tu m'aimais… », « tu vas me faire du mal », « je peux pas vivre sans toi » : c'est un chantage. L'amour ne se prouve pas en faisant ce que tu ne veux pas. Tu peux aimer quelqu'un et dire non.">« Si tu m'aimais, tu le ferais »</button>
-    <button class="chip" data-tip="Quand tu doutes et que tu finis par te dire que c'est toi le problème, c'est souvent le signal le plus sûr. Tu n'as pas besoin du bon mot pour en parler.">Je ne sais plus si c'est moi qui exagère</button>
+    <button class="chip" data-tip="Ce doute mérite d'être entendu. Tu peux en parler à une personne de confiance pour comprendre ce qui se passe.">Je ne sais plus si c'est moi qui exagère</button>
   </div>
   <div class="chip-tip" aria-live="polite"></div>
 
@@ -1666,7 +1666,8 @@
     <li>Dis-le à une personne de confiance, sans tout raconter. Juste « je me pose des questions sur ma relation ». Un·e ami·e, un adulte, ou le 3018.</li>
     <li>Garde une vie à toi : tes potes, tes messages, tes sorties. Ce n'est pas trahir, c'est normal.</li>
     <li>Si tu as peur de sa réaction, ne le/la confronte pas seul·e. Et ne change pas tes réglages d'un coup si ça peut attirer son attention.</li>
-    <li>Si là, tout de suite, tu n'es pas tranquille : 17 ou 119.</li>
+    <li>Danger immédiat, violences ou menaces : 17 ou 112.</li>
+    <li>Moins de 18 ans, violences ou inquiétude pour ta sécurité : 119. Sans retarder les secours si le danger est immédiat.</li>
   </ol>
 
   <h3><span class="emo">💬</span>Tu peux écrire</h3>
@@ -1810,7 +1811,7 @@
   </div>
 
   <div class="toi">
-    <p><strong>💛 Et toi ?</strong>Avoir peur de parler, ce n'est pas être faible. C'est avoir compris que la situation est dangereuse. Maintenant, on cherche la façon de parler qui te protège.</p>
+    <p><strong>💛 Et toi ?</strong>Avoir peur de parler, ce n'est pas être faible. Cette peur mérite d'être prise au sérieux. Maintenant, on cherche la façon de parler qui te protège.</p>
   </div>
 </section>
 
@@ -1942,7 +1943,7 @@
 </section>
 
 <footer>
-  <p>Cette page n'est pas un service d'urgence et ne remplace pas une personne. Elle ne demande ni compte ni données, et n'enregistre rien de ce que tu choisis ou de ce que tu cherches. Comme pour tout site, l'hébergeur peut garder des traces techniques.</p>
+  <p>Cette page n'est pas un service d'urgence et ne remplace pas une personne. Elle ne demande ni compte ni données, et n'enregistre rien de ce que tu choisis. La recherche « Tape un mot » se fait entièrement sur ton appareil, dans les textes de cette page : les mots tapés ne sont ni envoyés, ni conservés. Comme pour tout site, l'hébergeur peut garder des traces techniques.</p>
   <p>« Quitter », en haut, ouvre une page neutre. Ça n'efface pas toutes les traces de ta visite. Si ton téléphone est surveillé, utilise si possible un appareil auquel cette personne n'a pas accès. Évite de changer des réglages ou d'effacer des traces si ça risque d'attirer son attention. Un message copié ou envoyé peut aussi laisser une trace.</p>
   <p>SIGNAUX — prototype, Nice, 2026. Conçu par <strong>Cilli Flamand</strong>, psychologue clinicienne, à partir de retours de jeunes du territoire.</p>
   <p>© 2026 Cilli Flamand — textes, parcours et design. Tous droits réservés. Reproduction et adaptation interdites sans accord écrit.</p>
@@ -1951,10 +1952,13 @@
 
 <button class="quitter" id="quitter" aria-label="Quitter vite cette page">✕ Quitter</button>
 <div class="sosbar" id="sosbar">
-  <button class="sos" data-go="danger"><span class="emo" aria-hidden="true">🚨</span><span>Il y a peut-être un danger maintenant<small>Les numéros, tout de suite</small></span></button>
+  <button class="sos" data-go="danger"><span class="emo" aria-hidden="true">🚨</span><span>Danger immédiat ? <small>Les numéros</small></span></button>
 </div>
 
 <script>
+  // Hauteur réelle de la barre « danger » → espace réservé sous le contenu, pour qu'aucune tuile ni aucun focus ne soit masqué.
+  const mesurerSos = () => { const s = document.getElementById('sosbar'); document.documentElement.style.setProperty('--sos-h', (s.hidden ? 0 : s.offsetHeight) + 'px'); };
+  window.addEventListener('resize', mesurerSos); window.addEventListener('load', mesurerSos); mesurerSos();
   // Pile de navigation en mémoire de session uniquement (rien n'est écrit sur l'appareil).
   const pile = [];
   const show = (id, retour) => {
@@ -1964,7 +1968,7 @@
     document.querySelectorAll('.screen').forEach(s => s.classList.remove('on'));
     const cible = document.getElementById(id);
     cible.classList.add('on');
-    document.getElementById('sosbar').hidden = (id === 'danger');
+    document.getElementById('sosbar').hidden = (id === 'danger'); mesurerSos();
     window.scrollTo({top:0, behavior:'instant'});
     const titre = cible.querySelector('h1, h2');
     if (titre) { titre.setAttribute('tabindex', '-1'); titre.focus({preventScroll:true}); }
@@ -2050,8 +2054,12 @@
   document.querySelectorAll('form.cherche').forEach(form => {
     const hub = form.closest('.screen').id, input = form.querySelector('input'), zone = form.querySelector('.resultats');
     const vous = hub === 'parents';
+    const ecran = form.closest('.screen');
+    const tout = () => { const b = document.createElement('button'); b.type = 'button'; b.className = 'chip tout'; b.textContent = 'Voir toutes les situations';
+      b.addEventListener('click', () => { input.value = ''; rendre(); input.focus(); }); return b; };
     const rendre = () => {
       const q = input.value.trim(); zone.textContent = '';
+      ecran.classList.toggle('en-recherche', q.length >= 2);
       if (q.length < 2) return;
       const res = chercher(q, hub);
       if (!res.length) {
@@ -2059,13 +2067,14 @@
         d.textContent = (vous ? 'Aucune fiche ne correspond à « ' : 'Aucune fiche ne correspond à « ') + q + (vous ? ' ». Vous pouvez parcourir les situations ci-dessous, ou revenir à l\u2019accueil.' : ' ». Tu peux parcourir les situations ci-dessous, ou revenir à l\u2019accueil.');
         const act = document.createElement('div'); act.className = 'actions';
         const b1 = document.createElement('button'); b1.type = 'button'; b1.className = 'chip'; b1.textContent = 'Parcourir les situations';
-        b1.addEventListener('click', () => { input.value = ''; zone.textContent = ''; const t = form.closest('.screen').querySelector('.tuiles .tuile'); if (t) { t.scrollIntoView({behavior:'smooth', block:'start'}); t.focus({preventScroll:true}); } });
+        b1.addEventListener('click', () => { input.value = ''; rendre(); const t = ecran.querySelector('.tuiles .tuile'); if (t) { t.scrollIntoView({behavior:'smooth', block:'start'}); t.focus({preventScroll:true}); } });
         const b2 = document.createElement('button'); b2.type = 'button'; b2.className = 'chip'; b2.textContent = (vous ? 'Retour à l\u2019accueil' : 'Retour à l\u2019accueil');
-        b2.addEventListener('click', () => { input.value = ''; zone.textContent = ''; show('accueil', true); });
+        b2.addEventListener('click', () => { input.value = ''; rendre(); show('accueil', true); });
         const b3 = document.createElement('button'); b3.type = 'button'; b3.className = 'chip'; b3.textContent = '🚨 Danger maintenant';
         b3.addEventListener('click', () => { show('danger'); });
         act.append(b1, b2, b3); d.appendChild(act); zone.appendChild(d); return;
       }
+      const titre = document.createElement('div'); titre.className = 'titre-res'; titre.textContent = res.length + (res.length > 1 ? ' fiches' : ' fiche') + ' pour « ' + q + ' »'; zone.appendChild(titre);
       res.forEach(f => {
         const b = document.createElement('button'); b.type = 'button'; b.className = 'res' + (f.id === 'danger' ? ' danger' : '');
         const li = document.querySelector('#' + f.hub + ' .tuile[data-go="' + f.id + '"]')?.closest('li');
@@ -2076,14 +2085,15 @@
         b.addEventListener('click', () => { show(f.id); });
         zone.appendChild(b);
       });
+      zone.appendChild(tout());
     };
     input.addEventListener('input', rendre);
     input.addEventListener('keydown', e => {
-      if (e.key === 'Escape') { input.value = ''; zone.textContent = ''; }
+      if (e.key === 'Escape') { input.value = ''; rendre(); }
       if (e.key === 'ArrowDown') { const r = zone.querySelector('.res, .chip'); if (r) { e.preventDefault(); r.focus(); } }
     });
     form.addEventListener('submit', e => { e.preventDefault(); const r = zone.querySelector('.res'); if (r) r.click(); else rendre(); });
-    form.addEventListener('reset', () => { zone.textContent = ''; });
+    form.addEventListener('reset', () => { input.value = ''; rendre(); });
   });
 
   // Sous-choix : une phrase que le jeune reconnaît → un conseil ciblé juste en dessous
