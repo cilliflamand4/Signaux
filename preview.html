@@ -46,7 +46,8 @@
   main{max-width:520px;margin:0 auto}
   h1{font-family:var(--display);font-size:36px;line-height:1.08;font-weight:800;letter-spacing:-.02em;margin-bottom:10px;text-wrap:balance}
   h1 em{color:var(--abricot)}
-  h1.court{font-size:24px;margin:0 0 12px}
+  h1.accroche{font-size:27px;line-height:1.1;margin:0 0 14px;text-shadow:0 2px 8px rgba(0,0,0,.35)}
+  h2.ou{font-family:var(--display);font-size:15px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--papier-2);margin:0 0 12px}
   h2{font-family:var(--display);font-size:27px;line-height:1.15;font-weight:800;letter-spacing:-.02em;margin:0;text-wrap:balance}
   p{margin-bottom:12px}
   em{font-style:normal;font-weight:800}
@@ -65,16 +66,16 @@
     border:1.5px solid color-mix(in srgb,var(--c) 70%,transparent);
     border-radius:var(--r);padding:14px 14px 14px 16px;
     display:grid;grid-template-columns:62px 1fr 22px;align-items:center;gap:14px;min-height:92px;
-    box-shadow:0 10px 30px color-mix(in srgb,var(--c) 22%,transparent);
-    transition:transform .08s ease;
+    box-shadow:inset 0 1px 0 color-mix(in srgb,var(--c) 45%,rgba(255,255,255,.35)),0 8px 22px rgba(0,0,0,.32),0 2px 6px color-mix(in srgb,var(--c) 18%,transparent);
+    transition:transform .08s ease,box-shadow .08s ease;
   }
-  .tuile:active{transform:scale(.985)}
-  .tuile .emo{width:62px;height:62px;border-radius:50%;display:grid;place-items:center;font-size:32px;line-height:1;background:color-mix(in srgb,var(--c) 55%,var(--nuit));box-shadow:0 0 0 6px color-mix(in srgb,var(--c) 22%,transparent)}
+  .tuile:active{transform:translateY(1px) scale(.985);box-shadow:inset 0 2px 8px rgba(0,0,0,.35),0 2px 6px rgba(0,0,0,.25)}
+  .tuile .emo{width:62px;height:62px;border-radius:50%;display:grid;place-items:center;font-size:32px;line-height:1;background:radial-gradient(circle at 35% 30%,color-mix(in srgb,var(--c) 72%,#fff 0%),color-mix(in srgb,var(--c) 45%,var(--nuit)));box-shadow:inset 0 1px 0 rgba(255,255,255,.3),0 0 0 5px color-mix(in srgb,var(--c) 20%,transparent),0 4px 10px rgba(0,0,0,.3)}
   .tuile .t{display:flex;flex-direction:column;gap:3px;min-width:0}
   .tuile b{font-family:var(--display);font-size:22px;line-height:1.1;font-weight:800;color:var(--c);letter-spacing:-.01em}
   .tuile span{font-size:14.5px;line-height:1.35;color:var(--papier-2);font-weight:600}
   .tuile .chev{font-family:var(--display);font-size:30px;line-height:1;color:var(--c);font-weight:800;text-align:center;opacity:.9}
-  .tuiles li.grave .tuile{border-width:2px;background:linear-gradient(135deg,color-mix(in srgb,var(--c) 58%,var(--nuit-2)),color-mix(in srgb,var(--c) 26%,var(--nuit-2)));box-shadow:0 10px 34px color-mix(in srgb,var(--c) 38%,transparent)}
+  .tuiles li.grave .tuile{border-width:2px;background:linear-gradient(135deg,color-mix(in srgb,var(--c) 58%,var(--nuit-2)),color-mix(in srgb,var(--c) 26%,var(--nuit-2)));box-shadow:inset 0 1px 0 rgba(255,255,255,.28),0 10px 26px rgba(0,0,0,.34),0 3px 10px color-mix(in srgb,var(--c) 30%,transparent)}
   .tuiles li.grave .tuile b,.tuiles li.grave .tuile .chev{color:#fff}
   .tuiles li.grave .tuile span{color:var(--papier)}
   .tuiles li.grave .tuile .emo{background:color-mix(in srgb,var(--c) 80%,var(--nuit))}
@@ -174,10 +175,17 @@
   footer p{margin-bottom:6px}
   /* ===== deux portes : ami·e / parent ===== */
   .portes-titre{font-family:var(--display);font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--papier-2);margin-bottom:6px}
-  .portes{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:14px}
-  .porte{font:inherit;font-family:var(--display);font-size:13px;font-weight:800;color:var(--papier);background:var(--nuit-2);border:2px solid color-mix(in srgb,var(--lilas) 55%,transparent);border-radius:14px;padding:6px 4px;cursor:pointer;line-height:1.15;min-height:54px;display:grid;place-items:center;text-align:center}
-  .porte .pe{display:block;font-size:17px;line-height:1;margin-bottom:3px}
-  .porte.on{background:var(--abricot);color:var(--nuit);border-color:var(--abricot);box-shadow:0 8px 24px rgba(255,165,82,.35)}
+  .portes{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:18px}
+  .porte{position:relative;font:inherit;font-family:var(--display);font-size:13px;font-weight:800;color:var(--papier);
+    background:linear-gradient(165deg,color-mix(in srgb,var(--lilas) 26%,var(--nuit-2)),color-mix(in srgb,var(--lilas) 8%,var(--nuit-2)));
+    border:1.5px solid color-mix(in srgb,var(--lilas) 70%,transparent);border-radius:14px;padding:6px 4px;cursor:pointer;line-height:1.15;min-height:58px;display:grid;place-items:center;text-align:center;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.22),0 6px 16px rgba(0,0,0,.30),0 0 0 1px rgba(169,139,255,.10);
+    transition:transform .08s ease,box-shadow .08s ease}
+  .porte:active{transform:translateY(1px) scale(.985);box-shadow:inset 0 2px 6px rgba(0,0,0,.35),0 2px 6px rgba(0,0,0,.25)}
+  .porte .pe{display:block;font-size:20px;line-height:1;margin-bottom:4px;filter:drop-shadow(0 2px 2px rgba(0,0,0,.35))}
+  .porte.on{background:linear-gradient(165deg,#FFB86E,#F28F2E);color:var(--nuit);border-color:#FFD2A3;font-weight:900;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.55),0 8px 22px rgba(255,165,82,.40),0 0 0 3px rgba(255,165,82,.22)}
+  .porte.on::after{content:"";position:absolute;left:50%;bottom:-9px;width:14px;height:14px;background:#F28F2E;border-right:1.5px solid #FFD2A3;border-bottom:1.5px solid #FFD2A3;transform:translateX(-50%) rotate(45deg);border-radius:2px}
   .porte:focus-visible{outline:3px solid var(--abricot);outline-offset:2px}
 
   /* ===== bloc secondaire « Et si c'est pour toi ? » ===== */
@@ -196,15 +204,15 @@
   .chip.on{background:var(--c);color:var(--nuit);border-color:var(--c)}
   .chip:focus-visible{outline:3px solid var(--abricot);outline-offset:2px}
   /* Recherche locale */
-  .cherche{margin:0 0 16px}
-  .cherche label{display:grid;grid-template-columns:40px 1fr;align-items:center;gap:8px;background:var(--nuit-2);border:2px solid color-mix(in srgb,var(--lilas) 45%,transparent);border-radius:18px;padding:6px 10px 6px 6px;cursor:text}
+  .cherche{margin:0 0 18px}
+  .cherche label{display:grid;grid-template-columns:40px 1fr;align-items:center;gap:8px;background:linear-gradient(180deg,#1B1F48,var(--nuit-2));border:2px solid color-mix(in srgb,var(--abricot) 55%,transparent);border-radius:18px;padding:6px 10px 6px 6px;cursor:text;box-shadow:inset 0 2px 6px rgba(0,0,0,.35),0 1px 0 rgba(255,255,255,.06)}
   .cherche label:focus-within{border-color:var(--abricot);box-shadow:0 0 0 4px rgba(255,165,82,.18)}
-  .cherche .loupe{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font-size:20px;line-height:1;background:var(--nuit-3)}
+  .cherche .loupe{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font-size:20px;line-height:1;background:linear-gradient(165deg,color-mix(in srgb,var(--abricot) 55%,var(--nuit-2)),color-mix(in srgb,var(--abricot) 25%,var(--nuit-2)));box-shadow:inset 0 1px 0 rgba(255,255,255,.3),0 2px 6px rgba(0,0,0,.3)}
   .cherche .lbl{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
   .cherche input{font:inherit;font-size:17px;font-weight:700;color:var(--papier);background:none;border:0;min-height:44px;width:100%;outline:none}
   .cherche input::placeholder{color:var(--papier-2);font-weight:600;opacity:.9}
   .cherche input::-webkit-search-cancel-button{-webkit-appearance:none}
-  .cherche .lbl-visible{display:block;font-family:var(--display);font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--papier-2);margin:0 0 8px}
+  .cherche .lbl-visible{display:block;font-family:var(--display);font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--abricot);margin:0 0 8px}
   .resultats{display:grid;gap:8px;margin-top:10px}
   .resultats:empty{display:none}
   .res{font:inherit;text-align:left;cursor:pointer;color:var(--papier);background:var(--nuit-2);border:1.5px solid color-mix(in srgb,var(--c,var(--abricot)) 55%,transparent);border-radius:16px;padding:10px 12px;display:grid;grid-template-columns:36px 1fr;gap:10px;align-items:center;min-height:56px}
@@ -218,7 +226,7 @@
   .rien{background:var(--nuit-2);border-radius:16px;padding:12px 14px;font-size:15px;font-weight:600;color:var(--papier-2);line-height:1.4}
   .rien .actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
   .rien .chip{font-size:14px}
-  .screen.en-recherche > h1, .screen.en-recherche > .tuiles, .screen.en-recherche > .perso, .screen.en-recherche > .perso-note{display:none}
+  .screen.en-recherche > h2.ou, .screen.en-recherche > .tuiles, .screen.en-recherche > .perso, .screen.en-recherche > .perso-note{display:none}
   .resultats .tout{justify-self:start;margin-top:4px}
   .resultats .titre-res{font-family:var(--display);font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--papier-2)}
   .chip-tip{display:none;background:color-mix(in srgb,var(--c) 18%,var(--nuit-2));border-left:5px solid var(--c);border-radius:16px;padding:12px 14px;margin:12px 0 4px;font-size:16.5px;line-height:1.45;font-weight:600;color:var(--papier)}
@@ -231,6 +239,7 @@
   .lien{font:inherit;font-weight:800;color:var(--c,var(--abricot));background:none;border:0;border-bottom:2px solid currentColor;padding:0;cursor:pointer}
   h1:focus,h2:focus{outline:none}
   .bandeau{background:color-mix(in srgb,var(--abricot) 14%,var(--nuit-2));border:1px dashed color-mix(in srgb,var(--abricot) 60%,transparent);border-radius:14px;padding:8px 12px;font-size:13px;color:var(--papier-2);margin-bottom:14px;font-weight:700}
+  @media (prefers-reduced-motion:reduce){.tuile,.porte,.chip,.res,.sos,.bulle{transition:none!important}.tuile:active,.porte:active{transform:none}}
   @media (prefers-reduced-motion:no-preference){
     .screen.on{animation:app .22s ease-out}
     @keyframes app{from{opacity:0;transform:translateX(14px)}to{opacity:1;transform:none}}
@@ -249,12 +258,13 @@
     <button class="porte on" aria-current="page"><span class="pe">👀</span>Je m'inquiète pour quelqu'un</button>
     <button class="porte" data-go="parents"><span class="pe">👪</span>Je suis parent ou proche</button>
   </div>
+  <h1 class="accroche">Tu t'inquiètes <em>pour quelqu'un ?</em></h1>
   <form class="cherche" role="search" autocomplete="off" data-ph="téléphone, jalousie, photo, peur…">
     <div class="lbl-visible" aria-hidden="true">Tape un mot pour chercher</div>
     <label><span class="loupe" aria-hidden="true">🔍</span><span class="lbl">Chercher une situation</span><input type="search" placeholder="Jalousie, téléphone, peur…" aria-label="Chercher une situation" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="search"></label>
     <div class="resultats" aria-live="polite"></div>
   </form>
-  <h1 class="court">Qu'est-ce qui se passe ?</h1>
+  <h2 class="ou">Ou choisis une situation</h2>
   <ul class="tuiles">
     <li class="grave" style="--c:var(--alerte)"><button class="tuile" data-go="mourir"><span class="emo" aria-hidden="true">🆘</span><span class="t"><b>Parle de mourir</b><span>Parle d'en finir, envoie un message d'adieu</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li class="grave" style="--c:var(--alerte)"><button class="tuile" data-go="mal"><span class="emo" aria-hidden="true">🩸</span><span class="t"><b>S'est fait du mal</b><span>Blessures, automutilation, prise de substances</span></span><span class="chev" aria-hidden="true">›</span></button></li>
@@ -272,7 +282,7 @@
     <ul class="tuiles petites">
       <li style="--c:var(--abricot)"><button class="tuile" data-go="moi"><span class="emo" aria-hidden="true">🫶</span><span class="t"><b>C'est moi qui vais mal</b><span>Ouvrir la porte « C'est pour moi » : maison, harcèlement, violences, ma relation, lycée, peur de parler</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     </ul>
-    <p class="perso-note">Version 16.5 · prototype en cours de validation. Tests avec des jeunes et des parents prévus pour le pilote 2027.</p>
+    <p class="perso-note">Version 16.6 · prototype en cours de validation. Tests avec des jeunes et des parents prévus pour le pilote 2027.</p>
   </div>
 </section>
 
@@ -285,12 +295,13 @@
     <button class="porte" data-go="accueil"><span class="pe">👀</span>Je m'inquiète pour quelqu'un</button>
     <button class="porte" data-go="parents"><span class="pe">👪</span>Je suis parent ou proche</button>
   </div>
+  <h1 class="accroche">Ça va pas ? <em>On t'aide à trouver les mots.</em></h1>
   <form class="cherche" role="search" autocomplete="off" data-ph="jalousie, localisation, il insiste…">
     <div class="lbl-visible" aria-hidden="true">Tape un mot pour chercher</div>
     <label><span class="loupe" aria-hidden="true">🔍</span><span class="lbl">Chercher une situation</span><input type="search" placeholder="Jalousie, téléphone, peur…" aria-label="Chercher une situation" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="search"></label>
     <div class="resultats" aria-live="polite"></div>
   </form>
-  <h1 class="court">Qu'est-ce qui se passe ?</h1>
+  <h2 class="ou">Ou choisis une situation</h2>
   <ul class="tuiles">
     <li class="grave" style="--c:var(--alerte)"><button class="tuile" data-go="m-mourir"><span class="emo" aria-hidden="true">🆘</span><span class="t"><b>Je pense à mourir</b><span>Des idées noires, l'envie que ça s'arrête</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li class="grave" style="--c:var(--alerte)"><button class="tuile" data-go="m-mal"><span class="emo" aria-hidden="true">🩸</span><span class="t"><b>Je me suis fait du mal</b><span>Blessure, automutilation, prise de quelque chose</span></span><span class="chev" aria-hidden="true">›</span></button></li>
@@ -305,7 +316,7 @@
     <li style="--c:var(--ciel)"><button class="tuile" data-go="apres"><span class="emo" aria-hidden="true">🌙</span><span class="t"><b>J'ai parlé, et ce soir ça va pas</b><span>J'en ai parlé à quelqu'un, je suis rentré·e, et ça ne va pas</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--menthe)"><button class="tuile" data-go="suivi"><span class="emo" aria-hidden="true">👩‍⚕️</span><span class="t"><b>Je suis suivi·e, mais ça va moins bien</b><span>J'ai déjà un psy, mais je n'ose pas le déranger, ou il/elle n'est pas joignable</span></span><span class="chev" aria-hidden="true">›</span></button></li>
   </ul>
-  <p class="perso-note">Version 16.5 · prototype en cours de validation. Cette page ne demande ni compte ni données.</p>
+  <p class="perso-note">Version 16.6 · prototype en cours de validation. Cette page ne demande ni compte ni données.</p>
 </section>
 
 <!-- ACCUEIL PARENTS -->
@@ -317,12 +328,13 @@
     <button class="porte" data-go="accueil"><span class="pe">👀</span>Je m'inquiète pour quelqu'un</button>
     <button class="porte on" aria-current="page"><span class="pe">👪</span>Je suis parent ou proche</button>
   </div>
+  <h1 class="accroche">Votre ado <em>vous inquiète ?</em></h1>
   <form class="cherche" role="search" autocomplete="off" data-ph="harcèlement, chambre, relation…">
     <div class="lbl-visible" aria-hidden="true">Tapez un mot pour chercher</div>
     <label><span class="loupe" aria-hidden="true">🔍</span><span class="lbl">Chercher une situation</span><input type="search" placeholder="Jalousie, téléphone, peur…" aria-label="Chercher une situation" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="search"></label>
     <div class="resultats" aria-live="polite"></div>
   </form>
-  <h1 class="court">Qu'est-ce qui se passe ?</h1>
+  <h2 class="ou">Ou choisissez une situation</h2>
   <ul class="tuiles">
     <li class="grave" style="--c:var(--alerte)"><button class="tuile" data-go="p-mourir"><span class="emo" aria-hidden="true">🆘</span><span class="t"><b>Parle de mourir</b><span>Mon ado parle de mourir, d'en finir, ou a écrit quelque chose qui ressemble à un adieu</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li class="grave" style="--c:var(--alerte)"><button class="tuile" data-go="p-mal"><span class="emo" aria-hidden="true">🩸</span><span class="t"><b>S'est fait du mal</b><span>Mon ado s'est fait du mal, j'ai vu des marques, ou on me l'a dit</span></span><span class="chev" aria-hidden="true">›</span></button></li>
