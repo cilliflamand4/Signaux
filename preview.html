@@ -41,7 +41,7 @@
     line-height:1.5;font-size:18px;-webkit-font-smoothing:antialiased;min-height:100%;
     padding-left:max(16px,env(safe-area-inset-left,0px));
     padding-right:max(16px,env(safe-area-inset-right,0px));
-    padding-block:20px calc(var(--sos-h,90px) + 16px);
+    padding-block:calc(var(--haut-h,62px) + 6px) calc(var(--sos-h,90px) + 16px);
   }
   main{max-width:520px;margin:0 auto}
   h1{font-family:var(--display);font-size:36px;line-height:1.08;font-weight:800;letter-spacing:-.02em;margin-bottom:10px;text-wrap:balance}
@@ -55,7 +55,7 @@
   .screen{display:none}
   .screen.on{display:block}
 
-  .marque{display:flex;align-items:center;gap:10px;margin-bottom:12px;min-height:44px;padding-right:120px;color:var(--papier-2);font-family:var(--display);font-size:13px;font-weight:800;letter-spacing:.16em;text-transform:uppercase}
+  .marque{display:flex;align-items:center;gap:10px;margin-bottom:12px;min-height:32px;color:var(--papier-2);font-family:var(--display);font-size:13px;font-weight:800;letter-spacing:.16em;text-transform:uppercase}
   .marque i{width:12px;height:12px;border-radius:50%;background:var(--abricot);box-shadow:0 0 0 5px rgba(255,165,82,.18)}
 
   /* ===== tuiles d'accueil ===== */
@@ -232,8 +232,24 @@
   .chip-tip{display:none;background:color-mix(in srgb,var(--c) 18%,var(--nuit-2));border-left:5px solid var(--c);border-radius:16px;padding:12px 14px;margin:12px 0 4px;font-size:16.5px;line-height:1.45;font-weight:600;color:var(--papier)}
   .chip-tip.on{display:block}
   /* ===== sortie rapide ===== */
-  .quitter{position:fixed;top:max(10px,env(safe-area-inset-top,0px));right:max(12px,env(safe-area-inset-right,0px));z-index:30;font:inherit;font-family:var(--display);font-weight:800;font-size:13px;color:var(--papier);background:var(--nuit-3);border:1px solid var(--trait);border-radius:999px;padding:0 14px;min-height:44px;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.35)}
-  .retour{margin-right:120px}
+  /* Barre haute fixe : Retour à gauche, Quitter à droite */
+  .haut{position:fixed;top:0;left:0;right:0;z-index:30;display:flex;justify-content:space-between;align-items:center;gap:10px;
+    padding:max(8px,env(safe-area-inset-top,0px)) max(12px,env(safe-area-inset-right,0px)) 8px max(12px,env(safe-area-inset-left,0px));
+    background:linear-gradient(to bottom,var(--nuit) 78%,transparent)}
+  .haut > *{pointer-events:auto}
+  .retour-fixe{font:inherit;font-family:var(--display);font-weight:800;font-size:15px;color:var(--nuit);
+    background:linear-gradient(165deg,#FFD9B0,#FFB86E);border:1.5px solid #FFE4C6;border-radius:999px;padding:0 16px 0 12px;min-height:46px;cursor:pointer;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.6),0 4px 12px rgba(0,0,0,.35);transition:transform .08s ease,box-shadow .08s ease}
+  .retour-fixe:active{transform:translateY(1px);box-shadow:inset 0 2px 6px rgba(0,0,0,.25)}
+  .retour-fixe:focus-visible{outline:3px solid var(--abricot);outline-offset:3px}
+  .retour-fixe[hidden]{display:none}
+  .quitter{margin-left:auto;font:inherit;font-family:var(--display);font-weight:800;font-size:13px;color:var(--papier);background:var(--nuit-3);border:1px solid var(--trait);border-radius:999px;padding:0 14px;min-height:44px;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.35)}
+  .screen > .retour{display:none}
+  html{scroll-padding-top:calc(var(--haut-h,62px) + 8px)}
+  /* Bouton danger un peu plus présent sur les accueils */
+  body.sur-accueil .sos{min-height:56px;font-size:18px;padding:12px 18px}
+  body.sur-accueil .sos small{font-size:16px}
+  body.sur-accueil .sos .emo{font-size:23px}
   .appel.web{border-color:color-mix(in srgb,var(--ciel) 60%,transparent)}
   .appel.web .ic{background:color-mix(in srgb,var(--ciel) 30%,var(--nuit))}
   .lien{font:inherit;font-weight:800;color:var(--c,var(--abricot));background:none;border:0;border-bottom:2px solid currentColor;padding:0;cursor:pointer}
@@ -269,7 +285,7 @@
     <li class="grave" style="--c:var(--alerte)"><button class="tuile" data-go="mourir"><span class="emo" aria-hidden="true">🆘</span><span class="t"><b>Parle de mourir</b><span>Parle d'en finir, envoie un message d'adieu</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li class="grave" style="--c:var(--alerte)"><button class="tuile" data-go="mal"><span class="emo" aria-hidden="true">🩸</span><span class="t"><b>S'est fait du mal</b><span>Blessures, automutilation, prise de substances</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--abricot)"><button class="tuile" data-go="maison"><span class="emo" aria-hidden="true">🏠</span><span class="t"><b>Ça va pas chez lui/elle</b><span>Disputes, peur, coups, envie de fuguer</span></span><span class="chev" aria-hidden="true">›</span></button></li>
-    <li style="--c:var(--corail)"><button class="tuile" data-go="harcele"><span class="emo" aria-hidden="true">🎯</span><span class="t"><b>On le/la harcèle</b><span>Au lycée, sur les réseaux, menaces, humiliations</span></span><span class="chev" aria-hidden="true">›</span></button></li>
+    <li style="--c:var(--corail)"><button class="tuile" data-go="harcele"><span class="emo" aria-hidden="true">😥</span><span class="t"><b>On le/la harcèle</b><span>Au lycée, sur les réseaux, menaces, humiliations</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li class="grave" style="--c:var(--alerte)"><button class="tuile" data-go="violence"><span class="emo" aria-hidden="true">✋</span><span class="t"><b>Quelqu'un lui fait du mal</b><span>Violences psychologiques, physiques ou sexuelles</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--sauge)"><button class="tuile" data-go="lycee"><span class="emo" aria-hidden="true">🏫</span><span class="t"><b>Ça va pas au collège/lycée</b><span>Peur d'y aller, amis, exclusion, problème avec un adulte</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--menthe)"><button class="tuile" data-go="relation"><span class="emo" aria-hidden="true">💬</span><span class="t"><b>Sa relation m'inquiète</b><span>Contrôle, jalousie, isolement, peur de l'autre</span></span><span class="chev" aria-hidden="true">›</span></button></li>
@@ -282,7 +298,7 @@
     <ul class="tuiles petites">
       <li style="--c:var(--abricot)"><button class="tuile" data-go="moi"><span class="emo" aria-hidden="true">🫶</span><span class="t"><b>C'est moi qui vais mal</b><span>Ouvrir la porte « C'est pour moi » : maison, harcèlement, violences, ma relation, lycée, peur de parler</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     </ul>
-    <p class="perso-note">Version 16.6 · prototype en cours de validation. Tests avec des jeunes et des parents prévus pour le pilote 2027.</p>
+    <p class="perso-note">Version 16.7 · prototype en cours de validation. Tests avec des jeunes et des parents prévus pour le pilote 2027.</p>
   </div>
 </section>
 
@@ -307,7 +323,7 @@
     <li class="grave" style="--c:var(--alerte)"><button class="tuile" data-go="m-mal"><span class="emo" aria-hidden="true">🩸</span><span class="t"><b>Je me suis fait du mal</b><span>Blessure, automutilation, prise de quelque chose</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--ciel)"><button class="tuile" data-go="m-panique"><span class="emo" aria-hidden="true">😱</span><span class="t"><b>Je panique</b><span>Cœur qui s'emballe, je n'arrive plus à respirer ou à me calmer</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--abricot)"><button class="tuile" data-go="m-maison"><span class="emo" aria-hidden="true">🏠</span><span class="t"><b>Ça va pas à la maison</b><span>Disputes, peur, coups, envie de fuguer</span></span><span class="chev" aria-hidden="true">›</span></button></li>
-    <li style="--c:var(--corail)"><button class="tuile" data-go="m-harcele"><span class="emo" aria-hidden="true">🎯</span><span class="t"><b>On me harcèle</b><span>Au lycée, sur les réseaux, menaces, photo qui circule</span></span><span class="chev" aria-hidden="true">›</span></button></li>
+    <li style="--c:var(--corail)"><button class="tuile" data-go="m-harcele"><span class="emo" aria-hidden="true">😥</span><span class="t"><b>On me harcèle</b><span>Au lycée, sur les réseaux, menaces, photo qui circule</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li class="grave" style="--c:var(--alerte)"><button class="tuile" data-go="m-violence"><span class="emo" aria-hidden="true">✋</span><span class="t"><b>Quelqu'un me fait du mal</b><span>Coups, menaces, contrôle, gestes que je ne veux pas</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--menthe)"><button class="tuile" data-go="m-relation"><span class="emo" aria-hidden="true">💬</span><span class="t"><b>Je me pose des questions sur ma relation</b><span>Jalousie, contrôle, pression, peur de dire non…</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--sauge)"><button class="tuile" data-go="m-lycee"><span class="emo" aria-hidden="true">🏫</span><span class="t"><b>Ça va pas au collège/lycée</b><span>Peur d'y aller, seul·e, mes amis, un adulte</span></span><span class="chev" aria-hidden="true">›</span></button></li>
@@ -316,7 +332,7 @@
     <li style="--c:var(--ciel)"><button class="tuile" data-go="apres"><span class="emo" aria-hidden="true">🌙</span><span class="t"><b>J'ai parlé, et ce soir ça va pas</b><span>J'en ai parlé à quelqu'un, je suis rentré·e, et ça ne va pas</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--menthe)"><button class="tuile" data-go="suivi"><span class="emo" aria-hidden="true">👩‍⚕️</span><span class="t"><b>Je suis suivi·e, mais ça va moins bien</b><span>J'ai déjà un psy, mais je n'ose pas le déranger, ou il/elle n'est pas joignable</span></span><span class="chev" aria-hidden="true">›</span></button></li>
   </ul>
-  <p class="perso-note">Version 16.6 · prototype en cours de validation. Cette page ne demande ni compte ni données.</p>
+  <p class="perso-note">Version 16.7 · prototype en cours de validation. Cette page ne demande ni compte ni données.</p>
 </section>
 
 <!-- ACCUEIL PARENTS -->
@@ -339,7 +355,7 @@
     <li class="grave" style="--c:var(--alerte)"><button class="tuile" data-go="p-mourir"><span class="emo" aria-hidden="true">🆘</span><span class="t"><b>Parle de mourir</b><span>Mon ado parle de mourir, d'en finir, ou a écrit quelque chose qui ressemble à un adieu</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li class="grave" style="--c:var(--alerte)"><button class="tuile" data-go="p-mal"><span class="emo" aria-hidden="true">🩸</span><span class="t"><b>S'est fait du mal</b><span>Mon ado s'est fait du mal, j'ai vu des marques, ou on me l'a dit</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--menthe)"><button class="tuile" data-go="p-relation"><span class="emo" aria-hidden="true">💬</span><span class="t"><b>Sa relation</b><span>Sa relation amoureuse m'inquiète</span></span><span class="chev" aria-hidden="true">›</span></button></li>
-    <li style="--c:var(--corail)"><button class="tuile" data-go="p-harcele"><span class="emo" aria-hidden="true">🎯</span><span class="t"><b>On le/la harcèle</b><span>Au collège, au lycée, sur les réseaux : moqueries, exclusion, menaces, photo</span></span><span class="chev" aria-hidden="true">›</span></button></li>
+    <li style="--c:var(--corail)"><button class="tuile" data-go="p-harcele"><span class="emo" aria-hidden="true">😥</span><span class="t"><b>On le/la harcèle</b><span>Au collège, au lycée, sur les réseaux : moqueries, exclusion, menaces, photo</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--lilas)"><button class="tuile" data-go="p-chambre"><span class="emo" aria-hidden="true">🔕</span><span class="t"><b>Ne sort plus</b><span>Mon ado ne sort plus de sa chambre, ne va plus en cours, ne parle plus</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--ciel)"><button class="tuile" data-go="p-panique"><span class="emo" aria-hidden="true">😱</span><span class="t"><b>Panique</b><span>Mon ado panique, n'arrive plus à respirer ou à se calmer</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--citron)"><button class="tuile" data-go="p-doute"><span class="emo" aria-hidden="true">🤔</span><span class="t"><b>Pas sûr·e</b><span>Je ne sais pas si c'est grave</span></span><span class="chev" aria-hidden="true">›</span></button></li>
@@ -1184,7 +1200,7 @@
 <!-- HARCÈLEMENT (ami·e) -->
 <section class="screen" id="harcele" style="--c:var(--corail)">
   <button class="retour" data-go="accueil">Retour</button>
-  <div class="hero"><span class="emo" aria-hidden="true">🎯</span><h2>On le/la harcèle</h2>
+  <div class="hero"><span class="emo" aria-hidden="true">😥</span><h2>On le/la harcèle</h2>
     <p class="intro">Des moqueries qui ne s'arrêtent pas, un groupe qui l'exclut, des messages la nuit, une photo qui circule, des menaces. Le harcèlement, c'est quand ça se répète et qu'il/elle ne peut plus s'en protéger. Ta place est simple : ne pas rire, ne pas regarder ailleurs, et faire venir un adulte.</p></div>
 
   <div class="urgence">
@@ -1498,7 +1514,7 @@
 <!-- M-HARCÈLEMENT -->
 <section class="screen" id="m-harcele" style="--c:var(--corail)">
   <button class="retour" data-go="moi">Retour</button>
-  <div class="hero"><span class="emo" aria-hidden="true">🎯</span><h2>On me harcèle</h2>
+  <div class="hero"><span class="emo" aria-hidden="true">😥</span><h2>On me harcèle</h2>
     <p class="intro">On se moque, on t'exclut, on parle de toi, tu reçois des messages, une photo circule, on te menace. Tu te demandes si tu exagères. Non. Quand ça se répète et que tu ne peux plus t'en protéger, c'est du harcèlement, et ce n'est pas à toi de le supporter.</p></div>
 
   <div class="urgence">
@@ -1727,12 +1743,12 @@
 <section class="screen" id="m-lycee" style="--c:var(--sauge)">
   <button class="retour" data-go="moi">Retour</button>
   <div class="hero"><span class="emo" aria-hidden="true">🏫</span><h2>Ça va pas au collège/lycée</h2>
-    <p class="intro">Tu ne veux plus y aller, tu manges seul·e, ta bande s'est retournée, un prof te fait peur, ou tu te sens mal là-bas sans savoir pourquoi. Ce n'est pas forcément du harcèlement, et ce n'est pas rien. Quand le lieu où tu passes tes journées devient un endroit où tu te sens mal, ça compte.</p></div>
+    <p class="intro">Tu redoutes d'y aller, tu manges seul·e, tes amis ne te parlent plus ou se retournent contre toi. Un adulte te fait peur, ou tu te sens mal là-bas sans savoir pourquoi. Ce n'est pas forcément du harcèlement, mais ce que tu vis compte. Tu peux demander de l'aide.</p></div>
 
   <div class="choix-titre">Qu'est-ce qui se passe ?</div>
   <div class="choix">
     <button class="chip" data-tip="La solitude se voit peu et pèse beaucoup. Un club, une option, la personne qui est aussi seule au fond de la classe : un seul lien suffit pour commencer.">Je suis seul·e</button>
-    <button class="chip" data-tip="Les embrouilles de groupe font très mal à cet âge, et ce n'est pas de l'enfantillage. Si ça devient de l'exclusion répétée, c'est du harcèlement : la tuile « On me harcèle » est faite pour ça.">J'ai un problème avec mes amis</button>
+    <button class="chip" data-tip="Les embrouilles de groupe font très mal à cet âge, et ce n'est pas de l'enfantillage. Si ça devient de l'exclusion répétée, c'est du harcèlement : la tuile « On me harcèle » est faite pour ça.">Mes amis me mettent à l'écart ou me font du mal</button>
     <button class="chip" data-tip="Un adulte qui t'humilie, te menace ou te met mal à l'aise, c'est à signaler à un autre adulte : CPE, direction, infirmière. Tu as le droit d'être cru·e, même face à un prof.">Un professeur ou un adulte me fait peur</button>
     <button class="chip" data-tip="Ventre noué, envie de vomir le matin : ce n'est pas de la flemme. Tu peux demander une évaluation et un aménagement adapté : l'infirmière ou la CPE savent faire, ou demande à un adulte de le faire pour toi.">Je ne veux plus aller en cours</button>
     <button class="chip" data-tip="Pleurs le dimanche soir, maux de ventre, insomnies : ça compte, même sans explication. L'infirmière scolaire est là pour ça, sans diagnostic.">Je me sens mal là-bas, sans savoir pourquoi</button>
@@ -1909,7 +1925,7 @@
 <!-- P-HARCÈLEMENT -->
 <section class="screen" id="p-harcele" style="--c:var(--corail)">
   <button class="retour" data-go="parents">Retour</button>
-  <div class="hero"><span class="emo" aria-hidden="true">🎯</span><h2>Votre ado est harcelé·e</h2>
+  <div class="hero"><span class="emo" aria-hidden="true">😥</span><h2>Votre ado est harcelé·e</h2>
     <p class="intro">Des moqueries qui ne s'arrêtent pas, un groupe qui l'exclut, des messages la nuit, une photo qui circule, la peur d'aller en cours. Le harcèlement, c'est quand ça se répète et que votre ado ne peut plus s'en protéger. Votre rôle n'est pas de régler ça avec les autres familles : c'est de le/la croire, et de faire agir l'école.</p></div>
   <div class="urgence">
     <p>S'il y a des menaces pour ce soir :</p>
@@ -1962,30 +1978,59 @@
 </footer>
 </main>
 
-<button class="quitter" id="quitter" aria-label="Quitter vite cette page">✕ Quitter</button>
+<div class="haut" id="haut">
+  <button class="retour-fixe" id="retour-fixe" aria-label="Retour à l'écran précédent" hidden>← Retour</button>
+  <button class="quitter" id="quitter" aria-label="Quitter vite cette page">✕ Quitter</button>
+</div>
 <div class="sosbar" id="sosbar">
   <button class="sos" data-go="danger"><span class="emo" aria-hidden="true">🚨</span><span>Danger immédiat ? <small>Les numéros</small></span></button>
 </div>
 
 <script>
   // Hauteur réelle de la barre « danger » → espace réservé sous le contenu, pour qu'aucune tuile ni aucun focus ne soit masqué.
-  const mesurerSos = () => { const s = document.getElementById('sosbar'); document.documentElement.style.setProperty('--sos-h', (s.hidden ? 0 : s.offsetHeight) + 'px'); };
+  const mesurerSos = () => { const s = document.getElementById('sosbar'); document.documentElement.style.setProperty('--sos-h', (s.hidden ? 0 : s.offsetHeight) + 'px');
+    const h = document.getElementById('haut'); if (h) document.documentElement.style.setProperty('--haut-h', h.offsetHeight + 'px'); };
   window.addEventListener('resize', mesurerSos); window.addEventListener('load', mesurerSos); mesurerSos();
-  // Pile de navigation en mémoire de session uniquement (rien n'est écrit sur l'appareil).
+
+  // Navigation. Pile en mémoire de session uniquement : écran, position de défilement, élément d'origine.
+  // L'historique du navigateur reçoit une entrée par ouverture de fiche (sans URL, sans mot recherché) pour que sa flèche Retour fonctionne.
+  const ACCUEILS = ['accueil', 'moi', 'parents'];
   const pile = [];
-  const show = (id, retour) => {
-    const actuel = document.querySelector('.screen.on');
-    if (id === 'back') { id = pile.pop() || 'accueil'; retour = true; }
-    else if (actuel && !retour) pile.push(actuel.id);
+  const retourFixe = document.getElementById('retour-fixe');
+  const afficher = (id) => {
     document.querySelectorAll('.screen').forEach(s => s.classList.remove('on'));
-    const cible = document.getElementById(id);
+    const cible = document.getElementById(id) || document.getElementById('accueil');
     cible.classList.add('on');
-    document.getElementById('sosbar').hidden = (id === 'danger'); mesurerSos();
-    window.scrollTo({top:0, behavior:'instant'});
-    const titre = cible.querySelector('h1, h2');
-    if (titre) { titre.setAttribute('tabindex', '-1'); titre.focus({preventScroll:true}); }
+    document.getElementById('sosbar').hidden = (cible.id === 'danger');
+    document.body.classList.toggle('sur-accueil', ACCUEILS.includes(cible.id));
+    retourFixe.hidden = (pile.length === 0 && ACCUEILS.includes(cible.id));
+    mesurerSos();
+    return cible;
   };
-  document.querySelectorAll('[data-go]').forEach(b => b.addEventListener('click', () => show(b.dataset.go, b.classList.contains('retour') || b.classList.contains('porte'))));
+  const focaliserTitre = (cible) => { const t = cible.querySelector('h1, h2'); if (t) { t.setAttribute('tabindex', '-1'); t.focus({preventScroll:true}); } };
+  const show = (id, retour, origine) => {
+    if (id === 'back') { if (pile.length) history.back(); else { afficher('accueil'); window.scrollTo({top:0, behavior:'instant'}); } return; }
+    const actuel = document.querySelector('.screen.on');
+    if (actuel && !retour) { pile.push({id: actuel.id, y: window.scrollY, el: origine || null}); try { history.pushState({p: pile.length}, ''); } catch {} }
+    const cible = afficher(id);
+    window.scrollTo({top:0, behavior:'instant'});
+    focaliserTitre(cible);
+  };
+  const revenir = () => {
+    const e = pile.pop();
+    if (!e) { const c = afficher('accueil'); window.scrollTo({top:0, behavior:'instant'}); focaliserTitre(c); return; }
+    const cible = afficher(e.id);
+    window.scrollTo({top:e.y, behavior:'instant'});
+    if (e.el && e.el.isConnected && e.el.offsetParent !== null) e.el.focus({preventScroll:true}); else focaliserTitre(cible);
+  };
+  try { history.replaceState({p: 0}, ''); } catch {}
+  afficher((document.querySelector('.screen.on') || {}).id || 'accueil');
+  window.addEventListener('popstate', ev => {
+    const n = (ev.state && typeof ev.state.p === 'number') ? ev.state.p : 0;
+    if (n < pile.length) { while (pile.length > n + 1) pile.pop(); revenir(); }
+  });
+  retourFixe.addEventListener('click', () => show('back'));
+  document.querySelectorAll('[data-go]').forEach(b => b.addEventListener('click', () => show(b.dataset.go, b.classList.contains('retour') || b.classList.contains('porte'), b)));
 
   // ---- Ressources facultatives (vidéo, audio, article) : rien n'est affiché tant qu'aucun contenu réel n'a été fourni et validé.
   // Format : RESSOURCES['id-de-fiche'] = [{type:'video'|'audio'|'article', titre:'…', source:'…', url:'https://…'}]
@@ -2083,7 +2128,7 @@
         const b2 = document.createElement('button'); b2.type = 'button'; b2.className = 'chip'; b2.textContent = (vous ? 'Retour à l\u2019accueil' : 'Retour à l\u2019accueil');
         b2.addEventListener('click', () => { input.value = ''; rendre(); show('accueil', true); });
         const b3 = document.createElement('button'); b3.type = 'button'; b3.className = 'chip'; b3.textContent = '🚨 Danger maintenant';
-        b3.addEventListener('click', () => { show('danger'); });
+        b3.addEventListener('click', () => { show('danger', false, b3); });
         act.append(b1, b2, b3); d.appendChild(act); zone.appendChild(d); return;
       }
       const titre = document.createElement('div'); titre.className = 'titre-res'; titre.textContent = res.length + (res.length > 1 ? ' fiches' : ' fiche') + ' pour « ' + q + ' »'; zone.appendChild(titre);
@@ -2094,7 +2139,7 @@
         b.innerHTML = '<span class="emo" aria-hidden="true"></span><span><b></b><small></small></span>';
         b.querySelector('.emo').textContent = f.emo; b.querySelector('b').textContent = f.titre;
         b.querySelector('small').textContent = (f.id === 'danger' ? 'Numéros d\u2019urgence' : 'Parcours « ' + PARCOURS[f.hub] + ' »') + ' · ' + f.sous;
-        b.addEventListener('click', () => { show(f.id); });
+        b.addEventListener('click', () => { show(f.id, false, b); });
         zone.appendChild(b);
       });
       zone.appendChild(tout());
