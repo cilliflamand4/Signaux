@@ -229,6 +229,17 @@
   .rien .chip{font-size:14px}
   .screen.en-recherche > h2.ou, .screen.en-recherche > .tuiles, .screen.en-recherche > .perso, .screen.en-recherche > .perso-note{display:none}
   .resultats .tout{justify-self:start;margin-top:4px}
+  .az-btn{font:inherit;font-size:14px;font-weight:800;color:var(--abricot);background:none;border:0;padding:10px 2px;min-height:44px;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+  .az-btn:focus-visible{outline:3px solid var(--abricot);outline-offset:2px;border-radius:8px}
+  .az{background:var(--nuit-2);border:1.5px solid color-mix(in srgb,var(--abricot) 40%,transparent);border-radius:18px;padding:12px;display:grid;gap:12px;margin-top:4px}
+  .az .lettre{display:grid;grid-template-columns:28px 1fr;gap:8px;align-items:start}
+  .az .lettre > b{font-family:var(--display);font-size:18px;color:var(--abricot);line-height:36px}
+  .az .mots{display:flex;flex-wrap:wrap;gap:6px}
+  .az .mot{font:inherit;font-size:15px;font-weight:700;color:var(--papier);background:var(--nuit-3);border:1px solid var(--trait);border-radius:999px;padding:7px 12px;min-height:36px;cursor:pointer}
+  .az .mot:focus-visible{outline:3px solid var(--abricot);outline-offset:2px}
+  .az .choix-mot{grid-column:1/-1;display:grid;gap:8px;padding:10px;border-radius:14px;background:var(--nuit)}
+  .az .choix-mot p{margin:0;font-size:14px;font-weight:700;color:var(--papier-2)}
+  .screen.en-recherche .az-btn, .screen.en-recherche .az{display:none}
   .resultats .titre-res{font-family:var(--display);font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--papier-2)}
   .chip-tip{display:none;background:color-mix(in srgb,var(--c) 18%,var(--nuit-2));border-left:5px solid var(--c);border-radius:16px;padding:12px 14px;margin:12px 0 4px;font-size:16.5px;line-height:1.45;font-weight:600;color:var(--papier)}
   .chip-tip.on{display:block}
@@ -280,6 +291,8 @@
     <div class="lbl-visible" aria-hidden="true">Tape un mot pour chercher</div>
     <label><span class="loupe" aria-hidden="true">🔍</span><span class="lbl">Chercher une situation</span><input type="search" placeholder="Jalousie, téléphone, peur…" aria-label="Chercher une situation" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="search"></label>
     <div class="resultats" aria-live="polite"></div>
+    <button type="button" class="az-btn" aria-expanded="false">Parcourir les mots A–Z</button>
+    <div class="az" hidden></div>
   </form>
   <h2 class="ou">Ou choisis une situation</h2>
   <ul class="tuiles">
@@ -299,7 +312,7 @@
     <ul class="tuiles petites">
       <li style="--c:var(--abricot)"><button class="tuile" data-go="moi"><span class="emo" aria-hidden="true">🫶</span><span class="t"><b>C'est moi qui vais mal</b><span>Ouvrir la porte « C'est pour moi » : maison, harcèlement, violences, ma relation, lycée, peur de parler</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     </ul>
-    <p class="perso-note">Version 16.7 · prototype en cours de validation. Tests avec des jeunes et des parents prévus pour le pilote 2027.</p>
+    <p class="perso-note">Version 16.8 · prototype en cours de validation. Tests avec des jeunes et des parents prévus pour le pilote 2027.</p>
   </div>
 </section>
 
@@ -317,6 +330,8 @@
     <div class="lbl-visible" aria-hidden="true">Tape un mot pour chercher</div>
     <label><span class="loupe" aria-hidden="true">🔍</span><span class="lbl">Chercher une situation</span><input type="search" placeholder="Jalousie, téléphone, peur…" aria-label="Chercher une situation" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="search"></label>
     <div class="resultats" aria-live="polite"></div>
+    <button type="button" class="az-btn" aria-expanded="false">Parcourir les mots A–Z</button>
+    <div class="az" hidden></div>
   </form>
   <h2 class="ou">Ou choisis une situation</h2>
   <ul class="tuiles">
@@ -333,7 +348,7 @@
     <li style="--c:var(--ciel)"><button class="tuile" data-go="apres"><span class="emo" aria-hidden="true">🌙</span><span class="t"><b>J'ai parlé, et ce soir ça va pas</b><span>J'en ai parlé à quelqu'un, je suis rentré·e, et ça ne va pas</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--menthe)"><button class="tuile" data-go="suivi"><span class="emo" aria-hidden="true">👩‍⚕️</span><span class="t"><b>Je suis suivi·e, mais ça va moins bien</b><span>J'ai déjà un psy, mais je n'ose pas le déranger, ou il/elle n'est pas joignable</span></span><span class="chev" aria-hidden="true">›</span></button></li>
   </ul>
-  <p class="perso-note">Version 16.7 · prototype en cours de validation. Cette page ne demande ni compte ni données.</p>
+  <p class="perso-note">Version 16.8 · prototype en cours de validation. Cette page ne demande ni compte ni données.</p>
 </section>
 
 <!-- ACCUEIL PARENTS -->
@@ -350,6 +365,8 @@
     <div class="lbl-visible" aria-hidden="true">Tapez un mot pour chercher</div>
     <label><span class="loupe" aria-hidden="true">🔍</span><span class="lbl">Chercher une situation</span><input type="search" placeholder="Jalousie, téléphone, peur…" aria-label="Chercher une situation" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="search"></label>
     <div class="resultats" aria-live="polite"></div>
+    <button type="button" class="az-btn" aria-expanded="false">Parcourir les mots A–Z</button>
+    <div class="az" hidden></div>
   </form>
   <h2 class="ou">Ou choisissez une situation</h2>
   <ul class="tuiles">
@@ -2109,6 +2126,69 @@
       return {f, sc};
     }).filter(Boolean).sort((a, b) => b.sc - a.sc).slice(0, 6).map(x => x.f);
   };
+  // ---- Index A-Z : mots courants -> fiches existantes, par parcours. Aucun nouveau contenu.
+  const AZ = {
+    accueil: {
+      'Adieu': ['mourir'], 'Alcool': ['mal'], 'Angoisse': ['panique'], 'Automutilation': ['mal'],
+      'Chantage': ['violence', 'harcele'], 'Collège': ['lycee'], 'Contrôle': ['relation'], 'Coups': ['violence', 'maison'],
+      'Cours (n\u2019y va plus)': ['retrait', 'lycee'], 'Disputes à la maison': ['maison'], 'Doute': ['doute'],
+      'Fugue': ['maison'], 'Harcèlement': ['harcele'], 'Idées noires': ['mourir'], 'Isolement': ['retrait', 'relation'],
+      'Jalousie': ['relation'], 'Localisation': ['relation'], 'Lycée': ['lycee'], 'Médicaments': ['mal'],
+      'Menaces': ['violence', 'harcele'], 'Mourir': ['mourir'], 'Panique': ['panique'], 'Peur': ['maison', 'violence', 'panique'],
+      'Photo qui circule': ['harcele'], 'Prof': ['lycee'], 'Réseaux': ['harcele'], 'Scarification': ['mal'],
+      'Silence': ['retrait'], 'Suicide': ['mourir'], 'Téléphone surveillé': ['relation'], 'Violences': ['violence']
+    },
+    moi: {
+      'Adieu': ['m-mourir'], 'Alcool': ['m-mal'], 'Amis qui m\u2019excluent': ['m-lycee'], 'Angoisse': ['m-panique'],
+      'Automutilation': ['m-mal'], 'Chantage': ['m-violence', 'm-harcele'], 'Collège': ['m-lycee'], 'Contrôle': ['m-relation'],
+      'Copain, copine': ['m-relation'], 'Coups': ['m-violence', 'm-maison'], 'Disputes à la maison': ['m-maison'],
+      'Fugue': ['m-maison'], 'Harcèlement': ['m-harcele'], 'Idées noires': ['m-mourir'], 'Il insiste': ['m-relation', 'm-violence'],
+      'Jalousie': ['m-relation'], 'Localisation': ['m-relation'], 'Lycée': ['m-lycee'], 'Médicaments': ['m-mal'],
+      'Menaces': ['m-violence', 'm-harcele'], 'Mourir': ['m-mourir'], 'Oser en parler': ['oser', 'peur'], 'Panique': ['m-panique'],
+      'Peur de parler': ['peur'], 'Photo qui circule': ['m-harcele'], 'Prof': ['m-lycee'], 'Psy, suivi': ['suivi'],
+      'Réseaux': ['m-harcele'], 'Scarification': ['m-mal'], 'Sexe sans envie': ['m-relation', 'm-violence'],
+      'Suicide': ['m-mourir'], 'Téléphone surveillé': ['m-relation'], 'Vêtements, sorties': ['m-relation'], 'Violences': ['m-violence'],
+      'Après en avoir parlé': ['apres']
+    },
+    parents: {
+      'Adieu': ['p-mourir'], 'Angoisse': ['p-panique'], 'Automutilation': ['p-mal'], 'Chambre (ne sort plus)': ['p-chambre'],
+      'Collège, lycée': ['p-harcele', 'p-chambre'], 'Contrôle': ['p-relation'], 'Cours (n\u2019y va plus)': ['p-chambre'],
+      'Doute': ['p-doute'], 'Harcèlement': ['p-harcele'], 'Idées noires': ['p-mourir'], 'Isolement': ['p-chambre', 'p-relation'],
+      'Jalousie': ['p-relation'], 'Médicaments': ['p-mal'], 'Moqueries': ['p-harcele'], 'Mourir': ['p-mourir'],
+      'Panique': ['p-panique'], 'Photo qui circule': ['p-harcele'], 'Qui appeler': ['parent'], 'Relation amoureuse': ['p-relation'],
+      'Réseaux': ['p-harcele'], 'Scarification': ['p-mal'], 'Suicide': ['p-mourir'], 'Urgence': ['parent']
+    }
+  };
+  const titreTuile = (hub, id) => { const t = document.querySelector('#' + hub + ' .tuile[data-go="' + id + '"]') || document.querySelector('.tuile[data-go="' + id + '"]'); return t ? {titre: t.querySelector('b').textContent.trim(), emo: t.querySelector('.emo').textContent, li: t.closest('li')} : null; };
+  const construireAZ = (form, hub, vous) => {
+    const box = form.querySelector('.az'); if (box.dataset.ok) return; box.dataset.ok = '1';
+    const parLettre = {};
+    Object.keys(AZ[hub]).sort((a, b) => a.localeCompare(b, 'fr')).forEach(m => { const L = m.normalize('NFD')[0].toUpperCase(); (parLettre[L] = parLettre[L] || []).push(m); });
+    Object.entries(parLettre).forEach(([L, mots]) => {
+      const row = document.createElement('div'); row.className = 'lettre';
+      const b = document.createElement('b'); b.textContent = L; b.setAttribute('aria-hidden', 'true');
+      const zone = document.createElement('div'); zone.className = 'mots';
+      mots.forEach(m => {
+        const btn = document.createElement('button'); btn.type = 'button'; btn.className = 'mot'; btn.textContent = m;
+        btn.addEventListener('click', () => {
+          const ids = AZ[hub][m].filter(id => document.getElementById(id));
+          if (ids.length === 1) { show(ids[0], false, btn); return; }
+          box.querySelectorAll('.choix-mot').forEach(c => c.remove());
+          const c = document.createElement('div'); c.className = 'choix-mot';
+          const p = document.createElement('p'); p.textContent = '« ' + m + ' » : ' + (vous ? 'choisissez la situation la plus proche.' : 'choisis la situation la plus proche.'); c.appendChild(p);
+          ids.forEach(id => { const info = titreTuile(hub, id); if (!info) return;
+            const r = document.createElement('button'); r.type = 'button'; r.className = 'res';
+            if (info.li && info.li.style.getPropertyValue('--c')) r.style.setProperty('--c', info.li.style.getPropertyValue('--c'));
+            r.innerHTML = '<span class="emo" aria-hidden="true"></span><span><b></b></span>';
+            r.querySelector('.emo').textContent = info.emo; r.querySelector('b').textContent = info.titre;
+            r.addEventListener('click', () => show(id, false, r)); c.appendChild(r); });
+          row.after(c); c.querySelector('.res')?.focus();
+        });
+        zone.appendChild(btn);
+      });
+      row.append(b, zone); box.appendChild(row);
+    });
+  };
   document.querySelectorAll('form.cherche').forEach(form => {
     const hub = form.closest('.screen').id, input = form.querySelector('input'), zone = form.querySelector('.resultats');
     const vous = hub === 'parents';
@@ -2146,6 +2226,13 @@
       zone.appendChild(tout());
     };
     input.addEventListener('input', rendre);
+    const azBtn = form.querySelector('.az-btn'), azBox = form.querySelector('.az');
+    azBtn.addEventListener('click', () => {
+      const ouvrir = azBox.hidden; construireAZ(form, hub, vous);
+      azBox.hidden = !ouvrir; azBtn.setAttribute('aria-expanded', String(ouvrir));
+      azBtn.textContent = ouvrir ? 'Fermer les mots A–Z' : 'Parcourir les mots A–Z';
+      if (ouvrir) azBox.querySelector('.mot')?.focus();
+    });
     input.addEventListener('keydown', e => {
       if (e.key === 'Escape') { input.value = ''; rendre(); }
       if (e.key === 'ArrowDown') { const r = zone.querySelector('.res, .chip'); if (r) { e.preventDefault(); r.focus(); } }
