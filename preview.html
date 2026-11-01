@@ -19,6 +19,7 @@
     --papier:#F7F3EA;
     --papier-2:#C9C4B8;
     --abricot:#FFA552;
+    --framboise:#F0407A;
     --rouge:#D7261C;
     --alerte:#FF4D6D;
     --menthe:#2EE6B0;
@@ -284,7 +285,7 @@
   <ul class="tuiles">
     <li class="grave" style="--c:var(--alerte)"><button class="tuile" data-go="mourir"><span class="emo" aria-hidden="true">🆘</span><span class="t"><b>Parle de mourir</b><span>Parle d'en finir, envoie un message d'adieu</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li class="grave" style="--c:var(--alerte)"><button class="tuile" data-go="mal"><span class="emo" aria-hidden="true">🩸</span><span class="t"><b>S'est fait du mal</b><span>Blessures, automutilation, prise de substances</span></span><span class="chev" aria-hidden="true">›</span></button></li>
-    <li style="--c:var(--abricot)"><button class="tuile" data-go="maison"><span class="emo" aria-hidden="true">🏠</span><span class="t"><b>Ça va pas chez lui/elle</b><span>Disputes, peur, coups, envie de fuguer</span></span><span class="chev" aria-hidden="true">›</span></button></li>
+    <li class="grave" style="--c:var(--framboise)"><button class="tuile" data-go="maison"><span class="emo" aria-hidden="true">🏠</span><span class="t"><b>Ça va pas chez lui/elle</b><span>Disputes, peur, coups, envie de fuguer</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--corail)"><button class="tuile" data-go="harcele"><span class="emo" aria-hidden="true">😥</span><span class="t"><b>On le/la harcèle</b><span>Au lycée, sur les réseaux, menaces, humiliations</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li class="grave" style="--c:var(--alerte)"><button class="tuile" data-go="violence"><span class="emo" aria-hidden="true">🛑</span><span class="t"><b>Quelqu'un lui fait du mal</b><span>Violences psychologiques, physiques ou sexuelles</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--sauge)"><button class="tuile" data-go="lycee"><span class="emo" aria-hidden="true">🏫</span><span class="t"><b>Ça va pas au collège/lycée</b><span>Peur d'y aller, amis, exclusion, problème avec un adulte</span></span><span class="chev" aria-hidden="true">›</span></button></li>
@@ -322,7 +323,7 @@
     <li class="grave" style="--c:var(--alerte)"><button class="tuile" data-go="m-mourir"><span class="emo" aria-hidden="true">🆘</span><span class="t"><b>Je pense à mourir</b><span>Des idées noires, l'envie que ça s'arrête</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li class="grave" style="--c:var(--alerte)"><button class="tuile" data-go="m-mal"><span class="emo" aria-hidden="true">🩸</span><span class="t"><b>Je me suis fait du mal</b><span>Blessure, automutilation, prise de quelque chose</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--ciel)"><button class="tuile" data-go="m-panique"><span class="emo" aria-hidden="true">😱</span><span class="t"><b>Je panique</b><span>Cœur qui s'emballe, je n'arrive plus à respirer ou à me calmer</span></span><span class="chev" aria-hidden="true">›</span></button></li>
-    <li style="--c:var(--abricot)"><button class="tuile" data-go="m-maison"><span class="emo" aria-hidden="true">🏠</span><span class="t"><b>Ça va pas à la maison</b><span>Disputes, peur, coups, envie de fuguer</span></span><span class="chev" aria-hidden="true">›</span></button></li>
+    <li class="grave" style="--c:var(--framboise)"><button class="tuile" data-go="m-maison"><span class="emo" aria-hidden="true">🏠</span><span class="t"><b>Ça va pas à la maison</b><span>Disputes, peur, coups, envie de fuguer</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--corail)"><button class="tuile" data-go="m-harcele"><span class="emo" aria-hidden="true">😥</span><span class="t"><b>On me harcèle</b><span>Au lycée, sur les réseaux, menaces, photo qui circule</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li class="grave" style="--c:var(--alerte)"><button class="tuile" data-go="m-violence"><span class="emo" aria-hidden="true">🛑</span><span class="t"><b>Quelqu'un me fait du mal</b><span>Coups, menaces, contrôle, gestes que je ne veux pas</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--menthe)"><button class="tuile" data-go="m-relation"><span class="emo" aria-hidden="true">💬</span><span class="t"><b>Je me pose des questions sur ma relation</b><span>Jalousie, contrôle, pression, peur de dire non…</span></span><span class="chev" aria-hidden="true">›</span></button></li>
@@ -1129,7 +1130,7 @@
 </section>
 
 <!-- MAISON (ami·e) -->
-<section class="screen" id="maison" style="--c:var(--abricot)">
+<section class="screen" id="maison" style="--c:var(--framboise)">
   <button class="retour" data-go="accueil">Retour</button>
   <div class="hero"><span class="emo" aria-hidden="true">🏠</span><h2>Ça va pas chez lui/elle</h2>
     <p class="intro">Il/elle t'a écrit que ses parents se battent, qu'on le/la frappe, qu'il/elle a peur de rentrer ou envie de partir. C'est lourd à recevoir. Tu n'as pas à régler sa famille. Tu as à le/la croire, et à faire venir un adulte.</p></div>
@@ -1452,7 +1453,7 @@
 </section>
 
 <!-- M-MAISON -->
-<section class="screen" id="m-maison" style="--c:var(--abricot)">
+<section class="screen" id="m-maison" style="--c:var(--framboise)">
   <button class="retour" data-go="moi">Retour</button>
   <div class="hero"><span class="emo" aria-hidden="true">🏠</span><h2>Ça va pas à la maison</h2>
     <p class="intro">Des cris tous les soirs, des coups, des insultes, des portes qui claquent, la peur de rentrer. Peut-être que ce n'est pas sur toi, mais entre tes parents, ou sur ton frère ou ta sœur. Ça compte quand même. Grandir dans une maison où l'on a peur, ça fait mal, et ce n'est jamais de ta faute.</p></div>
