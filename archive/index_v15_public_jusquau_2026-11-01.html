@@ -1,0 +1,1002 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#15183A">
+<meta name="description" content="Un·e ami·e t'a envoyé un message qui t'inquiète. Quoi faire maintenant, quoi écrire, qui appeler à Nice.">
+<meta name="robots" content="noindex">
+<title>SIGNAUX — Quelqu'un t'a écrit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@700;800&family=Nunito:wght@500;700;800&display=swap">
+<style>html{color-scheme:dark;background:#15183A}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}img{max-width:100%}[hidden]{display:none!important}</style>
+<style>
+  /* Layout : une colonne mobile, un écran à la fois. Accueil en tuiles pleines ; écrans intérieurs en sections repérables par emoji et couleur ; phrases dans une conversation façon Messages ; bouton danger fixé en bas. Look unique « nuit ». */
+  :root{
+    --nuit:#15183A;
+    --nuit-2:#22264E;
+    --nuit-3:#2F3466;
+    --papier:#F7F3EA;
+    --papier-2:#C9C4B8;
+    --abricot:#FFA552;
+    --rouge:#FF3B30;
+    --alerte:#FF4D6D;
+    --menthe:#2EE6B0;
+    --lilas:#A98BFF;
+    --ciel:#45B8FF;
+    --citron:#FFE234;
+    --imsg:#0A84FF;
+    --trait:rgba(247,243,234,.14);
+    --r:20px;
+    --display:'Sora',system-ui,sans-serif;
+    --body:'Nunito','Avenir Next','Segoe UI',system-ui,sans-serif;
+    color-scheme:dark;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:var(--body);color:var(--papier);
+    background:var(--nuit) radial-gradient(900px 520px at 50% -140px,rgba(169,139,255,.32),transparent 70%) no-repeat;
+    line-height:1.5;font-size:18px;-webkit-font-smoothing:antialiased;min-height:100%;
+    padding-left:max(16px,env(safe-area-inset-left,0px));
+    padding-right:max(16px,env(safe-area-inset-right,0px));
+    padding-block:20px 120px;
+  }
+  main{max-width:520px;margin:0 auto}
+  h1{font-family:var(--display);font-size:36px;line-height:1.08;font-weight:800;letter-spacing:-.02em;margin-bottom:10px;text-wrap:balance}
+  h1 em{color:var(--abricot)}
+  h2{font-family:var(--display);font-size:27px;line-height:1.15;font-weight:800;letter-spacing:-.02em;margin:0;text-wrap:balance}
+  p{margin-bottom:12px}
+  em{font-style:normal;font-weight:800}
+  .lead{color:var(--papier-2);font-size:18px;margin-bottom:22px}
+  .screen{display:none}
+  .screen.on{display:block}
+
+  .marque{display:flex;align-items:center;gap:10px;margin-bottom:18px;color:var(--papier-2);font-family:var(--display);font-size:13px;font-weight:800;letter-spacing:.16em;text-transform:uppercase}
+  .marque i{width:12px;height:12px;border-radius:50%;background:var(--abricot);box-shadow:0 0 0 5px rgba(255,165,82,.18)}
+
+  /* ===== tuiles d'accueil ===== */
+  .tuiles{display:grid;grid-template-columns:1fr;gap:12px;list-style:none}
+  .tuile{
+    width:100%;text-align:left;cursor:pointer;font:inherit;color:var(--papier);
+    background:linear-gradient(135deg,color-mix(in srgb,var(--c) 34%,var(--nuit-2)),color-mix(in srgb,var(--c) 14%,var(--nuit-2)));
+    border:1.5px solid color-mix(in srgb,var(--c) 70%,transparent);
+    border-radius:var(--r);padding:14px 14px 14px 16px;
+    display:grid;grid-template-columns:62px 1fr 22px;align-items:center;gap:14px;min-height:92px;
+    box-shadow:0 10px 30px color-mix(in srgb,var(--c) 22%,transparent);
+    transition:transform .08s ease;
+  }
+  .tuile:active{transform:scale(.985)}
+  .tuile .emo{width:62px;height:62px;border-radius:50%;display:grid;place-items:center;font-size:32px;line-height:1;background:color-mix(in srgb,var(--c) 55%,var(--nuit));box-shadow:0 0 0 6px color-mix(in srgb,var(--c) 22%,transparent)}
+  .tuile .t{display:flex;flex-direction:column;gap:3px;min-width:0}
+  .tuile b{font-family:var(--display);font-size:22px;line-height:1.1;font-weight:800;color:var(--c);letter-spacing:-.01em}
+  .tuile span{font-size:14.5px;line-height:1.35;color:var(--papier-2);font-weight:600}
+  .tuile .chev{font-family:var(--display);font-size:30px;line-height:1;color:var(--c);font-weight:800;text-align:center;opacity:.9}
+  .tuiles li.grave .tuile{border-width:2px;background:linear-gradient(135deg,color-mix(in srgb,var(--c) 58%,var(--nuit-2)),color-mix(in srgb,var(--c) 26%,var(--nuit-2)));box-shadow:0 10px 34px color-mix(in srgb,var(--c) 38%,transparent)}
+  .tuiles li.grave .tuile b,.tuiles li.grave .tuile .chev{color:#fff}
+  .tuiles li.grave .tuile span{color:var(--papier)}
+  .tuiles li.grave .tuile .emo{background:color-mix(in srgb,var(--c) 80%,var(--nuit))}
+  .tuile:focus-visible,.retour:focus-visible,.appel:focus-visible,.sos:focus-visible,.bulle:focus-visible{outline:3px solid var(--abricot);outline-offset:3px}
+
+  /* ===== bouton danger fixé ===== */
+  .sosbar{position:fixed;left:0;right:0;bottom:0;z-index:20;
+    padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+    padding-top:10px;padding-bottom:calc(12px + env(safe-area-inset-bottom,0px));
+    background:linear-gradient(to top,var(--nuit) 70%,transparent)}
+  .sos{max-width:520px;margin:0 auto;display:flex;align-items:center;gap:12px;
+    font:inherit;font-family:var(--display);font-weight:800;font-size:17px;color:#fff;
+    background:var(--rouge);border:0;border-radius:999px;padding:14px 18px;cursor:pointer;width:100%;
+    box-shadow:0 8px 28px rgba(255,59,48,.5)}
+  .sos .emo{font-size:22px;line-height:1}
+  .sos small{display:block;font-family:var(--body);font-weight:700;font-size:13px;opacity:.9}
+  .sosbar[hidden]{display:none!important}
+
+  /* ===== écrans intérieurs ===== */
+  .retour{font:inherit;font-size:16px;font-weight:800;color:var(--papier);background:var(--nuit-2);border:0;
+    border-radius:999px;padding:9px 16px 9px 12px;margin-bottom:16px;cursor:pointer;display:inline-flex;gap:6px;align-items:center}
+  .retour::before{content:"‹";font-size:22px;line-height:1;color:var(--c,var(--abricot))}
+
+  .hero{
+    border-radius:var(--r);padding:18px 18px 16px;margin-bottom:8px;
+    background:linear-gradient(160deg,color-mix(in srgb,var(--c) 42%,var(--nuit-2)),color-mix(in srgb,var(--c) 14%,var(--nuit-2)));
+    border:1.5px solid color-mix(in srgb,var(--c) 60%,transparent);
+    box-shadow:0 10px 34px color-mix(in srgb,var(--c) 24%,transparent);
+    display:grid;grid-template-columns:64px 1fr;column-gap:14px;align-items:center;
+  }
+  .hero .emo{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;font-size:34px;line-height:1;background:color-mix(in srgb,var(--c) 70%,var(--nuit));box-shadow:0 0 0 6px color-mix(in srgb,var(--c) 24%,transparent)}
+  .hero h2{color:#fff}
+  .hero .intro{grid-column:1/-1;margin:14px 0 0;color:var(--papier);font-size:16px;line-height:1.45;font-weight:600;opacity:.92}
+
+  h3{font-family:var(--display);font-size:15px;font-weight:800;color:var(--c,var(--abricot));letter-spacing:.08em;text-transform:uppercase;margin:30px 0 12px;display:flex;align-items:center;gap:10px}
+  h3 .emo{font-size:22px;line-height:1;width:36px;height:36px;border-radius:12px;display:grid;place-items:center;background:color-mix(in srgb,var(--c) 28%,var(--nuit-2))}
+  h3::after{content:"";flex:1;height:2px;border-radius:2px;background:color-mix(in srgb,var(--c) 40%,transparent)}
+
+  ol.etapes{padding:0;list-style:none;counter-reset:e;display:grid;gap:10px}
+  ol.etapes li{counter-increment:e;position:relative;padding:14px 14px 14px 66px;min-height:64px;
+    background:var(--nuit-2);border-radius:var(--r);border-left:5px solid var(--c,var(--abricot));
+    font-size:17px;line-height:1.42;font-weight:600;color:var(--papier-2)}
+  ol.etapes li b{color:#fff;font-weight:800}
+  ol.etapes li::before{content:counter(e);position:absolute;left:14px;top:13px;width:38px;height:38px;border-radius:50%;
+    background:var(--c,var(--abricot));color:var(--nuit);font-family:var(--display);font-weight:800;font-size:18px;display:grid;place-items:center}
+  ul.simple{padding:0;list-style:none;display:grid;gap:8px}
+  ul.simple li{position:relative;padding:12px 14px 12px 46px;background:var(--nuit-2);border-radius:16px;font-weight:600;font-size:17px;line-height:1.42;color:var(--papier-2)}
+  ul.simple li b{color:#fff;font-weight:800}
+  ul.simple li::before{content:"✓";position:absolute;left:14px;top:10px;color:var(--c,var(--abricot));font-weight:800;font-size:20px}
+  ul.nope li::before{content:"✕";color:var(--rouge)}
+  .note{color:var(--papier-2);font-size:16.5px;font-weight:600}
+
+  /* ===== conversation façon Messages ===== */
+  .imsg{background:#000;border-radius:24px;overflow:hidden;border:1px solid rgba(255,255,255,.12);font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Helvetica Neue',Nunito,sans-serif}
+  .imsg .top{display:flex;flex-direction:column;align-items:center;gap:4px;padding:12px 14px 10px;background:#1C1C1E;border-bottom:1px solid rgba(255,255,255,.1)}
+  .imsg .top .av{width:42px;height:42px;border-radius:50%;background:linear-gradient(180deg,#9A9AA2,#6E6E75);display:grid;place-items:center;font-size:22px}
+  .imsg .top b{font-size:12px;font-weight:600;color:#fff}
+  .imsg .top b::after{content:" ›";color:#8E8E93}
+  .imsg .fil{display:flex;flex-direction:column;gap:8px;padding:14px 12px 10px}
+  .imsg .date{text-align:center;font-size:11px;color:#8E8E93;font-weight:600;margin-bottom:4px}
+  .imsg .recu{align-self:flex-start;background:#26252A;color:#fff;border-radius:18px;padding:10px 14px;font-size:17px;position:relative;max-width:80%}
+  .imsg .recu .pts{display:inline-flex;gap:4px;align-items:center;height:14px}
+  .imsg .recu .pts i{width:7px;height:7px;border-radius:50%;background:#8E8E93;display:block}
+  .imsg .aide{text-align:center;font-size:12px;color:#8E8E93;font-weight:600;margin:6px 0 2px}
+  .bulle{align-self:flex-end;max-width:84%;cursor:pointer;background:var(--imsg);color:#fff;border:0;text-align:left;
+    border-radius:18px;padding:10px 14px;font:inherit;font-size:17px;line-height:1.3;position:relative;display:block}
+  .bulle::after{content:"";position:absolute;right:-6px;bottom:0;width:14px;height:16px;background:var(--imsg);border-bottom-left-radius:16px 14px;clip-path:polygon(0 0,100% 100%,0 100%)}
+  .bulle q{quotes:none}
+  .bulle .ok{display:block;font-size:11px;font-weight:700;opacity:.85;margin-top:3px;text-align:right}
+  .bulle.copie{background:#34C759}.bulle.copie::after{background:#34C759}
+  .imsg .saisie{display:flex;align-items:center;gap:8px;padding:8px 12px 12px;background:#000}
+  .imsg .saisie .plus{width:30px;height:30px;border-radius:50%;background:#2C2C2E;color:#8E8E93;display:grid;place-items:center;font-size:20px;font-weight:600}
+  .imsg .saisie .champ{flex:1;height:34px;border:1px solid #3A3A3C;border-radius:17px;color:#8E8E93;font-size:16px;display:flex;align-items:center;padding:0 12px;justify-content:space-between}
+  .imsg .saisie .champ span:last-child{color:#8E8E93;font-size:16px}
+
+  /* ===== numéros ===== */
+  .appels{display:grid;gap:10px}
+  .appel{display:grid;grid-template-columns:48px 1fr;column-gap:14px;align-items:center;text-decoration:none;color:var(--papier);
+    background:var(--nuit-2);border:1.5px solid var(--trait);border-radius:var(--r);padding:12px 14px;min-height:72px}
+  .appel .ic{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;font-size:24px;background:var(--nuit-3)}
+  .appel b{font-family:var(--display);font-weight:800;font-size:26px;font-variant-numeric:tabular-nums;letter-spacing:.01em;display:block;line-height:1.05}
+  .appel small{display:block;font-weight:600;font-size:14px;color:var(--papier-2);margin-top:4px;line-height:1.3}
+  .appel.rouge{background:var(--rouge);color:#fff;border-color:transparent;box-shadow:0 8px 24px rgba(255,59,48,.35)}
+  .appel.rouge .ic{background:rgba(255,255,255,.2)}
+  .appel.rouge small{color:#fff;opacity:.92}
+  .urgence{border:2px solid var(--rouge);border-radius:var(--r);padding:16px;margin:26px 0;background:rgba(255,59,48,.1);display:grid;gap:10px}
+  .urgence p{margin:0;font-weight:800;color:#fff;font-size:17px}
+
+  .toi{background:color-mix(in srgb,var(--abricot) 16%,var(--nuit-2));border-radius:var(--r);padding:16px 16px 16px 18px;margin-top:30px;border-left:6px solid var(--abricot);font-size:17px;line-height:1.45}
+  .toi p:last-child{margin:0}
+  .toi strong{color:var(--abricot);display:block;margin-bottom:4px;font-family:var(--display);font-size:18px}
+
+  footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--trait);font-size:14px;color:var(--papier-2)}
+  footer p{margin-bottom:6px}
+  /* ===== deux portes : ami·e / parent ===== */
+  .portes-titre{font-family:var(--display);font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--papier-2);margin-bottom:8px}
+  .portes{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:22px}
+  .porte{font:inherit;font-family:var(--display);font-size:16px;font-weight:800;color:var(--papier);background:var(--nuit-2);border:2px solid color-mix(in srgb,var(--lilas) 55%,transparent);border-radius:18px;padding:14px 10px;cursor:pointer;line-height:1.2;min-height:64px}
+  .porte.on{background:var(--abricot);color:var(--nuit);border-color:var(--abricot);box-shadow:0 8px 24px rgba(255,165,82,.35)}
+  .porte:focus-visible{outline:3px solid var(--abricot);outline-offset:2px}
+
+  /* ===== bloc secondaire « Et si c'est pour toi ? » ===== */
+  .perso{margin-top:34px;padding-top:22px;border-top:1px solid var(--trait)}
+  .perso-titre{margin:0 0 12px;color:var(--abricot)}
+  .tuiles.petites .tuile{min-height:74px;padding:12px 12px 12px 14px;grid-template-columns:48px 1fr 18px;gap:12px;background:var(--nuit-2);border-color:color-mix(in srgb,var(--c) 40%,transparent);box-shadow:none}
+  .tuiles.petites .tuile .emo{width:48px;height:48px;font-size:24px;background:color-mix(in srgb,var(--c) 30%,var(--nuit));box-shadow:none}
+  .tuiles.petites .tuile b{font-size:17px}
+  .tuiles.petites .tuile span{font-size:13.5px}
+  .tuiles.petites .tuile .chev{font-size:24px}
+  .perso-note{margin-top:12px;font-size:13px;color:var(--papier-2)}
+  @media (prefers-reduced-motion:no-preference){
+    .screen.on{animation:app .22s ease-out}
+    @keyframes app{from{opacity:0;transform:translateX(14px)}to{opacity:1;transform:none}}
+    .imsg .recu .pts i{animation:pts 1.2s infinite ease-in-out}
+    .imsg .recu .pts i:nth-child(2){animation-delay:.2s}.imsg .recu .pts i:nth-child(3){animation-delay:.4s}
+    @keyframes pts{0%,80%,100%{opacity:.35}40%{opacity:1}}
+  }
+</style>
+</head>
+<body>
+<main>
+
+<!-- ACCUEIL -->
+<section class="screen on" id="accueil">
+  <div class="marque"><i></i>Signaux</div>
+  <div class="portes-titre">Deux parcours — choisis le tien</div>
+  <div class="portes" role="tablist" aria-label="Qui es-tu ?">
+    <button class="porte on" aria-selected="true">💬 Un·e ami·e m'a écrit</button>
+    <button class="porte" data-go="parents">👪 Je suis parent ou proche</button>
+  </div>
+  <h1>Quelqu'un t'a écrit, <em>et ça t'inquiète.</em></h1>
+  <p class="lead">Tu n'as pas besoin de savoir si c'est grave. Dis-nous juste ce qui se passe.</p>
+  <ul class="tuiles">
+    <li class="grave" style="--c:var(--alerte)"><button class="tuile" data-go="mourir"><span class="emo" aria-hidden="true">🆘</span><span class="t"><b>Parle de mourir</b><span>Il/elle parle de mourir, d'en finir, ou envoie un message qui ressemble à un adieu</span></span><span class="chev" aria-hidden="true">›</span></button></li>
+    <li class="grave" style="--c:var(--alerte)"><button class="tuile" data-go="mal"><span class="emo" aria-hidden="true">🩸</span><span class="t"><b>S'est fait du mal</b><span>Il/elle s'est fait du mal, ou m'envoie une photo</span></span><span class="chev" aria-hidden="true">›</span></button></li>
+    <li style="--c:var(--menthe)"><button class="tuile" data-go="relation"><span class="emo" aria-hidden="true">💬</span><span class="t"><b>Sa relation</b><span>Sa relation m'inquiète</span></span><span class="chev" aria-hidden="true">›</span></button></li>
+    <li style="--c:var(--lilas)"><button class="tuile" data-go="retrait"><span class="emo" aria-hidden="true">🔕</span><span class="t"><b>Disparaît</b><span>Il/elle ne répond plus, ne sort plus, ne vient plus</span></span><span class="chev" aria-hidden="true">›</span></button></li>
+    <li style="--c:var(--ciel)"><button class="tuile" data-go="panique"><span class="emo" aria-hidden="true">😱</span><span class="t"><b>Panique</b><span>Il/elle panique, n'arrive plus à respirer ou à se calmer</span></span><span class="chev" aria-hidden="true">›</span></button></li>
+    <li style="--c:var(--citron)"><button class="tuile" data-go="doute"><span class="emo" aria-hidden="true">🤔</span><span class="t"><b>Pas sûr·e</b><span>Je ne sais pas si c'est grave</span></span><span class="chev" aria-hidden="true">›</span></button></li>
+  </ul>
+  <div class="perso">
+    <h3 class="perso-titre"><span class="emo">💛</span>Et si c'est pour toi ?</h3>
+    <ul class="tuiles petites">
+      <li style="--c:var(--abricot)"><button class="tuile" data-go="oser"><span class="emo" aria-hidden="true">🫣</span><span class="t"><b>J'ose pas en parler</b><span>Je vais mal, mais je n'ose en parler à personne</span></span><span class="chev" aria-hidden="true">›</span></button></li>
+      <li style="--c:var(--abricot)"><button class="tuile" data-go="apres"><span class="emo" aria-hidden="true">🏠</span><span class="t"><b>J'ai parlé, et ce soir ça va pas</b><span>J'en ai parlé à quelqu'un, je suis rentré·e, et ça ne va pas</span></span><span class="chev" aria-hidden="true">›</span></button></li>
+      <li style="--c:var(--abricot)"><button class="tuile" data-go="suivi"><span class="emo" aria-hidden="true">👩‍⚕️</span><span class="t"><b>Je suis suivi·e, mais ça va moins bien</b><span>J'ai déjà un psy, mais je n'ose pas le déranger, ou il/elle n'est pas joignable</span></span><span class="chev" aria-hidden="true">›</span></button></li>
+      <li style="--c:var(--lilas)"><button class="tuile" data-go="parents"><span class="emo" aria-hidden="true">👪</span><span class="t"><b>Je suis parent ou proche</b><span>Mon enfant, mon frère, ma sœur, mon ami·e va mal — ouvrir le parcours parents</span></span><span class="chev" aria-hidden="true">›</span></button></li>
+    </ul>
+    <p class="perso-note">Nouveau · ces entrées sont testées avec des jeunes et des parents pour le pilote 2027.</p>
+  </div>
+</section>
+
+<!-- ACCUEIL PARENTS -->
+<section class="screen" id="parents">
+  <div class="marque"><i></i>Signaux</div>
+  <div class="portes-titre">Deux parcours — choisissez le vôtre</div>
+  <div class="portes" role="tablist" aria-label="Qui êtes-vous ?">
+    <button class="porte" data-go="accueil">💬 Un·e ami·e m'a écrit</button>
+    <button class="porte on" aria-selected="true">👪 Je suis parent ou proche</button>
+  </div>
+  <h1>Votre ado va mal, <em>et vous ne savez pas quoi faire.</em></h1>
+  <p class="lead">Vous n'avez pas à poser un diagnostic. Dites-nous juste ce qui se passe.</p>
+  <ul class="tuiles">
+    <li class="grave" style="--c:var(--alerte)"><button class="tuile" data-go="p-mourir"><span class="emo" aria-hidden="true">🆘</span><span class="t"><b>Parle de mourir</b><span>Mon ado parle de mourir, d'en finir, ou a écrit quelque chose qui ressemble à un adieu</span></span><span class="chev" aria-hidden="true">›</span></button></li>
+    <li class="grave" style="--c:var(--alerte)"><button class="tuile" data-go="p-mal"><span class="emo" aria-hidden="true">🩸</span><span class="t"><b>S'est fait du mal</b><span>Mon ado s'est fait du mal, j'ai vu des marques, ou on me l'a dit</span></span><span class="chev" aria-hidden="true">›</span></button></li>
+    <li style="--c:var(--menthe)"><button class="tuile" data-go="p-relation"><span class="emo" aria-hidden="true">💬</span><span class="t"><b>Sa relation</b><span>Sa relation amoureuse m'inquiète</span></span><span class="chev" aria-hidden="true">›</span></button></li>
+    <li style="--c:var(--lilas)"><button class="tuile" data-go="p-chambre"><span class="emo" aria-hidden="true">🔕</span><span class="t"><b>Ne sort plus</b><span>Mon ado ne sort plus de sa chambre, ne va plus en cours, ne parle plus</span></span><span class="chev" aria-hidden="true">›</span></button></li>
+    <li style="--c:var(--ciel)"><button class="tuile" data-go="p-panique"><span class="emo" aria-hidden="true">😱</span><span class="t"><b>Panique</b><span>Mon ado panique, n'arrive plus à respirer ou à se calmer</span></span><span class="chev" aria-hidden="true">›</span></button></li>
+    <li style="--c:var(--citron)"><button class="tuile" data-go="p-doute"><span class="emo" aria-hidden="true">🤔</span><span class="t"><b>Pas sûr·e</b><span>Je ne sais pas si c'est grave</span></span><span class="chev" aria-hidden="true">›</span></button></li>
+    <li style="--c:var(--abricot)"><button class="tuile" data-go="parent"><span class="emo" aria-hidden="true">📞</span><span class="t"><b>Qui appeler ?</b><span>Je ne sais pas qui contacter, dans quel délai, ni quoi faire si personne ne répond</span></span><span class="chev" aria-hidden="true">›</span></button></li>
+  </ul>
+  <p class="perso-note">Parcours parents et proches · en test pour le pilote 2027. Il ne remplace ni un médecin, ni le 15.</p>
+</section>
+
+<!-- P-MOURIR -->
+<section class="screen" id="p-mourir" style="--c:var(--alerte)">
+  <button class="retour" data-go="parents">Retour</button>
+  <div class="hero"><span class="emo" aria-hidden="true">🆘</span><h2>Votre ado parle de mourir</h2>
+    <p class="intro">Une phrase lâchée, un message vu par hasard, « de toute façon je serai plus là ». Vous avez peur, et vous avez raison de prendre ça au sérieux, même sans être sûr·e. Ce soir, vous n'avez pas à être psy. Vous avez à rester, et à faire venir l'aide.</p></div>
+
+  <h3><span class="emo">⚡</span>Maintenant</h3>
+  <ol class="etapes">
+    <li>Posez la question, calmement et directement : « Est-ce que tu penses à mourir ? » Ça ne donne pas l'idée. Ça lui dit que vous pouvez l'entendre.</li>
+    <li>Écoutez sans corriger. Pas de « dis pas ça », pas de « tu as tout pour être heureux ». Juste : « Merci de me le dire. Je suis là. »</li>
+    <li>Appelez le 3114, devant lui/elle ou depuis une autre pièce. Ils évaluent avec vous et vous disent quoi faire ce soir.</li>
+    <li>Sécurisez la maison pour la nuit : demandez au 3114 ce qu'il faut mettre hors de portée. Et ne le/la laissez pas seul·e cette nuit.</li>
+  </ol>
+
+  <h3><span class="emo">💬</span>Vous pouvez écrire</h3>
+  <div class="imsg">
+    <div class="top"><div class="av">👤</div><b>Mon ado</b></div>
+    <div class="fil">
+      <div class="date">Aujourd'hui</div>
+      <div class="recu"><span class="pts"><i></i><i></i><i></i></span></div>
+      <div class="aide">Appuyez sur un message pour le copier</div>
+      <button class="bulle"><q>Je t'ai entendu·e. Je ne suis pas en colère. J'ai peur pour toi, et je reste là.</q></button>
+      <button class="bulle"><q>On va appeler quelqu'un ensemble. Tu n'es pas obligé·e de parler, je le ferai.</q></button>
+    </div>
+    <div class="saisie"><div class="plus">+</div><div class="champ"><span>Message</span><span>🎤</span></div></div>
+  </div>
+
+  <div class="urgence">
+    <p>S'il/elle a déjà fait quelque chose, a un moyen sous la main, ou si vous n'arrivez plus à le/la joindre :</p>
+    <a class="appel rouge" href="tel:15"><span class="ic">📞</span><span><b>15</b><small>tout de suite</small></span></a>
+    <a class="appel rouge" href="tel:3114"><span class="ic">📞</span><span><b>3114</b><small>24h/24, ils vous guident minute par minute</small></span></a>
+  </div>
+
+  <h3><span class="emo">🚫</span>Ce qui ne marche pas</h3>
+  <ul class="simple nope">
+    <li>Interroger comme une enquête : pourquoi, depuis quand, à cause de qui.</li>
+    <li>Punir, ou confisquer le téléphone : c'est souvent son lien de secours.</li>
+    <li>Promettre de garder le secret vis-à-vis de l'autre parent ou des soignants.</li>
+  </ul>
+
+  <h3><span class="emo">🌅</span>Et demain</h3>
+  <p class="note">Même si ça va mieux au matin, ça compte. Rendez-vous chez le médecin généraliste ou à la Maison des ados dans la journée. Prévenez l'école qu'il y a une fragilité, sans détails.</p>
+  <div class="appels">
+    <a class="appel" href="tel:0493261092"><span class="ic">🏠</span><span><b>Maison des ados 06</b><small>2 rue Raynardi, Nice — 04 93 26 10 92, lun-ven 9h-17h</small></span></a>
+    <a class="appel" href="tel:3114"><span class="ic">📞</span><span><b>3114</b><small>Aussi pour vous : comment tenir les prochains jours</small></span></a>
+  </div>
+
+  <div class="toi">
+    <p><strong>💛 Et vous ?</strong>Vous avez le droit d'être terrifié·e. Vous n'êtes pas responsable de ce qu'il/elle ressent, et vous n'êtes pas seul·e pour le porter.</p>
+  </div>
+</section>
+
+<!-- P-MAL -->
+<section class="screen" id="p-mal" style="--c:var(--alerte)">
+  <button class="retour" data-go="parents">Retour</button>
+  <div class="hero"><span class="emo" aria-hidden="true">🩸</span><h2>Votre ado s'est fait du mal</h2>
+    <p class="intro">Des marques, un aveu, un message d'un·e ami·e. Se faire du mal est presque toujours une façon de tenir quand ça déborde. Ce n'est ni une manipulation, ni un caprice. Ça se soigne, et votre réaction de ce soir compte.</p></div>
+
+  <h3><span class="emo">⚡</span>Maintenant</h3>
+  <ol class="etapes">
+    <li>Regardez d'abord s'il y a besoin de soins. Si ça saigne beaucoup, ou s'il/elle a pris quelque chose : 15.</li>
+    <li>Parlez à la personne, pas à la blessure. « Qu'est-ce qui s'est passé ce soir ? » plutôt que « pourquoi tu fais ça ? »</li>
+    <li>Ne faites pas promettre d'arrêter, n'exigez pas de voir, ne fouillez pas la chambre. Ça isole.</li>
+    <li>Demandez directement s'il/elle pense à mourir. Si oui : 3114 ce soir.</li>
+  </ol>
+
+  <h3><span class="emo">💬</span>Vous pouvez écrire</h3>
+  <div class="imsg">
+    <div class="top"><div class="av">👤</div><b>Mon ado</b></div>
+    <div class="fil">
+      <div class="date">Aujourd'hui</div>
+      <div class="recu"><span class="pts"><i></i><i></i><i></i></span></div>
+      <div class="aide">Appuyez sur un message pour le copier</div>
+      <button class="bulle"><q>Je ne suis pas fâché·e. Je veux comprendre ce qui déborde, à ton rythme.</q></button>
+      <button class="bulle"><q>On prend rendez-vous ensemble avec quelqu'un qui connaît ça. Tu choisis avec qui.</q></button>
+    </div>
+    <div class="saisie"><div class="plus">+</div><div class="champ"><span>Message</span><span>🎤</span></div></div>
+  </div>
+
+  <div class="urgence">
+    <p>Si ça saigne beaucoup, s'il/elle a pris quelque chose, ou s'il/elle parle aussi de mourir :</p>
+    <a class="appel rouge" href="tel:15"><span class="ic">📞</span><span><b>15</b><small>SAMU</small></span></a>
+    <a class="appel rouge" href="tel:3114"><span class="ic">📞</span><span><b>3114</b><small>24h/24, gratuit</small></span></a>
+  </div>
+
+  <h3><span class="emo">🚫</span>Ce qui ne marche pas</h3>
+  <ul class="simple nope">
+    <li>Les photos, les comptes rendus détaillés, la surveillance permanente.</li>
+    <li>Les menaces : « si tu recommences… »</li>
+    <li>En faire un secret de famille. Parlez-en à un professionnel, c'est son métier.</li>
+  </ul>
+
+  <h3><span class="emo">🌅</span>Et demain</h3>
+  <p class="note">Un rendez-vous dans la journée chez le médecin généraliste : il examine, et il oriente. Si votre ado est déjà suivi·e, un message court à son psy aujourd'hui.</p>
+  <div class="appels">
+    <a class="appel" href="tel:0493261092"><span class="ic">🏠</span><span><b>Maison des ados 06</b><small>2 rue Raynardi, Nice — 04 93 26 10 92</small></span></a>
+    <a class="appel" href="tel:0800235236"><span class="ic">📞</span><span><b>Fil Santé Jeunes</b><small>0 800 235 236 — votre ado peut y appeler seul·e, anonymement</small></span></a>
+  </div>
+
+  <div class="toi">
+    <p><strong>💛 Et vous ?</strong>Voir des marques sur son enfant est un choc. Vous avez le droit d'avoir besoin d'aide pour vous aussi, et ça ne vous enlève rien comme parent.</p>
+  </div>
+</section>
+
+<!-- P-RELATION -->
+<section class="screen" id="p-relation" style="--c:var(--menthe)">
+  <button class="retour" data-go="parents">Retour</button>
+  <div class="hero"><span class="emo" aria-hidden="true">💬</span><h2>Sa relation vous inquiète</h2>
+    <p class="intro">Il/elle a changé depuis cette relation : moins d'amis, le téléphone vérifié, des crises, des excuses pour l'autre. Une fois, ce n'est pas forcément grave. Ce qui compte, c'est si ça revient, si ça s'accumule, et si ça se resserre.</p></div>
+
+  <h3><span class="emo">👀</span>Les six signaux</h3>
+  <ul class="simple">
+    <li>Il/elle doit dire où il/elle est, avec qui, et c'est vérifié.</li>
+    <li>Vous voyez ses amis disparaître, et c'est toujours lié à l'autre.</li>
+    <li>Il/elle change sa façon de s'habiller, de parler, de sortir, pour éviter une crise.</li>
+    <li>Des hauts et des bas violents : génial, puis horrible, puis génial.</li>
+    <li>Quand il/elle doute, il/elle finit par dire « c'est moi le problème ».</li>
+    <li>Il/elle pense à la réaction de l'autre avant de décider quoi que ce soit.</li>
+  </ul>
+
+  <h3><span class="emo">⚡</span>Maintenant</h3>
+  <ol class="etapes">
+    <li>Ne dites pas « quitte-le/la », n'attaquez pas l'autre. Vous deviendriez l'ennemi, et il/elle se tairait.</li>
+    <li>Dites que ce n'est pas lui/elle le problème. C'est la phrase dont il/elle a besoin.</li>
+    <li>Ne contactez ni le/la partenaire, ni ses parents, sans l'accord de votre ado.</li>
+    <li>Demandez si, là, tout de suite, il/elle est en sécurité.</li>
+  </ol>
+
+  <h3><span class="emo">💬</span>Vous pouvez écrire</h3>
+  <div class="imsg">
+    <div class="top"><div class="av">👤</div><b>Mon ado</b></div>
+    <div class="fil">
+      <div class="date">Aujourd'hui</div>
+      <div class="recu"><span class="pts"><i></i><i></i><i></i></span></div>
+      <div class="aide">Appuyez sur un message pour le copier</div>
+      <button class="bulle"><q>Je ne te juge pas, et je ne juge pas [prénom]. Je vois que tu es moins toi-même, et ça m'inquiète. Je suis là.</q></button>
+      <button class="bulle"><q>Si un jour tu veux en parler à quelqu'un qui n'est pas moi, je t'aide à trouver. Sans rien dire à personne.</q></button>
+    </div>
+    <div class="saisie"><div class="plus">+</div><div class="champ"><span>Message</span><span>🎤</span></div></div>
+  </div>
+
+  <div class="urgence">
+    <p>S'il y a des menaces, des coups, ou si votre ado a peur :</p>
+    <a class="appel rouge" href="tel:17"><span class="ic">📞</span><span><b>17</b><small>Police</small></span></a>
+    <a class="appel" href="tel:3919"><span class="ic">📞</span><span><b>3919</b><small>Violences dans le couple, aussi pour les jeunes et leurs proches, gratuit</small></span></a>
+  </div>
+
+  <h3><span class="emo">🌅</span>Et demain</h3>
+  <div class="appels">
+    <a class="appel" href="tel:0493261092"><span class="ic">🏠</span><span><b>Maison des ados 06</b><small>2 rue Raynardi, Nice — 04 93 26 10 92</small></span></a>
+    <a class="appel" href="tel:3018"><span class="ic">📱</span><span><b>3018</b><small>Si ça passe par le téléphone : contrôle, photos, harcèlement en ligne</small></span></a>
+  </div>
+
+  <div class="toi">
+    <p><strong>💛 Et vous ?</strong>Vous ne pouvez pas rompre à sa place. Vous pouvez rester la porte qui ne se ferme pas, pour le jour où il/elle sera prêt·e.</p>
+  </div>
+</section>
+
+<!-- P-CHAMBRE -->
+<section class="screen" id="p-chambre" style="--c:var(--lilas)">
+  <button class="retour" data-go="parents">Retour</button>
+  <div class="hero"><span class="emo" aria-hidden="true">🔕</span><h2>Votre ado ne sort plus de sa chambre</h2>
+    <p class="intro">Plus de cours, plus de sorties, dort le jour, écran la nuit, répond par monosyllabes. Ce n'est pas de la paresse, et ce n'est pas contre vous. Quelqu'un qui disparaît a souvent besoin qu'on vienne le chercher, sans pression.</p></div>
+
+  <h3><span class="emo">⚡</span>Maintenant</h3>
+  <ol class="etapes">
+    <li>Entrez sans sermon. Une présence courte, régulière, sans question : un plateau, un « je passe te dire bonne nuit ».</li>
+    <li>Proposez petit et concret : dix minutes dehors, une série ensemble, un trajet en voiture.</li>
+    <li>Gardez l'école dans la boucle : prévenez, demandez un aménagement. Ne laissez pas l'absence s'installer sans adulte au courant.</li>
+    <li>Si vous avez un doute sur des idées noires, demandez directement. Voir « Parle de mourir ».</li>
+  </ol>
+
+  <h3><span class="emo">💬</span>Vous pouvez écrire</h3>
+  <div class="imsg">
+    <div class="top"><div class="av">👤</div><b>Mon ado</b></div>
+    <div class="fil">
+      <div class="date">Aujourd'hui</div>
+      <div class="recu"><span class="pts"><i></i><i></i><i></i></span></div>
+      <div class="aide">Appuyez sur un message pour le copier</div>
+      <button class="bulle"><q>Pas besoin de répondre. Je suis là, et je ne te lâche pas.</q></button>
+      <button class="bulle"><q>J'ai remarqué que tu n'allais pas bien. On en parle quand tu veux. Et si tu préfères quelqu'un d'autre que moi, on trouve.</q></button>
+    </div>
+    <div class="saisie"><div class="plus">+</div><div class="champ"><span>Message</span><span>🎤</span></div></div>
+  </div>
+
+  <h3><span class="emo">🚫</span>Ce qui ne marche pas</h3>
+  <ul class="simple nope">
+    <li>Couper le wifi ou confisquer le téléphone en punition : c'est souvent son dernier lien.</li>
+    <li>Les ultimatums, les comparaisons avec avant, avec les autres.</li>
+    <li>Attendre que ça passe tout seul au-delà de deux semaines.</li>
+  </ul>
+
+  <h3><span class="emo">🌅</span>Et demain</h3>
+  <p class="note">Si ça dure plus de deux semaines, ce n'est plus une phase : généraliste ou Maison des ados. Et l'infirmière scolaire est une alliée qu'on oublie.</p>
+  <div class="appels">
+    <a class="appel" href="tel:0493261092"><span class="ic">🏠</span><span><b>Maison des ados 06</b><small>2 rue Raynardi, Nice — 04 93 26 10 92</small></span></a>
+    <a class="appel" href="tel:0800235236"><span class="ic">📞</span><span><b>Fil Santé Jeunes</b><small>0 800 235 236 — votre ado peut y appeler seul·e</small></span></a>
+  </div>
+
+  <div class="toi">
+    <p><strong>💛 Et vous ?</strong>Vous ne pouvez pas le/la faire sortir. Vous pouvez rester à la porte, tous les jours. C'est déjà beaucoup.</p>
+  </div>
+</section>
+
+<!-- P-PANIQUE -->
+<section class="screen" id="p-panique" style="--c:var(--ciel)">
+  <button class="retour" data-go="parents">Retour</button>
+  <div class="hero"><span class="emo" aria-hidden="true">😱</span><h2>Votre ado panique</h2>
+    <p class="intro">Cœur qui s'emballe, souffle court, « je vais mourir », « je deviens fou/folle » : une crise de panique fait très peur et passe en général en 10 à 20 minutes. Votre calme est le meilleur médicament.</p></div>
+
+  <h3><span class="emo">⚡</span>Maintenant</h3>
+  <ol class="etapes">
+    <li>Restez là. Parlez bas et lentement, ne multipliez pas les questions.</li>
+    <li>Dites que ça va passer, que vous restez jusqu'à la fin.</li>
+    <li>Respirez avec lui/elle : inspire 4, souffle 6, plusieurs fois.</li>
+    <li>Si c'est la première fois, si ça ne passe pas, ou s'il y a une douleur dans la poitrine : 15.</li>
+  </ol>
+
+  <h3><span class="emo">💬</span>Vous pouvez écrire</h3>
+  <div class="imsg">
+    <div class="top"><div class="av">👤</div><b>Mon ado</b></div>
+    <div class="fil">
+      <div class="date">Aujourd'hui</div>
+      <div class="recu"><span class="pts"><i></i><i></i><i></i></span></div>
+      <div class="aide">Appuyez sur un message pour le copier</div>
+      <button class="bulle"><q>Je suis là. Ça va passer. On respire ensemble, je reste au téléphone.</q></button>
+    </div>
+    <div class="saisie"><div class="plus">+</div><div class="champ"><span>Message</span><span>🎤</span></div></div>
+  </div>
+
+  <h3><span class="emo">🌅</span>Et demain</h3>
+  <p class="note">Si ça revient chaque matin avant l'école, ce n'est pas un caprice, et ça se soigne bien. Généraliste, infirmière scolaire ou Maison des ados.</p>
+  <div class="appels">
+    <a class="appel" href="tel:0493261092"><span class="ic">🏠</span><span><b>Maison des ados 06</b><small>04 93 26 10 92</small></span></a>
+  </div>
+
+  <div class="toi">
+    <p><strong>💛 Et vous ?</strong>Vous n'avez rien provoqué. Rester calme à côté de quelqu'un qui panique est une vraie compétence, et vous venez de la pratiquer.</p>
+  </div>
+</section>
+
+<!-- P-DOUTE -->
+<section class="screen" id="p-doute" style="--c:var(--citron)">
+  <button class="retour" data-go="parents">Retour</button>
+  <div class="hero"><span class="emo" aria-hidden="true">🤔</span><h2>Vous ne savez pas si c'est grave</h2>
+    <p class="intro">C'est normal. Trois questions.</p></div>
+  <h3><span class="emo">❓</span>Trois questions</h3>
+  <ol class="etapes">
+    <li>Y a-t-il eu une phrase qui ressemble à un adieu, un message de fin, des affaires données ? Si oui : « Parle de mourir ».</li>
+    <li>Est-ce que ça revient, ou est-ce que c'est pire qu'avant ? Si oui, c'est un signal, même petit.</li>
+    <li>Est-ce que vous, vous dormez mal à cause de ça ? Alors c'est assez grave pour appeler quelqu'un aujourd'hui.</li>
+  </ol>
+  <h3><span class="emo">💬</span>Vous pouvez écrire</h3>
+  <div class="imsg">
+    <div class="top"><div class="av">👤</div><b>Mon ado</b></div>
+    <div class="fil">
+      <div class="date">Aujourd'hui</div>
+      <div class="recu"><span class="pts"><i></i><i></i><i></i></span></div>
+      <div class="aide">Appuyez sur un message pour le copier</div>
+      <button class="bulle"><q>Je ne sais pas si c'est grave, mais je préfère te demander : ça va, toi ? Vraiment ?</q></button>
+    </div>
+    <div class="saisie"><div class="plus">+</div><div class="champ"><span>Message</span><span>🎤</span></div></div>
+  </div>
+  <h3><span class="emo">📞</span>Pour y voir clair</h3>
+  <div class="appels">
+    <a class="appel" href="tel:3114"><span class="ic">📞</span><span><b>3114</b><small>Vous pouvez appeler pour votre ado, 24h/24 : ils vous aident à évaluer</small></span></a>
+    <a class="appel" href="tel:0493261092"><span class="ic">🏠</span><span><b>Maison des ados 06</b><small>04 93 26 10 92 — reçoit aussi les parents</small></span></a>
+  </div>
+</section>
+
+<!-- OSER -->
+<section class="screen" id="oser" style="--c:var(--abricot)">
+  <button class="retour" data-go="accueil">Retour</button>
+  <div class="hero"><span class="emo" aria-hidden="true">🫣</span><h2>Tu vas mal, et tu n'oses en parler à personne</h2>
+    <p class="intro">Tu te dis que ce n'est pas si grave, que tu vas inquiéter tes parents, que tes potes ne vont pas comprendre, que tu ne sais même pas comment on fait pour aller à l'infirmerie. C'est normal. Ce n'est pas un défaut : c'est exactement là que ça bloque pour presque tout le monde.</p></div>
+
+  <h3><span class="emo">⚡</span>Maintenant</h3>
+  <ol class="etapes">
+    <li>Choisis une personne, pas la meilleure. Une qui est là : l'infirmière, un prof, la CPE, le parent d'un·e ami·e, un oncle, une tante.</li>
+    <li>Dis une phrase, pas tout. Tu n'as pas à expliquer. Tu as juste à commencer.</li>
+    <li>Si tu préfères que personne ne sache qui tu es, appelle un numéro anonyme. Ils ne demandent pas ton nom.</li>
+    <li>Si tu as des idées noires, ne les garde pas pour ce soir : le 3114, tout de suite.</li>
+  </ol>
+
+  <h3><span class="emo">💬</span>Tu peux écrire</h3>
+  <div class="imsg">
+    <div class="top"><div class="av">👤</div><b>Un adulte</b></div>
+    <div class="fil">
+      <div class="date">Aujourd'hui</div>
+      <div class="recu"><span class="pts"><i></i><i></i><i></i></span></div>
+      <div class="aide">Appuie sur un message pour le copier</div>
+      <button class="bulle"><q>J'ai pas envie d'en faire une histoire, mais ça va pas en ce moment. Vous avez cinq minutes ?</q></button>
+      <button class="bulle"><q>Je sais pas par où commencer. Je peux venir vous voir demain ?</q></button>
+    </div>
+    <div class="saisie"><div class="plus">+</div><div class="champ"><span>Message</span><span>🎤</span></div></div>
+  </div>
+
+  <h3><span class="emo">📞</span>Sans dire ton nom</h3>
+  <div class="appels">
+    <a class="appel" href="tel:0800235236"><span class="ic">📞</span><span><b>Fil Santé Jeunes</b><small>0 800 235 236, anonyme, gratuit, 9h-23h</small></span></a>
+    <a class="appel" href="tel:3114"><span class="ic">📞</span><span><b>3114</b><small>Si tu penses à mourir. 24h/24, gratuit, anonyme</small></span></a>
+    <a class="appel" href="tel:0493261092"><span class="ic">🏠</span><span><b>Maison des ados 06</b><small>2 rue Raynardi, Nice — 04 93 26 10 92</small></span></a>
+  </div>
+
+  <div class="toi">
+    <p><strong>💛 Et toi ?</strong>Demander de l'aide, ce n'est pas se plaindre. C'est la chose la plus courageuse de ta semaine, et personne ne te le reprochera.</p>
+  </div>
+</section>
+
+<!-- APRÈS -->
+<section class="screen" id="apres" style="--c:var(--abricot)">
+  <button class="retour" data-go="accueil">Retour</button>
+  <div class="hero"><span class="emo" aria-hidden="true">🏠</span><h2>Tu as parlé, tu es rentré·e, et ce soir ça ne va pas</h2>
+    <p class="intro">Tu as réussi à en parler à quelqu'un aujourd'hui. C'était la partie la plus dure, et tu l'as faite. Mais ce soir tu es à la maison, et c'est là que c'est compliqué. Le relais ne s'arrête pas à la porte de l'infirmerie.</p></div>
+
+  <h3><span class="emo">⚡</span>Ce soir</h3>
+  <ol class="etapes">
+    <li>Repère un adulte sûr pour demain. Pas forcément à la maison : celui ou celle à qui tu as parlé, un autre prof, le parent d'un·e ami·e.</li>
+    <li>Si à la maison ce n'est pas calme ce soir, tu as le droit d'appeler. Le 119, c'est pour ça, et ça n'apparaît pas sur la facture.</li>
+    <li>Si les idées noires reviennent, le 3114 répond toute la nuit.</li>
+    <li>Si tu es en danger maintenant : 15 ou 112, sans attendre.</li>
+  </ol>
+
+  <h3><span class="emo">💬</span>Tu peux écrire</h3>
+  <div class="imsg">
+    <div class="top"><div class="av">👤</div><b>La personne à qui tu as parlé</b></div>
+    <div class="fil">
+      <div class="date">Aujourd'hui</div>
+      <div class="recu"><span class="pts"><i></i><i></i><i></i></span></div>
+      <div class="aide">Appuie sur un message pour le copier</div>
+      <button class="bulle"><q>Je vous ai parlé aujourd'hui. Ce soir à la maison ce n'est pas calme. Je peux vous revoir demain matin ?</q></button>
+      <button class="bulle"><q>Merci pour tout à l'heure. Je ne sais pas si ce soir va bien se passer. Qu'est-ce que je fais si ça dérape ?</q></button>
+    </div>
+    <div class="saisie"><div class="plus">+</div><div class="champ"><span>Message</span><span>🎤</span></div></div>
+  </div>
+
+  <h3><span class="emo">📞</span>Cette nuit</h3>
+  <div class="appels">
+    <a class="appel rouge" href="tel:119"><span class="ic">📞</span><span><b>119</b><small>Si c'est à la maison que ça se passe. 24h/24, gratuit, n'apparaît pas sur la facture</small></span></a>
+    <a class="appel rouge" href="tel:3114"><span class="ic">📞</span><span><b>3114</b><small>Idées noires, 24h/24, gratuit</small></span></a>
+    <a class="appel" href="sms:114"><span class="ic">💬</span><span><b>114 par SMS</b><small>Si tu ne peux pas parler à voix haute</small></span></a>
+  </div>
+
+  <h3><span class="emo">🌅</span>Et demain</h3>
+  <p class="note">Retourne voir la personne à qui tu as parlé, et dis-lui ce qui s'est passé après. C'est ça qui fait que l'aide continue : pas une seule confidence, mais la suite.</p>
+
+  <div class="toi">
+    <p><strong>💛 Et toi ?</strong>Si quelqu'un regarde ton téléphone, tu peux ouvrir cette page depuis un autre téléphone, ou un ordinateur du lycée. Et tu n'as rien fait de mal en demandant de l'aide.</p>
+  </div>
+</section>
+
+<!-- SUIVI -->
+<section class="screen" id="suivi" style="--c:var(--abricot)">
+  <button class="retour" data-go="accueil">Retour</button>
+  <div class="hero"><span class="emo" aria-hidden="true">👩‍⚕️</span><h2>Tu es déjà suivi·e, mais ça va moins bien</h2>
+    <p class="intro">Tu as un psy, un rendez-vous dans dix jours, et là ça descend : tu dors mal, tu manges moins, les idées noires reviennent. Tu te dis que tu vas déranger, qu'il ou elle est en consultation, que tu peux attendre. Non : ça, c'est exactement le moment d'écrire.</p></div>
+
+  <h3><span class="emo">⚡</span>Maintenant</h3>
+  <ol class="etapes">
+    <li>Écris à ton psy un message court. Il ou elle préfère cent fois un message « ça va moins bien » qu'un silence jusqu'au rendez-vous.</li>
+    <li>Ne reste pas suspendu·e à la réponse. Si tu n'en as pas dans la journée, il y a d'autres relais, et ils sont là pour ça.</li>
+    <li>Si tu penses à mourir, ou si tu ne manges plus depuis plusieurs jours : ce n'est pas « jusqu'au prochain rendez-vous ». C'est aujourd'hui, avec un médecin ou le 3114.</li>
+  </ol>
+
+  <h3><span class="emo">💬</span>Tu peux écrire</h3>
+  <div class="imsg">
+    <div class="top"><div class="av">👤</div><b>Mon psy</b></div>
+    <div class="fil">
+      <div class="date">Aujourd'hui</div>
+      <div class="recu"><span class="pts"><i></i><i></i><i></i></span></div>
+      <div class="aide">Appuie sur un message pour le copier</div>
+      <button class="bulle"><q>Bonjour, c'est [prénom]. Depuis quelques jours ça va moins bien : je dors mal et j'ai des idées noires. Est-ce qu'on peut avancer le rendez-vous ?</q></button>
+      <button class="bulle"><q>Je ne voulais pas vous déranger, mais je préfère vous le dire : ça descend. Qu'est-ce que je fais en attendant ?</q></button>
+    </div>
+    <div class="saisie"><div class="plus">+</div><div class="champ"><span>Message</span><span>🎤</span></div></div>
+  </div>
+
+  <h3><span class="emo">📞</span>Si ton psy ne répond pas aujourd'hui</h3>
+  <div class="appels">
+    <a class="appel rouge" href="tel:3114"><span class="ic">📞</span><span><b>3114</b><small>24h/24, gratuit : ils évaluent avec toi et t'orientent, même si tu es déjà suivi·e</small></span></a>
+    <a class="appel" href="tel:0493261092"><span class="ic">🏠</span><span><b>Maison des ados 06</b><small>2 rue Raynardi, Nice — 04 93 26 10 92</small></span></a>
+    <a class="appel" href="tel:15"><span class="ic">📞</span><span><b>15</b><small>Si tu es en danger, ou si tu n'as plus mangé depuis plusieurs jours</small></span></a>
+  </div>
+
+  <div class="toi">
+    <p><strong>💛 Et toi ?</strong>Un psy qui a beaucoup de patients ne peut pas relancer tout le monde. Écrire, ce n'est pas déranger : c'est lui donner la chance de t'aider au bon moment.</p>
+  </div>
+</section>
+
+<!-- PARENT -->
+<section class="screen" id="parent" style="--c:var(--abricot)">
+  <button class="retour" data-go="parents">Retour</button>
+  <div class="hero"><span class="emo" aria-hidden="true">👪</span><h2>Vous êtes parent ou proche, et vous ne savez pas qui appeler</h2>
+    <p class="intro">Votre enfant ne mange plus, ne dort plus, parle de choses qui vous font peur, ou s'est effondré·e après une rupture. Vous hésitez entre le généraliste, la psychiatrie, les urgences, et vous n'osez déranger personne. Cette page est faite pour cette heure-là.</p></div>
+
+  <h3><span class="emo">⚡</span>Aujourd'hui, pas la semaine prochaine</h3>
+  <ol class="etapes">
+    <li>Appelez le 3114. Vous pouvez appeler pour votre enfant, 24h/24 : ils évaluent avec vous et vous disent vers qui aller, dans quel délai.</li>
+    <li>Prenez un rendez-vous chez le médecin généraliste dans la journée. Des idées noires et plusieurs jours sans manger, ça se regarde vite, par quelqu'un qui peut examiner.</li>
+    <li>Si votre enfant est déjà suivi·e, écrivez à son professionnel. Un message court suffit, et n'attendez pas la réponse pour faire les deux premiers points.</li>
+    <li>Si vous avez peur pour sa vie maintenant : 15 ou 112. Les urgences ne sont pas un « extrême » : c'est un lieu où l'on évalue.</li>
+  </ol>
+
+  <h3><span class="emo">💬</span>Vous pouvez écrire</h3>
+  <div class="imsg">
+    <div class="top"><div class="av">👤</div><b>Le professionnel qui suit mon enfant</b></div>
+    <div class="fil">
+      <div class="date">Aujourd'hui</div>
+      <div class="recu"><span class="pts"><i></i><i></i><i></i></span></div>
+      <div class="aide">Appuyez sur un message pour le copier</div>
+      <button class="bulle"><q>Bonjour, je suis le parent de [prénom]. Son état s'est dégradé depuis [nombre] jours : [ce que vous voyez]. Pouvez-vous nous rappeler ou avancer un rendez-vous ?</q></button>
+      <button class="bulle"><q>Si vous n'êtes pas disponible, vers qui pouvons-nous nous tourner aujourd'hui ?</q></button>
+    </div>
+    <div class="saisie"><div class="plus">+</div><div class="champ"><span>Message</span><span>🎤</span></div></div>
+  </div>
+
+  <h3><span class="emo">📞</span>Qui appeler</h3>
+  <div class="appels">
+    <a class="appel rouge" href="tel:3114"><span class="ic">📞</span><span><b>3114</b><small>Prévention du suicide, 24h/24, gratuit — pour les proches aussi</small></span></a>
+    <a class="appel rouge" href="tel:15"><span class="ic">📞</span><span><b>15</b><small>Danger immédiat, ou plusieurs jours sans manger ni boire</small></span></a>
+    <a class="appel" href="tel:0493261092"><span class="ic">🏠</span><span><b>Maison des ados 06</b><small>2 rue Raynardi, Nice — 04 93 26 10 92, lun-ven 9h-17h ; reçoit aussi les parents</small></span></a>
+    <a class="appel" href="tel:0800235236"><span class="ic">📞</span><span><b>Fil Santé Jeunes</b><small>0 800 235 236 — votre enfant peut y appeler seul·e, anonymement</small></span></a>
+  </div>
+
+  <div class="toi">
+    <p><strong>💛 Et vous ?</strong>Vous n'avez pas à poser le bon diagnostic. Vous avez à faire venir la bonne personne. Et vous avez le droit d'être épuisé·e : parlez-en aussi, pour vous.</p>
+  </div>
+</section>
+
+<!-- DANGER -->
+<section class="screen" id="danger" style="--c:var(--rouge)">
+  <button class="retour" data-go="accueil">Retour</button>
+  <div class="hero"><span class="emo" aria-hidden="true">🚨</span><h2>Si quelqu'un risque d'être blessé maintenant</h2>
+    <p class="intro">Tu n'as pas à décider seul·e si c'est « assez grave ». Appelle. Ils ont l'habitude et ils ne te jugeront pas.</p></div>
+  <h3><span class="emo">📞</span>Appelle</h3>
+  <div class="appels">
+    <a class="appel rouge" href="tel:15"><span class="ic">📞</span><span><b>15</b><small>SAMU — blessure, saignement, malaise, médicaments</small></span></a>
+    <a class="appel rouge" href="tel:3114"><span class="ic">📞</span><span><b>3114</b><small>Idées de mort, 24h/24, gratuit — pour toi aussi, pour savoir quoi faire</small></span></a>
+    <a class="appel" href="tel:17"><span class="ic">📞</span><span><b>17</b><small>Police — si quelqu'un est menacé ou violent</small></span></a>
+    <a class="appel" href="tel:112"><span class="ic">📞</span><span><b>112</b><small>Numéro d'urgence européen, marche partout</small></span></a>
+    <a class="appel" href="tel:119"><span class="ic">📞</span><span><b>119</b><small>Enfant en danger — si c'est à la maison que ça se passe, 24h/24, gratuit</small></span></a>
+    <a class="appel" href="sms:114"><span class="ic">💬</span><span><b>114 par SMS</b><small>Si tu ne peux pas parler à voix haute</small></span></a>
+  </div>
+  <h3><span class="emo">⚡</span>Pendant que tu appelles</h3>
+  <ol class="etapes">
+    <li>Reste en contact avec ton ami·e : « Je suis là, je ne raccroche pas. »</li>
+    <li>Si tu sais où il/elle est, dis-le à la personne au téléphone.</li>
+    <li>Ne pars pas seul·e sur place. Préviens un adulte, même en pleine nuit.</li>
+  </ol>
+</section>
+
+<!-- MOURIR -->
+<section class="screen" id="mourir" style="--c:var(--alerte)">
+  <button class="retour" data-go="accueil">Retour</button>
+  <div class="hero"><span class="emo" aria-hidden="true">🆘</span><h2>Il/elle parle de mourir</h2>
+    <p class="intro">Un message qui ressemble à un adieu, un compte à rebours, un « c'est fini », une phrase que tu ne comprends pas mais qui te fait peur : tu le prends au sérieux, même si tu n'es pas sûr·e. Se tromper coûte moins cher que se taire.</p></div>
+
+  <h3><span class="emo">⚡</span>Maintenant</h3>
+  <ol class="etapes">
+    <li>Réponds tout de suite, même court. Le silence est ce qui fait le plus mal.</li>
+    <li>Demande directement. Poser la question ne donne pas l'idée, ça soulage : « Est-ce que tu penses à mourir ? »</li>
+    <li>Demande où il/elle est et s'il/elle est seul·e.</li>
+    <li>Ne promets pas de garder le secret. Dis-lui que tu vas chercher de l'aide <em>avec</em> lui/elle.</li>
+  </ol>
+
+  <h3><span class="emo">💬</span>Tu peux écrire</h3>
+  <div class="imsg">
+    <div class="top"><div class="av">👤</div><b>Ton ami·e</b></div>
+    <div class="fil">
+      <div class="date">Aujourd'hui</div>
+      <div class="recu"><span class="pts"><i></i><i></i><i></i></span></div>
+      <div class="aide">Appuie sur un message pour le copier</div>
+      <button class="bulle"><q>Je suis là. Je reste avec toi ce soir.</q></button>
+      <button class="bulle"><q>Est-ce que tu penses à mourir ? Tu peux me le dire.</q></button>
+      <button class="bulle"><q>Je ne vais pas te laisser seul·e avec ça. On appelle le 3114 ensemble, je reste en ligne.</q></button>
+    </div>
+    <div class="saisie"><div class="plus">+</div><div class="champ"><span>Message</span><span>🎤</span></div></div>
+  </div>
+
+  <div class="urgence">
+    <p>Si il/elle a déjà fait quelque chose, a un moyen sous la main, ou ne répond plus :</p>
+    <a class="appel rouge" href="tel:15"><span class="ic">📞</span><span><b>15</b><small>tout de suite</small></span></a>
+    <a class="appel rouge" href="tel:3114"><span class="ic">📞</span><span><b>3114</b><small>ils te disent quoi faire, à toi aussi</small></span></a>
+  </div>
+
+  <h3><span class="emo">🚫</span>Ce qui ne marche pas</h3>
+  <ul class="simple nope">
+    <li>« Dis pas ça », « pense à tes parents », « t'as tout pour être heureux·se ».</li>
+    <li>Envoyer des vidéos ou des conseils trouvés en ligne.</li>
+    <li>Rester seul·e avec ça toute la nuit.</li>
+  </ul>
+
+  <h3><span class="emo">🌅</span>Et demain</h3>
+  <p class="note">Même si ça va mieux au matin, ça compte. Dis-lui : « On va voir quelqu'un ensemble. » La Maison des ados reçoit sans rendez-vous et sans les parents.</p>
+  <div class="appels">
+    <a class="appel" href="tel:0493261092"><span class="ic">🏠</span><span><b>Maison des ados 06</b><small>2 rue Raynardi, Nice — 04 93 26 10 92, du lundi au vendredi</small></span></a>
+    <a class="appel" href="tel:3114"><span class="ic">📞</span><span><b>3114</b><small>Aussi pour toi, pour savoir comment l'accompagner</small></span></a>
+  </div>
+
+  <div class="toi">
+    <p><strong>💛 Et toi ?</strong>Tu as 14, 16, 18 ans. Tu n'es pas censé·e porter ça seul·e, et passer le relais à un adulte n'est pas une trahison : c'est ce qu'un·e ami·e fait. Quand ce sera passé, parle à quelqu'un de ce que ça t'a fait.</p>
+  </div>
+</section>
+
+<!-- MAL -->
+<section class="screen" id="mal" style="--c:var(--alerte)">
+  <button class="retour" data-go="accueil">Retour</button>
+  <div class="hero"><span class="emo" aria-hidden="true">🩸</span><h2>Il/elle s'est fait du mal</h2>
+    <p class="intro">Souvent ça arrive comme ça : « je viens de le faire », une photo, « dis rien ». Tu n'as rien à réparer ce soir. Tu as juste à rester là, et à savoir quand appeler.</p></div>
+
+  <h3><span class="emo">⚡</span>Maintenant</h3>
+  <ol class="etapes">
+    <li>Parle à la personne, pas à la blessure. Ne demande pas de photo, n'en commente pas.</li>
+    <li>Demande si ça saigne beaucoup ou si ça a besoin de soins. Si oui, ou si tu as un doute : 15.</li>
+    <li>Demande ce qui s'est passé avant, pas pourquoi. « Qu'est-ce qui s'est passé ce soir ? »</li>
+    <li>Ne fais pas promettre d'arrêter. Ça ne marche pas et ça isole.</li>
+  </ol>
+
+  <h3><span class="emo">💬</span>Tu peux écrire</h3>
+  <div class="imsg">
+    <div class="top"><div class="av">👤</div><b>Ton ami·e</b></div>
+    <div class="fil">
+      <div class="date">Aujourd'hui</div>
+      <div class="recu"><span class="pts"><i></i><i></i><i></i></span></div>
+      <div class="aide">Appuie sur un message pour le copier</div>
+      <button class="bulle"><q>Merci de me l'avoir dit. Je suis là.</q></button>
+      <button class="bulle"><q>Est-ce que ça saigne beaucoup ? Est-ce que tu as besoin qu'on appelle quelqu'un pour ça ?</q></button>
+      <button class="bulle"><q>Je ne vais pas te juger. Je ne veux juste pas que tu restes seul·e avec ça ce soir.</q></button>
+    </div>
+    <div class="saisie"><div class="plus">+</div><div class="champ"><span>Message</span><span>🎤</span></div></div>
+  </div>
+
+  <div class="urgence">
+    <p>Si ça saigne beaucoup, si il/elle a pris quelque chose, ou si il/elle parle aussi de mourir :</p>
+    <a class="appel rouge" href="tel:15"><span class="ic">📞</span><span><b>15</b><small>SAMU</small></span></a>
+    <a class="appel rouge" href="tel:3114"><span class="ic">📞</span><span><b>3114</b><small>24h/24, gratuit</small></span></a>
+  </div>
+
+  <h3><span class="emo">📷</span>La photo</h3>
+  <ul class="simple">
+    <li>Ne la transfère à personne. Ne la poste pas. Ne la garde pas « au cas où ».</li>
+    <li>Tu peux la montrer à un adulte de confiance <em>si</em> c'est pour avoir de l'aide, en le disant à ton ami·e.</li>
+  </ul>
+
+  <h3><span class="emo">🌅</span>Et demain</h3>
+  <p class="note">Se faire du mal, c'est presque toujours une façon de tenir quand ça déborde. Ça se soigne, et ça commence par en parler à quelqu'un qui sait. Propose d'y aller ensemble.</p>
+  <div class="appels">
+    <a class="appel" href="tel:0493261092"><span class="ic">🏠</span><span><b>Maison des ados 06</b><small>2 rue Raynardi, Nice — 04 93 26 10 92</small></span></a>
+    <a class="appel" href="tel:0800235236"><span class="ic">📞</span><span><b>Fil Santé Jeunes</b><small>0 800 235 236, anonyme, gratuit, 9h-23h</small></span></a>
+  </div>
+
+  <div class="toi">
+    <p><strong>💛 Et toi ?</strong>Recevoir cette photo, c'est lourd. Tu as le droit d'en parler à un adulte, même si on t'a dit « dis rien ». Garder un secret qui met quelqu'un en danger, ce n'est pas être fidèle, c'est être seul·e.</p>
+  </div>
+</section>
+
+<!-- RELATION -->
+<section class="screen" id="relation" style="--c:var(--menthe)">
+  <button class="retour" data-go="accueil">Retour</button>
+  <div class="hero"><span class="emo" aria-hidden="true">💬</span><h2>Sa relation t'inquiète</h2>
+    <p class="intro">« Il vérifie mon téléphone. » « Elle veut plus que je te voie. » « Je sais plus si c'est moi qui exagère. » Une fois, ce n'est pas forcément grave. Ce qui compte, c'est si ça revient, si ça s'accumule, et si ça se resserre.</p></div>
+
+  <h3><span class="emo">👀</span>Les six signaux</h3>
+  <ul class="simple">
+    <li>Il/elle veut savoir où tu es, avec qui, et vérifie.</li>
+    <li>Tu vois moins tes potes, et c'est toujours lié à lui/elle.</li>
+    <li>Tu changes ta façon de t'habiller, de parler, de sortir pour éviter une crise.</li>
+    <li>Génial·e, puis horrible, puis génial·e — tu marches sur des œufs.</li>
+    <li>Quand tu doutes, tu finis par te dire que c'est toi le problème.</li>
+    <li>Tu penses à sa réaction avant de décider quoi que ce soit.</li>
+  </ul>
+
+  <h3><span class="emo">⚡</span>Maintenant</h3>
+  <ol class="etapes">
+    <li>Ne dis pas « quitte-le/la ». Ça transforme la conversation en débat sur l'autre.</li>
+    <li>Dis que ce n'est pas lui/elle le problème. C'est la phrase dont il/elle a besoin.</li>
+    <li>Ne contacte pas son/sa partenaire. Jamais.</li>
+    <li>Demande si là, tout de suite, il/elle est tranquille.</li>
+  </ol>
+
+  <h3><span class="emo">💬</span>Tu peux écrire</h3>
+  <div class="imsg">
+    <div class="top"><div class="av">👤</div><b>Ton ami·e</b></div>
+    <div class="fil">
+      <div class="date">Aujourd'hui</div>
+      <div class="recu"><span class="pts"><i></i><i></i><i></i></span></div>
+      <div class="aide">Appuie sur un message pour le copier</div>
+      <button class="bulle"><q>Je suis là. Tu réponds quand tu peux.</q></button>
+      <button class="bulle"><q>Ce que tu décris, ce n'est pas toi le problème.</q></button>
+      <button class="bulle"><q>Je ne dis rien à personne sans toi. Si tu veux, on regarde ensemble à qui en parler.</q></button>
+    </div>
+    <div class="saisie"><div class="plus">+</div><div class="champ"><span>Message</span><span>🎤</span></div></div>
+  </div>
+
+  <div class="urgence">
+    <p>S'il y a des menaces, des coups, ou si il/elle a peur de rentrer :</p>
+    <a class="appel rouge" href="tel:17"><span class="ic">📞</span><span><b>17</b><small>Police</small></span></a>
+    <a class="appel" href="tel:3919"><span class="ic">📞</span><span><b>3919</b><small>Violences dans le couple, aussi pour les jeunes, gratuit</small></span></a>
+  </div>
+
+  <h3><span class="emo">🌅</span>Et demain</h3>
+  <div class="appels">
+    <a class="appel" href="tel:0493261092"><span class="ic">🏠</span><span><b>Maison des ados 06</b><small>2 rue Raynardi, Nice — 04 93 26 10 92</small></span></a>
+    <a class="appel" href="tel:3018"><span class="ic">📱</span><span><b>3018</b><small>Si ça passe par le téléphone : contrôle, photos, harcèlement en ligne</small></span></a>
+  </div>
+
+  <div class="toi">
+    <p><strong>💛 Et toi ?</strong>Tu ne peux pas le/la faire partir. Tu peux rester, et rappeler que tu es là quand il/elle sera prêt·e. C'est déjà énorme.</p>
+  </div>
+</section>
+
+<!-- RETRAIT -->
+<section class="screen" id="retrait" style="--c:var(--lilas)">
+  <button class="retour" data-go="accueil">Retour</button>
+  <div class="hero"><span class="emo" aria-hidden="true">🔕</span><h2>Il/elle ne répond plus, ne sort plus</h2>
+    <p class="intro">Deux semaines sans réponse, plus de cours, plus de sorties, dort toute la journée. Ce n'est pas de la flemme. Quelqu'un qui disparaît a souvent besoin qu'on vienne le chercher, sans pression.</p></div>
+
+  <h3><span class="emo">⚡</span>Maintenant</h3>
+  <ol class="etapes">
+    <li>Écris sans attendre de réponse. Un message court, régulier, sans question.</li>
+    <li>Propose quelque chose de petit et de concret : passer, marcher dix minutes, un vocal.</li>
+    <li>Si tu as un doute sur des idées noires, demande directement. Voir « Il/elle parle de mourir ».</li>
+  </ol>
+
+  <h3><span class="emo">💬</span>Tu peux écrire</h3>
+  <div class="imsg">
+    <div class="top"><div class="av">👤</div><b>Ton ami·e</b></div>
+    <div class="fil">
+      <div class="date">Aujourd'hui</div>
+      <div class="recu"><span class="pts"><i></i><i></i><i></i></span></div>
+      <div class="aide">Appuie sur un message pour le copier</div>
+      <button class="bulle"><q>Pas besoin de répondre. Je pense à toi, je repasse demain.</q></button>
+      <button class="bulle"><q>J'ai remarqué que tu n'étais plus là, et ça me manque. Ça va, toi ?</q></button>
+    </div>
+    <div class="saisie"><div class="plus">+</div><div class="champ"><span>Message</span><span>🎤</span></div></div>
+  </div>
+
+  <h3><span class="emo">🌅</span>Et demain</h3>
+  <p class="note">Si ça dure, dis-le à un adulte qui le/la connaît. Ce n'est pas le/la balancer, c'est faire venir de l'aide.</p>
+  <div class="appels">
+    <a class="appel" href="tel:0493261092"><span class="ic">🏠</span><span><b>Maison des ados 06</b><small>04 93 26 10 92</small></span></a>
+    <a class="appel" href="tel:0800235236"><span class="ic">📞</span><span><b>Fil Santé Jeunes</b><small>0 800 235 236</small></span></a>
+  </div>
+
+  <div class="toi">
+    <p><strong>💛 Et toi ?</strong>Tu n'as pas à réussir à le/la faire sortir. Tu as juste à ne pas disparaître toi aussi.</p>
+  </div>
+</section>
+
+<!-- PANIQUE -->
+<section class="screen" id="panique" style="--c:var(--ciel)">
+  <button class="retour" data-go="accueil">Retour</button>
+  <div class="hero"><span class="emo" aria-hidden="true">😱</span><h2>Il/elle panique</h2>
+    <p class="intro">Cœur qui bat fort, souffle court, impression de mourir ou de devenir fou/folle : une crise de panique fait très peur et passe en général en 10 à 20 minutes. Ta voix calme aide plus que n'importe quel conseil.</p></div>
+
+  <h3><span class="emo">⚡</span>Maintenant</h3>
+  <ol class="etapes">
+    <li>Passe en appel ou en vocal si tu peux. Parle lentement.</li>
+    <li>Dis que ça va passer, que tu restes jusqu'à ce que ça passe.</li>
+    <li>Respire avec lui/elle : inspire 4, souffle 6, plusieurs fois.</li>
+    <li>Si c'est la première fois, si ça ne passe pas, ou s'il y a une douleur dans la poitrine : 15.</li>
+  </ol>
+
+  <h3><span class="emo">💬</span>Tu peux écrire</h3>
+  <div class="imsg">
+    <div class="top"><div class="av">👤</div><b>Ton ami·e</b></div>
+    <div class="fil">
+      <div class="date">Aujourd'hui</div>
+      <div class="recu"><span class="pts"><i></i><i></i><i></i></span></div>
+      <div class="aide">Appuie sur un message pour le copier</div>
+      <button class="bulle"><q>Je reste avec toi. Ça va passer. On respire ensemble.</q></button>
+    </div>
+    <div class="saisie"><div class="plus">+</div><div class="champ"><span>Message</span><span>🎤</span></div></div>
+  </div>
+
+  <h3><span class="emo">🌅</span>Et demain</h3>
+  <p class="note">Si ça revient chaque matin avant le lycée, ce n'est pas un caprice, ça se soigne bien. Propose d'en parler à l'infirmerie ou à la Maison des ados.</p>
+  <div class="appels">
+    <a class="appel" href="tel:0493261092"><span class="ic">🏠</span><span><b>Maison des ados 06</b><small>04 93 26 10 92</small></span></a>
+  </div>
+</section>
+
+<!-- DOUTE -->
+<section class="screen" id="doute" style="--c:var(--citron)">
+  <button class="retour" data-go="accueil">Retour</button>
+  <div class="hero"><span class="emo" aria-hidden="true">🤔</span><h2>Tu ne sais pas si c'est grave</h2>
+    <p class="intro">C'est normal. Trois questions.</p></div>
+  <h3><span class="emo">❓</span>Trois questions</h3>
+  <ol class="etapes">
+    <li>Est-ce que ça ressemble à un adieu, un compte à rebours, ou un secret imposé ? Si oui : « Il/elle parle de mourir ».</li>
+    <li>Est-ce que ça revient, ou est-ce que c'est pire qu'avant ? Si oui, c'est un signal, même petit.</li>
+    <li>Est-ce que toi, tu dors mal à cause de ça ? Alors c'est assez grave pour en parler à quelqu'un.</li>
+  </ol>
+  <h3><span class="emo">💬</span>Tu peux écrire</h3>
+  <div class="imsg">
+    <div class="top"><div class="av">👤</div><b>Ton ami·e</b></div>
+    <div class="fil">
+      <div class="date">Aujourd'hui</div>
+      <div class="recu"><span class="pts"><i></i><i></i><i></i></span></div>
+      <div class="aide">Appuie sur un message pour le copier</div>
+      <button class="bulle"><q>Je ne sais pas si c'est grave, mais je préfère te demander : ça va, toi ?</q></button>
+    </div>
+    <div class="saisie"><div class="plus">+</div><div class="champ"><span>Message</span><span>🎤</span></div></div>
+  </div>
+  <h3><span class="emo">🌅</span>Et demain</h3>
+  <div class="appels">
+    <a class="appel" href="tel:3114"><span class="ic">📞</span><span><b>3114</b><small>Tu peux appeler pour un·e ami·e, ils t'aident à y voir clair</small></span></a>
+    <a class="appel" href="tel:0800235236"><span class="ic">📞</span><span><b>Fil Santé Jeunes</b><small>0 800 235 236</small></span></a>
+    <a class="appel" href="tel:0493261092"><span class="ic">🏠</span><span><b>Maison des ados 06</b><small>04 93 26 10 92</small></span></a>
+  </div>
+</section>
+
+<footer>
+  <p>Cette page n'est pas un service d'urgence et ne remplace pas une personne. Elle ne garde rien de ce que tu fais ici : pas de compte, pas de données.</p>
+  <p>SIGNAUX — prototype, Nice, 2026. Conçu par <strong>Cilli Flamand</strong>, psychologue clinicienne, avec des jeunes du territoire.</p>
+  <p>© 2026 Cilli Flamand — textes, parcours et design. Tous droits réservés. Reproduction et adaptation interdites sans accord écrit.</p>
+</footer>
+</main>
+
+<div class="sosbar" id="sosbar">
+  <button class="sos" data-go="danger"><span class="emo" aria-hidden="true">🚨</span><span>Il y a peut-être un danger maintenant<small>Les numéros, tout de suite</small></span></button>
+</div>
+
+<script>
+  const show = id => {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('on'));
+    document.getElementById(id).classList.add('on');
+    document.getElementById('sosbar').hidden = (id === 'danger');
+    window.scrollTo({top:0, behavior:'instant'});
+  };
+  document.querySelectorAll('[data-go]').forEach(b => b.addEventListener('click', () => show(b.dataset.go)));
+
+  // Première phrase de chaque étape en blanc gras : l'action d'abord, l'explication ensuite. Le texte ne change pas.
+  document.querySelectorAll('ol.etapes li, ul.simple li').forEach(li => {
+    const h = li.innerHTML;
+    const m = h.match(/^(.*?[.!?»])(\s|$)/);
+    if (m && m[1].length < h.length - 2) li.innerHTML = '<b>' + m[1] + '</b>' + h.slice(m[1].length);
+    else li.innerHTML = '<b>' + h + '</b>';
+  });
+
+  // Bulles : appuyer = copier
+  document.querySelectorAll('.bulle').forEach(b => b.addEventListener('click', async () => {
+    const t = b.querySelector('q').textContent;
+    const done = () => { b.classList.add('copie'); let ok = b.querySelector('.ok'); if(!ok){ ok = document.createElement('span'); ok.className='ok'; b.appendChild(ok);} ok.textContent = 'Copié ✓';
+      setTimeout(() => { b.classList.remove('copie'); ok.remove(); }, 1600); };
+    try { await navigator.clipboard.writeText(t); done(); }
+    catch {
+      try { const r = document.createRange(); r.selectNodeContents(b.querySelector('q')); const s = window.getSelection(); s.removeAllRanges(); s.addRange(r); } catch {}
+      let ok = b.querySelector('.ok'); if(!ok){ ok = document.createElement('span'); ok.className='ok'; b.appendChild(ok);} ok.textContent = 'Sélectionné — copie-le';
+    }
+  }));
+</script>
+</body>
+</html>
