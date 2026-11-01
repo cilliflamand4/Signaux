@@ -22,6 +22,7 @@
     --framboise:#F0407A;
     --emeraude:#00D084;
     --cyan:#22DDE0;
+    --orchidee:#E06BFF;
     --rouge:#D7261C;
     --alerte:#FF4D6D;
     --menthe:#2EE6B0;
@@ -302,6 +303,7 @@
     <li class="grave" style="--c:var(--alerte)"><button class="tuile" data-go="mal"><span class="emo" aria-hidden="true">🩸</span><span class="t"><b>S'est fait du mal</b><span>Blessures, automutilation, prise de substances</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--emeraude)"><button class="tuile" data-go="maison"><span class="emo" aria-hidden="true">🏠</span><span class="t"><b>Ça va pas chez lui/elle</b><span>Disputes, peur, coups, envie de fuguer</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--cyan)"><button class="tuile" data-go="harcele"><span class="emo" aria-hidden="true">😥</span><span class="t"><b>On le/la harcèle</b><span>Au lycée, sur les réseaux, menaces, humiliations</span></span><span class="chev" aria-hidden="true">›</span></button></li>
+    <li style="--c:var(--orchidee)"><button class="tuile" data-go="drogue"><span class="emo" aria-hidden="true">🍻</span><span class="t"><b>Alcool, drogues</b><span>Malaise en soirée, bad trip, mélanges, questions</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li class="grave" style="--c:var(--alerte)"><button class="tuile" data-go="violence"><span class="emo" aria-hidden="true">🛑</span><span class="t"><b>Quelqu'un lui fait du mal</b><span>Violences psychologiques, physiques ou sexuelles</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--sauge)"><button class="tuile" data-go="lycee"><span class="emo" aria-hidden="true">🏫</span><span class="t"><b>Ça va pas au collège/lycée</b><span>Peur d'y aller, amis, exclusion, problème avec un adulte</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--menthe)"><button class="tuile" data-go="relation"><span class="emo" aria-hidden="true">💬</span><span class="t"><b>Sa relation m'inquiète</b><span>Contrôle, jalousie, isolement, peur de l'autre</span></span><span class="chev" aria-hidden="true">›</span></button></li>
@@ -314,7 +316,7 @@
     <ul class="tuiles petites">
       <li style="--c:var(--abricot)"><button class="tuile" data-go="moi"><span class="emo" aria-hidden="true">🫶</span><span class="t"><b>C'est moi qui vais mal</b><span>Ouvrir la porte « C'est pour moi » : maison, harcèlement, violences, ma relation, lycée, peur de parler</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     </ul>
-    <p class="perso-note">Version 16.9 · prototype en cours de validation. Tests avec des jeunes et des parents prévus pour le pilote 2027.</p>
+    <p class="perso-note">Version 17.0 · prototype en cours de validation. Tests avec des jeunes et des parents prévus pour le pilote 2027.</p>
   </div>
 </section>
 
@@ -342,6 +344,7 @@
     <li style="--c:var(--ciel)"><button class="tuile" data-go="m-panique"><span class="emo" aria-hidden="true">😱</span><span class="t"><b>Je panique</b><span>Cœur qui s'emballe, je n'arrive plus à respirer ou à me calmer</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--emeraude)"><button class="tuile" data-go="m-maison"><span class="emo" aria-hidden="true">🏠</span><span class="t"><b>Ça va pas à la maison</b><span>Disputes, peur, coups, envie de fuguer</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--cyan)"><button class="tuile" data-go="m-harcele"><span class="emo" aria-hidden="true">😥</span><span class="t"><b>On me harcèle</b><span>Au lycée, sur les réseaux, menaces, photo qui circule</span></span><span class="chev" aria-hidden="true">›</span></button></li>
+    <li style="--c:var(--orchidee)"><button class="tuile" data-go="m-drogue"><span class="emo" aria-hidden="true">🍻</span><span class="t"><b>Alcool, drogues</b><span>Je me sens mal, bad trip, mélanges, questions</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li class="grave" style="--c:var(--alerte)"><button class="tuile" data-go="m-violence"><span class="emo" aria-hidden="true">🛑</span><span class="t"><b>Quelqu'un me fait du mal</b><span>Coups, menaces, contrôle, gestes que je ne veux pas</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--menthe)"><button class="tuile" data-go="m-relation"><span class="emo" aria-hidden="true">💬</span><span class="t"><b>Je me pose des questions sur ma relation</b><span>Jalousie, contrôle, pression, peur de dire non…</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--sauge)"><button class="tuile" data-go="m-lycee"><span class="emo" aria-hidden="true">🏫</span><span class="t"><b>Ça va pas au collège/lycée</b><span>Peur d'y aller, seul·e, mes amis, un adulte</span></span><span class="chev" aria-hidden="true">›</span></button></li>
@@ -350,7 +353,7 @@
     <li style="--c:var(--ciel)"><button class="tuile" data-go="apres"><span class="emo" aria-hidden="true">🌙</span><span class="t"><b>J'ai parlé, et ce soir ça va pas</b><span>J'en ai parlé à quelqu'un, je suis rentré·e, et ça ne va pas</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--menthe)"><button class="tuile" data-go="suivi"><span class="emo" aria-hidden="true">👩‍⚕️</span><span class="t"><b>Je suis suivi·e, mais ça va moins bien</b><span>J'ai déjà un psy, mais je n'ose pas le déranger, ou il/elle n'est pas joignable</span></span><span class="chev" aria-hidden="true">›</span></button></li>
   </ul>
-  <p class="perso-note">Version 16.9 · prototype en cours de validation. Cette page ne demande ni compte ni données.</p>
+  <p class="perso-note">Version 17.0 · prototype en cours de validation. Cette page ne demande ni compte ni données.</p>
 </section>
 
 <!-- ACCUEIL PARENTS -->
@@ -376,6 +379,7 @@
     <li class="grave" style="--c:var(--alerte)"><button class="tuile" data-go="p-mal"><span class="emo" aria-hidden="true">🩸</span><span class="t"><b>S'est fait du mal</b><span>Mon ado s'est fait du mal, j'ai vu des marques, ou on me l'a dit</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--menthe)"><button class="tuile" data-go="p-relation"><span class="emo" aria-hidden="true">💬</span><span class="t"><b>Sa relation</b><span>Sa relation amoureuse m'inquiète</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--cyan)"><button class="tuile" data-go="p-harcele"><span class="emo" aria-hidden="true">😥</span><span class="t"><b>On le/la harcèle</b><span>Au collège, au lycée, sur les réseaux : moqueries, exclusion, menaces, photo</span></span><span class="chev" aria-hidden="true">›</span></button></li>
+    <li style="--c:var(--orchidee)"><button class="tuile" data-go="p-drogue"><span class="emo" aria-hidden="true">🍻</span><span class="t"><b>Alcool, drogues</b><span>Malaise en soirée, consommation qui inquiète, questions</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--lilas)"><button class="tuile" data-go="p-chambre"><span class="emo" aria-hidden="true">🔕</span><span class="t"><b>Ne sort plus</b><span>Mon ado ne sort plus de sa chambre, ne va plus en cours, ne parle plus</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--ciel)"><button class="tuile" data-go="p-panique"><span class="emo" aria-hidden="true">😱</span><span class="t"><b>Panique</b><span>Mon ado panique, n'arrive plus à respirer ou à se calmer</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--citron)"><button class="tuile" data-go="p-doute"><span class="emo" aria-hidden="true">🤔</span><span class="t"><b>Pas sûr·e</b><span>Je ne sais pas si c'est grave</span></span><span class="chev" aria-hidden="true">›</span></button></li>
@@ -1037,6 +1041,185 @@
 
   <div class="toi">
     <p><strong>💛 Et toi ?</strong>Tu ne peux pas le/la faire partir. Tu peux rester, et rappeler que tu es là quand il/elle sera prêt·e. C'est déjà énorme.</p>
+  </div>
+</section>
+
+<!-- DROGUE (ami) · v17.0, textes nouveaux à valider -->
+<section class="screen" id="drogue" style="--c:var(--orchidee)">
+  <button class="retour" data-go="accueil">Retour</button>
+  <div class="urgence">
+    <p>Appelle le 15 ou le 112 sans attendre, et suis leurs instructions, si la personne : ne se réveille pas quand on la secoue et qu'on lui parle fort · respire bizarrement, très lentement ou par à-coups · convulse · a une douleur dans la poitrine · est brûlante et confuse.</p>
+    <a class="appel rouge" href="tel:15"><span class="ic">📞</span><span><b>15</b><small>SAMU, tout de suite. Dis où tu es et ce qu'elle a pris, si tu le sais</small></span></a>
+    <a class="appel rouge" href="tel:112"><span class="ic">📞</span><span><b>112</b><small>Si le 15 ne passe pas, ou depuis l'étranger</small></span></a>
+  </div>
+
+  <div class="hero"><span class="emo" aria-hidden="true">🍻</span><h2>Alcool, drogues : son état t'inquiète</h2>
+    <p class="intro">En soirée, après un mélange, un bad trip, ou juste trop. Tu n'as pas besoin de savoir ce que c'est pour agir. Si tu as un doute sur sa vie, tu appelles : les secours ne sont pas là pour juger, ni pour punir.</p></div>
+
+  <div class="choix-titre">Qu'est-ce qui se passe ?</div>
+  <div class="choix">
+    <button class="chip" data-tip="Reste avec lui/elle, parle-lui, garde-le/la éveillé·e et assis·e ou sur le côté, pas sur le dos. Pas d'eau froide, pas de « fais-le vomir », pas d'autre produit pour « compenser ». Si tu n'arrives pas à le/la réveiller ou si la respiration est bizarre : 15, tout de suite.">Mon pote a consommé et son état m'inquiète</button>
+    <button class="chip" data-tip="Un bad trip, c'est une angoisse très forte qui peut passer en étant au calme, avec quelqu'un de rassurant. Mais tu ne peux pas savoir si c'est « seulement » ça. Si ça s'aggrave, si la personne se perd, ne te reconnaît plus, ou fait des gestes dangereux : 15. En soirée, cherche l'équipe de réduction des risques ou la sécurité.">Il/elle fait un bad trip</button>
+    <button class="chip" data-tip="Ne le/la laisse jamais dormir seul·e « pour cuver ». Quelqu'un reste à côté, le/la met sur le côté, vérifie qu'il/elle respire et répond. Si tu n'arrives plus à le/la réveiller : 15.">Il/elle s'est endormi·e, je sais pas si c'est normal</button>
+    <button class="chip" data-tip="Tu as le droit de t'inquiéter pour quelqu'un qui consomme souvent, même sans malaise. Tu peux en parler avec lui/elle sans jugement, et toi, tu peux appeler Drogues Info Service pour savoir comment t'y prendre.">Sa consommation m'inquiète, en général</button>
+  </div>
+  <div class="chip-tip" aria-live="polite"></div>
+
+  <h3><span class="emo">⚡</span>Maintenant</h3>
+  <ol class="etapes">
+    <li>Si un seul des signes de danger est là : 15 ou 112, sans attendre. Tu ne risques rien en appelant, lui/elle risque tout si tu n'appelles pas.</li>
+    <li>Reste avec lui/elle. Ne le/la laisse pas seul·e, ni dormir seul·e. Sur le côté s'il/elle somnole, pour ne pas s'étouffer.</li>
+    <li>Pas d'autre produit pour « rééquilibrer », pas de café, pas d'eau froide, pas de douche. Ça n'aide pas et ça peut aggraver.</li>
+    <li>Cherche de l'aide sur place : l'équipe de réduction des risques, la sécurité, un adulte sobre. Dis ce qu'il/elle a pris, si tu le sais. Personne n'est là pour punir.</li>
+  </ol>
+
+  <h3><span class="emo">💬</span>Tu peux écrire</h3>
+  <div class="imsg">
+    <div class="top"><div class="av">👤</div><b>Ton pote</b></div>
+    <div class="fil">
+      <div class="date">Aujourd'hui</div>
+      <div class="aide">Messages à copier et à envoyer toi-même</div>
+      <button class="bulle"><q>Viens avec moi, on va chercher de l'aide. Dis-moi ce que tu as pris, si tu le sais.</q></button>
+      <button class="bulle"><q>Je reste avec toi. Je ne te lâche pas, et je ne te juge pas.</q></button>
+    </div>
+    <div class="pied">Aucun message n'est envoyé depuis SIGNAUX.</div>
+  </div>
+
+  <h3><span class="emo">🛡️</span>Pour les prochaines soirées</h3>
+  <ul class="simple">
+    <li>Les mélanges sont le vrai danger. Alcool plus médicaments, alcool plus autre produit : les effets s'additionnent et deviennent imprévisibles.</li>
+    <li>Personne ne conduit après avoir consommé. Ni voiture, ni scooter, ni trottinette. Vous rentrez autrement, même tard.</li>
+    <li>Une personne de confiance reste sobre, et vous savez où sont les secours et l'équipe de réduction des risques sur place.</li>
+    <li>Un produit dont tu ne sais pas ce qu'il contient, c'est un produit dont tu ne sais pas ce qu'il va faire.</li>
+  </ul>
+  <h3><span class="emo">📞</span>Pour les questions, sans urgence</h3>
+  <div class="appels">
+    <a class="appel" href="tel:0800231313"><span class="ic">📞</span><span><b>0 800 23 13 13</b><small>Drogues Info Service — tous les jours de 8h à 2h, anonyme et gratuit. Pour toi ou pour un proche. Ce n'est pas un numéro d'urgence</small></span></a>
+    <a class="appel web" href="https://www.drogues-info-service.fr" target="_blank" rel="noopener"><span class="ic">💬</span><span><b>Tchat et adresses</b><small>drogues-info-service.fr — tchat, et la liste des Consultations jeunes consommateurs près de chez toi</small></span></a>
+    <a class="appel" href="tel:0800235236"><span class="ic">📞</span><span><b>Fil Santé Jeunes</b><small>0 800 235 236, anonyme, gratuit, 9h-23h — pour parler de ce qui s'est passé</small></span></a>
+  </div>
+  <h3><span class="emo">🌅</span>Et demain</h3>
+  <p class="note">Les Consultations jeunes consommateurs reçoivent les 12-25 ans, et aussi les parents, gratuitement et en toute confidentialité, pour faire le point sans jugement : une question, une inquiétude, une envie de réduire. Elles sont dans les Maisons des ados ou les centres d'addictologie. Adresses sur drogues-info-service.fr.</p>
+  <div class="appels">
+    <a class="appel" href="tel:0493261092"><span class="ic">🏠</span><span><b>Maison des ados 06</b><small>2A rue Raynardi, Nice — 04 93 26 10 92, lun-ven 9h-17h</small></span></a>
+  </div>
+
+  <div class="toi">
+    <p><strong>💛 Et toi ?</strong>Appeler les secours pour un pote, ce n'est pas le trahir. C'est ce qu'un pote fait. Et si ça t'a secoué·e, tu peux en parler, à Fil Santé Jeunes ou à un adulte sûr.</p>
+  </div>
+</section>
+
+<!-- M-DROGUE (moi) · v17.0, textes nouveaux à valider -->
+<section class="screen" id="m-drogue" style="--c:var(--orchidee)">
+  <button class="retour" data-go="moi">Retour</button>
+  <div class="urgence">
+    <p>Si tu as pris quelque chose et que tu as du mal à respirer, une douleur dans la poitrine, que tu te sens partir, que tu es brûlant·e et confus·e, ou que tu ne sais plus où tu es : appelle le 15 ou le 112, ou demande à quelqu'un de le faire. Dis ce que tu as pris, si tu le sais.</p>
+    <a class="appel rouge" href="tel:15"><span class="ic">📞</span><span><b>15</b><small>SAMU, tout de suite. Personne n'est là pour te juger</small></span></a>
+    <a class="appel rouge" href="tel:112"><span class="ic">📞</span><span><b>112</b><small>Si le 15 ne passe pas</small></span></a>
+  </div>
+  <div class="hero"><span class="emo" aria-hidden="true">🍻</span><h2>Alcool, drogues : ça va pas</h2>
+    <p class="intro">Tu as pris quelque chose et tu ne te sens pas bien, ou tu te poses des questions sur ce que tu consommes. Ici, pas de morale. Juste quoi faire, et à qui parler.</p></div>
+
+  <div class="choix-titre">Qu'est-ce qui se passe ?</div>
+  <div class="choix">
+    <button class="chip" data-tip="Ne reste pas seul·e. Dis-le à quelqu'un de sobre, tout de suite, et reste avec lui/elle. Si tu n'as personne : 15. Ne prends rien d'autre pour « faire passer ». Assieds-toi ou allonge-toi sur le côté, au calme.">J'ai pris quelque chose et je me sens mal</button>
+    <button class="chip" data-tip="Une angoisse très forte, l'impression de devenir fou/folle, ça peut être un bad trip. Mets-toi au calme avec quelqu'un qui te rassure, respire lentement, ça finit par passer. Si ça s'aggrave, si tu as peur pour toi : 15.">Je fais un bad trip</button>
+    <button class="chip" data-tip="Alcool plus médicaments, alcool plus autre produit, ou plusieurs produits : les effets s'additionnent et deviennent imprévisibles. C'est ça qui envoie aux urgences, bien plus qu'un produit seul. Si tu as mélangé et que tu te sens bizarre : ne reste pas seul·e.">J'ai mélangé et je sais pas ce que ça fait</button>
+    <button class="chip" data-tip="Tu peux en parler sans que ça devienne une affaire. Les Consultations jeunes consommateurs sont gratuites, confidentielles, sans jugement, et on peut y aller juste pour une question. Drogues Info Service répond aussi, par téléphone ou par tchat.">Ma consommation m'inquiète</button>
+  </div>
+  <div class="chip-tip" aria-live="polite"></div>
+  <p class="note">Si tu as pris quelque chose pour te faire du mal, ou pour que ça s'arrête : <button class="lien" data-go="m-mal">voir « Je me suis fait du mal »</button>. Et le 3114 est là, 24h/24.</p>
+
+  <h3><span class="emo">⚡</span>Maintenant</h3>
+  <ol class="etapes">
+    <li>Dis-le à quelqu'un, maintenant. Un pote sobre, la sécurité, l'équipe de réduction des risques, un adulte. « J'ai pris ça, je me sens mal. »</li>
+    <li>Ne reste pas seul·e, et ne t'isole pas pour « cuver ». Quelqu'un reste à côté de toi.</li>
+    <li>Pas d'autre produit, pas de café, pas d'eau froide pour « rattraper ». Ça peut aggraver.</li>
+    <li>Tu ne conduis pas, et tu ne montes pas avec quelqu'un qui a consommé. Tu rentres autrement, même tard.</li>
+  </ol>
+
+  <h3><span class="emo">💬</span>Tu peux écrire</h3>
+  <div class="imsg">
+    <div class="top"><div class="av">👤</div><b>Un·e pote ou un adulte</b></div>
+    <div class="fil">
+      <div class="date">Aujourd'hui</div>
+      <div class="aide">Messages à copier et à envoyer toi-même</div>
+      <button class="bulle"><q>J'ai pris quelque chose et je me sens pas bien. Tu peux venir, ou m'appeler ?</q></button>
+      <button class="bulle"><q>Je me pose des questions sur ce que je consomme. Je peux t'en parler, sans que tu juges ?</q></button>
+    </div>
+    <div class="pied">Aucun message n'est envoyé depuis SIGNAUX.</div>
+  </div>
+  <h3><span class="emo">📞</span>Pour les questions, sans urgence</h3>
+  <div class="appels">
+    <a class="appel" href="tel:0800231313"><span class="ic">📞</span><span><b>0 800 23 13 13</b><small>Drogues Info Service — tous les jours de 8h à 2h, anonyme et gratuit. Pour toi ou pour un proche. Ce n'est pas un numéro d'urgence</small></span></a>
+    <a class="appel web" href="https://www.drogues-info-service.fr" target="_blank" rel="noopener"><span class="ic">💬</span><span><b>Tchat et adresses</b><small>drogues-info-service.fr — tchat, et la liste des Consultations jeunes consommateurs près de chez toi</small></span></a>
+    <a class="appel" href="tel:0800235236"><span class="ic">📞</span><span><b>Fil Santé Jeunes</b><small>0 800 235 236, anonyme, gratuit, 9h-23h — pour parler de ce qui s'est passé</small></span></a>
+  </div>
+  <h3><span class="emo">🌅</span>Et demain</h3>
+  <p class="note">Les Consultations jeunes consommateurs reçoivent les 12-25 ans, et aussi les parents, gratuitement et en toute confidentialité, pour faire le point sans jugement : une question, une inquiétude, une envie de réduire. Elles sont dans les Maisons des ados ou les centres d'addictologie. Adresses sur drogues-info-service.fr.</p>
+  <div class="appels">
+    <a class="appel" href="tel:0493261092"><span class="ic">🏠</span><span><b>Maison des ados 06</b><small>2A rue Raynardi, Nice — 04 93 26 10 92, lun-ven 9h-17h</small></span></a>
+  </div>
+
+  <div class="toi">
+    <p><strong>💛 Et toi ?</strong>Demander de l'aide quand on a consommé, ce n'est pas se faire attraper. C'est se protéger. Tu as le droit d'être aidé·e, quoi que tu aies pris.</p>
+  </div>
+</section>
+
+<!-- P-DROGUE (parents) · v17.0, textes nouveaux à valider -->
+<section class="screen" id="p-drogue" style="--c:var(--orchidee)">
+  <button class="retour" data-go="parents">Retour</button>
+  <div class="urgence">
+    <p>Appelez le 15 ou le 112 sans attendre, et suivez leurs instructions, si la personne : ne se réveille pas quand on la secoue et qu'on lui parle fort · respire bizarrement, très lentement ou par à-coups · convulse · a une douleur dans la poitrine · est brûlante et confuse.</p>
+    <a class="appel rouge" href="tel:15"><span class="ic">📞</span><span><b>15</b><small>SAMU, tout de suite. Dites où vous êtes et ce qu'elle a pris, si vous le savez</small></span></a>
+    <a class="appel rouge" href="tel:112"><span class="ic">📞</span><span><b>112</b><small>Si le 15 ne passe pas, ou depuis l'étranger</small></span></a>
+  </div>
+
+  <div class="hero"><span class="emo" aria-hidden="true">🍻</span><h2>Alcool, drogues</h2>
+    <p class="intro">Votre ado rentre dans un état qui vous inquiète, ou vous découvrez une consommation. D'abord la sécurité, ensuite seulement la discussion.</p></div>
+
+  <div class="choix-titre">Qu'est-ce qui se passe ?</div>
+  <div class="choix">
+    <button class="chip" data-tip="Restez avec lui/elle, gardez-le/la éveillé·e ou sur le côté, pas sur le dos. Pas de douche froide, pas de café, pas de « fais-le vomir ». Si vous n'arrivez pas à le/la réveiller, si la respiration est anormale ou s'il/elle convulse : 15, sans attendre. Les reproches attendront.">Il/elle a consommé et son état m'inquiète</button>
+    <button class="chip" data-tip="Ne le/la laissez pas dormir seul·e « pour cuver ». Quelqu'un reste à côté, le/la met sur le côté et vérifie régulièrement qu'il/elle respire et répond. Si vous n'arrivez plus à le/la réveiller : 15.">Il/elle dort et je ne sais pas si c'est normal</button>
+    <button class="chip" data-tip="Choisissez un moment calme, pas le soir même. Dites ce que vous avez vu, sans accuser, et demandez comment ça se passe pour lui/elle. Une consommation ne dit rien, à elle seule, de la gravité : ce qui compte, c'est la fréquence, le contexte et ce que ça vient soulager.">Je veux savoir quoi dire</button>
+    <button class="chip" data-tip="Les Consultations jeunes consommateurs reçoivent les parents, avec ou sans le jeune, gratuitement et confidentiellement. Drogues Info Service répond aussi aux parents, tous les jours de 8h à 2h. Vous n'avez pas à gérer seul·e.">Sa consommation m'inquiète</button>
+  </div>
+  <div class="chip-tip" aria-live="polite"></div>
+
+  <h3><span class="emo">⚡</span>Maintenant</h3>
+  <ol class="etapes">
+    <li>Si un seul signe de danger est là : 15 ou 112. Dites ce qu'il/elle a pris, si vous le savez. Les secours ne préviennent pas la police pour une consommation.</li>
+    <li>Restez avec lui/elle, sur le côté s'il/elle somnole. Pas d'autre produit, pas de café, pas de douche froide.</li>
+    <li>Ce soir, pas de discussion de fond. Demain, au calme, sans accusation.</li>
+    <li>Si vous êtes inquiet·e dans la durée, prenez conseil pour vous : Drogues Info Service, ou une Consultation jeunes consommateurs.</li>
+  </ol>
+
+  <h3><span class="emo">💬</span>Vous pouvez écrire</h3>
+  <div class="imsg">
+    <div class="top"><div class="av">👤</div><b>Mon ado</b></div>
+    <div class="fil">
+      <div class="date">Aujourd'hui</div>
+      <div class="aide">Messages à copier et à envoyer vous-même</div>
+      <button class="bulle"><q>Je ne suis pas en colère, je veux juste savoir que tu vas bien. Dis-moi où tu es, je viens te chercher.</q></button>
+      <button class="bulle"><q>On parlera de tout ça demain, calmement. Ce soir, l'important c'est que tu sois en sécurité.</q></button>
+    </div>
+    <div class="pied">Aucun message n'est envoyé depuis SIGNAUX.</div>
+  </div>
+  <h3><span class="emo">📞</span>Pour les questions, sans urgence</h3>
+  <div class="appels">
+    <a class="appel" href="tel:0800231313"><span class="ic">📞</span><span><b>0 800 23 13 13</b><small>Drogues Info Service — tous les jours de 8h à 2h, anonyme et gratuit. Pour vous ou pour votre ado. Ce n'est pas un numéro d'urgence</small></span></a>
+    <a class="appel web" href="https://www.drogues-info-service.fr" target="_blank" rel="noopener"><span class="ic">💬</span><span><b>Tchat et adresses</b><small>drogues-info-service.fr — tchat, et la liste des Consultations jeunes consommateurs près de chez vous</small></span></a>
+    <a class="appel" href="tel:0800235236"><span class="ic">📞</span><span><b>Fil Santé Jeunes</b><small>0 800 235 236, anonyme, gratuit, 9h-23h — votre ado peut y parler, sans vous</small></span></a>
+  </div>
+  <h3><span class="emo">🌅</span>Et demain</h3>
+  <p class="note">Les Consultations jeunes consommateurs reçoivent les 12-25 ans, et aussi les parents, gratuitement et en toute confidentialité, pour faire le point sans jugement : une question, une inquiétude, une envie de réduire. Elles sont dans les Maisons des ados ou les centres d'addictologie. Adresses sur drogues-info-service.fr.</p>
+  <div class="appels">
+    <a class="appel" href="tel:0493261092"><span class="ic">🏠</span><span><b>Maison des ados 06</b><small>2A rue Raynardi, Nice — 04 93 26 10 92, lun-ven 9h-17h</small></span></a>
+  </div>
+
+  <div class="toi">
+    <p><strong>💛 Et vous ?</strong>Découvrir une consommation fait peur. Appeler les secours un soir, puis chercher conseil le lendemain, ce n'est pas dramatiser : c'est faire ce qu'il faut, dans l'ordre.</p>
   </div>
 </section>
 
@@ -2088,11 +2271,13 @@
     'retrait': ['disparait', 'repond plus', 'isole', 'chambre', 'sort plus', 'silence', 'dort'],
     'parler': ['dire', 'raconter', 'avouer', 'oser', 'secret', 'honte', 'psy', 'suivi', 'medecin'],
     'violence': ['frappe', 'tape', 'gifle', 'coup', 'coups', 'agression', 'agresse', 'viol', 'touche', 'attouchement', 'inceste'],
-    'danger': ['urgence', 'urgent', 'tout de suite', 'maintenant', '15', '17', '112', '114', 'samu', 'police', 'pompiers', '3114', '119', '3018']
+    'danger': ['urgence', 'urgent', 'tout de suite', 'maintenant', '15', '17', '112', '114', 'samu', 'police', 'pompiers', '3114', '119', '3018'],
+    'drogue': ['drogues', 'substance', 'substances', 'alcool', 'alcoolise', 'bourre', 'ivre', 'saoul', 'bu', 'boit', 'boire', 'bieres', 'biere', 'vodka', 'defonce', 'defoncee', 'stone', 'perche', 'soiree', 'teuf', 'fete', 'cannabis', 'shit', 'beuh', 'weed', 'joint', 'ecstasy', 'ecsta', 'mdma', 'taz', 'cocaine', 'coke', 'keta', 'ketamine', 'protoxyde', 'proto', 'ballon', 'melange', 'melanges', 'malaise', 'bad trip', 'badtrip', 'overdose', 'cuver', 'vomit', 'vomi', 'consommation', 'consomme', 'rdr', 'reduction des risques']
   };
   const EXTRA = {
     'm-relation': ['localisation', 'jalousie', 'il insiste', 'telephone', 'peur'], 'relation': ['localisation', 'jalousie', 'il insiste', 'telephone'], 'p-relation': ['localisation', 'jalousie', 'telephone'],
     'harcele': ['harcelement', 'photo', 'telephone', 'peur'], 'm-harcele': ['harcelement', 'photo', 'telephone', 'peur'], 'p-harcele': ['harcelement', 'photo', 'telephone'],
+    'drogue': ['drogue', 'panique'], 'm-drogue': ['drogue', 'panique'], 'p-drogue': ['drogue'],
     'violence': ['violence', 'il insiste', 'peur', 'photo'], 'm-violence': ['violence', 'il insiste', 'peur', 'photo'],
     'mourir': ['mourir'], 'm-mourir': ['mourir'], 'p-mourir': ['mourir'], 'danger': ['danger', 'mourir', 'violence'],
     'mal': ['mal'], 'm-mal': ['mal'], 'p-mal': ['mal'],
@@ -2131,20 +2316,22 @@
   // ---- Index A-Z : mots courants -> fiches existantes, par parcours. Aucun nouveau contenu.
   const AZ = {
     accueil: {
-      'Adieu': ['mourir'], 'Alcool': ['mal'], 'Angoisse': ['panique'], 'Automutilation': ['mal'],
+      'Adieu': ['mourir'], 'Alcool': ['drogue'], 'Angoisse': ['panique'], 'Automutilation': ['mal'],
       'Chantage': ['violence', 'harcele'], 'Collège': ['lycee'], 'Contrôle': ['relation'], 'Coups': ['violence', 'maison'],
       'Cours (n\u2019y va plus)': ['retrait', 'lycee'], 'Disputes à la maison': ['maison'], 'Doute': ['doute'],
       'Fugue': ['maison'], 'Harcèlement': ['harcele'], 'Idées noires': ['mourir'], 'Isolement': ['retrait', 'relation'],
+      'Bad trip': ['drogue'], 'Drogues': ['drogue'], 'Soirée, malaise': ['drogue'],
       'Jalousie': ['relation'], 'Localisation': ['relation'], 'Lycée': ['lycee'], 'Médicaments': ['mal'],
       'Menaces': ['violence', 'harcele'], 'Mourir': ['mourir'], 'Panique': ['panique'], 'Peur': ['maison', 'violence', 'panique'],
       'Photo qui circule': ['harcele'], 'Prof': ['lycee'], 'Réseaux': ['harcele'], 'Scarification': ['mal'],
       'Silence': ['retrait'], 'Suicide': ['mourir'], 'Téléphone surveillé': ['relation'], 'Violences': ['violence']
     },
     moi: {
-      'Adieu': ['m-mourir'], 'Alcool': ['m-mal'], 'Amis qui m\u2019excluent': ['m-lycee'], 'Angoisse': ['m-panique'],
+      'Adieu': ['m-mourir'], 'Alcool': ['m-drogue'], 'Amis qui m\u2019excluent': ['m-lycee'], 'Angoisse': ['m-panique'],
       'Automutilation': ['m-mal'], 'Chantage': ['m-violence', 'm-harcele'], 'Collège': ['m-lycee'], 'Contrôle': ['m-relation'],
       'Copain, copine': ['m-relation'], 'Coups': ['m-violence', 'm-maison'], 'Disputes à la maison': ['m-maison'],
       'Fugue': ['m-maison'], 'Harcèlement': ['m-harcele'], 'Idées noires': ['m-mourir'], 'Il insiste': ['m-relation', 'm-violence'],
+      'Bad trip': ['m-drogue'], 'Drogues': ['m-drogue'], 'Soirée, malaise': ['m-drogue'],
       'Jalousie': ['m-relation'], 'Localisation': ['m-relation'], 'Lycée': ['m-lycee'], 'Médicaments': ['m-mal'],
       'Menaces': ['m-violence', 'm-harcele'], 'Mourir': ['m-mourir'], 'Oser en parler': ['oser', 'peur'], 'Panique': ['m-panique'],
       'Peur de parler': ['peur'], 'Photo qui circule': ['m-harcele'], 'Prof': ['m-lycee'], 'Psy, suivi': ['suivi'],
@@ -2153,9 +2340,10 @@
       'Après en avoir parlé': ['apres']
     },
     parents: {
-      'Adieu': ['p-mourir'], 'Angoisse': ['p-panique'], 'Automutilation': ['p-mal'], 'Chambre (ne sort plus)': ['p-chambre'],
+      'Adieu': ['p-mourir'], 'Alcool': ['p-drogue'], 'Angoisse': ['p-panique'], 'Automutilation': ['p-mal'], 'Chambre (ne sort plus)': ['p-chambre'],
       'Collège, lycée': ['p-harcele', 'p-chambre'], 'Contrôle': ['p-relation'], 'Cours (n\u2019y va plus)': ['p-chambre'],
       'Doute': ['p-doute'], 'Harcèlement': ['p-harcele'], 'Idées noires': ['p-mourir'], 'Isolement': ['p-chambre', 'p-relation'],
+      'Drogues': ['p-drogue'], 'Consommation': ['p-drogue'],
       'Jalousie': ['p-relation'], 'Médicaments': ['p-mal'], 'Moqueries': ['p-harcele'], 'Mourir': ['p-mourir'],
       'Panique': ['p-panique'], 'Photo qui circule': ['p-harcele'], 'Qui appeler': ['parent'], 'Relation amoureuse': ['p-relation'],
       'Réseaux': ['p-harcele'], 'Scarification': ['p-mal'], 'Suicide': ['p-mourir'], 'Urgence': ['parent']
