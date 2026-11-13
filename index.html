@@ -22,6 +22,7 @@
     --framboise:#F0407A;
     --emeraude:#00D084;
     --cyan:#22DDE0;
+    --orchidee:#E06BFF;
     --rouge:#D7261C;
     --alerte:#FF4D6D;
     --menthe:#2EE6B0;
@@ -165,6 +166,9 @@
   .appel.rouge{background:var(--rouge);color:#fff;border-color:transparent;box-shadow:0 8px 24px rgba(255,59,48,.35)}
   .appel.rouge .ic{background:rgba(255,255,255,.2)}
   .appel.rouge small{color:#fff}
+  .mentions{margin-top:14px;border-top:1px solid rgba(255,255,255,.18);padding-top:10px}
+  .mentions summary{cursor:pointer;font-weight:800;color:var(--papier)}
+  .mentions p{font-size:13px;line-height:1.45;margin:8px 0 0}
   .urgence{border:2px solid var(--rouge);border-radius:var(--r);padding:16px;margin:26px 0;background:rgba(255,59,48,.1);display:grid;gap:10px}
   .urgence p{margin:0;font-weight:800;color:#fff;font-size:17px}
   .urgence .ecoute{margin-top:10px;padding-top:12px;border-top:1px dashed rgba(255,255,255,.35);color:var(--papier);font-weight:700}
@@ -302,6 +306,7 @@
     <li class="grave" style="--c:var(--alerte)"><button class="tuile" data-go="mal"><span class="emo" aria-hidden="true">🩸</span><span class="t"><b>S'est fait du mal</b><span>Blessures, automutilation, prise de substances</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--emeraude)"><button class="tuile" data-go="maison"><span class="emo" aria-hidden="true">🏠</span><span class="t"><b>Ça va pas chez lui/elle</b><span>Disputes, peur, coups, envie de fuguer</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--cyan)"><button class="tuile" data-go="harcele"><span class="emo" aria-hidden="true">😥</span><span class="t"><b>On le/la harcèle</b><span>Au lycée, sur les réseaux, menaces, humiliations</span></span><span class="chev" aria-hidden="true">›</span></button></li>
+    <li style="--c:var(--orchidee)"><button class="tuile" data-go="drogue"><span class="emo" aria-hidden="true">🍻</span><span class="t"><b>Alcool, drogues</b><span>Malaise en soirée, bad trip, mélanges, questions</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li class="grave" style="--c:var(--alerte)"><button class="tuile" data-go="violence"><span class="emo" aria-hidden="true">🛑</span><span class="t"><b>Quelqu'un lui fait du mal</b><span>Violences psychologiques, physiques ou sexuelles</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--sauge)"><button class="tuile" data-go="lycee"><span class="emo" aria-hidden="true">🏫</span><span class="t"><b>Ça va pas au collège/lycée</b><span>Peur d'y aller, amis, exclusion, problème avec un adulte</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--menthe)"><button class="tuile" data-go="relation"><span class="emo" aria-hidden="true">💬</span><span class="t"><b>Sa relation m'inquiète</b><span>Contrôle, jalousie, isolement, peur de l'autre</span></span><span class="chev" aria-hidden="true">›</span></button></li>
@@ -314,7 +319,7 @@
     <ul class="tuiles petites">
       <li style="--c:var(--abricot)"><button class="tuile" data-go="moi"><span class="emo" aria-hidden="true">🫶</span><span class="t"><b>C'est moi qui vais mal</b><span>Ouvrir la porte « C'est pour moi » : maison, harcèlement, violences, ma relation, lycée, peur de parler</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     </ul>
-    <p class="perso-note">Version 16.9 · prototype en cours de validation. Tests avec des jeunes et des parents prévus pour le pilote 2027.</p>
+    <p class="perso-note">Version 17.1 · prototype en cours de validation. Tests avec des jeunes et des parents prévus pour le pilote 2027.</p>
   </div>
 </section>
 
@@ -342,6 +347,7 @@
     <li style="--c:var(--ciel)"><button class="tuile" data-go="m-panique"><span class="emo" aria-hidden="true">😱</span><span class="t"><b>Je panique</b><span>Cœur qui s'emballe, je n'arrive plus à respirer ou à me calmer</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--emeraude)"><button class="tuile" data-go="m-maison"><span class="emo" aria-hidden="true">🏠</span><span class="t"><b>Ça va pas à la maison</b><span>Disputes, peur, coups, envie de fuguer</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--cyan)"><button class="tuile" data-go="m-harcele"><span class="emo" aria-hidden="true">😥</span><span class="t"><b>On me harcèle</b><span>Au lycée, sur les réseaux, menaces, photo qui circule</span></span><span class="chev" aria-hidden="true">›</span></button></li>
+    <li style="--c:var(--orchidee)"><button class="tuile" data-go="m-drogue"><span class="emo" aria-hidden="true">🍻</span><span class="t"><b>Alcool, drogues</b><span>Je me sens mal, bad trip, mélanges, questions</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li class="grave" style="--c:var(--alerte)"><button class="tuile" data-go="m-violence"><span class="emo" aria-hidden="true">🛑</span><span class="t"><b>Quelqu'un me fait du mal</b><span>Coups, menaces, contrôle, gestes que je ne veux pas</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--menthe)"><button class="tuile" data-go="m-relation"><span class="emo" aria-hidden="true">💬</span><span class="t"><b>Je me pose des questions sur ma relation</b><span>Jalousie, contrôle, pression, peur de dire non…</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--sauge)"><button class="tuile" data-go="m-lycee"><span class="emo" aria-hidden="true">🏫</span><span class="t"><b>Ça va pas au collège/lycée</b><span>Peur d'y aller, seul·e, mes amis, un adulte</span></span><span class="chev" aria-hidden="true">›</span></button></li>
@@ -350,7 +356,7 @@
     <li style="--c:var(--ciel)"><button class="tuile" data-go="apres"><span class="emo" aria-hidden="true">🌙</span><span class="t"><b>J'ai parlé, et ce soir ça va pas</b><span>J'en ai parlé à quelqu'un, je suis rentré·e, et ça ne va pas</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--menthe)"><button class="tuile" data-go="suivi"><span class="emo" aria-hidden="true">👩‍⚕️</span><span class="t"><b>Je suis suivi·e, mais ça va moins bien</b><span>J'ai déjà un psy, mais je n'ose pas le déranger, ou il/elle n'est pas joignable</span></span><span class="chev" aria-hidden="true">›</span></button></li>
   </ul>
-  <p class="perso-note">Version 16.9 · prototype en cours de validation. Cette page ne demande ni compte ni données.</p>
+  <p class="perso-note">Version 17.1 · prototype en cours de validation. Cette page ne demande ni compte ni données.</p>
 </section>
 
 <!-- ACCUEIL PARENTS -->
@@ -376,6 +382,7 @@
     <li class="grave" style="--c:var(--alerte)"><button class="tuile" data-go="p-mal"><span class="emo" aria-hidden="true">🩸</span><span class="t"><b>S'est fait du mal</b><span>Mon ado s'est fait du mal, j'ai vu des marques, ou on me l'a dit</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--menthe)"><button class="tuile" data-go="p-relation"><span class="emo" aria-hidden="true">💬</span><span class="t"><b>Sa relation</b><span>Sa relation amoureuse m'inquiète</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--cyan)"><button class="tuile" data-go="p-harcele"><span class="emo" aria-hidden="true">😥</span><span class="t"><b>On le/la harcèle</b><span>Au collège, au lycée, sur les réseaux : moqueries, exclusion, menaces, photo</span></span><span class="chev" aria-hidden="true">›</span></button></li>
+    <li style="--c:var(--orchidee)"><button class="tuile" data-go="p-drogue"><span class="emo" aria-hidden="true">🍻</span><span class="t"><b>Alcool, drogues</b><span>Malaise en soirée, consommation qui inquiète, questions</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--lilas)"><button class="tuile" data-go="p-chambre"><span class="emo" aria-hidden="true">🔕</span><span class="t"><b>Ne sort plus</b><span>Mon ado ne sort plus de sa chambre, ne va plus en cours, ne parle plus</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--ciel)"><button class="tuile" data-go="p-panique"><span class="emo" aria-hidden="true">😱</span><span class="t"><b>Panique</b><span>Mon ado panique, n'arrive plus à respirer ou à se calmer</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--citron)"><button class="tuile" data-go="p-doute"><span class="emo" aria-hidden="true">🤔</span><span class="t"><b>Pas sûr·e</b><span>Je ne sais pas si c'est grave</span></span><span class="chev" aria-hidden="true">›</span></button></li>
@@ -425,7 +432,7 @@
   <ul class="simple nope">
     <li>Interroger comme une enquête : pourquoi, depuis quand, à cause de qui.</li>
     <li>Punir, ou confisquer le téléphone : c'est souvent son lien de secours.</li>
-    <li>Promettre de garder le secret vis-à-vis de l'autre parent ou des soignants.</li>
+    <li>Promettre de garder le secret vis-à-vis des soignants. Et si l'autre parent est à l'origine du danger, ce n'est pas lui qu'il faut informer : tournez-vous vers un adulte sûr et vers les professionnels.</li>
   </ul>
 
   <h3><span class="emo">🌅</span>Et demain</h3>
@@ -448,7 +455,7 @@
     <p class="intro">Des marques, un aveu, un message d'un·e ami·e. Se faire du mal peut être une façon de faire face à une souffrance. Ce n'est ni une manipulation, ni un caprice. Ça mérite une aide, parfois des soins urgents, et votre réaction de ce soir compte.</p></div>
 
   <div class="urgence">
-    <p>Si ça saigne beaucoup, s'il/elle a pris quelque chose, ou si un geste grave est en cours :</p>
+    <p>Si ça saigne beaucoup, s'il/elle a pris quelque chose (médicaments, alcool, autre produit : même sans symptôme, n'attendez pas), ou si un geste grave est en cours :</p>
     <a class="appel rouge" href="tel:15"><span class="ic">📞</span><span><b>15</b><small>SAMU, tout de suite</small></span></a>
     <div class="ecoute">
     <p>S'il/elle parle aussi de mourir, sans danger immédiat : pour écouter et évaluer.</p>
@@ -538,9 +545,9 @@
     <p>S'il y a des menaces, des coups, ou si votre ado a peur :</p>
     <a class="appel rouge" href="tel:17"><span class="ic">📞</span><span><b>17</b><small>Police — si quelqu'un est menacé ou violent maintenant</small></span></a>
     <a class="appel rouge" href="tel:119"><span class="ic">📞</span><span><b>119</b><small>Mineur en danger, quel que soit l'auteur — 24h/24, gratuit, aussi pour les parents</small></span></a>
-    <a class="appel web" href="https://www.allo119.gouv.fr" target="_blank" rel="noopener"><span class="ic">💬</span><span><b>Tchat 119</b><small>Par écrit, sur allo119.gouv.fr — ouvert l'après-midi et le soir, horaires et conditions sur le site</small></span></a>
+    <a class="appel web" href="https://www.allo119.gouv.fr" target="_blank" rel="noopener"><span class="ic">💬</span><span><b>Tchat 119</b><small>Sur allo119.gouv.fr — tchat réservé aux jeunes, selon les conditions du service. Pour un adulte : le téléphone, ou le formulaire non urgent du site</small></span></a>
     <a class="appel" href="tel:3919"><span class="ic">📞</span><span><b>3919</b><small>Violences dans le couple : écoute et orientation pour les femmes et leurs proches. Ce n'est pas un numéro d'urgence</small></span></a>
-    <a class="appel" href="tel:116006"><span class="ic">📞</span><span><b>116 006</b><small>France Victimes — tous âges, tous publics, 9h-20h, 7j/7, gratuit. Si tu as plus de 18 ans, c'est ta porte d'entrée</small></span></a>
+    <a class="appel" href="tel:116006"><span class="ic">📞</span><span><b>116 006</b><small>France Victimes — tous âges, tous publics, 9h-20h, 7j/7, gratuit. Pour vous, et pour votre enfant à partir de 18 ans</small></span></a>
   </div>
 
   <h3><span class="emo">🌅</span>Et demain</h3>
@@ -743,7 +750,9 @@
 
   <h3><span class="emo">📞</span>Cette nuit</h3>
   <div class="appels">
-    <a class="appel rouge" href="tel:119"><span class="ic">📞</span><span><b>119</b><small>Si c'est à la maison que ça se passe. Téléphone 24h/24, gratuit, n'apparaît pas sur la facture</small></span></a>
+    <a class="appel rouge" href="tel:119"><span class="ic">📞</span><span><b>119</b><small>Si c'est à la maison que ça se passe et que tu as moins de 18 ans (tchat jusqu'à 21 ans, selon le service). Téléphone 24h/24, gratuit, n'apparaît pas sur la facture</small></span></a>
+    <a class="appel" href="tel:116006"><span class="ic">📞</span><span><b>116 006</b><small>France Victimes — à partir de 18 ans, pour être écouté·e et orienté·e. 9h-20h, 7j/7, gratuit</small></span></a>
+    <a class="appel rouge" href="tel:17"><span class="ic">📞</span><span><b>17</b><small>Police — si quelqu'un te menace ou te frappe ce soir, à tout âge</small></span></a>
     <a class="appel" href="tel:3114"><span class="ic">📞</span><span><b>3114</b><small>Idées noires, 24h/24, gratuit. Si tu vas faire un geste : le 15</small></span></a>
     <a class="appel" href="sms:114"><span class="ic">💬</span><span><b>114 par SMS</b><small>Urgence seulement, si tu ne peux pas parler : police, pompiers, SAMU par écrit. Ce n'est pas un tchat d'écoute</small></span></a>
   </div>
@@ -772,7 +781,8 @@
   <ol class="etapes">
     <li>Écris à ton psy un message court. Il ou elle préfère cent fois un message « ça va moins bien » qu'un silence jusqu'au rendez-vous.</li>
     <li>Ne reste pas suspendu·e à la réponse. Un psy n'est pas toujours joignable le jour même, et ce n'est pas contre toi. En attendant, il y a d'autres relais, et ils sont là pour ça.</li>
-    <li>Si tu penses à mourir, ou si tu n'arrives plus à manger ni à boire : ce n'est pas « jusqu'au prochain rendez-vous ». C'est aujourd'hui, avec un médecin ou le 3114.</li>
+    <li>Si tu penses à mourir : ce n'est pas « jusqu'au prochain rendez-vous ». C'est aujourd'hui, avec le 3114 ou un médecin.</li>
+    <li>Si tu n'arrives plus à manger ni à boire : c'est aujourd'hui aussi, avec un médecin ou le 15. Une ligne d'écoute ne remplace pas un examen.</li>
   </ol>
 
   <h3><span class="emo">💬</span>Tu peux écrire</h3>
@@ -846,17 +856,20 @@
   <button class="retour" data-go="back">Retour</button>
   <div class="hero"><span class="emo" aria-hidden="true">🚨</span><h2>Si toi, ou quelqu'un, risque d'être blessé maintenant</h2>
     <p class="intro">Tu n'as pas à décider seul·e si c'est « assez grave ». Appelle. Ils ont l'habitude et ils ne te jugeront pas. Si tu ne peux pas parler : le 114 par SMS.</p></div>
-  <h3><span class="emo">📞</span>Appelle</h3>
+  <h3><span class="emo">📞</span>Appelle, maintenant</h3>
   <div class="appels">
-    <a class="appel rouge" href="tel:15"><span class="ic">📞</span><span><b>15</b><small>SAMU — blessure, saignement, malaise, médicaments, ou quelqu'un qui va passer à l'acte</small></span></a>
+    <a class="appel rouge" href="tel:15"><span class="ic">📞</span><span><b>15</b><small>SAMU — blessure, saignement, malaise, médicaments ou produit avalé, ou quelqu'un qui va passer à l'acte</small></span></a>
     <a class="appel rouge" href="tel:17"><span class="ic">📞</span><span><b>17</b><small>Police — si quelqu'un est menacé, frappé ou violent maintenant</small></span></a>
+    <a class="appel rouge" href="tel:112"><span class="ic">📞</span><span><b>112</b><small>Numéro d'urgence européen — si le 15 ou le 17 ne passent pas, ou ailleurs dans l'Union européenne</small></span></a>
+    <a class="appel rouge" href="sms:114"><span class="ic">💬</span><span><b>114 par SMS</b><small>Si tu ne peux pas parler : police, pompiers, SAMU par écrit. Urgence seulement, ce n'est pas un tchat d'écoute</small></span></a>
+  </div>
+  <h3><span class="emo">🫶</span>Pour être écouté·e et orienté·e</h3>
+  <div class="appels">
     <a class="appel" href="tel:3114"><span class="ic">📞</span><span><b>3114</b><small>Idées de mort, sans geste engagé — écoute, évaluation, orientation, 24h/24. Ce n'est pas une ambulance : si c'est imminent, le 15</small></span></a>
-    <a class="appel" href="tel:112"><span class="ic">📞</span><span><b>112</b><small>Numéro d'urgence européen — si le 15 ou le 17 ne passent pas, ou depuis l'étranger</small></span></a>
-    <a class="appel" href="tel:119"><span class="ic">📞</span><span><b>119</b><small>Moins de 18 ans en danger, à la maison ou ailleurs, quel que soit l'auteur — 24h/24, gratuit</small></span></a>
+    <a class="appel" href="tel:119"><span class="ic">📞</span><span><b>119</b><small>Moins de 18 ans en danger, à la maison ou ailleurs, quel que soit l'auteur — 24h/24, gratuit. À partir de 18 ans : 17 si danger, 116 006 pour être orienté·e</small></span></a>
     <a class="appel web" href="https://www.allo119.gouv.fr" target="_blank" rel="noopener"><span class="ic">💬</span><span><b>Tchat 119</b><small>Par écrit, sur allo119.gouv.fr — ouvert l'après-midi et le soir, horaires et conditions sur le site</small></span></a>
     <a class="appel" href="tel:3018"><span class="ic">📱</span><span><b>3018</b><small>Harcèlement, menaces, photo qui circule — 9h-23h, 7j/7</small></span></a>
     <a class="appel web" href="https://www.3018.fr" target="_blank" rel="noopener"><span class="ic">💬</span><span><b>Tchat 3018</b><small>Par écrit, sur 3018.fr — 9h-23h, 7j/7</small></span></a>
-    <a class="appel" href="sms:114"><span class="ic">💬</span><span><b>114 par SMS</b><small>Urgence seulement, si tu ne peux pas parler : police, pompiers, SAMU par écrit. Ce n'est pas un tchat d'écoute</small></span></a>
   </div>
   <h3><span class="emo">⚡</span>Pendant que tu appelles</h3>
   <ol class="etapes">
@@ -931,7 +944,7 @@
     <p class="intro">Souvent ça arrive comme ça : « je viens de le faire », une photo, « dis rien ». Tu n'as rien à réparer ce soir. Tu as juste à rester là, et à savoir quand appeler.</p></div>
 
   <div class="urgence">
-    <p>Si ça saigne beaucoup, si il/elle a pris quelque chose, ou si un geste grave est en cours :</p>
+    <p>Si ça saigne beaucoup, si il/elle a pris quelque chose (médicaments, alcool, autre produit : même sans symptôme, n'attends pas), ou si un geste grave est en cours :</p>
     <a class="appel rouge" href="tel:15"><span class="ic">📞</span><span><b>15</b><small>SAMU, tout de suite</small></span></a>
     <div class="ecoute">
     <p>S'il/elle parle aussi de mourir, sans danger immédiat : pour écouter et évaluer, avec toi.</p>
@@ -989,12 +1002,12 @@
 
   <h3><span class="emo">👀</span>Les six signaux</h3>
   <ul class="simple">
-    <li>Il/elle veut savoir où tu es, avec qui, et vérifie.</li>
-    <li>Tu vois moins tes potes, et c'est toujours lié à lui/elle.</li>
-    <li>Tu changes ta façon de t'habiller, de parler, de sortir pour éviter une crise.</li>
-    <li>Génial·e, puis horrible, puis génial·e — tu marches sur des œufs.</li>
-    <li>Quand tu doutes, tu finis par te dire que c'est toi le problème.</li>
-    <li>Tu penses à sa réaction avant de décider quoi que ce soit.</li>
+    <li>Son/sa partenaire veut savoir où il/elle est, avec qui, et vérifie.</li>
+    <li>Tu le/la vois moins, et c'est toujours lié à son/sa partenaire.</li>
+    <li>Il/elle change sa façon de s'habiller, de parler, de sortir pour éviter une crise.</li>
+    <li>Génial·e, puis horrible, puis génial·e : il/elle marche sur des œufs.</li>
+    <li>Quand il/elle doute, il/elle finit par dire que c'est lui/elle le problème.</li>
+    <li>Il/elle pense à la réaction de l'autre avant de décider quoi que ce soit.</li>
   </ul>
 
   <h3><span class="emo">⚡</span>Maintenant</h3>
@@ -1024,7 +1037,7 @@
     <a class="appel rouge" href="tel:119"><span class="ic">📞</span><span><b>119</b><small>Moins de 18 ans et en danger, quel que soit l'auteur — 24h/24, gratuit</small></span></a>
     <a class="appel web" href="https://www.allo119.gouv.fr" target="_blank" rel="noopener"><span class="ic">💬</span><span><b>Tchat 119</b><small>Par écrit, sur allo119.gouv.fr — ouvert l'après-midi et le soir, horaires et conditions sur le site</small></span></a>
     <a class="appel" href="tel:3919"><span class="ic">📞</span><span><b>3919</b><small>Violences dans le couple : écoute et orientation pour les femmes et leurs proches. Ce n'est pas un numéro d'urgence</small></span></a>
-    <a class="appel" href="tel:116006"><span class="ic">📞</span><span><b>116 006</b><small>France Victimes — tous âges, tous publics, 9h-20h, 7j/7, gratuit. Si tu as plus de 18 ans, c'est ta porte d'entrée</small></span></a>
+    <a class="appel" href="tel:116006"><span class="ic">📞</span><span><b>116 006</b><small>France Victimes — tous âges, tous publics, 9h-20h, 7j/7, gratuit. À partir de 18 ans, c'est ta porte d'entrée</small></span></a>
   </div>
 
   <h3><span class="emo">🌅</span>Et demain</h3>
@@ -1037,6 +1050,190 @@
 
   <div class="toi">
     <p><strong>💛 Et toi ?</strong>Tu ne peux pas le/la faire partir. Tu peux rester, et rappeler que tu es là quand il/elle sera prêt·e. C'est déjà énorme.</p>
+  </div>
+</section>
+
+<!-- DROGUE (ami) · v17.0, textes nouveaux à valider -->
+<section class="screen" id="drogue" style="--c:var(--orchidee)">
+  <button class="retour" data-go="accueil">Retour</button>
+  <div class="urgence">
+    <p>Appelle le 15 ou le 112 sans attendre, et suis leurs instructions, si la personne : ne se réveille pas quand on la secoue et qu'on lui parle fort · respire bizarrement, très lentement ou par à-coups · convulse · a une douleur dans la poitrine · est brûlante et confuse.</p>
+    <a class="appel rouge" href="tel:15"><span class="ic">📞</span><span><b>15</b><small>SAMU, tout de suite. Dis où tu es et ce qu'elle a pris, si tu le sais</small></span></a>
+    <a class="appel rouge" href="tel:112"><span class="ic">📞</span><span><b>112</b><small>Si le 15 ne passe pas, ou ailleurs dans l'Union européenne</small></span></a>
+  </div>
+
+  <div class="hero"><span class="emo" aria-hidden="true">🍻</span><h2>Alcool, drogues : son état t'inquiète</h2>
+    <p class="intro">En soirée, après un mélange, un bad trip, ou juste trop. Tu n'as pas besoin de savoir ce que c'est pour agir. Si tu as un doute sur sa vie, tu appelles : les secours ne sont pas là pour juger, ni pour punir. S'il/elle a pris quelque chose pour se faire du mal : 15 ou 112 tout de suite, même s'il/elle semble aller bien.</p></div>
+
+  <div class="choix-titre">Qu'est-ce qui se passe ?</div>
+  <div class="choix">
+    <button class="chip" data-tip="Reste avec lui/elle, parle-lui, garde-le/la éveillé·e et assis·e ou sur le côté, pas sur le dos. Pas d'eau froide, pas de « fais-le vomir », pas d'autre produit pour « compenser ». Si tu n'arrives pas à le/la réveiller ou si la respiration est bizarre : 15, tout de suite.">Mon pote a consommé et son état m'inquiète</button>
+    <button class="chip" data-tip="Un bad trip, c'est une angoisse très forte qui peut passer en étant au calme, avec quelqu'un de rassurant. Mais tu ne peux pas savoir si c'est « seulement » ça. Si ça s'aggrave, si la personne se perd, ne te reconnaît plus, ou fait des gestes dangereux : 15. En soirée, cherche l'équipe de réduction des risques ou la sécurité.">Il/elle fait un bad trip</button>
+    <button class="chip" data-tip="Ne le/la laisse jamais dormir seul·e « pour cuver ». Quelqu'un reste à côté, le/la met sur le côté, vérifie qu'il/elle respire et répond. Si tu n'arrives plus à le/la réveiller : 15.">Il/elle s'est endormi·e, je sais pas si c'est normal</button>
+    <button class="chip" data-tip="Tu as le droit de t'inquiéter pour quelqu'un qui consomme souvent, même sans malaise. Tu peux en parler avec lui/elle sans jugement, et toi, tu peux appeler Drogues Info Service pour savoir comment t'y prendre.">Sa consommation m'inquiète, en général</button>
+  </div>
+  <div class="chip-tip" aria-live="polite"></div>
+
+  <h3><span class="emo">⚡</span>Maintenant</h3>
+  <ol class="etapes">
+    <li>Si un seul des signes de danger est là : 15 ou 112, sans attendre. Tu ne risques rien en appelant, lui/elle risque tout si tu n'appelles pas.</li>
+    <li>Reste avec lui/elle. Ne le/la laisse pas seul·e, ni dormir seul·e. Sur le côté s'il/elle somnole, pour ne pas s'étouffer.</li>
+    <li>Pas d'autre produit pour « rééquilibrer », pas de café, pas d'eau froide, pas de douche. Ça n'aide pas et ça peut aggraver.</li>
+    <li>Cherche de l'aide sur place : l'équipe de réduction des risques, la sécurité, un adulte sobre. Dis ce qu'il/elle a pris, si tu le sais. Personne n'est là pour punir.</li>
+  </ol>
+
+  <h3><span class="emo">💬</span>Tu peux écrire</h3>
+  <div class="imsg">
+    <div class="top"><div class="av">👤</div><b>Ton pote</b></div>
+    <div class="fil">
+      <div class="date">Aujourd'hui</div>
+      <div class="aide">Messages à copier et à envoyer toi-même</div>
+      <button class="bulle"><q>Viens avec moi, on va chercher de l'aide. Dis-moi ce que tu as pris, si tu le sais.</q></button>
+      <button class="bulle"><q>Je reste avec toi. Je ne te lâche pas, et je ne te juge pas.</q></button>
+    </div>
+    <div class="pied">Aucun message n'est envoyé depuis SIGNAUX.</div>
+  </div>
+
+  <h3><span class="emo">🛡️</span>Pour les prochaines soirées</h3>
+  <ul class="simple">
+    <li>Un produit pris seul peut déjà provoquer un malaise grave. Les mélanges (alcool plus médicaments, alcool plus autre produit) peuvent augmenter les risques et rendre les effets plus difficiles à prévoir. Si il/elle se sent mal, demandez de l'aide tout de suite.</li>
+    <li>Personne ne conduit après avoir consommé. Ni voiture, ni scooter, ni trottinette. Vous rentrez autrement, même tard.</li>
+    <li>Une personne de confiance reste sobre, et vous savez où sont les secours et l'équipe de réduction des risques sur place.</li>
+    <li>Un produit dont tu ne sais pas ce qu'il contient, c'est un produit dont tu ne sais pas ce qu'il va faire.</li>
+  </ul>
+  <h3><span class="emo">📞</span>Pour les questions, sans urgence</h3>
+  <div class="appels">
+    <a class="appel" href="tel:0800231313"><span class="ic">📞</span><span><b>0 800 23 13 13</b><small>Drogues Info Service — tous les jours, anonyme et gratuit, horaires sur drogues-info-service.fr. Pour toi ou pour un proche. Ce n'est pas un numéro d'urgence</small></span></a>
+    <a class="appel web" href="https://www.drogues-info-service.fr" target="_blank" rel="noopener"><span class="ic">💬</span><span><b>Tchat et adresses</b><small>drogues-info-service.fr — tchat, et la liste des Consultations jeunes consommateurs près de chez toi</small></span></a>
+    <a class="appel" href="tel:0800235236"><span class="ic">📞</span><span><b>Fil Santé Jeunes</b><small>0 800 235 236, anonyme, gratuit, 9h-23h — pour parler de ce qui s'est passé</small></span></a>
+  </div>
+  <h3><span class="emo">🌅</span>Et demain</h3>
+  <p class="note">Les Consultations jeunes consommateurs reçoivent les 12-25 ans, et aussi les parents, gratuitement et en toute confidentialité, pour faire le point sans jugement : une question, une inquiétude, une envie de réduire. Elles sont dans les Maisons des ados ou les centres d'addictologie. Adresses sur drogues-info-service.fr.</p>
+  <div class="appels">
+    <a class="appel" href="tel:0493261092"><span class="ic">🏠</span><span><b>Maison des ados 06</b><small>2A rue Raynardi, Nice — 04 93 26 10 92, lun-ven 9h-17h</small></span></a>
+  </div>
+
+  <div class="toi">
+    <p><strong>💛 Et toi ?</strong>Appeler les secours pour un pote, ce n'est pas le trahir. C'est ce qu'un pote fait. Et si ça t'a secoué·e, tu peux en parler, à Fil Santé Jeunes ou à un adulte sûr.</p>
+  </div>
+</section>
+
+<!-- M-DROGUE (moi) · v17.0, textes nouveaux à valider -->
+<section class="screen" id="m-drogue" style="--c:var(--orchidee)">
+  <button class="retour" data-go="moi">Retour</button>
+  <div class="urgence">
+    <p>Si tu as pris quelque chose et que tu as du mal à respirer, une douleur dans la poitrine, que tu te sens partir, que tu es brûlant·e et confus·e, ou que tu ne sais plus où tu es : appelle le 15 ou le 112, ou demande à quelqu'un de le faire. Dis ce que tu as pris, si tu le sais. Si tu as pris quelque chose pour te faire du mal : appelle aussi, même sans symptôme.</p>
+    <a class="appel rouge" href="tel:15"><span class="ic">📞</span><span><b>15</b><small>SAMU, tout de suite. Personne n'est là pour te juger</small></span></a>
+    <a class="appel rouge" href="tel:112"><span class="ic">📞</span><span><b>112</b><small>Si le 15 ne passe pas</small></span></a>
+  </div>
+  <div class="hero"><span class="emo" aria-hidden="true">🍻</span><h2>Alcool, drogues : ça va pas</h2>
+    <p class="intro">Tu as pris quelque chose et tu ne te sens pas bien, ou tu te poses des questions sur ce que tu consommes. Ici, pas de morale. Juste quoi faire, et à qui parler.</p></div>
+
+  <div class="choix-titre">Qu'est-ce qui se passe ?</div>
+  <div class="choix">
+    <button class="chip" data-tip="Ne reste pas seul·e. Dis-le à quelqu'un de sobre, tout de suite, et reste avec lui/elle. Si tu n'as personne : 15. Ne prends rien d'autre pour « faire passer ». Assieds-toi ou allonge-toi sur le côté, au calme.">J'ai pris quelque chose et je me sens mal</button>
+    <button class="chip" data-tip="Une angoisse très forte, l'impression de devenir fou/folle, ça peut être un bad trip. Mets-toi au calme avec une personne sobre. On ne peut pas vérifier ici qu'il s'agit seulement d'un bad trip. Si ton état s'aggrave, si tu es confus·e ou si tu as peur pour ta sécurité, appelle le 15.">Je fais un bad trip</button>
+    <button class="chip" data-tip="Alcool plus médicaments, alcool plus autre produit, ou plusieurs produits : les effets deviennent plus difficiles à prévoir et les risques peuvent augmenter. Un produit pris seul peut déjà provoquer un malaise grave. Si tu te sens mal ou bizarre : ne reste pas seul·e, et demande de l'aide tout de suite.">J'ai mélangé et je sais pas ce que ça fait</button>
+    <button class="chip" data-tip="Tu peux en parler sans que ça devienne une affaire. Les Consultations jeunes consommateurs sont gratuites, confidentielles, sans jugement, et on peut y aller juste pour une question. Drogues Info Service répond aussi, par téléphone ou par tchat.">Ma consommation m'inquiète</button>
+  </div>
+  <div class="chip-tip" aria-live="polite"></div>
+  <div class="urgence">
+    <p>Tu as pris un médicament, de l'alcool ou un autre produit pour te faire du mal ? Appelle le 15 ou le 112 maintenant, même si tu te sens encore bien. N'attends pas les symptômes. Dis ce que tu as pris, si tu le sais, et suis les consignes des secours.</p>
+    <a class="appel rouge" href="tel:15"><span class="ic">📞</span><span><b>15</b><small>SAMU, maintenant, même sans symptôme</small></span></a>
+    <a class="appel rouge" href="tel:112"><span class="ic">📞</span><span><b>112</b><small>Si le 15 ne passe pas</small></span></a>
+    <div class="ecoute"><p>Ensuite, pour ne pas rester seul·e avec ça : le 3114, 24h/24, et la fiche <button class="lien" data-go="m-mal">« Je me suis fait du mal »</button>.</p></div>
+  </div>
+
+  <h3><span class="emo">⚡</span>Maintenant</h3>
+  <ol class="etapes">
+    <li>Dis-le à quelqu'un, maintenant. Un pote sobre, la sécurité, l'équipe de réduction des risques, un adulte. « J'ai pris ça, je me sens mal. »</li>
+    <li>Ne reste pas seul·e, et ne t'isole pas pour « cuver ». Quelqu'un reste à côté de toi.</li>
+    <li>Pas d'autre produit, pas de café, pas d'eau froide pour « rattraper ». Ça peut aggraver.</li>
+    <li>Tu ne conduis pas, et tu ne montes pas avec quelqu'un qui a consommé. Tu rentres autrement, même tard.</li>
+  </ol>
+
+  <h3><span class="emo">💬</span>Tu peux écrire</h3>
+  <div class="imsg">
+    <div class="top"><div class="av">👤</div><b>Un·e pote ou un adulte</b></div>
+    <div class="fil">
+      <div class="date">Aujourd'hui</div>
+      <div class="aide">Messages à copier et à envoyer toi-même</div>
+      <button class="bulle"><q>J'ai pris quelque chose et je me sens pas bien. Tu peux venir, ou m'appeler ?</q></button>
+      <button class="bulle"><q>Je me pose des questions sur ce que je consomme. Je peux t'en parler, sans que tu juges ?</q></button>
+    </div>
+    <div class="pied">Aucun message n'est envoyé depuis SIGNAUX.</div>
+  </div>
+  <h3><span class="emo">📞</span>Pour les questions, sans urgence</h3>
+  <div class="appels">
+    <a class="appel" href="tel:0800231313"><span class="ic">📞</span><span><b>0 800 23 13 13</b><small>Drogues Info Service — tous les jours, anonyme et gratuit, horaires sur drogues-info-service.fr. Pour toi ou pour un proche. Ce n'est pas un numéro d'urgence</small></span></a>
+    <a class="appel web" href="https://www.drogues-info-service.fr" target="_blank" rel="noopener"><span class="ic">💬</span><span><b>Tchat et adresses</b><small>drogues-info-service.fr — tchat, et la liste des Consultations jeunes consommateurs près de chez toi</small></span></a>
+    <a class="appel" href="tel:0800235236"><span class="ic">📞</span><span><b>Fil Santé Jeunes</b><small>0 800 235 236, anonyme, gratuit, 9h-23h — pour parler de ce qui s'est passé</small></span></a>
+  </div>
+  <h3><span class="emo">🌅</span>Et demain</h3>
+  <p class="note">Les Consultations jeunes consommateurs reçoivent les 12-25 ans, et aussi les parents, gratuitement et en toute confidentialité, pour faire le point sans jugement : une question, une inquiétude, une envie de réduire. Elles sont dans les Maisons des ados ou les centres d'addictologie. Adresses sur drogues-info-service.fr.</p>
+  <div class="appels">
+    <a class="appel" href="tel:0493261092"><span class="ic">🏠</span><span><b>Maison des ados 06</b><small>2A rue Raynardi, Nice — 04 93 26 10 92, lun-ven 9h-17h</small></span></a>
+  </div>
+
+  <div class="toi">
+    <p><strong>💛 Et toi ?</strong>Demander de l'aide quand on a consommé, ce n'est pas se faire attraper. C'est se protéger. Tu as le droit d'être aidé·e, quoi que tu aies pris.</p>
+  </div>
+</section>
+
+<!-- P-DROGUE (parents) · v17.0, textes nouveaux à valider -->
+<section class="screen" id="p-drogue" style="--c:var(--orchidee)">
+  <button class="retour" data-go="parents">Retour</button>
+  <div class="urgence">
+    <p>Appelez le 15 ou le 112 sans attendre, et suivez leurs instructions, si la personne : ne se réveille pas quand on la secoue et qu'on lui parle fort · respire bizarrement, très lentement ou par à-coups · convulse · a une douleur dans la poitrine · est brûlante et confuse.</p>
+    <a class="appel rouge" href="tel:15"><span class="ic">📞</span><span><b>15</b><small>SAMU, tout de suite. Dites où vous êtes et ce qu'elle a pris, si vous le savez</small></span></a>
+    <a class="appel rouge" href="tel:112"><span class="ic">📞</span><span><b>112</b><small>Si le 15 ne passe pas, ou ailleurs dans l'Union européenne</small></span></a>
+  </div>
+
+  <div class="hero"><span class="emo" aria-hidden="true">🍻</span><h2>Alcool, drogues</h2>
+    <p class="intro">Votre ado rentre dans un état qui vous inquiète, ou vous découvrez une consommation. D'abord la sécurité, ensuite seulement la discussion. S'il/elle a pris quelque chose pour se faire du mal : 15 ou 112 tout de suite, même sans symptôme.</p></div>
+
+  <div class="choix-titre">Qu'est-ce qui se passe ?</div>
+  <div class="choix">
+    <button class="chip" data-tip="Restez avec lui/elle, gardez-le/la éveillé·e ou sur le côté, pas sur le dos. Pas de douche froide, pas de café, pas de « fais-le vomir ». Si vous n'arrivez pas à le/la réveiller, si la respiration est anormale ou s'il/elle convulse : 15, sans attendre. Les reproches attendront.">Il/elle a consommé et son état m'inquiète</button>
+    <button class="chip" data-tip="Ne le/la laissez pas dormir seul·e « pour cuver ». Quelqu'un reste à côté, le/la met sur le côté et vérifie régulièrement qu'il/elle respire et répond. Si vous n'arrivez plus à le/la réveiller : 15.">Il/elle dort et je ne sais pas si c'est normal</button>
+    <button class="chip" data-tip="Choisissez un moment calme, pas le soir même. Dites ce que vous avez vu, sans accuser, et demandez comment ça se passe pour lui/elle. Une consommation ponctuelle peut aussi être dangereuse. Ce qui a été pris, la quantité, les symptômes et le contexte comptent. La discussion de fond vient après la sécurité.">Je veux savoir quoi dire</button>
+    <button class="chip" data-tip="Les Consultations jeunes consommateurs reçoivent les parents, avec ou sans le jeune, gratuitement et confidentiellement. Drogues Info Service répond aussi aux parents, tous les jours (horaires sur drogues-info-service.fr). Vous n'avez pas à gérer seul·e.">Sa consommation m'inquiète</button>
+  </div>
+  <div class="chip-tip" aria-live="polite"></div>
+
+  <h3><span class="emo">⚡</span>Maintenant</h3>
+  <ol class="etapes">
+    <li>Si votre adolescent fait un malaise après avoir consommé de l’alcool ou une drogue, appelez le 15 ou le 112. Précisez ce qui a été consommé : ces informations permettent aux secours d’adapter leur intervention.</li>
+    <li>Restez avec lui/elle, sur le côté s'il/elle somnole. Pas d'autre produit, pas de café, pas de douche froide.</li>
+    <li>Ce soir, pas de discussion de fond. Demain, au calme, sans accusation.</li>
+    <li>Si vous êtes inquiet·e dans la durée, prenez conseil pour vous : Drogues Info Service, ou une Consultation jeunes consommateurs.</li>
+  </ol>
+
+  <h3><span class="emo">💬</span>Vous pouvez écrire</h3>
+  <div class="imsg">
+    <div class="top"><div class="av">👤</div><b>Mon ado</b></div>
+    <div class="fil">
+      <div class="date">Aujourd'hui</div>
+      <div class="aide">Messages à copier et à envoyer vous-même</div>
+      <button class="bulle"><q>Je ne suis pas en colère, je veux juste savoir que tu vas bien. Dis-moi où tu es, je viens te chercher.</q></button>
+      <button class="bulle"><q>On parlera de tout ça demain, calmement. Ce soir, l'important c'est que tu sois en sécurité.</q></button>
+    </div>
+    <div class="pied">Aucun message n'est envoyé depuis SIGNAUX.</div>
+  </div>
+  <h3><span class="emo">📞</span>Pour les questions, sans urgence</h3>
+  <div class="appels">
+    <a class="appel" href="tel:0800231313"><span class="ic">📞</span><span><b>0 800 23 13 13</b><small>Drogues Info Service — tous les jours, anonyme et gratuit, horaires sur drogues-info-service.fr. Pour vous ou pour votre ado. Ce n'est pas un numéro d'urgence</small></span></a>
+    <a class="appel web" href="https://www.drogues-info-service.fr" target="_blank" rel="noopener"><span class="ic">💬</span><span><b>Tchat et adresses</b><small>drogues-info-service.fr — tchat, et la liste des Consultations jeunes consommateurs près de chez vous</small></span></a>
+    <a class="appel" href="tel:0800235236"><span class="ic">📞</span><span><b>Fil Santé Jeunes</b><small>0 800 235 236, anonyme, gratuit, 9h-23h — votre ado peut y parler, sans vous</small></span></a>
+  </div>
+  <h3><span class="emo">🌅</span>Et demain</h3>
+  <p class="note">Les Consultations jeunes consommateurs reçoivent les 12-25 ans, et aussi les parents, gratuitement et en toute confidentialité, pour faire le point sans jugement : une question, une inquiétude, une envie de réduire. Elles sont dans les Maisons des ados ou les centres d'addictologie. Adresses sur drogues-info-service.fr.</p>
+  <div class="appels">
+    <a class="appel" href="tel:0493261092"><span class="ic">🏠</span><span><b>Maison des ados 06</b><small>2A rue Raynardi, Nice — 04 93 26 10 92, lun-ven 9h-17h</small></span></a>
+  </div>
+
+  <div class="toi">
+    <p><strong>💛 Et vous ?</strong>Découvrir une consommation fait peur. Appeler les secours un soir, puis chercher conseil le lendemain, ce n'est pas dramatiser : c'est faire ce qu'il faut, dans l'ordre.</p>
   </div>
 </section>
 
@@ -1075,7 +1272,7 @@
   </div>
 
   <div class="toi">
-    <p><strong>💛 Et toi ?</strong>Tu n'as pas à réussir à le/la faire sortir. Tu as juste à ne pas disparaître toi aussi.</p>
+    <p><strong>💛 Et toi ?</strong>Tu n'as pas à réussir à le/la faire sortir. Tu peux garder le contact à ton rythme et chercher un adulte avec lui/elle. Tu n'as pas à rester disponible tout le temps.</p>
   </div>
 </section>
 
@@ -1157,19 +1354,20 @@
   <div class="urgence">
     <p>S'il y a des coups maintenant, s'il/elle est blessé·e, ou s'il/elle a peur de rentrer ce soir :</p>
     <a class="appel rouge" href="tel:17"><span class="ic">📞</span><span><b>17</b><small>Police — tout de suite</small></span></a>
-    <a class="appel rouge" href="tel:119"><span class="ic">📞</span><span><b>119</b><small>Enfant en danger — téléphone 24h/24, gratuit, n'apparaît pas sur la facture</small></span></a>
+    <a class="appel rouge" href="tel:119"><span class="ic">📞</span><span><b>119</b><small>Moins de 18 ans en danger (tchat ouvert jusqu'à 21 ans, selon le service) — téléphone 24h/24, gratuit, n'apparaît pas sur la facture</small></span></a>
     <a class="appel web" href="https://www.allo119.gouv.fr" target="_blank" rel="noopener"><span class="ic">💬</span><span><b>Tchat 119</b><small>Par écrit, sur allo119.gouv.fr — ouvert l'après-midi et le soir, horaires et conditions sur le site</small></span></a>
+    <a class="appel" href="tel:116006"><span class="ic">📞</span><span><b>116 006</b><small>France Victimes — s'il/elle a 18 ans ou plus, pour être écouté·e et orienté·e. 9h-20h, 7j/7, gratuit</small></span></a>
   </div>
 
   <div class="choix-titre">Qu'est-ce qui se passe chez lui/elle ?</div>
   <div class="choix">
-    <button class="chip" data-tip="Vivre dans les cris tous les soirs, ça abîme, même sans coups. Ce n'est pas « moins grave ». Le 119 écoute aussi pour ça.">Ses parents se disputent tout le temps</button>
+    <button class="chip" data-tip="Vivre dans les cris tous les soirs, ça abîme, même sans coups. Ce n'est pas « moins grave ». Le 119 écoute aussi pour ça. S'il/elle a 18 ans ou plus : 17 si danger, 116 006 pour l'aider.">Ses parents se disputent tout le temps</button>
     <button class="chip" data-tip="Demande de qui, et si cette personne est là ce soir. S'il/elle a peur maintenant : 17.">Il/elle a peur de quelqu'un</button>
-    <button class="chip" data-tip="Les insultes et les humiliations répétées sont une violence. Il/elle a le droit d'appeler le 119 pour ça.">On lui crie dessus, on l'insulte</button>
-    <button class="chip" data-tip="Demande s'il/elle est blessé·e et en sécurité maintenant. Coups en cours ou blessure : 17 ou 15. Sinon : 119 ce soir, et un adulte de l'école demain.">On le/la frappe, ou on frappe quelqu'un chez lui/elle</button>
-    <button class="chip" data-tip="Ne le/la laisse pas choisir entre rentrer et la rue. Le 119 cherche avec lui/elle un endroit sûr pour la nuit.">Il/elle a peur de rentrer</button>
-    <button class="chip" data-tip="S'il/elle est en danger maintenant : d'abord à l'abri chez un adulte sûr, ou le 17. Ensuite, le 119 avec lui/elle, pour une solution sûre. Ne pars pas avec lui/elle, et n'héberge pas en secret.">Il/elle veut fuguer</button>
-    <button class="chip" data-tip="Il/elle n'est pas obligé·e de commencer par eux. Un adulte de l'école, le 119 ou la Maison des ados peuvent l'écouter d'abord. Il/elle peut leur demander ce qu'ils garderont pour eux, et dans quels cas ils devront chercher de l'aide pour le/la protéger.">Il/elle ne peut pas en parler à ses parents</button>
+    <button class="chip" data-tip="Les insultes et les humiliations répétées sont une violence. Il/elle a le droit d'appeler le 119 pour ça. S'il/elle a 18 ans ou plus : 17 si danger, 116 006 pour l'aider.">On lui crie dessus, on l'insulte</button>
+    <button class="chip" data-tip="Demande s'il/elle est blessé·e et en sécurité maintenant. Coups en cours ou blessure : 17 ou 15. Sinon : 119 ce soir, et un adulte de l'école demain. S'il/elle a 18 ans ou plus : 17 si danger, 116 006 pour l'aider.">On le/la frappe, ou on frappe quelqu'un chez lui/elle</button>
+    <button class="chip" data-tip="Ne le/la laisse pas choisir entre rentrer et la rue. Le 119 cherche avec lui/elle un endroit sûr pour la nuit. S'il/elle a 18 ans ou plus : 17 si danger, 116 006 pour l'aider.">Il/elle a peur de rentrer</button>
+    <button class="chip" data-tip="S'il/elle est en danger maintenant : d'abord à l'abri chez un adulte sûr, ou le 17. Ensuite, le 119 avec lui/elle, pour une solution sûre. Ne pars pas avec lui/elle, et n'héberge pas en secret. S'il/elle a 18 ans ou plus : 17 si danger, 116 006 pour l'aider.">Il/elle veut fuguer</button>
+    <button class="chip" data-tip="Il/elle n'est pas obligé·e de commencer par eux. Un adulte de l'école, le 119 ou la Maison des ados peuvent l'écouter d'abord. Il/elle peut leur demander ce qu'ils garderont pour eux, et dans quels cas ils devront chercher de l'aide pour le/la protéger. S'il/elle a 18 ans ou plus : 17 si danger, 116 006 pour l'aider.">Il/elle ne peut pas en parler à ses parents</button>
   </div>
   <div class="chip-tip" aria-live="polite"></div>
 
@@ -1309,12 +1507,12 @@
   <div class="choix-titre">Qu'est-ce que cette personne lui fait ?</div>
   <div class="choix">
     <button class="chip" data-tip="Un coup, même un seul, c'est une violence. Demande s'il/elle est blessé·e. Blessure ou danger ce soir : 15 ou 17. Sinon : 119 s'il/elle a moins de 18 ans, et un adulte demain.">Elle le/la frappe</button>
-    <button class="chip" data-tip="« Si tu parles… », « je te retrouverai » : une menace sert à faire taire. Prenez-la au sérieux : 17 si c'est pour ce soir, 119 sinon.">Elle le/la menace</button>
+    <button class="chip" data-tip="« Si tu parles… », « je te retrouverai » : une menace sert à faire taire. Prenez-la au sérieux : 17 si c'est pour ce soir, 119 sinon. S'il/elle a 18 ans ou plus : 17 si danger, 116 006 pour l'aider.">Elle le/la menace</button>
     <button class="chip" data-tip="Rabaisser, surveiller, isoler, décider à sa place : c'est de la violence psychologique, même sans coups. Ce n'est pas lui/elle le problème.">Elle l'humilie ou le/la contrôle</button>
-    <button class="chip" data-tip="Tout geste sexuel sans accord est interdit, quel que soit l'âge, la relation, ou ce qui s'est passé avant. Ce n'est jamais sa faute. Le 119 écoute aussi pour ça.">Elle le/la touche sans son accord</button>
+    <button class="chip" data-tip="Tout geste sexuel sans accord est interdit, quel que soit l'âge, la relation, ou ce qui s'est passé avant. Ce n'est jamais sa faute. Le 119 écoute aussi pour ça. S'il/elle a 18 ans ou plus : 17 si danger, 116 006 pour l'aider.">Elle le/la touche sans son accord</button>
     <button class="chip" data-tip="Être forcé·e à faire, envoyer, montrer ou subir quelque chose, c'est une agression, même sans coups. Dis-lui qu'il/elle a le droit de refuser et d'en parler.">Elle le/la force à faire quelque chose</button>
     <button class="chip" data-tip="Avoir peur de quelqu'un, c'est déjà un signal suffisant. On n'attend pas que ça « aille plus loin ».">Il/elle a peur d'elle</button>
-    <button class="chip" data-tip="Si ça fait mal, si ça fait peur, si ça se répète, ça compte. Un adulte ou le 119 peuvent aider à mettre des mots dessus.">Il/elle ne sait pas si c'est une violence</button>
+    <button class="chip" data-tip="Si ça fait mal, si ça fait peur, si ça se répète, ça compte. Un adulte ou le 119 peuvent aider à mettre des mots dessus. S'il/elle a 18 ans ou plus : 17 si danger, 116 006 pour l'aider.">Il/elle ne sait pas si c'est une violence</button>
   </div>
   <div class="chip-tip" aria-live="polite"></div>
 
@@ -1345,7 +1543,7 @@
     <a class="appel rouge" href="tel:119"><span class="ic">📞</span><span><b>119</b><small>Moins de 18 ans, quel que soit l'auteur — téléphone 24h/24, gratuit, confidentiel</small></span></a>
     <a class="appel web" href="https://www.allo119.gouv.fr" target="_blank" rel="noopener"><span class="ic">💬</span><span><b>Tchat 119</b><small>Par écrit, sur allo119.gouv.fr — ouvert l'après-midi et le soir, horaires et conditions sur le site</small></span></a>
     <a class="appel" href="tel:3919"><span class="ic">📞</span><span><b>3919</b><small>Violences dans le couple : écoute et orientation pour les femmes et leurs proches. Ce n'est pas un numéro d'urgence</small></span></a>
-    <a class="appel" href="tel:116006"><span class="ic">📞</span><span><b>116 006</b><small>France Victimes — tous âges, tous publics, 9h-20h, 7j/7, gratuit. Si tu as plus de 18 ans, c'est ta porte d'entrée</small></span></a>
+    <a class="appel" href="tel:116006"><span class="ic">📞</span><span><b>116 006</b><small>France Victimes — tous âges, tous publics, 9h-20h, 7j/7, gratuit. À partir de 18 ans, c'est ta porte d'entrée</small></span></a>
     <a class="appel" href="tel:3018"><span class="ic">📱</span><span><b>3018</b><small>Si des photos ou des messages servent au chantage ou aux menaces — 9h-23h, 7j/7</small></span></a>
     <a class="appel web" href="https://www.3018.fr" target="_blank" rel="noopener"><span class="ic">💬</span><span><b>Tchat 3018</b><small>Par écrit, sur 3018.fr — 9h-23h, 7j/7</small></span></a>
   </div>
@@ -1480,19 +1678,20 @@
   <div class="urgence">
     <p>Si ça se passe maintenant, ou si tu as peur de rentrer ce soir :</p>
     <a class="appel rouge" href="tel:17"><span class="ic">📞</span><span><b>17</b><small>Police — tout de suite</small></span></a>
-    <a class="appel rouge" href="tel:119"><span class="ic">📞</span><span><b>119</b><small>Enfant en danger — téléphone 24h/24, gratuit, n'apparaît pas sur la facture</small></span></a>
+    <a class="appel rouge" href="tel:119"><span class="ic">📞</span><span><b>119</b><small>Moins de 18 ans en danger (tchat ouvert jusqu'à 21 ans, selon le service) — téléphone 24h/24, gratuit, n'apparaît pas sur la facture</small></span></a>
     <a class="appel web" href="https://www.allo119.gouv.fr" target="_blank" rel="noopener"><span class="ic">💬</span><span><b>Tchat 119</b><small>Par écrit, sur allo119.gouv.fr — ouvert l'après-midi et le soir, horaires et conditions sur le site</small></span></a>
+    <a class="appel" href="tel:116006"><span class="ic">📞</span><span><b>116 006</b><small>France Victimes — à partir de 18 ans, pour être écouté·e et orienté·e. 9h-20h, 7j/7, gratuit</small></span></a>
   </div>
 
   <div class="choix-titre">Qu'est-ce qui se passe chez toi ?</div>
   <div class="choix">
-    <button class="chip" data-tip="Même sans coups, vivre dans les cris abîme. Tu n'as pas à choisir un camp ni à les calmer. Le 119 écoute aussi pour ça.">Mes parents se disputent tout le temps</button>
+    <button class="chip" data-tip="Même sans coups, vivre dans les cris abîme. Tu n'as pas à choisir un camp ni à les calmer. Le 119 écoute aussi pour ça. À partir de 18 ans : 17 si danger, 116 006 pour être aidé·e.">Mes parents se disputent tout le temps</button>
     <button class="chip" data-tip="Repère où tu peux te mettre à l'abri ce soir, et une personne à qui envoyer un message si ça monte. Si tu as peur maintenant : 17.">J'ai peur de quelqu'un</button>
-    <button class="chip" data-tip="Les insultes et les humiliations répétées sont une violence, pas une « éducation ». Tu as le droit d'appeler le 119 pour ça.">On me crie dessus, on m'insulte</button>
-    <button class="chip" data-tip="Si tu es blessé·e ou que ça se passe maintenant : 17 ou 15. Sinon : 119 ce soir, ils t'aident à savoir quoi faire, et un adulte de l'école demain.">On me frappe, ou on frappe quelqu'un chez moi</button>
-    <button class="chip" data-tip="Tu n'as pas à choisir entre rentrer et la rue. Le 119 cherche avec toi un endroit sûr pour la nuit.">J'ai peur de rentrer</button>
-    <button class="chip" data-tip="Si tu es en danger maintenant, mets-toi d'abord à l'abri, chez quelqu'un de sûr, ou appelle le 17. Ensuite, le 119 cherche avec toi une solution sûre : tu n'as pas à choisir entre la peur et la rue, seul·e la nuit.">J'ai envie de fuguer</button>
-    <button class="chip" data-tip="Tu n'es pas obligé·e de commencer par eux. Un adulte de l'école, le 119, la Maison des ados peuvent t'écouter d'abord. Demande-leur ce qu'ils garderont pour eux, et dans quels cas ils devront chercher de l'aide pour te protéger.">Je ne peux pas en parler à mes parents</button>
+    <button class="chip" data-tip="Les insultes et les humiliations répétées sont une violence, pas une « éducation ». Tu as le droit d'appeler le 119 pour ça. À partir de 18 ans : 17 si danger, 116 006 pour être aidé·e.">On me crie dessus, on m'insulte</button>
+    <button class="chip" data-tip="Si tu es blessé·e ou que ça se passe maintenant : 17 ou 15. Sinon : 119 ce soir, ils t'aident à savoir quoi faire, et un adulte de l'école demain. À partir de 18 ans : 17 si danger, 116 006 pour être aidé·e.">On me frappe, ou on frappe quelqu'un chez moi</button>
+    <button class="chip" data-tip="Tu n'as pas à choisir entre rentrer et la rue. Le 119 cherche avec toi un endroit sûr pour la nuit. À partir de 18 ans : 17 si danger, 116 006 pour être aidé·e.">J'ai peur de rentrer</button>
+    <button class="chip" data-tip="Si tu es en danger maintenant, mets-toi d'abord à l'abri, chez quelqu'un de sûr, ou appelle le 17. Ensuite, le 119 cherche avec toi une solution sûre : tu n'as pas à choisir entre la peur et la rue, seul·e la nuit. À partir de 18 ans : 17 si danger, 116 006 pour être aidé·e.">J'ai envie de fuguer</button>
+    <button class="chip" data-tip="Tu n'es pas obligé·e de commencer par eux. Un adulte de l'école, le 119, la Maison des ados peuvent t'écouter d'abord. Demande-leur ce qu'ils garderont pour eux, et dans quels cas ils devront chercher de l'aide pour te protéger. À partir de 18 ans : 17 si danger, 116 006 pour être aidé·e.">Je ne peux pas en parler à mes parents</button>
   </div>
   <div class="chip-tip" aria-live="polite"></div>
 
@@ -1621,13 +1820,13 @@
 
   <div class="choix-titre">Qu'est-ce que cette personne te fait subir ?</div>
   <div class="choix">
-    <button class="chip" data-tip="Un coup, même un seul, c'est une violence. Si tu es blessé·e ou en danger ce soir : 15 ou 17. Sinon : 119, et un adulte sûr demain.">Elle me frappe</button>
-    <button class="chip" data-tip="« Si tu parles… » : une menace sert à te faire taire. C'est justement pour ça qu'il faut en parler. 17 si c'est pour ce soir, 119 sinon.">Elle me menace</button>
+    <button class="chip" data-tip="Un coup, même un seul, c'est une violence. Si tu es blessé·e ou en danger ce soir : 15 ou 17. Sinon : 119, et un adulte sûr demain. À partir de 18 ans : 17 si danger, 116 006 pour être aidé·e.">Elle me frappe</button>
+    <button class="chip" data-tip="« Si tu parles… » : une menace sert à te faire taire. C'est justement pour ça qu'il faut en parler. 17 si c'est pour ce soir, 119 sinon. À partir de 18 ans : 17 si danger, 116 006 pour être aidé·e.">Elle me menace</button>
     <button class="chip" data-tip="Te rabaisser, surveiller ton téléphone, décider pour toi, t'isoler : c'est de la violence psychologique. Ce n'est pas toi le problème, même si on te le répète.">Elle m'humilie ou me contrôle</button>
-    <button class="chip" data-tip="Tout geste sexuel sans ton accord est interdit, quel que soit ton âge, la relation, ou ce que tu as accepté avant. Ce n'est jamais ta faute. Le 119 écoute aussi pour ça.">Elle me touche sans mon accord</button>
+    <button class="chip" data-tip="Tout geste sexuel sans ton accord est interdit, quel que soit ton âge, la relation, ou ce que tu as accepté avant. Ce n'est jamais ta faute. Le 119 écoute aussi pour ça. À partir de 18 ans : 17 si danger, 116 006 pour être aidé·e.">Elle me touche sans mon accord</button>
     <button class="chip" data-tip="Être forcé·e à faire, envoyer, montrer ou subir quelque chose, c'est une agression, même sans coups. Tu as le droit de dire non, et le droit d'en parler.">Elle me force à faire quelque chose</button>
     <button class="chip" data-tip="Avoir peur de quelqu'un, c'est déjà un signal suffisant. Tu n'as pas à attendre que ça aille plus loin pour demander de l'aide.">J'ai peur d'elle</button>
-    <button class="chip" data-tip="Tu n'as pas besoin du bon mot. Si ça fait mal, si ça fait peur, si ça se répète, ça compte. Le 119 ou un adulte peuvent t'aider à y voir clair.">Je ne sais pas si ce que j'ai vécu est une violence</button>
+    <button class="chip" data-tip="Tu n'as pas besoin du bon mot. Si ça fait mal, si ça fait peur, si ça se répète, ça compte. Le 119 ou un adulte peuvent t'aider à y voir clair. À partir de 18 ans : 17 si danger, 116 006 pour être aidé·e.">Je ne sais pas si ce que j'ai vécu est une violence</button>
   </div>
   <div class="chip-tip" aria-live="polite"></div>
 
@@ -1657,7 +1856,7 @@
     <a class="appel rouge" href="tel:119"><span class="ic">📞</span><span><b>119</b><small>Moins de 18 ans, quel que soit l'auteur — téléphone 24h/24, gratuit, confidentiel</small></span></a>
     <a class="appel web" href="https://www.allo119.gouv.fr" target="_blank" rel="noopener"><span class="ic">💬</span><span><b>Tchat 119</b><small>Par écrit, sur allo119.gouv.fr — ouvert l'après-midi et le soir, horaires et conditions sur le site</small></span></a>
     <a class="appel" href="tel:3919"><span class="ic">📞</span><span><b>3919</b><small>Violences dans le couple : écoute et orientation pour les femmes et leurs proches. Ce n'est pas un numéro d'urgence</small></span></a>
-    <a class="appel" href="tel:116006"><span class="ic">📞</span><span><b>116 006</b><small>France Victimes — tous âges, tous publics, 9h-20h, 7j/7, gratuit. Si tu as plus de 18 ans, c'est ta porte d'entrée</small></span></a>
+    <a class="appel" href="tel:116006"><span class="ic">📞</span><span><b>116 006</b><small>France Victimes — tous âges, tous publics, 9h-20h, 7j/7, gratuit. À partir de 18 ans, c'est ta porte d'entrée</small></span></a>
     <a class="appel" href="tel:3018"><span class="ic">📱</span><span><b>3018</b><small>Si des photos ou des messages servent au chantage ou aux menaces — 9h-23h, 7j/7</small></span></a>
     <a class="appel web" href="https://www.3018.fr" target="_blank" rel="noopener"><span class="ic">💬</span><span><b>Tchat 3018</b><small>Par écrit, sur 3018.fr — 9h-23h, 7j/7</small></span></a>
   </div>
@@ -1736,7 +1935,7 @@
     <a class="appel rouge" href="tel:119"><span class="ic">📞</span><span><b>119</b><small>Moins de 18 ans et en danger, quel que soit l'auteur — 24h/24, gratuit</small></span></a>
     <a class="appel web" href="https://www.allo119.gouv.fr" target="_blank" rel="noopener"><span class="ic">💬</span><span><b>Tchat 119</b><small>Par écrit, sur allo119.gouv.fr — ouvert l'après-midi et le soir, horaires et conditions sur le site</small></span></a>
     <a class="appel" href="tel:3919"><span class="ic">📞</span><span><b>3919</b><small>Violences dans le couple : écoute et orientation pour les femmes et leurs proches. Ce n'est pas un numéro d'urgence</small></span></a>
-    <a class="appel" href="tel:116006"><span class="ic">📞</span><span><b>116 006</b><small>France Victimes — tous âges, tous publics, 9h-20h, 7j/7, gratuit. Si tu as plus de 18 ans, c'est ta porte d'entrée</small></span></a>
+    <a class="appel" href="tel:116006"><span class="ic">📞</span><span><b>116 006</b><small>France Victimes — tous âges, tous publics, 9h-20h, 7j/7, gratuit. À partir de 18 ans, c'est ta porte d'entrée</small></span></a>
   </div>
 
   <h3><span class="emo">🚫</span>Ce qu'on va te dire, et qui est faux</h3>
@@ -1869,7 +2068,7 @@
   <div class="hero"><span class="emo" aria-hidden="true">🩸</span><h2>Tu t'es fait du mal</h2>
     <p class="intro">Tu viens de le faire, ou tu y penses. Se faire du mal peut être une façon de faire face à une souffrance. Ça mérite une aide, parfois des soins. Ce soir, on s'occupe du corps d'abord, et tu n'as pas à t'expliquer.</p></div>
   <div class="urgence">
-    <p>Si ça saigne beaucoup, si tu as pris quelque chose, ou si tu vas faire un geste grave :</p>
+    <p>Si ça saigne beaucoup, si tu as pris quelque chose (médicaments, alcool, autre produit : appelle même si tu te sens encore bien, n'attends pas les symptômes), ou si tu vas faire un geste grave :</p>
     <a class="appel rouge" href="tel:15"><span class="ic">📞</span><span><b>15</b><small>SAMU, les soins, tout de suite</small></span></a>
     <div class="ecoute">
     <p>Si tu penses à mourir, sans danger immédiat : pour parler et évaluer, maintenant.</p>
@@ -1995,6 +2194,14 @@
   <p>« Quitter », en haut, ouvre une page neutre. Ça n'efface pas toutes les traces de ta visite. Si ton téléphone est surveillé, utilise si possible un appareil auquel cette personne n'a pas accès. Évite de changer des réglages ou d'effacer des traces si ça risque d'attirer son attention. Un message copié ou envoyé peut aussi laisser une trace.</p>
   <p>SIGNAUX — prototype, Nice, 2026. Conçu par <strong>Cilli Flamand</strong>, psychologue clinicienne, à partir de retours de jeunes du territoire.</p>
   <p>© 2026 Cilli Flamand — textes, parcours et design. Tous droits réservés. Reproduction et adaptation interdites sans accord écrit.</p>
+  <details class="mentions">
+    <summary>Mentions légales et confidentialité</summary>
+    <p><strong>Éditrice</strong> : Cilli Flamand, psychologue clinicienne (n° ADELI 839312253), Hyères (Var). SIGNAUX est un prototype à visée de prévention, sans finalité commerciale, présenté au colloque international « Villes et Santé mentale », Nice, novembre 2026.</p>
+    <p><strong>Hébergement</strong> : GitHub Pages, GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis.</p>
+    <p><strong>Données</strong> : aucun compte, aucun formulaire, aucun cookie, aucun outil de mesure d'audience. Rien de ce qui est tapé dans la recherche n'est enregistré ni transmis : elle fonctionne dans le navigateur, sur les textes de cette page. Les messages « à copier » sont copiés sur votre appareil et envoyés par vous, jamais depuis cette page. L'hébergeur peut conserver des journaux techniques de connexion (adresse IP, pages chargées), comme pour tout site web, et les polices d'écriture sont chargées depuis Google Fonts.</p>
+    <p><strong>Nature du service</strong> : cette page n'est pas un service d'urgence ni un service de soins, et ne remplace pas une évaluation par un professionnel. Les coordonnées des services cités sont vérifiées à la date de mise en ligne ; en cas de doute, consulter directement le service.</p>
+    <p><strong>Propriété</strong> : textes, parcours et design © 2026 Cilli Flamand. Les numéros et services cités appartiennent à leurs organismes respectifs.</p>
+  </details>
 </footer>
 </main>
 
@@ -2012,10 +2219,11 @@
     const h = document.getElementById('haut'); if (h) document.documentElement.style.setProperty('--haut-h', h.offsetHeight + 'px'); };
   window.addEventListener('resize', mesurerSos); window.addEventListener('load', mesurerSos); mesurerSos();
 
-  // Navigation. Pile en mémoire de session uniquement : écran, position de défilement, élément d'origine.
-  // L'historique du navigateur reçoit une entrée par ouverture de fiche (sans URL, sans mot recherché) pour que sa flèche Retour fonctionne.
+  // Navigation. Historique en mémoire de session (identifiant d'écran, position de défilement, élément d'origine), indexé.
+  // Chaque ouverture de fiche ajoute une entrée à l'historique du navigateur (sans URL, sans mot recherché) : les flèches Retour ET Suivant fonctionnent.
   const ACCUEILS = ['accueil', 'moi', 'parents'];
-  const pile = [];
+  const hist = [];      // entrées {id, y, el}
+  let cur = -1;         // index de l'entrée affichée
   const retourFixe = document.getElementById('retour-fixe');
   const afficher = (id) => {
     document.querySelectorAll('.screen').forEach(s => s.classList.remove('on'));
@@ -2023,31 +2231,46 @@
     cible.classList.add('on');
     document.getElementById('sosbar').hidden = (cible.id === 'danger');
     document.body.classList.toggle('sur-accueil', ACCUEILS.includes(cible.id));
-    retourFixe.hidden = (pile.length === 0 && ACCUEILS.includes(cible.id));
+    retourFixe.hidden = (cur <= 0 && ACCUEILS.includes(cible.id));
     mesurerSos();
     return cible;
   };
-  const focaliserTitre = (cible) => { const t = cible.querySelector('h1, h2'); if (t) { t.setAttribute('tabindex', '-1'); t.focus({preventScroll:true}); } };
+  // Focus à l'ouverture : le bandeau d'urgence s'il précède le titre (lecteur d'écran : la consigne vitale d'abord), sinon le titre.
+  const focaliserTitre = (cible) => { const u = cible.querySelector(':scope > .urgence'), h = cible.querySelector('h1, h2'); const t = (u && h && (u.compareDocumentPosition(h) & Node.DOCUMENT_POSITION_FOLLOWING)) ? u : h; if (t) { t.setAttribute('tabindex', '-1'); t.focus({preventScroll:true}); } };
+  const memoriser = (el) => { if (cur >= 0 && hist[cur]) { hist[cur].y = window.scrollY; hist[cur].el = el || hist[cur].el || null; } };
   const show = (id, retour, origine) => {
-    if (id === 'back') { if (pile.length) history.back(); else { afficher('accueil'); window.scrollTo({top:0, behavior:'instant'}); } return; }
-    const actuel = document.querySelector('.screen.on');
-    if (actuel && !retour) { pile.push({id: actuel.id, y: window.scrollY, el: origine || null}); try { history.pushState({p: pile.length}, ''); } catch {} }
+    if (id === 'back') { if (cur > 0) history.back(); else { afficher('accueil'); window.scrollTo({top:0, behavior:'instant'}); } return; }
+    if (!document.getElementById(id)) id = 'accueil';
+    const courant = hist[cur] ? hist[cur].id : null;
+    if (courant === id) { const c = afficher(id); window.scrollTo({top:0, behavior:'instant'}); focaliserTitre(c); return; }
+    memoriser(origine);
+    if (retour) {
+      // Bouton « Retour » d'une fiche ou changement de porte : on remplace l'entrée courante, sans empiler.
+      hist[cur] = {id, y: 0, el: null};
+      try { history.replaceState({n: cur}, ''); } catch {}
+    } else {
+      hist.length = cur + 1; hist.push({id, y: 0, el: null}); cur = hist.length - 1;
+      try { history.pushState({n: cur}, ''); } catch {}
+    }
     const cible = afficher(id);
     window.scrollTo({top:0, behavior:'instant'});
     focaliserTitre(cible);
   };
-  const revenir = () => {
-    const e = pile.pop();
-    if (!e) { const c = afficher('accueil'); window.scrollTo({top:0, behavior:'instant'}); focaliserTitre(c); return; }
+  const allerA = (n) => {
+    memoriser(null);
+    cur = Math.max(0, Math.min(n, hist.length - 1));
+    const e = hist[cur] || {id:'accueil', y:0};
     const cible = afficher(e.id);
-    window.scrollTo({top:e.y, behavior:'instant'});
+    window.scrollTo({top:e.y || 0, behavior:'instant'});
     if (e.el && e.el.isConnected && e.el.offsetParent !== null) e.el.focus({preventScroll:true}); else focaliserTitre(cible);
   };
-  try { history.replaceState({p: 0}, ''); } catch {}
-  afficher((document.querySelector('.screen.on') || {}).id || 'accueil');
+  const depart = (document.querySelector('.screen.on') || {}).id || 'accueil';
+  hist.push({id: depart, y: 0, el: null}); cur = 0;
+  try { history.replaceState({n: 0}, ''); } catch {}
+  afficher(depart);
   window.addEventListener('popstate', ev => {
-    const n = (ev.state && typeof ev.state.p === 'number') ? ev.state.p : 0;
-    if (n < pile.length) { while (pile.length > n + 1) pile.pop(); revenir(); }
+    const n = (ev.state && typeof ev.state.n === 'number') ? ev.state.n : 0;
+    allerA(n);
   });
   retourFixe.addEventListener('click', () => show('back'));
   document.querySelectorAll('[data-go]').forEach(b => b.addEventListener('click', () => show(b.dataset.go, b.classList.contains('retour') || b.classList.contains('porte'), b)));
@@ -2070,29 +2293,31 @@
   });
 
   // ---- Recherche locale : dans les textes des fiches déjà présentes sur la page. Sans IA, sans envoi, sans conservation.
-  const norm = s => (s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[’']/g, ' ');
+  const norm = s => (s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[’'ʼ‘`]/g, ' ').replace(/[-‑–—]/g, ' ').replace(/\s+/g, ' ').trim();
   const PARCOURS = {accueil:'Pour quelqu\u2019un', moi:'C\u2019est pour moi', parents:'Parent ou proche'};
   const SYNO = {
     'localisation': ['position', 'geoloc', 'gps', 'ou je suis', 'trace', 'suivre', 'surveille', 'controle'],
-    'jalousie': ['jaloux', 'jalouse', 'possessif', 'possessive', 'couple', 'copain', 'copine', 'mec', 'meuf', 'relation', 'amour', 'amoureuse', 'amoureux', 'ex'],
+    'jalousie': ['jaloux', 'jalouse', 'possessif', 'possessive', 'couple', 'copain', 'copine', 'mec', 'meuf', 'relation', 'amour', 'amoureuse', 'amoureux', 'ex', 'controle coercitif', 'coercitif', 'emprise', 'sous emprise', 'manipule', 'manipulation', 'manipulateur', 'manipulatrice', 'toxique', 'isole', 'isolement', 'surveille'],
     'photo': ['photos', 'nude', 'nudes', 'video', 'capture', 'screen', 'circule', 'diffuse', 'revenge', 'chantage'],
     'il insiste': ['insiste', 'insister', 'force', 'forcer', 'pression', 'sexe', 'sexuel', 'sexuelle', 'coucher', 'faire l amour', 'non', 'refuser', 'consentement', 'oblige'],
     'peur': ['angoisse', 'angoisse', 'flippe', 'stress', 'terrifie', 'trouille', 'menace', 'menaces'],
     'harcelement': ['harcele', 'harcelee', 'harceler', 'moquer', 'moquerie', 'moqueries', 'humilie', 'insultes', 'insulte', 'rumeur', 'rumeurs', 'exclu', 'exclue', 'cyber', 'cyberharcelement', 'reseaux', 'tiktok', 'insta', 'snap', 'snapchat', 'groupe'],
     'telephone': ['tel', 'portable', 'messages', 'mot de passe', 'mdp', 'compte', 'verifie', 'fouille'],
-    'mourir': ['suicide', 'suicider', 'se tuer', 'en finir', 'idees noires', 'adieu', 'disparaitre', 'plus envie de vivre', 'mort'],
-    'mal': ['scarification', 'scarifie', 'se couper', 'coupe', 'blessure', 'medicaments', 'cachets', 'alcool', 'drogue', 'overdose'],
+    'mourir': ['suicide', 'suicider', 'suicidaire', 'se tuer', 'me tuer', 'tuer', 'en finir', 'idees noires', 'adieu', 'disparaitre', 'plus envie de vivre', 'mort', 'mourir', 'desespoir'],
+    'mal': ['scarification', 'scarifie', 'se couper', 'coupe', 'blessure', 'medicaments', 'cachets', 'alcool', 'drogue', 'overdose', 'automutilation', 'automutile', 'mutile', 'mutilation', 'fait du mal', 'se faire du mal'],
     'maison': ['parents', 'pere', 'mere', 'beau pere', 'belle mere', 'famille', 'frere', 'soeur', 'fugue', 'fuguer', 'partir de chez moi', 'disputes', 'coups'],
     'lycee': ['college', 'ecole', 'cours', 'prof', 'professeur', 'classe', 'cpe', 'ami', 'amis', 'seul', 'seule', 'cantine'],
-    'panique': ['crise', 'respirer', 'respiration', 'coeur', 'etouffe', 'tremble', 'malaise'],
-    'retrait': ['disparait', 'repond plus', 'isole', 'chambre', 'sort plus', 'silence', 'dort'],
-    'parler': ['dire', 'raconter', 'avouer', 'oser', 'secret', 'honte', 'psy', 'suivi', 'medecin'],
+    'panique': ['crise', 'respirer', 'respiration', 'coeur', 'etouffe', 'tremble', 'malaise', 'en peux plus', 'peux plus', 'craque', 'a bout'],
+    'retrait': ['disparait', 'repond plus', 'isole', 'chambre', 'sort plus', 'silence', 'dort', 'depression', 'deprime', 'deprimee', 'mal etre', 'triste', 'tristesse', 'envie de rien', 'moral'],
+    'parler': ['dire', 'raconter', 'avouer', 'oser', 'secret', 'honte', 'psy', 'suivi', 'medecin', 'depression', 'deprime', 'deprimee', 'mal etre', 'mal dans ma peau', 'triste', 'tristesse', 'vide', 'envie de rien', 'a bout', 'en peux plus', 'peux plus', 'moral', 'va pas'],
     'violence': ['frappe', 'tape', 'gifle', 'coup', 'coups', 'agression', 'agresse', 'viol', 'touche', 'attouchement', 'inceste'],
-    'danger': ['urgence', 'urgent', 'tout de suite', 'maintenant', '15', '17', '112', '114', 'samu', 'police', 'pompiers', '3114', '119', '3018']
+    'danger': ['urgence', 'urgent', 'tout de suite', 'maintenant', '15', '17', '112', '114', 'samu', 'police', 'pompiers', '3114', '119', '3018'],
+    'drogue': ['drogues', 'substance', 'substances', 'alcool', 'alcoolise', 'bourre', 'ivre', 'saoul', 'bu', 'boit', 'boire', 'bieres', 'biere', 'vodka', 'defonce', 'defoncee', 'stone', 'perche', 'soiree', 'teuf', 'fete', 'cannabis', 'shit', 'beuh', 'weed', 'joint', 'ecstasy', 'ecsta', 'mdma', 'taz', 'cocaine', 'coke', 'keta', 'ketamine', 'protoxyde', 'proto', 'ballon', 'melange', 'melanges', 'malaise', 'bad trip', 'badtrip', 'overdose', 'cuver', 'vomit', 'vomi', 'consommation', 'consomme', 'rdr', 'reduction des risques']
   };
   const EXTRA = {
     'm-relation': ['localisation', 'jalousie', 'il insiste', 'telephone', 'peur'], 'relation': ['localisation', 'jalousie', 'il insiste', 'telephone'], 'p-relation': ['localisation', 'jalousie', 'telephone'],
     'harcele': ['harcelement', 'photo', 'telephone', 'peur'], 'm-harcele': ['harcelement', 'photo', 'telephone', 'peur'], 'p-harcele': ['harcelement', 'photo', 'telephone'],
+    'drogue': ['drogue', 'panique'], 'm-drogue': ['drogue', 'panique'], 'p-drogue': ['drogue'],
     'violence': ['violence', 'il insiste', 'peur', 'photo'], 'm-violence': ['violence', 'il insiste', 'peur', 'photo'],
     'mourir': ['mourir'], 'm-mourir': ['mourir'], 'p-mourir': ['mourir'], 'danger': ['danger', 'mourir', 'violence'],
     'mal': ['mal'], 'm-mal': ['mal'], 'p-mal': ['mal'],
@@ -2107,44 +2332,71 @@
   HUBS.forEach(hub => document.querySelectorAll('#' + hub + ' .tuiles:not(.petites) .tuile[data-go]').forEach(t => {
     const id = t.dataset.go, fiche = document.getElementById(id); if (!fiche || HUBS.includes(id)) return;
     const titre = t.querySelector('b').textContent.trim(), sous = t.querySelector('.t span').textContent.trim(), emo = t.querySelector('.emo').textContent;
-    const corps = [fiche.querySelector('.intro')?.textContent, ...[...fiche.querySelectorAll('.chip, ul.simple li, .choix-titre')].map(e => e.textContent)].join(' ');
+    const corps = [fiche.querySelector('.intro')?.textContent, ...[...fiche.querySelectorAll('.chip, ul.simple li, ol.etapes li, .choix-titre, h3, .note')].map(e => e.textContent), ...[...fiche.querySelectorAll('[data-tip]')].map(e => e.dataset.tip)].join(' ');
     const syn = (EXTRA[id] || []).flatMap(k => [k, ...(SYNO[k] || [])]).join(' ');
     INDEX.push({id, hub, emo, titre, sous, t: norm(titre + ' ' + sous), s: norm(syn), c: norm(corps)});
   }));
   INDEX.push({id:'danger', hub:'accueil', emo:'🚨', titre:'Il y a peut-être un danger maintenant', sous:'Les numéros, tout de suite', t:norm('danger urgence maintenant'), s:norm(['danger', ...SYNO.danger, 'mourir', ...SYNO.mourir].join(' ')), c:''});
+  // Formulations de crise : traitées AVANT le classement ordinaire. Orientation neutre (la fiche « mourir » du parcours + les urgences), sans affirmer que la personne est en crise.
+  const CRISE = /\b(suicid\w*|mourir|me tuer|se tuer|te tuer|en finir|idees? noires?|plus envie de vivre|envie de mourir|disparaitre pour de bon|me faire du mal|me faire mal|me scarifi\w*|overdose)\b/;
+  const FICHE_MOURIR = {accueil:'mourir', moi:'m-mourir', parents:'p-mourir'};
+  const VIDES = new Set(['il','elle','ils','elles','je','j','tu','on','me','te','se','mon','ma','mes','ton','ta','tes','son','sa','ses','le','la','les','l','un','une','des','de','du','d','et','ou','que','qui','est','ce','c','ca','en','pas','ne','n','plus','pour','avec','dans','sur','moi','toi','lui','mais','quand','tout','tous','toute','trop','tres','vraiment','veux','veut','voudrais','voudrait','vais','va','peux','peut','pense','sais','sait','crois','arrive','arrive','encore','jamais','toujours','faire','fait','suis','es','sommes','etes','sont','ai','as','a','avons','avez','ont','y','au','aux','si','comme','donc','alors','juste','bien','mal','rien','quelque','chose','quelqu','quelquun','mes','ils']);
+  const CREUX_UTILES = new Set(['mal']); // « mal » est un mot creux sauf s'il est seul
+  // Expressions de plusieurs mots reconnues telles quelles (sinon leurs mots, creux, seraient ignorés).
+  const PHRASES = ['en peux plus', 'peux plus', 'a bout', 'mal etre', 'mal dans ma peau', 'va pas', 'idees noires', 'plus envie de vivre', 'envie de rien', 'controle coercitif', 'sous emprise', 'il insiste', 'faire l amour', 'mot de passe', 'repond plus', 'sort plus', 'partir de chez moi', 'ou je suis', 'tout de suite', 'me fait du mal', 'lui fait du mal', 'fait du mal', 'se faire du mal', 'me faire du mal', 'fais du mal'];
+  const NEGATION = /\b(ne|n) ?(veux|veut|voudrais|vais|pense|penses|suis|a|ai) (pas|plus|jamais)\b/;
+  const variantes = (m) => {
+    const v = new Set([m]);
+    if (m.length >= 5) v.add(m.slice(0, Math.max(4, m.length - 2)));   // racine courte : « frappe » ~ « frapp », « harcelee » ~ « harcel »
+    if (m.endsWith('s') && m.length >= 4) v.add(m.slice(0, -1));
+    if (m.endsWith('e') && m.length >= 5) v.add(m.slice(0, -1));
+    return [...v];
+  };
   const chercher = (q, hub) => {
-    const VIDES = new Set(['il','elle','ils','elles','je','tu','on','me','te','se','mon','ma','mes','ton','ta','tes','son','sa','ses','le','la','les','un','une','des','de','du','et','ou','que','qui','est','ce','ca','en','pas','ne','plus','pour','avec','dans','sur','moi','toi','lui','mais','quand','trop','tout','toute','fait','fais','faire','veut','dit','est','suis','sont','ai','as','a']);
-    const mots = norm(q).split(/\s+/).filter(m => (m.length >= 2 && !VIDES.has(m)) || /^\d+$/.test(m));
-    if (!mots.length) return [];
-    return INDEX.map(f => {
-      let sc = 0;
+    const nq = norm(q);
+    let mots = nq.split(' ').filter(m => (m.length >= 2 && !VIDES.has(m)) || /^\d+$/.test(m));
+    PHRASES.forEach(ph => { if ((' ' + nq + ' ').includes(' ' + ph + ' ')) mots.push(ph); });
+    if (!mots.length && CREUX_UTILES.has(nq)) mots = [nq];
+    const crise = CRISE.test(' ' + nq + ' ') && !NEGATION.test(nq);
+    const pri = [];
+    if (crise) { const fm = INDEX.find(f => f.id === FICHE_MOURIR[hub]) || INDEX.find(f => f.id === 'mourir'); if (fm) pri.push(fm); const fd = INDEX.find(f => f.id === 'danger'); if (fd) pri.push(fd); }
+    if (!mots.length) { pri.crise = crise; return pri; }
+    const besoin = Math.max(1, Math.ceil(mots.length / 2));
+    const classes = INDEX.map(f => {
+      let sc = 0, trouves = 0;
       for (const m of mots) {
-        const inT = f.t.includes(m), inS = f.s.includes(m), inC = f.c.includes(m);
-        if (!(inT || inS || inC)) return null;
-        sc += (inT ? 3 : 0) + (inS ? 2 : 0) + (inC ? 1 : 0);
+        let inT = false, inS = false, inC = false;
+        for (const v of variantes(m)) { inT = inT || f.t.includes(v); inS = inS || f.s.includes(v); inC = inC || f.c.includes(v); }
+        if (inT || inS || inC) { trouves++; sc += (inT ? 3 : 0) + (inS ? 2 : 0) + (inC ? 1 : 0); }
       }
+      if (trouves < besoin) return null;
+      sc += trouves * 2;
       if (f.hub === hub) sc += 1.5;
       if (f.id === 'danger') sc += 0.5;
       return {f, sc};
-    }).filter(Boolean).sort((a, b) => b.sc - a.sc).slice(0, 6).map(x => x.f);
+    }).filter(Boolean).sort((a, b) => b.sc - a.sc).map(x => x.f);
+    const vus = new Set(pri.map(f => f.id));
+    const out = [...pri, ...classes.filter(f => !vus.has(f.id))].slice(0, 6); out.crise = crise; return out;
   };
   // ---- Index A-Z : mots courants -> fiches existantes, par parcours. Aucun nouveau contenu.
   const AZ = {
     accueil: {
-      'Adieu': ['mourir'], 'Alcool': ['mal'], 'Angoisse': ['panique'], 'Automutilation': ['mal'],
+      'Adieu': ['mourir'], 'Alcool': ['drogue'], 'Angoisse': ['panique'], 'Automutilation': ['mal'],
       'Chantage': ['violence', 'harcele'], 'Collège': ['lycee'], 'Contrôle': ['relation'], 'Coups': ['violence', 'maison'],
       'Cours (n\u2019y va plus)': ['retrait', 'lycee'], 'Disputes à la maison': ['maison'], 'Doute': ['doute'],
       'Fugue': ['maison'], 'Harcèlement': ['harcele'], 'Idées noires': ['mourir'], 'Isolement': ['retrait', 'relation'],
+      'Bad trip': ['drogue'], 'Drogues': ['drogue'], 'Soirée, malaise': ['drogue'],
       'Jalousie': ['relation'], 'Localisation': ['relation'], 'Lycée': ['lycee'], 'Médicaments': ['mal'],
       'Menaces': ['violence', 'harcele'], 'Mourir': ['mourir'], 'Panique': ['panique'], 'Peur': ['maison', 'violence', 'panique'],
       'Photo qui circule': ['harcele'], 'Prof': ['lycee'], 'Réseaux': ['harcele'], 'Scarification': ['mal'],
       'Silence': ['retrait'], 'Suicide': ['mourir'], 'Téléphone surveillé': ['relation'], 'Violences': ['violence']
     },
     moi: {
-      'Adieu': ['m-mourir'], 'Alcool': ['m-mal'], 'Amis qui m\u2019excluent': ['m-lycee'], 'Angoisse': ['m-panique'],
+      'Adieu': ['m-mourir'], 'Alcool': ['m-drogue'], 'Amis qui m\u2019excluent': ['m-lycee'], 'Angoisse': ['m-panique'],
       'Automutilation': ['m-mal'], 'Chantage': ['m-violence', 'm-harcele'], 'Collège': ['m-lycee'], 'Contrôle': ['m-relation'],
       'Copain, copine': ['m-relation'], 'Coups': ['m-violence', 'm-maison'], 'Disputes à la maison': ['m-maison'],
       'Fugue': ['m-maison'], 'Harcèlement': ['m-harcele'], 'Idées noires': ['m-mourir'], 'Il insiste': ['m-relation', 'm-violence'],
+      'Bad trip': ['m-drogue'], 'Drogues': ['m-drogue'], 'Soirée, malaise': ['m-drogue'],
       'Jalousie': ['m-relation'], 'Localisation': ['m-relation'], 'Lycée': ['m-lycee'], 'Médicaments': ['m-mal'],
       'Menaces': ['m-violence', 'm-harcele'], 'Mourir': ['m-mourir'], 'Oser en parler': ['oser', 'peur'], 'Panique': ['m-panique'],
       'Peur de parler': ['peur'], 'Photo qui circule': ['m-harcele'], 'Prof': ['m-lycee'], 'Psy, suivi': ['suivi'],
@@ -2153,9 +2405,10 @@
       'Après en avoir parlé': ['apres']
     },
     parents: {
-      'Adieu': ['p-mourir'], 'Angoisse': ['p-panique'], 'Automutilation': ['p-mal'], 'Chambre (ne sort plus)': ['p-chambre'],
+      'Adieu': ['p-mourir'], 'Alcool': ['p-drogue'], 'Angoisse': ['p-panique'], 'Automutilation': ['p-mal'], 'Chambre (ne sort plus)': ['p-chambre'],
       'Collège, lycée': ['p-harcele', 'p-chambre'], 'Contrôle': ['p-relation'], 'Cours (n\u2019y va plus)': ['p-chambre'],
       'Doute': ['p-doute'], 'Harcèlement': ['p-harcele'], 'Idées noires': ['p-mourir'], 'Isolement': ['p-chambre', 'p-relation'],
+      'Drogues': ['p-drogue'], 'Consommation': ['p-drogue'],
       'Jalousie': ['p-relation'], 'Médicaments': ['p-mal'], 'Moqueries': ['p-harcele'], 'Mourir': ['p-mourir'],
       'Panique': ['p-panique'], 'Photo qui circule': ['p-harcele'], 'Qui appeler': ['parent'], 'Relation amoureuse': ['p-relation'],
       'Réseaux': ['p-harcele'], 'Scarification': ['p-mal'], 'Suicide': ['p-mourir'], 'Urgence': ['parent']
@@ -2215,6 +2468,7 @@
         act.append(b1, b2, b3); d.appendChild(act); zone.appendChild(d); return;
       }
       const titre = document.createElement('div'); titre.className = 'titre-res'; titre.textContent = res.length + (res.length > 1 ? ' fiches' : ' fiche') + ' pour « ' + q + ' »'; zone.appendChild(titre);
+      if (res.crise) { const c = document.createElement('div'); c.className = 'rien'; c.textContent = vous ? 'Si votre enfant parle de mourir, ou si vous vous inquiétez pour lui/elle : la fiche ci-dessous et le 3114, 24h/24. Danger immédiat : 15 ou 112.' : 'Si tu penses à mourir, ou si tu t\u2019inquiètes pour quelqu\u2019un : la fiche ci-dessous et le 3114, 24h/24. Danger immédiat : 15 ou 112.'; zone.appendChild(c); }
       res.forEach(f => {
         const b = document.createElement('button'); b.type = 'button'; b.className = 'res' + (f.id === 'danger' ? ' danger' : '');
         const li = document.querySelector('#' + f.hub + ' .tuile[data-go="' + f.id + '"]')?.closest('li');
@@ -2246,12 +2500,12 @@
   // Sous-choix : une phrase que le jeune reconnaît → un conseil ciblé juste en dessous
   document.querySelectorAll('.choix').forEach(c => {
     const tip = c.nextElementSibling;
-    c.querySelectorAll('.chip').forEach(ch => ch.addEventListener('click', () => {
+    c.querySelectorAll('.chip').forEach(ch => { ch.setAttribute('aria-pressed', 'false'); ch.addEventListener('click', () => {
       const etait = ch.classList.contains('on');
-      c.querySelectorAll('.chip').forEach(x => x.classList.remove('on'));
+      c.querySelectorAll('.chip').forEach(x => { x.classList.remove('on'); x.setAttribute('aria-pressed', 'false'); });
       if (etait) { tip.classList.remove('on'); return; }
-      ch.classList.add('on'); tip.textContent = ch.dataset.tip; tip.classList.add('on');
-    }));
+      ch.classList.add('on'); ch.setAttribute('aria-pressed', 'true'); tip.textContent = ch.dataset.tip; tip.classList.add('on');
+    }); });
   });
 
   // Sortie rapide : page neutre. N'efface pas l'historique (dit en bas de page).
@@ -2269,7 +2523,7 @@
   // Bulles : « Copier » toujours visible ; « Copié » seulement si la copie a réussi ; sinon le texte est sélectionné.
   document.querySelectorAll('.bulle').forEach(b => {
     const ok = document.createElement('span'); ok.className = 'ok'; ok.textContent = 'Copier'; b.appendChild(ok);
-    b.setAttribute('aria-label', 'Copier ce message');
+    b.setAttribute('aria-label', 'Copier ce message : ' + b.querySelector('q').textContent);
     b.addEventListener('click', async () => {
       const t = b.querySelector('q').textContent;
       b.classList.remove('copie', 'selec');
