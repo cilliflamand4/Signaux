@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#15183A">
+<title>Professionnels : déployer SIGNAUX et agir ensemble</title>
+<meta name="description" content="Collectivités, établissements, associations, mutuelles, structures de prévention : déploiement, formation, intervention et campagnes avec SIGNAUX.">
+<meta property="og:title" content="Professionnels : déployer SIGNAUX et agir ensemble">
+<meta property="og:image" content="https://signaux.cilliflamand.fr/carte-cilli-flamand.png">
+<meta property="og:description" content="Collectivités, établissements, associations, mutuelles, structures de prévention : déploiement, formation, intervention et campagnes avec SIGNAUX.">
+<style>
+  :root{
+    --nuit:#15183A; --nuit-2:#1E2250; --papier:#F7F3EA; --doux:#C9C6DA;
+    --abricot:#FFA552; --framboise:#F0407A; --menthe:#2EE6B0; --trait:rgba(247,243,234,.16);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{
+    background:var(--nuit); color:var(--papier);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    line-height:1.5; -webkit-font-smoothing:antialiased;
+    padding:max(28px,env(safe-area-inset-top)) 20px max(36px,env(safe-area-inset-bottom));
+  }
+  main{max-width:520px;margin:0 auto}
+  .surtitre{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--abricot);font-weight:700;margin:0 0 14px}
+  h1{font-size:2.15rem;line-height:1.1;margin:0 0 6px;letter-spacing:-.01em}
+  .role{font-size:1.05rem;color:var(--doux);margin:0 0 26px}
+  .accroche{
+    font-size:1.32rem;line-height:1.35;font-weight:650;margin:0 0 26px;
+    padding-left:16px;border-left:4px solid var(--framboise);text-wrap:balance;
+  }
+  h2{font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--menthe);margin:30px 0 10px}
+  p{margin:0 0 14px;font-size:1.04rem}
+  ol{list-style:none;margin:0;padding:0;counter-reset:v}
+  ol li{
+    counter-increment:v;position:relative;padding:14px 0 14px 46px;border-top:1px solid var(--trait);font-size:1.02rem;
+  }
+  ol li:last-child{border-bottom:1px solid var(--trait)}
+  ol li::before{
+    content:counter(v);position:absolute;left:0;top:14px;width:30px;height:30px;border-radius:50%;
+    background:var(--nuit-2);border:1px solid var(--trait);display:grid;place-items:center;
+    font-weight:700;font-size:.92rem;color:var(--abricot);
+  }
+  ol b{display:block;font-size:1.06rem}
+  .note{font-size:.93rem;color:var(--doux)}
+  .actions{display:grid;gap:12px;margin:30px 0 8px}
+  a.btn,button.btn{
+    display:block;width:100%;text-align:center;text-decoration:none;cursor:pointer;
+    font:inherit;font-weight:700;font-size:1.06rem;padding:16px 18px;border-radius:14px;
+    border:1px solid var(--trait);background:var(--nuit-2);color:var(--papier);
+  }
+  a.btn.principal{background:var(--abricot);color:#1B1430;border-color:transparent}
+  a.btn:focus-visible,button.btn:focus-visible{outline:3px solid var(--menthe);outline-offset:3px}
+  .qr{display:flex;gap:16px;align-items:center;margin:26px 0 4px;padding:14px;border:1px solid var(--trait);border-radius:16px;background:var(--nuit-2)}
+  .qr img{width:132px;height:132px;flex:none;border-radius:10px;background:#fff;display:block}
+  .qr p{margin:0;font-size:.98rem}
+  .qr b{display:block;font-size:1.05rem;margin-bottom:2px}
+  .portrait{width:116px;height:116px;border-radius:50%;object-fit:cover;display:block;margin:0 0 16px;border:3px solid var(--abricot)}
+  .affiche{display:block;margin:26px 0 10px}
+  .affiche img{width:100%;height:auto;display:block;border-radius:16px;border:1px solid var(--trait)}
+  footer{margin-top:28px;padding-top:18px;border-top:1px solid var(--trait);font-size:.9rem;color:var(--doux)}
+  footer a{color:var(--papier)}
+
+  .marque{font-size:1rem;letter-spacing:.22em;text-transform:uppercase;font-weight:800;margin:0 0 4px;color:var(--papier)}
+  .slogan{font-size:2rem;line-height:1.1;font-weight:800;color:var(--abricot);margin:0 0 10px;letter-spacing:-.01em}
+  .mission{font-size:1.08rem;font-weight:700;color:var(--menthe);margin:0 0 16px}
+  .qui{display:flex;gap:14px;align-items:center;margin:22px 0 6px}
+  .qui .portrait{width:84px;height:84px;margin:0;flex:none}
+  .qui b{display:block;font-size:1.2rem}
+  .qui span{color:var(--doux);font-size:.98rem}
+  .bloc{margin:26px 0;padding:18px 16px;border:1px solid var(--trait);border-radius:16px;background:var(--nuit-2)}
+  .bloc h2{margin-top:0}
+  .bloc h3{font-size:1.18rem;margin:0 0 8px;line-height:1.25}
+  ul.pts{margin:0 0 14px;padding-left:20px}
+  ul.pts li{margin:0 0 6px;font-size:1.02rem}
+  .acces{display:grid;gap:12px;margin:14px 0 8px}
+  a.acc{display:block;text-decoration:none;color:var(--papier);padding:15px 16px;border-radius:14px;border:1px solid var(--trait);background:var(--nuit-2)}
+  a.acc b{display:block;font-size:1.08rem}
+  a.acc span{font-size:.93rem;color:var(--doux)}
+  a.acc.g{border-color:var(--menthe)} a.acc.c{border-color:var(--abricot)} a.acc.p{border-color:var(--framboise)}
+  a.acc:focus-visible{outline:3px solid var(--menthe);outline-offset:3px}
+  .urg{margin:26px 0;padding:16px;border-radius:16px;border:2px solid #FF5A4D;background:rgba(255,59,48,.10)}
+  .urg p{font-weight:650}
+  .urg .nums{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .urg a.num{display:block;text-align:center;text-decoration:none;color:#fff;background:#D7261B;border-radius:12px;padding:12px 8px;font-weight:800;font-size:1.15rem}
+  .urg a.num small{display:block;font-weight:600;font-size:.78rem}
+  .reseaux{display:grid;gap:10px;margin:12px 0}
+  .reseaux a{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--papier);padding:13px 14px;border-radius:14px;border:1px solid var(--trait);background:var(--nuit-2);font-weight:700}
+  .reseaux a i{font-style:normal;font-size:1.3rem;width:1.6em;text-align:center}
+  .retour{display:inline-block;margin:0 0 18px;color:var(--doux);font-size:.95rem}
+  footer a.int{display:inline-block;margin-right:12px}
+</style>
+</head>
+<body>
+<main>
+  <a class="retour" href="carte-preview.html">← Cilli Flamand · SIGNAUX</a>
+  <p class="marque">Signaux · Professionnels</p>
+  <h1>Déployer SIGNAUX et agir ensemble</h1>
+  <p>Vous représentez une collectivité, un établissement, une association, une mutuelle ou une structure de prévention ? Construisons une action adaptée à vos publics et à votre territoire.</p>
+  <p>L'accès à l'application publique reste gratuit pour les utilisateurs. Les adaptations, formations et interventions font l'objet d'une proposition dédiée.</p>
+  <p class="note">SIGNAUX est un prototype conçu par Cilli Flamand, psychologue clinicienne. Son évaluation est à venir.</p>
+
+  <div class="bloc" id="deployer">
+    <h3>Déployer SIGNAUX dans votre structure</h3>
+    <ul class="pts">
+      <li>L'adaptation aux publics et au territoire.</li>
+      <li>L'intégration de ressources locales vérifiées.</li>
+      <li>Les supports de diffusion.</li>
+      <li>L'accompagnement des équipes.</li>
+      <li>Les possibilités de suivi et de mise à jour, selon le contrat.</li>
+    </ul>
+    <a class="btn principal" href="mailto:cilliflamand4@gmail.com?subject=SIGNAUX%20%E2%80%94%20D%C3%A9ploiement&body=Bonjour%2C%0A%0AStructure%20et%20contact%20%3A%0ATerritoire%20%3A%0APublic%20concern%C3%A9%20%3A%0ABesoin%20%3A%0ACalendrier%20%3A%0ABudget%20envisag%C3%A9%20%28s%27il%20est%20connu%29%20%3A%0A%0A%28Merci%20de%20ne%20transmettre%20aucune%20donn%C3%A9e%20personnelle%20ou%20clinique%20concernant%20des%20b%C3%A9n%C3%A9ficiaires.%29%0A">Demander une proposition de déploiement</a>
+  </div>
+
+  <div class="bloc" id="former">
+    <h3>Former et intervenir</h3>
+    <ul class="pts">
+      <li>RELAIS, pour les adultes de proximité : accueillir une parole préoccupante et orienter.</li>
+      <li>Les ateliers avec les jeunes : jeux de rôle et théâtre-forum.</li>
+      <li>Les conférences et actions de sensibilisation.</li>
+    </ul>
+    <p class="note">La préparation et l'adaptation des interventions font partie du travail proposé.</p>
+    <a class="btn principal" href="mailto:cilliflamand4@gmail.com?subject=SIGNAUX%20%E2%80%94%20Formation%20ou%20intervention&body=Bonjour%2C%0A%0AStructure%20et%20contact%20%3A%0ATerritoire%20%3A%0APublic%20concern%C3%A9%20%3A%0ABesoin%20%3A%0ACalendrier%20%3A%0ABudget%20envisag%C3%A9%20%28s%27il%20est%20connu%29%20%3A%0A%0A%28Merci%20de%20ne%20transmettre%20aucune%20donn%C3%A9e%20personnelle%20ou%20clinique%20concernant%20des%20b%C3%A9n%C3%A9ficiaires.%29%0A">Demander une intervention</a>
+  </div>
+
+  <div class="bloc" id="referencer">
+    <h3>Proposer une ressource à référencer</h3>
+    <p>Pour proposer une structure ou un professionnel, merci d'indiquer :</p>
+    <ul class="pts">
+      <li>L'identité de la structure ou du professionnel.</li>
+      <li>L'activité et les qualifications pertinentes.</li>
+      <li>Le territoire et les publics accueillis.</li>
+      <li>Les modalités d'accès et les tarifs éventuels.</li>
+      <li>Les horaires et coordonnées.</li>
+      <li>Une source permettant de vérifier les informations.</li>
+    </ul>
+    <p class="note">Chaque proposition est examinée selon sa pertinence pour les utilisateurs et la vérification des informations. Une demande ne garantit ni référencement ni orientation de patients. Le référencement est indépendant de toute prestation payante et ne constitue pas une certification.</p>
+    <a class="btn principal" href="mailto:cilliflamand4@gmail.com?subject=SIGNAUX%20%E2%80%94%20Proposition%20de%20r%C3%A9f%C3%A9rencement&body=Bonjour%2C%0A%0AStructure%20ou%20professionnel%20%3A%0AActivit%C3%A9%20et%20qualifications%20%3A%0ATerritoire%20et%20publics%20accueillis%20%3A%0AModalit%C3%A9s%20d%27acc%C3%A8s%20et%20tarifs%20%C3%A9ventuels%20%3A%0AHoraires%20et%20coordonn%C3%A9es%20%3A%0ASource%20permettant%20de%20v%C3%A9rifier%20ces%20informations%20%3A%0A%0A%28Merci%20de%20ne%20transmettre%20aucune%20donn%C3%A9e%20personnelle%20ou%20clinique%20concernant%20des%20b%C3%A9n%C3%A9ficiaires.%29%0A">Proposer une ressource</a>
+  </div>
+
+  <div class="bloc" id="campagne">
+    <h3>Construire une campagne de prévention</h3>
+    <p>Concevoir ensemble des contenus et une campagne de prévention, avec une diffusion éventuelle sur les réseaux de Cilli Flamand.</p>
+    <ul class="pts">
+      <li>Les formats et le calendrier.</li>
+      <li>Les droits de réutilisation des contenus.</li>
+    </ul>
+    <p class="note">La création de contenus et leur diffusion sur les réseaux font l'objet d'une proposition distincte, définissant les formats, le calendrier et les droits de réutilisation. Aucune publication, aucun volume d'audience et aucun résultat ne sont garantis, ni inclus automatiquement dans une licence.</p>
+    <a class="btn principal" href="mailto:cilliflamand4@gmail.com?subject=SIGNAUX%20%E2%80%94%20Campagne%20de%20pr%C3%A9vention&body=Bonjour%2C%0A%0AStructure%20et%20contact%20%3A%0ATerritoire%20%3A%0APublic%20concern%C3%A9%20%3A%0ABesoin%20%3A%0ACalendrier%20%3A%0ABudget%20envisag%C3%A9%20%28s%27il%20est%20connu%29%20%3A%0A%0A%28Merci%20de%20ne%20transmettre%20aucune%20donn%C3%A9e%20personnelle%20ou%20clinique%20concernant%20des%20b%C3%A9n%C3%A9ficiaires.%29%0A">Proposer une campagne</a>
+  </div>
+
+  <h2 id="conditions">Licence et conditions</h2>
+  <ul class="pts">
+    <li><b>Utilisation de l'application publique :</b> gratuite pour les utilisateurs.</li>
+    <li><b>Partage :</b> le lien et les supports officiellement autorisés à la diffusion peuvent être relayés.</li>
+    <li><b>Adaptations et déploiements accompagnés :</b> prestations sur devis, pouvant comprendre une mise en place initiale et des services récurrents définis au contrat.</li>
+    <li><b>Formations, interventions et campagnes :</b> sur proposition dédiée.</li>
+  </ul>
+  <p>Le contrat précise :</p>
+  <ul class="pts">
+    <li>Les droits d'usage et les éléments concernés.</li>
+    <li>La durée et le périmètre.</li>
+    <li>Les possibilités d'adaptation.</li>
+    <li>L'attribution à Cilli Flamand.</li>
+    <li>Les services, mises à jour et modalités d'assistance.</li>
+    <li>Les conditions financières, de renouvellement et de fin de contrat.</li>
+  </ul>
+  <p class="note">Les droits disponibles et la partie contractante sont établis avant toute signature. Un déploiement n'emporte ni cession de propriété, ni exclusivité, ni certification.</p>
+
+  <h2>Pour nous écrire</h2>
+  <p>Merci de préciser : la structure et le contact, le territoire, le public concerné, le besoin, le calendrier et, s'il est connu, le budget envisagé. Les boutons ci-dessus ouvrent un courriel déjà préparé.</p>
+  <p class="note">Ne transmettez aucune donnée personnelle ou clinique concernant des bénéficiaires.</p>
+  <div class="actions">
+    <a class="btn" href="tel:+33618974149">Appeler · 06 18 97 41 49</a>
+  </div>
+  <p class="note">Contact professionnel. Ce n'est pas un service d'urgence : en cas de danger, 15, 17 ou 112.</p>
+
+  <h2>Autres accès</h2>
+  <div class="acces">
+    <a class="acc g" href="https://signaux.cilliflamand.fr/"><b>Utiliser SIGNAUX gratuitement</b><span>L'application, sans compte, pour les jeunes et leurs proches</span></a>
+    <a class="acc c" href="consultations.html"><b>Consulter Cilli Flamand</b><span>Accompagnement psychologique individuel, payant</span></a>
+  </div>
+
+  <footer>
+    Conçu par Cilli Flamand, psychologue clinicienne · <a href="mailto:cilliflamand4@gmail.com">cilliflamand4@gmail.com</a> · <a href="tel:+33618974149">06 18 97 41 49</a><br>
+    Contact professionnel : ce n'est ni un service de consultation en ligne, ni un service d'urgence.
+  </footer>
+</main>
+
+</body>
+</html>

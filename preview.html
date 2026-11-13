@@ -311,6 +311,8 @@
   .tuiles li.avenir .tuile{cursor:default;opacity:.72;border-style:dashed;grid-template-columns:48px 1fr}
   .tuiles li.avenir .badge{display:inline-block;margin-left:8px;padding:2px 9px;border-radius:999px;background:color-mix(in srgb,var(--c) 35%,var(--nuit));color:#fff;font-family:var(--corps,inherit);font-size:12px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;vertical-align:middle}
   li.po.po-moi,li.po.po-ami,li.po.po-parent{}
+  #apropos .appel b{font-size:17px;line-height:1.25;overflow-wrap:anywhere}
+  #apropos .appel span{min-width:0}
 </style>
 </head>
 <body data-porte="ami">
@@ -3684,7 +3686,7 @@
   </div>
 
   <h3><span class="emo">👩‍⚕️</span>Une possibilité parmi d'autres</h3>
-  <p class="note">Cilli Flamand, psychologue clinicienne et conceptrice de SIGNAUX, reçoit en consultation. Ces consultations sont payantes et facultatives : elles ne remplacent pas les ressources gratuites, associatives et publiques ci-dessus. <button class="lien" data-go="apropos">À propos de Cilli Flamand</button></p>
+  <p class="note">Cilli Flamand, psychologue clinicienne et conceptrice de SIGNAUX, reçoit en consultation. Ces consultations sont payantes et facultatives : elles ne remplacent pas les ressources gratuites, associatives et publiques ci-dessus. <a class="lien" href="consultations.html" style="text-decoration:none">Consulter Cilli Flamand</a> · <button class="lien" data-go="apropos">À propos</button></p>
   <p class="note">Voir aussi : <button class="lien" data-go="vc-numeros">Quels numéros, quels interlocuteurs ?</button> · <button class="lien" data-go="vc-traces">Quelles traces conserver ?</button></p>
   <p class="src">Sources : arretonslesviolences.gouv.fr (MIPROF, « Les écrits professionnels ») ; HAS, « Repérage des femmes victimes de violences au sein du couple » (2019) ; fncidff.info ; justice.fr (116 006) ; info.gouv.fr, « Mon soutien psy ». Vérifié le 13 novembre 2026.</p>
 </section>
@@ -3693,27 +3695,41 @@
 <section class="screen" id="apropos" style="--c:var(--abricot)">
   <button class="retour" data-go="back">Retour</button>
   <div class="hero"><span class="emo" aria-hidden="true">👩‍⚕️</span><h2>À propos de Cilli Flamand</h2>
-    <p class="intro">Cilli Flamand est psychologue clinicienne à Hyères (Var), installée en libéral depuis 2020. Elle accompagne des femmes, des adolescents et de jeunes adultes, notamment autour des violences psychologiques, de l'emprise et du contrôle coercitif. Elle a conçu SIGNAUX et l'Emprisomètre.</p></div>
+    <p class="intro">SIGNAUX est conçu par Cilli Flamand, psychologue clinicienne, spécialisée dans les violences psychologiques, l'emprise et le contrôle coercitif. Sa mission : la prévention et le repérage précoce en santé mentale.</p></div>
 
-  <h3><span class="emo">📅</span>Consultations</h3>
-  <ul class="simple">
-    <li>Les consultations sont <strong>payantes</strong> et facultatives. Le tarif et les modalités sont précisés en réponse à la demande.</li>
-    <li>Elles ne sont ni un service d'urgence, ni l'orientation par défaut : les ressources gratuites, associatives et publiques restent la première porte.</li>
-  </ul>
+  <p class="note">SIGNAUX est un prototype : son évaluation est à venir. Ce n'est ni un service de consultation, ni un service d'urgence.</p>
+
+  <h3><span class="emo">🧭</span>Trois accès</h3>
   <div class="appels">
-    <a class="appel web" href="mailto:cilliflamand4@gmail.com?subject=Demande%20de%20rendez-vous"><span class="ic">✉️</span><span><b>Prendre rendez-vous avec Cilli Flamand</b><small>Par e-mail — pas de détails sensibles dans ce premier message. Réponse non immédiate</small></span></a>
-    <a class="appel web" href="carte.html"><span class="ic">🪪</span><span><b>Fiche de contact</b><small>Projet, interventions, formations, collaborations</small></span></a>
+    <button class="appel web" data-go="accueil" style="font:inherit;text-align:left;width:100%;cursor:pointer"><span class="ic">📱</span><span><b>Utiliser SIGNAUX gratuitement</b><small>C'est ici : l'application est gratuite et sans compte</small></span></button>
+    <a class="appel web" href="consultations.html"><span class="ic">📅</span><span><b>Consulter Cilli Flamand</b><small>Accompagnement psychologique individuel — payant, facultatif, indépendant de SIGNAUX</small></span></a>
+    <a class="appel web" href="professionnels.html"><span class="ic">🤝</span><span><b>Professionnels : travailler avec SIGNAUX</b><small>Déploiement, formation, intervention, campagne de prévention</small></span></a>
   </div>
-
-  <!-- Réseaux sociaux : aucun lien affiché tant que les URL exactes ne sont pas fournies par Cilli Flamand. -->
-  <p class="note">Les messages privés sur les réseaux sociaux ne sont pas un service d'urgence, et une réponse immédiate n'est pas garantie. Aucun abonnement à un réseau n'est nécessaire pour accéder aux informations de SIGNAUX.</p>
 
   <div class="urgence">
-    <p>En cas de danger, on n'écrit pas : on appelle.</p>
-    <a class="appel rouge" href="tel:17"><span class="ic">📞</span><span><b>17</b><small>Police, gendarmerie</small></span></a>
+    <p>Les demandes de rendez-vous ne sont pas traitées en urgence. <span class="po po-jeune">En cas de danger immédiat, utilise les contacts d'urgence adaptés à ta situation.</span><span class="po po-parent">En cas de danger immédiat, utilisez les contacts d'urgence adaptés à votre situation.</span></p>
     <a class="appel rouge" href="tel:15"><span class="ic">📞</span><span><b>15</b><small>SAMU</small></span></a>
+    <a class="appel rouge" href="tel:17"><span class="ic">📞</span><span><b>17</b><small>Police, gendarmerie</small></span></a>
+    <a class="appel rouge" href="sms:114"><span class="ic">💬</span><span><b>114 par SMS</b><small>Quand on ne peut pas parler à voix haute</small></span></a>
+    <button class="lien" data-go="danger">Tous les numéros d'urgence</button>
   </div>
-  <p class="note">Des aides gratuites : <button class="lien" data-go="vc-numeros">Quels numéros, quels interlocuteurs ?</button> · <button class="lien" data-go="vc-qui">Médecin, psychologue, association</button></p>
+
+  <h3><span class="emo">🆓</span>Des aides gratuites d'abord</h3>
+  <p class="note">La consultation est une possibilité parmi d'autres : <button class="lien" data-go="vc-numeros">Quels numéros, quels interlocuteurs ?</button> · <button class="lien" data-go="vc-qui">Médecin, psychologue, association</button></p>
+
+  <h3><span class="emo">🎬</span>Retrouvez mes contenus de prévention</h3>
+  <p class="note">Des contenus pour comprendre, repérer et s'informer. Les messages privés ne constituent pas un service de consultation ou d'urgence.</p>
+  <div class="appels">
+    <a class="appel web" href="https://www.instagram.com/cilli.flamand.psychologue/" target="_blank" rel="noopener noreferrer"><span class="ic">📷</span><span><b>Instagram</b><small>Site externe</small></span></a>
+    <a class="appel web" href="https://www.tiktok.com/@cilliflamand.psychologue" target="_blank" rel="noopener noreferrer"><span class="ic">🎵</span><span><b>TikTok</b><small>Site externe</small></span></a>
+    <a class="appel web" href="https://www.facebook.com/106497894459863" target="_blank" rel="noopener noreferrer"><span class="ic">👥</span><span><b>Facebook</b><small>Site externe</small></span></a>
+  </div>
+  <p class="note">Aucun abonnement n'est nécessaire pour utiliser SIGNAUX ou trouver de l'aide.</p>
+
+  <h3><span class="emo">✉️</span>Contact professionnel</h3>
+  <div class="appels">
+    <a class="appel web" href="carte-preview.html"><span class="ic">🪪</span><span><b>Carte professionnelle</b><small>Projet, interventions, formations, collaborations</small></span></a>
+  </div>
 </section>
 
 <footer>
@@ -3722,9 +3738,10 @@
   <p>SIGNAUX — prototype, Nice, 2026. Conçu par <strong>Cilli Flamand</strong>, psychologue clinicienne, à partir de retours de jeunes du territoire.</p>
   <p>© 2026 Cilli Flamand — textes, parcours et design. Tous droits réservés. Reproduction et adaptation interdites sans accord écrit.</p>
   <ul class="tuiles petites pro-tuile" style="margin:18px 0 14px">
-    <li style="--c:var(--abricot)"><button class="tuile" data-go="apropos"><span class="emo" aria-hidden="true">👩‍⚕️</span><span class="t"><b>À propos de Cilli Flamand</b><span>Qui a conçu SIGNAUX, consultations, contact.</span></span><span class="chev" aria-hidden="true">›</span></button></li>
-    <li style="--c:var(--ciel)"><a class="tuile" href="carte.html#travailler" style="text-decoration:none;color:inherit"><span class="emo" aria-hidden="true">🤝</span><span class="t"><b>Vous êtes un·e professionnel·le ?</b><span>Travailler avec SIGNAUX ou le déployer dans votre structure.<br><strong style="color:var(--abricot)">Contacter Cilli Flamand →</strong></span></span><span class="chev" aria-hidden="true">›</span></a></li>
-      <li style="--c:var(--abricot)"><a class="tuile" href="carte.html#contact" style="text-decoration:none;color:inherit"><span class="emo" aria-hidden="true">✉️</span><span class="t"><b>Contact</b><span>Écrire ou appeler Cilli Flamand, pour le projet. Ce n'est pas un service d'écoute ni d'urgence.</span></span><span class="chev" aria-hidden="true">›</span></a></li>
+    <li style="--c:var(--abricot)"><button class="tuile" data-go="apropos"><span class="emo" aria-hidden="true">👩‍⚕️</span><span class="t"><b>À propos de Cilli Flamand</b><span>Qui a conçu SIGNAUX, ses contenus de prévention.</span></span><span class="chev" aria-hidden="true">›</span></button></li>
+    <li style="--c:var(--lilas)"><a class="tuile" href="consultations.html" style="text-decoration:none;color:inherit"><span class="emo" aria-hidden="true">📅</span><span class="t"><b>Consulter Cilli Flamand</b><span>Accompagnement individuel, payant et facultatif.</span></span><span class="chev" aria-hidden="true">›</span></a></li>
+    <li style="--c:var(--ciel)"><a class="tuile" href="professionnels.html" style="text-decoration:none;color:inherit"><span class="emo" aria-hidden="true">🤝</span><span class="t"><b>Professionnels : travailler avec SIGNAUX</b><span>Déploiement, formation, intervention, campagne.</span></span><span class="chev" aria-hidden="true">›</span></a></li>
+    <li style="--c:var(--menthe)"><a class="tuile" href="carte-preview.html#contact" style="text-decoration:none;color:inherit"><span class="emo" aria-hidden="true">✉️</span><span class="t"><b>Contact</b><span>Contact professionnel. Ce n'est pas un service d'écoute ni d'urgence.</span></span><span class="chev" aria-hidden="true">›</span></a></li>
   </ul>
   <details class="mentions">
     <summary>Mentions légales et confidentialité</summary>
