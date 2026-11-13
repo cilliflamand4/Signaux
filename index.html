@@ -311,6 +311,24 @@
   .tuiles li.avenir .tuile{cursor:default;opacity:.72;border-style:dashed;grid-template-columns:48px 1fr}
   .tuiles li.avenir .badge{display:inline-block;margin-left:8px;padding:2px 9px;border-radius:999px;background:color-mix(in srgb,var(--c) 35%,var(--nuit));color:#fff;font-family:var(--corps,inherit);font-size:12px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;vertical-align:middle}
   li.po.po-moi,li.po.po-ami,li.po.po-parent{}
+  #apropos .appel b{font-size:17px;line-height:1.25;overflow-wrap:anywhere}
+  #apropos .appel span{min-width:0}
+
+  /* v18.1 */
+  .consult{margin:26px 0 8px;padding:16px 14px;border-radius:var(--r);background:var(--nuit-2);border:1px solid color-mix(in srgb,var(--abricot) 55%,transparent)}
+  .consult h3{margin:0 0 8px;font-family:var(--display);font-size:19px;color:#fff;display:block}
+  .consult p{margin:0 0 10px;font-size:15.5px;line-height:1.45;color:var(--papier)}
+  .consult .appel b{font-size:17px;line-height:1.25;overflow-wrap:anywhere}
+  .consult .appel span{min-width:0}
+  .bloc-119{margin:18px 0;padding:14px;border-radius:var(--r);background:var(--nuit-2);border:1px solid var(--trait)}
+  .bloc-119 p{font-size:16px;margin-bottom:10px}
+  /* contenu jamais masqué par les commandes fixes */
+  body{padding-block:calc(var(--haut-h,62px) + 16px) calc(var(--sos-h,90px) + 44px)}
+  html{scroll-padding-top:calc(var(--haut-h,62px) + 20px);scroll-padding-bottom:calc(var(--sos-h,90px) + 28px)}
+  .sosbar{background:linear-gradient(to top,var(--nuit) 86%,transparent)}
+  .haut{background:linear-gradient(to bottom,var(--nuit) 88%,transparent)}
+  footer{margin-bottom:12px}
+  .rien.alerte-urg{border:2px solid var(--rouge);color:#fff;font-weight:800}
 </style>
 </head>
 <body data-porte="ami">
@@ -356,7 +374,7 @@
     <ul class="tuiles petites">
       <li style="--c:var(--abricot)"><button class="tuile" data-go="moi"><span class="emo" aria-hidden="true">🫶</span><span class="t"><b>C'est moi qui vais mal</b><span>Ouvrir la porte « C'est pour moi » : mal-être, harcèlement, relations, famille, substances, santé mentale</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     </ul>
-    <p class="perso-note">Version 18.0 · prototype en cours de validation. Tests avec des jeunes et des parents prévus pour le pilote 2027.</p>
+    <p class="perso-note">Version 18.1 · prototype en cours de validation. Tests avec des jeunes et des parents prévus pour le pilote 2027.</p>
   </div>
 </section>
 
@@ -397,7 +415,7 @@
     <li style="--c:var(--menthe)"><button class="tuile" data-go="suivi"><span class="emo" aria-hidden="true">👩‍⚕️</span><span class="t"><b>Je suis suivi·e, mais ça va moins bien</b><span>J'ai déjà un psy, mais je n'ose pas le déranger, ou il/elle n'est pas joignable</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--lilas)"><button class="tuile" data-go="sm"><span class="emo" aria-hidden="true">🧠</span><span class="t"><b>Santé mentale</b><span>Je me pose des questions.</span></span><span class="chev" aria-hidden="true">›</span></button></li>
   </ul>
-  <p class="perso-note">Version 18.0 · prototype en cours de validation. Cette page ne demande ni compte ni données.</p>
+  <p class="perso-note">Version 18.1 · prototype en cours de validation. Cette page ne demande ni compte ni données.</p>
 </section>
 
 <!-- ACCUEIL PARENTS -->
@@ -1934,7 +1952,7 @@
   <div class="toi">
     <p><strong>💛 Et toi ?</strong>Ce que cette personne te fait parle d'elle, pas de toi. Tu as le droit d'être protégé·e, même si tu l'aimes, même si c'est de la famille.</p>
   </div>
-  <p class="note">Si c'est dans ta relation, ou avec un·e ex : <button class="lien" data-go="vc">🛑 Violences dans le couple</button> · <button class="lien" data-go="vc-traces">Quelles traces conserver ?</button> · <button class="lien" data-go="vc-qui">Médecin, psychologue, association</button></p>
+  <p class="note">Si c'est dans ta relation, ou avec un·e ex : <button class="lien" data-go="vc">🛑 Violences dans le couple</button> · <button class="lien" data-go="vc-traces">Quelles traces conserver ?</button> · <button class="lien" data-go="vc-qui">Médecin, psychologue, psychiatre, association</button></p>
 </section>
 
 <!-- M-RELATION (nouveau en v16.4, textes nouveaux à valider) -->
@@ -2436,7 +2454,7 @@
   <ul class="simple">
     <li>Tout de suite. Des idées de mort ou de suicide : 3114, ou 15 si le danger est immédiat.</li>
     <li>Dans les jours qui viennent. Le mal-être empêche d'aller en cours ou au travail, de dormir, de manger, ou isole de plus en plus.</li>
-    <li>Sans attendre que ça passe tout seul. Dès que ça pèse. Plus on en parle tôt, plus c'est simple à soigner.</li>
+    <li>Sans attendre que ça passe tout seul. Dès que ça pèse. En parler tôt permet de chercher plus tôt un soutien et des soins adaptés.</li>
   </ul>
 
   <h3><span class="emo">👣</span>Un premier pas</h3>
@@ -2506,7 +2524,8 @@
   <h3><span class="emo">🚦</span>Quand demander de l'aide</h3>
   <ul class="simple">
     <li>Maintenant, au 15. Confusion soudaine, agitation très forte, aggravation rapide, danger pour soi ou pour quelqu'un, voix qui demandent de faire du mal.</li>
-    <li>Vite : aujourd'hui ou dans les jours qui viennent. Des voix ou des perceptions nouvelles, ou qui inquiètent, demandent un avis médical rapide, même si tout le reste va bien.</li>
+    <li class="po po-jeune">Si ces perceptions sont nouvelles ou inhabituelles, demande rapidement un avis médical, idéalement aujourd'hui.</li>
+    <li class="po po-parent">Si ces perceptions sont nouvelles ou inhabituelles, demandez rapidement un avis médical, idéalement aujourd'hui.</li>
     <li>Sans attendre que « ça passe ». Même si ça a commencé après une consommation : on n'attend pas que le produit s'élimine pour demander de l'aide.</li>
   </ul>
   <p class="note">Un exercice de respiration ou de la musique ne suffisent pas pour cette situation. Ce qu'il faut ici, c'est un avis médical.</p>
@@ -2555,7 +2574,7 @@
     <a class="appel" href="tel:0800231313"><span class="ic">📞</span><span><b>0 800 23 13 13</b><small>Drogues Info Service — tous les jours, anonyme et gratuit, horaires sur drogues-info-service.fr. Ce n'est pas un numéro d'urgence</small></span></a>
   </div>
   <p class="note">Pour comprendre le mot « schizophrénie », s'il a été prononcé : <button class="lien" data-go="sm-schizo">Schizophrénie : comprendre</button>.</p>
-  <p class="src">Sources : Psycom, « Troubles schizophréniques » (publié sur Santé.fr, mis à jour en septembre 2026) ; Drogues Info Service (Santé publique France), réponses sur les effets du cannabis et le bad trip. Vérifié le 13 novembre 2026. Référence médicale institutionnelle sur les causes des hallucinations : à compléter à la relecture.</p>
+  <p class="src">Sources : Psycom, <a href="https://www.sante.fr/node/6920703" target="_blank" rel="noopener noreferrer" style="color:inherit">« Troubles schizophréniques », sur Santé.fr</a> (mis à jour en septembre 2026) ; Drogues Info Service (Santé publique France), réponses sur les effets du cannabis et le bad trip. Vérifié le 13 novembre 2026. Référence médicale institutionnelle sur les causes des hallucinations : à compléter à la relecture.</p>
 </section>
 
 <!-- DEPUIS QUE J'AI CONSOMMÉ, QUELQUE CHOSE M'INQUIÈTE -->
@@ -2710,7 +2729,7 @@
   <div class="appels">
     <a class="appel web" href="https://www.psycom.org" target="_blank" rel="noopener"><span class="ic">📄</span><span><b>Psycom</b><small>psycom.org — information publique sur la santé mentale, brochure « Troubles schizophréniques »</small></span></a>
   </div>
-  <p class="src">Sources : Psycom, « Troubles schizophréniques » (publié sur Santé.fr, mis à jour en septembre 2026) ; Psycom, « Mythes et réalités : santé mentale et jeunes ». Vérifié le 13 novembre 2026.</p>
+  <p class="src">Sources : Psycom, <a href="https://www.sante.fr/node/6920703" target="_blank" rel="noopener noreferrer" style="color:inherit">« Troubles schizophréniques », sur Santé.fr</a> (mis à jour en septembre 2026) ; Psycom, « Mythes et réalités : santé mentale et jeunes ». Vérifié le 13 novembre 2026.</p>
 </section>
 
 
@@ -2728,13 +2747,13 @@
 
   <p class="note">Cela concerne aussi les premières relations, les couples qui ne vivent pas ensemble, les relations à distance et les situations avec un·e ex.</p>
 
-  <p class="resp"><span class="po po-moi">Tu n'es pas responsable des violences que tu subis. Tu n'as pas à gérer cela seul·e.</span><span class="po po-ami">Il ou elle n'est pas responsable des violences subies. Et toi, tu n'as pas à gérer cela seul·e.</span><span class="po po-parent">Votre enfant n'est pas responsable des violences subies. Vous n'avez pas à gérer cela seul·e.</span></p>
+  <p class="resp"><span class="po po-moi">Si tu subis des violences, tu n'en es pas responsable. Tu as le droit d'être aidé·e.</span><span class="po po-ami">La personne qui subit des violences n'en est pas responsable. Tu peux la soutenir sans gérer cela seul·e.</span><span class="po po-parent">Votre enfant ou votre proche n'est pas responsable des violences subies. Vous pouvez l'aider et vous faire accompagner.</span></p>
 
   <h3><span class="emo">🧭</span>Trois questions pour se repérer</h3>
   <ul class="simple">
-    <li class="po po-moi">Est-ce que je peux dire non sans avoir peur ?</li>
-    <li class="po po-moi">Est-ce que je change mes habitudes pour éviter sa réaction ?</li>
-    <li class="po po-moi">Est-ce que je garde mes liens, mes choix et mon intimité ?</li>
+    <li class="po po-moi">Est-ce que tu peux dire non sans avoir peur ?</li>
+    <li class="po po-moi">Est-ce que tu changes tes habitudes pour éviter la réaction de l'autre ?</li>
+    <li class="po po-moi">Est-ce que tu gardes tes liens, tes choix et ton intimité ?</li>
     <li class="po po-ami">Est-ce qu'il ou elle peut dire non sans avoir peur ?</li>
     <li class="po po-ami">Est-ce qu'il ou elle change ses habitudes pour éviter la réaction de l'autre ?</li>
     <li class="po po-ami">Est-ce qu'il ou elle garde ses liens, ses choix et son intimité ?</li>
@@ -2742,7 +2761,7 @@
     <li class="po po-parent">Est-ce qu'il ou elle change ses habitudes pour éviter la réaction de l'autre ?</li>
     <li class="po po-parent">Est-ce qu'il ou elle garde ses liens, ses choix et son intimité ?</li>
   </ul>
-  <p class="note">Ce sont des repères, pas un test : il n'y a pas de score, et aucune réponse ne conditionne l'accès à une aide.</p>
+  <p class="note">Ces questions sont des repères, pas un test ni un score. Aucune réponse ne conditionne l'accès à une aide.</p>
 
   <h3><span class="emo">⚖️</span>Désaccord, conflit ou violences ?</h3>
   <ul class="simple">
@@ -2778,7 +2797,7 @@
     <li style="--c:var(--citron)"><button class="tuile" data-go="vc-enfants"><span class="emo" aria-hidden="true">🧒</span><span class="t"><b>Et quand des enfants sont concernés ?</b><span>Mineur·e à la maison, ou inquiétude pour un enfant</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--alerte)"><button class="tuile" data-go="vc-numeros"><span class="emo" aria-hidden="true">☎️</span><span class="t"><b>Quels numéros, quels interlocuteurs ?</b><span>Urgence, écoute, signalement, rendez-vous</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--ciel)"><button class="tuile" data-go="vc-traces"><span class="emo" aria-hidden="true">🗂️</span><span class="t"><b>Quelles traces conserver ?</b><span>Seulement si c'est possible sans danger</span></span><span class="chev" aria-hidden="true">›</span></button></li>
-    <li style="--c:var(--lilas)"><button class="tuile" data-go="vc-qui"><span class="emo" aria-hidden="true">🧑‍⚕️</span><span class="t"><b>Médecin, psychologue, association</b><span>Qui peut m'aider, et pour quoi</span></span><span class="chev" aria-hidden="true">›</span></button></li>
+    <li style="--c:var(--lilas)"><button class="tuile" data-go="vc-qui"><span class="emo" aria-hidden="true">🧑‍⚕️</span><span class="t"><b>Médecin, psychologue, psychiatre, association</b><span>Qui peut m'aider, et pour quoi</span></span><span class="chev" aria-hidden="true">›</span></button></li>
   </ul>
 
   <div class="urgence">
@@ -2833,7 +2852,7 @@
     <div class="pied">Aucun message n'est envoyé depuis SIGNAUX.</div>
   </div>
 
-  <p class="resp"><span class="po po-moi">Tu n'es pas responsable des violences que tu subis. Tu n'as pas à gérer cela seul·e.</span><span class="po po-ami">Il ou elle n'est pas responsable des violences subies. Et toi, tu n'as pas à gérer cela seul·e.</span><span class="po po-parent">Votre enfant n'est pas responsable des violences subies. Vous n'avez pas à gérer cela seul·e.</span></p>
+  <p class="resp"><span class="po po-moi">Si tu subis des violences, tu n'en es pas responsable. Tu as le droit d'être aidé·e.</span><span class="po po-ami">La personne qui subit des violences n'en est pas responsable. Tu peux la soutenir sans gérer cela seul·e.</span><span class="po po-parent">Votre enfant ou votre proche n'est pas responsable des violences subies. Vous pouvez l'aider et vous faire accompagner.</span></p>
 
   <div class="urgence">
     <p><span class="po po-moi">Danger maintenant, menaces, coups, peur de rentrer ou de le/la retrouver :</span><span class="po po-ami">Danger maintenant, menaces, coups, il ou elle a peur de rentrer :</span><span class="po po-parent">Danger maintenant, menaces, coups, votre enfant a peur :</span></p>
@@ -2851,6 +2870,12 @@
   </div>
   <p class="note"><button class="lien" data-go="vc-numeros">Quels numéros, quels interlocuteurs ?</button> · <button class="lien" data-go="vc-quoi">Premiers repères : quoi faire ?</button></p>
   <p class="note">Voir aussi : <button class="lien" data-go="vc-controle">Contrôle coercitif</button> · <button class="lien" data-go="vc-emprise">Emprise et manipulation</button></p>
+  <div class="consult">
+    <h3>Consulter Cilli Flamand</h3>
+    <p>Psychologue clinicienne et conceptrice de SIGNAUX, spécialisée dans les violences psychologiques, l'emprise et le contrôle coercitif.</p>
+    <p>Un accompagnement psychologique individuel, en visioconférence.</p>
+    <a class="appel web" href="consultations.html"><span class="ic">📅</span><span><b>Voir les consultations et prendre rendez-vous</b><small>Consultations privées, payantes — indépendantes de l'accès gratuit à SIGNAUX</small></span></a>
+  </div>
   <p class="src">Sources : arretonslesviolences.gouv.fr (MIPROF, dépliant « Violences au sein du couple ») ; service-public.gouv.fr, « Violences conjugales » ; info.gouv.fr. Vérifié le 13 novembre 2026.</p>
 </section>
 
@@ -2893,7 +2918,7 @@
     <div class="pied">Aucun message n'est envoyé depuis SIGNAUX.</div>
   </div>
 
-  <p class="resp"><span class="po po-moi">Tu n'es pas responsable des violences que tu subis. Tu n'as pas à gérer cela seul·e.</span><span class="po po-ami">Il ou elle n'est pas responsable des violences subies. Et toi, tu n'as pas à gérer cela seul·e.</span><span class="po po-parent">Votre enfant n'est pas responsable des violences subies. Vous n'avez pas à gérer cela seul·e.</span></p>
+  <p class="resp"><span class="po po-moi">Si tu subis des violences, tu n'en es pas responsable. Tu as le droit d'être aidé·e.</span><span class="po po-ami">La personne qui subit des violences n'en est pas responsable. Tu peux la soutenir sans gérer cela seul·e.</span><span class="po po-parent">Votre enfant ou votre proche n'est pas responsable des violences subies. Vous pouvez l'aider et vous faire accompagner.</span></p>
 
   <div class="urgence">
     <p><span class="po po-moi">Danger maintenant, menaces, coups, peur de rentrer ou de le/la retrouver :</span><span class="po po-ami">Danger maintenant, menaces, coups, il ou elle a peur de rentrer :</span><span class="po po-parent">Danger maintenant, menaces, coups, votre enfant a peur :</span></p>
@@ -2911,6 +2936,12 @@
   </div>
   <p class="note"><button class="lien" data-go="vc-numeros">Quels numéros, quels interlocuteurs ?</button> · <button class="lien" data-go="vc-quoi">Premiers repères : quoi faire ?</button></p>
   <p class="note">Voir aussi : <button class="lien" data-go="vc-num">Contrôle numérique</button> · <button class="lien" data-go="vc-isol">Isolement</button> · <button class="lien" data-go="vc-emprise">Emprise et manipulation</button></p>
+  <div class="consult">
+    <h3>Consulter Cilli Flamand</h3>
+    <p>Psychologue clinicienne et conceptrice de SIGNAUX, spécialisée dans les violences psychologiques, l'emprise et le contrôle coercitif.</p>
+    <p>Un accompagnement psychologique individuel, en visioconférence.</p>
+    <a class="appel web" href="consultations.html"><span class="ic">📅</span><span><b>Voir les consultations et prendre rendez-vous</b><small>Consultations privées, payantes — indépendantes de l'accès gratuit à SIGNAUX</small></span></a>
+  </div>
   <p class="src">Sources : arretonslesviolences.gouv.fr (MIPROF) ; Haut Conseil à l'Égalité, communiqué du 17 juin 2026 ; info.gouv.fr. La notion fait l'objet de travaux législatifs en cours : aucune qualification juridique n'est affirmée ici. Vérifié le 13 novembre 2026.</p>
 </section>
 
@@ -2929,11 +2960,6 @@
     <li>Avoir du mal à imaginer décider seul·e, ou partir, même quand ça fait souffrir.</li>
   </ul>
   <p class="note">Repérer une manipulation ne suffit pas à dire qu'il y a des violences, et ne dit rien de la personnalité de l'autre. SIGNAUX ne pose aucun diagnostic sur un·e partenaire : on regarde les comportements, leurs conséquences et les aides possibles.</p>
-  <div class="outil-cilli">
-    <p><strong>Un outil facultatif.</strong> L'Emprisomètre est un questionnaire créé par Cilli Flamand, psychologue clinicienne et conceptrice de SIGNAUX. Il aide à explorer ses repères dans une relation.</p>
-    <p>Il ne pose pas de diagnostic, ne constitue pas une preuve en justice et ne remplace pas une aide professionnelle. Un résultat rassurant ne garantit pas l'absence de danger. On peut demander de l'aide sans l'avoir fait.</p>
-    <a class="appel web" href="https://emprisometre.cilliflamand.fr" target="_blank" rel="noopener noreferrer"><span class="ic">🧭</span><span><b>Explorer mes repères avec l'Emprisomètre</b><small>Site externe, créé par Cilli Flamand — aucune réponse donnée dans SIGNAUX n'y est transmise</small></span></a>
-  </div>
 
   <h3><span class="emo">⚡</span>Une première action</h3>
   <ol class="etapes">
@@ -2958,7 +2984,7 @@
     <div class="pied">Aucun message n'est envoyé depuis SIGNAUX.</div>
   </div>
 
-  <p class="resp"><span class="po po-moi">Tu n'es pas responsable des violences que tu subis. Tu n'as pas à gérer cela seul·e.</span><span class="po po-ami">Il ou elle n'est pas responsable des violences subies. Et toi, tu n'as pas à gérer cela seul·e.</span><span class="po po-parent">Votre enfant n'est pas responsable des violences subies. Vous n'avez pas à gérer cela seul·e.</span></p>
+  <p class="resp"><span class="po po-moi">Si tu subis des violences, tu n'en es pas responsable. Tu as le droit d'être aidé·e.</span><span class="po po-ami">La personne qui subit des violences n'en est pas responsable. Tu peux la soutenir sans gérer cela seul·e.</span><span class="po po-parent">Votre enfant ou votre proche n'est pas responsable des violences subies. Vous pouvez l'aider et vous faire accompagner.</span></p>
 
   <div class="urgence">
     <p><span class="po po-moi">Danger maintenant, menaces, coups, peur de rentrer ou de le/la retrouver :</span><span class="po po-ami">Danger maintenant, menaces, coups, il ou elle a peur de rentrer :</span><span class="po po-parent">Danger maintenant, menaces, coups, votre enfant a peur :</span></p>
@@ -2976,7 +3002,13 @@
   </div>
   <p class="note"><button class="lien" data-go="vc-numeros">Quels numéros, quels interlocuteurs ?</button> · <button class="lien" data-go="vc-quoi">Premiers repères : quoi faire ?</button></p>
   <p class="note">Voir aussi : <button class="lien" data-go="vc-controle">Contrôle coercitif</button> · <button class="lien" data-go="vc-psy">Violences psychologiques</button> · <button class="lien" data-go="apropos">À propos de Cilli Flamand</button></p>
-  <p class="src">Sources : info.gouv.fr, « Violences conjugales : les aides de l'État pour sortir d'une situation d'emprise » ; arretonslesviolences.gouv.fr (MIPROF). L'Emprisomètre est un outil de Cilli Flamand, sans validation scientifique publiée à ce jour. Vérifié le 13 novembre 2026.</p>
+  <div class="consult">
+    <h3>Consulter Cilli Flamand</h3>
+    <p>Psychologue clinicienne et conceptrice de SIGNAUX, spécialisée dans les violences psychologiques, l'emprise et le contrôle coercitif.</p>
+    <p>Un accompagnement psychologique individuel, en visioconférence.</p>
+    <a class="appel web" href="consultations.html"><span class="ic">📅</span><span><b>Voir les consultations et prendre rendez-vous</b><small>Consultations privées, payantes — indépendantes de l'accès gratuit à SIGNAUX</small></span></a>
+  </div>
+  <p class="src">Sources : info.gouv.fr, « Violences conjugales : les aides de l'État pour sortir d'une situation d'emprise » ; arretonslesviolences.gouv.fr (MIPROF). Vérifié le 13 novembre 2026.</p>
 </section>
 
 
@@ -3012,13 +3044,13 @@
       <div class="date">Aujourd'hui</div>
       <div class="aide po po-jeune">Messages à copier et à envoyer toi-même</div><div class="aide po po-parent">Messages à copier et à envoyer vous-même</div>
       <button class="bulle po po-moi"><q>Il/elle veut tout savoir de mon téléphone et de mes déplacements. Je ne sais pas comment réagir sans que ça dégénère.</q></button>
-      <button class="bulle po po-ami"><q>Si tu veux, on appelle le 3018 ensemble depuis mon téléphone. Ils savent quoi faire sans que ça se voie.</q></button>
+      <button class="bulle po po-ami"><q>Si tu veux, on appelle le 3018 ensemble depuis mon téléphone. Ils pourront nous aider à choisir les démarches les plus sûres selon ta situation.</q></button>
       <button class="bulle po po-parent"><q>Ton téléphone, c'est ta vie privée, y compris en couple. Si quelqu'un te le contrôle, on peut demander conseil ensemble.</q></button>
     </div>
     <div class="pied">Aucun message n'est envoyé depuis SIGNAUX.</div>
   </div>
 
-  <p class="resp"><span class="po po-moi">Tu n'es pas responsable des violences que tu subis. Tu n'as pas à gérer cela seul·e.</span><span class="po po-ami">Il ou elle n'est pas responsable des violences subies. Et toi, tu n'as pas à gérer cela seul·e.</span><span class="po po-parent">Votre enfant n'est pas responsable des violences subies. Vous n'avez pas à gérer cela seul·e.</span></p>
+  <p class="resp"><span class="po po-moi">Si tu subis des violences, tu n'en es pas responsable. Tu as le droit d'être aidé·e.</span><span class="po po-ami">La personne qui subit des violences n'en est pas responsable. Tu peux la soutenir sans gérer cela seul·e.</span><span class="po po-parent">Votre enfant ou votre proche n'est pas responsable des violences subies. Vous pouvez l'aider et vous faire accompagner.</span></p>
 
   <div class="urgence">
     <p><span class="po po-moi">Danger maintenant, menaces, coups, peur de rentrer ou de le/la retrouver :</span><span class="po po-ami">Danger maintenant, menaces, coups, il ou elle a peur de rentrer :</span><span class="po po-parent">Danger maintenant, menaces, coups, votre enfant a peur :</span></p>
@@ -3037,6 +3069,12 @@
   </div>
   <p class="note"><button class="lien" data-go="vc-numeros">Quels numéros, quels interlocuteurs ?</button> · <button class="lien" data-go="vc-quoi">Premiers repères : quoi faire ?</button></p>
   <p class="note">Voir aussi : <button class="lien" data-go="vc-controle">Contrôle coercitif</button> · <button class="lien" data-go="vc-traces">Quelles traces conserver ?</button></p>
+  <div class="consult">
+    <h3>Consulter Cilli Flamand</h3>
+    <p>Psychologue clinicienne et conceptrice de SIGNAUX, spécialisée dans les violences psychologiques, l'emprise et le contrôle coercitif.</p>
+    <p>Un accompagnement psychologique individuel, en visioconférence.</p>
+    <a class="appel web" href="consultations.html"><span class="ic">📅</span><span><b>Voir les consultations et prendre rendez-vous</b><small>Consultations privées, payantes — indépendantes de l'accès gratuit à SIGNAUX</small></span></a>
+  </div>
   <p class="src">Sources : 3018.fr (e-Enfance) ; arretonslesviolences.gouv.fr (MIPROF) ; info.gouv.fr. Vérifié le 13 novembre 2026.</p>
 </section>
 
@@ -3078,7 +3116,7 @@
     <div class="pied">Aucun message n'est envoyé depuis SIGNAUX.</div>
   </div>
 
-  <p class="resp"><span class="po po-moi">Tu n'es pas responsable des violences que tu subis. Tu n'as pas à gérer cela seul·e.</span><span class="po po-ami">Il ou elle n'est pas responsable des violences subies. Et toi, tu n'as pas à gérer cela seul·e.</span><span class="po po-parent">Votre enfant n'est pas responsable des violences subies. Vous n'avez pas à gérer cela seul·e.</span></p>
+  <p class="resp"><span class="po po-moi">Si tu subis des violences, tu n'en es pas responsable. Tu as le droit d'être aidé·e.</span><span class="po po-ami">La personne qui subit des violences n'en est pas responsable. Tu peux la soutenir sans gérer cela seul·e.</span><span class="po po-parent">Votre enfant ou votre proche n'est pas responsable des violences subies. Vous pouvez l'aider et vous faire accompagner.</span></p>
 
   <div class="urgence">
     <p><span class="po po-moi">Danger maintenant, menaces, coups, peur de rentrer ou de le/la retrouver :</span><span class="po po-ami">Danger maintenant, menaces, coups, il ou elle a peur de rentrer :</span><span class="po po-parent">Danger maintenant, menaces, coups, votre enfant a peur :</span></p>
@@ -3096,6 +3134,12 @@
   </div>
   <p class="note"><button class="lien" data-go="vc-numeros">Quels numéros, quels interlocuteurs ?</button> · <button class="lien" data-go="vc-quoi">Premiers repères : quoi faire ?</button></p>
   <p class="note">Voir aussi : <button class="lien" data-go="vc-controle">Contrôle coercitif</button> · <button class="lien" data-go="vc-aider">Comment aider un ami ou un proche ?</button></p>
+  <div class="consult">
+    <h3>Consulter Cilli Flamand</h3>
+    <p>Psychologue clinicienne et conceptrice de SIGNAUX, spécialisée dans les violences psychologiques, l'emprise et le contrôle coercitif.</p>
+    <p>Un accompagnement psychologique individuel, en visioconférence.</p>
+    <a class="appel web" href="consultations.html"><span class="ic">📅</span><span><b>Voir les consultations et prendre rendez-vous</b><small>Consultations privées, payantes — indépendantes de l'accès gratuit à SIGNAUX</small></span></a>
+  </div>
   <p class="src">Sources : arretonslesviolences.gouv.fr (MIPROF, dépliant « Violences au sein du couple ») ; service-public.gouv.fr, « Violences conjugales » ; info.gouv.fr. Vérifié le 13 novembre 2026.</p>
 </section>
 
@@ -3137,7 +3181,7 @@
     <div class="pied">Aucun message n'est envoyé depuis SIGNAUX.</div>
   </div>
 
-  <p class="resp"><span class="po po-moi">Tu n'es pas responsable des violences que tu subis. Tu n'as pas à gérer cela seul·e.</span><span class="po po-ami">Il ou elle n'est pas responsable des violences subies. Et toi, tu n'as pas à gérer cela seul·e.</span><span class="po po-parent">Votre enfant n'est pas responsable des violences subies. Vous n'avez pas à gérer cela seul·e.</span></p>
+  <p class="resp"><span class="po po-moi">Si tu subis des violences, tu n'en es pas responsable. Tu as le droit d'être aidé·e.</span><span class="po po-ami">La personne qui subit des violences n'en est pas responsable. Tu peux la soutenir sans gérer cela seul·e.</span><span class="po po-parent">Votre enfant ou votre proche n'est pas responsable des violences subies. Vous pouvez l'aider et vous faire accompagner.</span></p>
 
   <div class="urgence">
     <p><span class="po po-moi">Danger maintenant, menaces, coups, peur de rentrer ou de le/la retrouver :</span><span class="po po-ami">Danger maintenant, menaces, coups, il ou elle a peur de rentrer :</span><span class="po po-parent">Danger maintenant, menaces, coups, votre enfant a peur :</span></p>
@@ -3154,7 +3198,13 @@
     <a class="appel" href="tel:116006"><span class="ic">📞</span><span><b>116 006</b><small>France Victimes : aide et orientation des victimes, tous âges, tous publics — 9h-20h, 7j/7, gratuit</small></span></a>
   </div>
   <p class="note"><button class="lien" data-go="vc-numeros">Quels numéros, quels interlocuteurs ?</button> · <button class="lien" data-go="vc-quoi">Premiers repères : quoi faire ?</button></p>
-  <p class="note">Voir aussi : <span class="po po-moi"><button class="lien" data-go="m-violence">Quelqu'un me fait du mal</button></span><span class="po po-ami"><button class="lien" data-go="violence">Quelqu'un lui fait du mal</button></span><span class="po po-parent"><button class="lien" data-go="vc-enfants">Et quand des enfants sont concernés ?</button></span> · <button class="lien" data-go="vc-qui">Médecin, psychologue, association</button></p>
+  <p class="note">Voir aussi : <span class="po po-moi"><button class="lien" data-go="m-violence">Quelqu'un me fait du mal</button></span><span class="po po-ami"><button class="lien" data-go="violence">Quelqu'un lui fait du mal</button></span><span class="po po-parent"><button class="lien" data-go="vc-enfants">Et quand des enfants sont concernés ?</button></span> · <button class="lien" data-go="vc-qui">Médecin, psychologue, psychiatre, association</button></p>
+  <div class="consult">
+    <h3>Consulter Cilli Flamand</h3>
+    <p>Psychologue clinicienne et conceptrice de SIGNAUX, spécialisée dans les violences psychologiques, l'emprise et le contrôle coercitif.</p>
+    <p>Un accompagnement psychologique individuel, en visioconférence.</p>
+    <a class="appel web" href="consultations.html"><span class="ic">📅</span><span><b>Voir les consultations et prendre rendez-vous</b><small>Consultations privées, payantes — indépendantes de l'accès gratuit à SIGNAUX</small></span></a>
+  </div>
   <p class="src">Sources : arretonslesviolences.gouv.fr (MIPROF, dépliant « Violences au sein du couple ») ; service-public.gouv.fr, « Violences conjugales » ; info.gouv.fr. Vérifié le 13 novembre 2026.</p>
 </section>
 
@@ -3198,7 +3248,7 @@
     <div class="pied">Aucun message n'est envoyé depuis SIGNAUX.</div>
   </div>
 
-  <p class="resp"><span class="po po-moi">Tu n'es pas responsable des violences que tu subis. Tu n'as pas à gérer cela seul·e.</span><span class="po po-ami">Il ou elle n'est pas responsable des violences subies. Et toi, tu n'as pas à gérer cela seul·e.</span><span class="po po-parent">Votre enfant n'est pas responsable des violences subies. Vous n'avez pas à gérer cela seul·e.</span></p>
+  <p class="resp"><span class="po po-moi">Si tu subis des violences, tu n'en es pas responsable. Tu as le droit d'être aidé·e.</span><span class="po po-ami">La personne qui subit des violences n'en est pas responsable. Tu peux la soutenir sans gérer cela seul·e.</span><span class="po po-parent">Votre enfant ou votre proche n'est pas responsable des violences subies. Vous pouvez l'aider et vous faire accompagner.</span></p>
 
   <div class="urgence">
     <p><span class="po po-moi">Danger maintenant, menaces, coups, peur de rentrer ou de le/la retrouver :</span><span class="po po-ami">Danger maintenant, menaces, coups, il ou elle a peur de rentrer :</span><span class="po po-parent">Danger maintenant, menaces, coups, votre enfant a peur :</span></p>
@@ -3216,6 +3266,12 @@
   </div>
   <p class="note"><button class="lien" data-go="vc-numeros">Quels numéros, quels interlocuteurs ?</button> · <button class="lien" data-go="vc-quoi">Premiers repères : quoi faire ?</button></p>
   <p class="note">Voir aussi : <span class="po po-moi"><button class="lien" data-go="m-violence">Quelqu'un me fait du mal</button></span><span class="po po-ami"><button class="lien" data-go="violence">Quelqu'un lui fait du mal</button></span><span class="po po-parent"><button class="lien" data-go="vc-enfants">Et quand des enfants sont concernés ?</button></span> · <button class="lien" data-go="vc-traces">Quelles traces conserver ?</button></p>
+  <div class="consult">
+    <h3>Consulter Cilli Flamand</h3>
+    <p>Psychologue clinicienne et conceptrice de SIGNAUX, spécialisée dans les violences psychologiques, l'emprise et le contrôle coercitif.</p>
+    <p>Un accompagnement psychologique individuel, en visioconférence.</p>
+    <a class="appel web" href="consultations.html"><span class="ic">📅</span><span><b>Voir les consultations et prendre rendez-vous</b><small>Consultations privées, payantes — indépendantes de l'accès gratuit à SIGNAUX</small></span></a>
+  </div>
   <p class="src">Sources : arretonslesviolences.gouv.fr (MIPROF, dépliant « Violences au sein du couple ») ; service-public.gouv.fr, « Violences conjugales » ; info.gouv.fr. Vérifié le 13 novembre 2026.</p>
 </section>
 
@@ -3258,7 +3314,7 @@
     <div class="pied">Aucun message n'est envoyé depuis SIGNAUX.</div>
   </div>
 
-  <p class="resp"><span class="po po-moi">Tu n'es pas responsable des violences que tu subis. Tu n'as pas à gérer cela seul·e.</span><span class="po po-ami">Il ou elle n'est pas responsable des violences subies. Et toi, tu n'as pas à gérer cela seul·e.</span><span class="po po-parent">Votre enfant n'est pas responsable des violences subies. Vous n'avez pas à gérer cela seul·e.</span></p>
+  <p class="resp"><span class="po po-moi">Si tu subis des violences, tu n'en es pas responsable. Tu as le droit d'être aidé·e.</span><span class="po po-ami">La personne qui subit des violences n'en est pas responsable. Tu peux la soutenir sans gérer cela seul·e.</span><span class="po po-parent">Votre enfant ou votre proche n'est pas responsable des violences subies. Vous pouvez l'aider et vous faire accompagner.</span></p>
 
   <div class="urgence">
     <p><span class="po po-moi">Danger maintenant, menaces, coups, peur de rentrer ou de le/la retrouver :</span><span class="po po-ami">Danger maintenant, menaces, coups, il ou elle a peur de rentrer :</span><span class="po po-parent">Danger maintenant, menaces, coups, votre enfant a peur :</span></p>
@@ -3277,6 +3333,12 @@
   </div>
   <p class="note"><button class="lien" data-go="vc-numeros">Quels numéros, quels interlocuteurs ?</button> · <button class="lien" data-go="vc-quoi">Premiers repères : quoi faire ?</button></p>
   <p class="note">Voir aussi : <span class="po po-moi"><button class="lien" data-go="m-harcele">On me harcèle</button></span><span class="po po-ami"><button class="lien" data-go="harcele">On le/la harcèle</button></span><span class="po po-parent"><button class="lien" data-go="p-harcele">Votre ado est harcelé·e</button></span> · <button class="lien" data-go="vc-traces">Quelles traces conserver ?</button> · <button class="lien" data-go="vc-numeros">Quels numéros ?</button></p>
+  <div class="consult">
+    <h3>Consulter Cilli Flamand</h3>
+    <p>Psychologue clinicienne et conceptrice de SIGNAUX, spécialisée dans les violences psychologiques, l'emprise et le contrôle coercitif.</p>
+    <p>Un accompagnement psychologique individuel, en visioconférence.</p>
+    <a class="appel web" href="consultations.html"><span class="ic">📅</span><span><b>Voir les consultations et prendre rendez-vous</b><small>Consultations privées, payantes — indépendantes de l'accès gratuit à SIGNAUX</small></span></a>
+  </div>
   <p class="src">Sources : service-public.gouv.fr, « Violences conjugales » (violences commises au sein du couple ou par un ancien partenaire) ; arretonslesviolences.gouv.fr ; 3018.fr. Vérifié le 13 novembre 2026.</p>
 </section>
 
@@ -3318,7 +3380,7 @@
     <li>Pour être écouté·e et orienté·e : le 3919, le 119 pour les moins de 18 ans, le 116 006.</li>
     <li>Pour la santé : un médecin. Pour les démarches et les droits : une association spécialisée.</li>
   </ul>
-  <p class="note"><button class="lien" data-go="vc-qui">Médecin, psychologue, association : qui peut m'aider ?</button> · <button class="lien" data-go="vc-numeros">Quels numéros, quels interlocuteurs ?</button></p>
+  <p class="note"><button class="lien" data-go="vc-qui">Médecin, psychologue, psychiatre, association : qui peut m'aider ?</button> · <button class="lien" data-go="vc-numeros">Quels numéros, quels interlocuteurs ?</button></p>
 
   <h3><span class="emo">4️⃣</span>Préparer une première conversation</h3>
   <ul class="simple">
@@ -3341,7 +3403,7 @@
     <div class="pied">Aucun message n'est envoyé depuis SIGNAUX.</div>
   </div>
 
-  <p class="resp"><span class="po po-moi">Tu n'es pas responsable des violences que tu subis. Tu n'as pas à gérer cela seul·e.</span><span class="po po-ami">Il ou elle n'est pas responsable des violences subies. Et toi, tu n'as pas à gérer cela seul·e.</span><span class="po po-parent">Votre enfant n'est pas responsable des violences subies. Vous n'avez pas à gérer cela seul·e.</span></p>
+  <p class="resp"><span class="po po-moi">Si tu subis des violences, tu n'en es pas responsable. Tu as le droit d'être aidé·e.</span><span class="po po-ami">La personne qui subit des violences n'en est pas responsable. Tu peux la soutenir sans gérer cela seul·e.</span><span class="po po-parent">Votre enfant ou votre proche n'est pas responsable des violences subies. Vous pouvez l'aider et vous faire accompagner.</span></p>
   <p class="note">Personne n'est obligé de partir tout de suite, de confronter l'autre ou de lui annoncer une démarche. Chaque décision se prend à son rythme, avec de l'aide.</p>
   <p class="src">Sources : arretonslesviolences.gouv.fr (MIPROF, dépliant « Violences au sein du couple ») ; service-public.gouv.fr, « Violences conjugales » ; info.gouv.fr. Vérifié le 13 novembre 2026.</p>
 </section>
@@ -3421,10 +3483,15 @@
     <p class="intro">Un enfant ou un ado peut être directement victime de violences. Il peut aussi vivre dans une maison où des adultes se font du mal : voir, entendre ou sentir ces violences, c'est déjà en subir.</p></div>
 
   <div class="urgence">
-    <p>Un enfant ou un ado en danger maintenant :</p>
+    <p>Danger immédiat — un enfant ou un ado est frappé, menacé, en danger maintenant : les secours.</p>
     <a class="appel rouge" href="tel:17"><span class="ic">📞</span><span><b>17</b><small>Police, gendarmerie — danger immédiat</small></span></a>
-    <a class="appel rouge" href="tel:119"><span class="ic">📞</span><span><b>119</b><small>Enfance en danger — 24h/24, gratuit, pour les mineurs et toute personne inquiète</small></span></a>
+    <a class="appel rouge" href="tel:112"><span class="ic">📞</span><span><b>112</b><small>Numéro d'urgence européen</small></span></a>
     <a class="appel rouge" href="sms:114"><span class="ic">💬</span><span><b>114 par SMS</b><small>Urgence, quand on ne peut pas parler à voix haute</small></span></a>
+  </div>
+
+  <div class="bloc-119">
+    <p><strong>Pas de danger immédiat, mais une inquiétude ?</strong> Le 119 n'envoie pas les secours : il écoute, conseille et peut transmettre la situation aux services de protection de l'enfance.</p>
+    <a class="appel" href="tel:119"><span class="ic">📞</span><span><b>119</b><small>Enfant en danger ou en risque de l'être : pour les mineurs et les personnes inquiètes pour eux — 24h/24, gratuit</small></span></a>
   </div>
 
   <h3><span class="emo">🙋</span>Je suis mineur·e et cela se passe chez moi</h3>
@@ -3432,7 +3499,7 @@
     <li>Ce n'est pas ta faute. Ce qui se passe entre les adultes, ou ce qu'un adulte te fait, n'est jamais de ta responsabilité.</li>
     <li>Tu n'as pas à t'interposer, à espionner, ni à réunir des preuves. Ton rôle, c'est de te mettre à l'abri.</li>
     <li>Parles-en à un adulte sûr, qui n'est pas impliqué dans les violences : quelqu'un de ta famille, l'infirmière scolaire, un·e prof, un médecin.</li>
-    <li>Le 119 est fait pour toi : gratuit, 24h/24, et l'appel n'apparaît pas sur les factures de téléphone.</li>
+    <li>Le 119 est fait pour toi : gratuit, 24h/24. L'appel n'apparaît pas sur les factures de téléphone, mais il peut rester dans le journal d'appels de l'appareil.</li>
   </ul>
   <div class="appels">
     <a class="appel" href="tel:119"><span class="ic">📞</span><span><b>119</b><small>Pour toi, si tu as moins de 18 ans — 24h/24, gratuit</small></span></a>
@@ -3543,18 +3610,19 @@
     <a class="appel rouge" href="sms:114"><span class="ic">💬</span><span><b>114 par SMS</b><small>Urgence, quand on ne peut pas parler à voix haute — gratuit, 24h/24</small></span></a>
     <button class="lien" data-go="danger">Tous les numéros d'urgence</button>
   </div>
-  <p class="note">Voir aussi : <button class="lien" data-go="vc-qui">Médecin, psychologue, association</button> · <button class="lien" data-go="vc-num">Contrôle numérique</button></p>
+  <p class="note">Voir aussi : <button class="lien" data-go="vc-qui">Médecin, psychologue, psychiatre, association</button> · <button class="lien" data-go="vc-num">Contrôle numérique</button></p>
   <p class="src">Sources : France Victimes, « Mémo de Vie » ; info.gouv.fr, « Violences conjugales : les aides de l'État pour sortir d'une situation d'emprise » ; arretonslesviolences.gouv.fr. Vérifié le 13 novembre 2026.</p>
 </section>
 
 
 <section class="screen" id="vc-qui" style="--c:var(--lilas)">
   <button class="retour" data-go="back">Retour</button>
-  <div class="hero"><span class="emo" aria-hidden="true">🧑‍⚕️</span><h2>Médecin, psychologue, association : qui peut m'aider ?</h2>
-    <p class="intro">Leurs rôles se complètent. On peut commencer par n'importe laquelle de ces portes.</p></div>
+  <div class="hero"><span class="emo" aria-hidden="true">🧑‍⚕️</span><h2>Médecin, psychologue, psychiatre, association : qui peut m'aider ?</h2>
+    <p class="intro"><span class="po po-jeune">Ces professionnels et structures ont des rôles complémentaires. Le bon interlocuteur dépend de ta situation et du degré d'urgence.</span><span class="po po-parent">Ces professionnels et structures ont des rôles complémentaires. Le bon interlocuteur dépend de la situation et du degré d'urgence.</span></p></div>
 
   <ul class="simple">
-    <li><strong>Le médecin</strong> évalue la santé, soigne, et peut établir un certificat médical qui décrit ce qu'il constate.</li>
+    <li><strong>Le médecin généraliste</strong> évalue la santé, soigne, et peut établir un certificat médical qui décrit ce qu'il constate.</li>
+    <li><strong>Le ou la psychiatre</strong> est un médecin spécialisé en santé mentale. Il ou elle peut évaluer les troubles, établir un diagnostic médical et proposer des soins, avec des médicaments lorsque c'est indiqué.</li>
     <li><strong>Le ou la psychologue</strong> accompagne les conséquences psychologiques et la reconstruction. Ses écrits professionnels ne sont pas un certificat médical.</li>
     <li><strong>Les associations</strong> accompagnent les démarches, les droits, la protection et l'accès aux ressources. Leur accueil est le plus souvent gratuit et confidentiel.</li>
   </ul>
@@ -3577,8 +3645,14 @@
     <a class="appel web" href="https://monsoutienpsy.ameli.fr" target="_blank" rel="noopener noreferrer"><span class="ic">🧑‍⚕️</span><span><b>Mon soutien psy</b><small>Séances remboursées chez un·e psychologue partenaire — conditions sur monsoutienpsy.ameli.fr</small></span></a>
   </div>
 
-  <h3><span class="emo">👩‍⚕️</span>Une possibilité parmi d'autres</h3>
-  <p class="note">Cilli Flamand, psychologue clinicienne et conceptrice de SIGNAUX, reçoit en consultation. Ces consultations sont payantes et facultatives : elles ne remplacent pas les ressources gratuites, associatives et publiques ci-dessus. <button class="lien" data-go="apropos">À propos de Cilli Flamand</button></p>
+  <p class="note">Quand une évaluation médicale rapide est nécessaire, elle passe avant une consultation programmée.</p>
+  <div class="consult">
+    <h3>Consulter Cilli Flamand</h3>
+    <p>Psychologue clinicienne et conceptrice de SIGNAUX, spécialisée dans les violences psychologiques, l'emprise et le contrôle coercitif.</p>
+    <p>Un accompagnement psychologique individuel, en visioconférence.</p>
+    <a class="appel web" href="consultations.html"><span class="ic">📅</span><span><b>Voir les consultations et prendre rendez-vous</b><small>Consultations privées, payantes — indépendantes de l'accès gratuit à SIGNAUX</small></span></a>
+  </div>
+  <p class="note"><button class="lien" data-go="apropos">À propos de Cilli Flamand</button></p>
   <p class="note">Voir aussi : <button class="lien" data-go="vc-numeros">Quels numéros, quels interlocuteurs ?</button> · <button class="lien" data-go="vc-traces">Quelles traces conserver ?</button></p>
   <p class="src">Sources : arretonslesviolences.gouv.fr (MIPROF, « Les écrits professionnels ») ; HAS, « Repérage des femmes victimes de violences au sein du couple » (2019) ; fncidff.info ; justice.fr (116 006) ; info.gouv.fr, « Mon soutien psy ». Vérifié le 13 novembre 2026.</p>
 </section>
@@ -3587,27 +3661,50 @@
 <section class="screen" id="apropos" style="--c:var(--abricot)">
   <button class="retour" data-go="back">Retour</button>
   <div class="hero"><span class="emo" aria-hidden="true">👩‍⚕️</span><h2>À propos de Cilli Flamand</h2>
-    <p class="intro">Cilli Flamand est psychologue clinicienne à Hyères (Var), installée en libéral depuis 2020. Elle accompagne des femmes, des adolescents et de jeunes adultes, notamment autour des violences psychologiques, de l'emprise et du contrôle coercitif. Elle a conçu SIGNAUX et l'Emprisomètre.</p></div>
+    <p class="intro"><strong>Cilli Flamand</strong><br>Psychologue clinicienne et conceptrice de SIGNAUX<br>Spécialisée dans les violences psychologiques, l'emprise et le contrôle coercitif<br>RPPS : 10010043544</p></div>
 
-  <h3><span class="emo">📅</span>Consultations</h3>
-  <ul class="simple">
-    <li>Les consultations sont <strong>payantes</strong> et facultatives. Le tarif et les modalités sont précisés en réponse à la demande.</li>
-    <li>Elles ne sont ni un service d'urgence, ni l'orientation par défaut : les ressources gratuites, associatives et publiques restent la première porte.</li>
-  </ul>
+  <p class="note">SIGNAUX — « Ça commence par toi. » Prévention et repérage précoce en santé mentale. Conçu par Cilli Flamand, psychologue clinicienne.</p>
+
+  <p class="note">SIGNAUX est un prototype : son évaluation est à venir. Ce n'est ni un service de consultation, ni un service d'urgence.</p>
+
+  <h3><span class="emo">🧭</span>Trois accès</h3>
   <div class="appels">
-    <a class="appel web" href="mailto:cilliflamand4@gmail.com?subject=Demande%20de%20rendez-vous"><span class="ic">✉️</span><span><b>Prendre rendez-vous avec Cilli Flamand</b><small>Par e-mail — pas de détails sensibles dans ce premier message. Réponse non immédiate</small></span></a>
-    <a class="appel web" href="carte.html"><span class="ic">🪪</span><span><b>Fiche de contact</b><small>Projet, interventions, formations, collaborations</small></span></a>
+    <button class="appel web" data-go="accueil" style="font:inherit;text-align:left;width:100%;cursor:pointer"><span class="ic">📱</span><span><b>Utiliser SIGNAUX gratuitement</b><small>C'est ici : l'application est gratuite et sans compte</small></span></button>
+    <a class="appel web" href="consultations.html"><span class="ic">📅</span><span><b>Consulter Cilli Flamand</b><small>Consultations privées · Tarifs et rendez-vous</small></span></a>
+    <a class="appel web" href="professionnels.html"><span class="ic">🤝</span><span><b>Travailler avec SIGNAUX</b><small>Professionnels : déploiement, formation, intervention, campagne de prévention</small></span></a>
   </div>
-
-  <!-- Réseaux sociaux : aucun lien affiché tant que les URL exactes ne sont pas fournies par Cilli Flamand. -->
-  <p class="note">Les messages privés sur les réseaux sociaux ne sont pas un service d'urgence, et une réponse immédiate n'est pas garantie. Aucun abonnement à un réseau n'est nécessaire pour accéder aux informations de SIGNAUX.</p>
 
   <div class="urgence">
-    <p>En cas de danger, on n'écrit pas : on appelle.</p>
-    <a class="appel rouge" href="tel:17"><span class="ic">📞</span><span><b>17</b><small>Police, gendarmerie</small></span></a>
+    <p>Les demandes de rendez-vous ne sont pas traitées en urgence. <span class="po po-jeune">En cas de danger immédiat, utilise les contacts d'urgence adaptés à ta situation.</span><span class="po po-parent">En cas de danger immédiat, utilisez les contacts d'urgence adaptés à votre situation.</span></p>
     <a class="appel rouge" href="tel:15"><span class="ic">📞</span><span><b>15</b><small>SAMU</small></span></a>
+    <a class="appel rouge" href="tel:17"><span class="ic">📞</span><span><b>17</b><small>Police, gendarmerie</small></span></a>
+    <a class="appel rouge" href="sms:114"><span class="ic">💬</span><span><b>114 par SMS</b><small>Quand on ne peut pas parler à voix haute</small></span></a>
+    <button class="lien" data-go="danger">Tous les numéros d'urgence</button>
   </div>
-  <p class="note">Des aides gratuites : <button class="lien" data-go="vc-numeros">Quels numéros, quels interlocuteurs ?</button> · <button class="lien" data-go="vc-qui">Médecin, psychologue, association</button></p>
+
+  <h3><span class="emo">🆓</span>Des aides gratuites, publiques et associatives</h3>
+  <p class="note"><button class="lien" data-go="vc-numeros">Quels numéros, quels interlocuteurs ?</button> · <button class="lien" data-go="vc-qui">Médecin, psychologue, psychiatre, association</button></p>
+
+  <div class="consult">
+    <h3>Consulter Cilli Flamand</h3>
+    <p>Psychologue clinicienne et conceptrice de SIGNAUX, spécialisée dans les violences psychologiques, l'emprise et le contrôle coercitif.</p>
+    <p>Un accompagnement psychologique individuel, en visioconférence.</p>
+    <a class="appel web" href="consultations.html"><span class="ic">📅</span><span><b>Voir les consultations et prendre rendez-vous</b><small>Consultations privées, payantes — indépendantes de l'accès gratuit à SIGNAUX</small></span></a>
+  </div>
+
+  <h3><span class="emo">🎬</span>Retrouvez mes contenus de prévention</h3>
+  <p class="note">Des contenus pour comprendre, repérer et s'informer. Les messages privés ne constituent pas un service de consultation ou d'urgence.</p>
+  <div class="appels">
+    <a class="appel web" href="https://www.instagram.com/cilli.flamand.psychologue/" target="_blank" rel="noopener noreferrer"><span class="ic">📷</span><span><b>Instagram</b><small>Site externe</small></span></a>
+    <a class="appel web" href="https://www.tiktok.com/@cilliflamand.psychologue" target="_blank" rel="noopener noreferrer"><span class="ic">🎵</span><span><b>TikTok</b><small>Site externe</small></span></a>
+    <a class="appel web" href="https://www.facebook.com/106497894459863" target="_blank" rel="noopener noreferrer"><span class="ic">👥</span><span><b>Facebook</b><small>Site externe</small></span></a>
+  </div>
+  <p class="note">Aucun abonnement n'est nécessaire pour utiliser SIGNAUX ou trouver de l'aide.</p>
+
+  <h3><span class="emo">✉️</span>Contact professionnel</h3>
+  <div class="appels">
+    <a class="appel web" href="carte.html"><span class="ic">🪪</span><span><b>Carte professionnelle</b><small>Projet, interventions, formations, collaborations</small></span></a>
+  </div>
 </section>
 
 <footer>
@@ -3616,13 +3713,14 @@
   <p>SIGNAUX — prototype, Nice, 2026. Conçu par <strong>Cilli Flamand</strong>, psychologue clinicienne, à partir de retours de jeunes du territoire.</p>
   <p>© 2026 Cilli Flamand — textes, parcours et design. Tous droits réservés. Reproduction et adaptation interdites sans accord écrit.</p>
   <ul class="tuiles petites pro-tuile" style="margin:18px 0 14px">
-    <li style="--c:var(--abricot)"><button class="tuile" data-go="apropos"><span class="emo" aria-hidden="true">👩‍⚕️</span><span class="t"><b>À propos de Cilli Flamand</b><span>Qui a conçu SIGNAUX, consultations, contact.</span></span><span class="chev" aria-hidden="true">›</span></button></li>
-    <li style="--c:var(--ciel)"><a class="tuile" href="carte.html#travailler" style="text-decoration:none;color:inherit"><span class="emo" aria-hidden="true">🤝</span><span class="t"><b>Vous êtes un·e professionnel·le ?</b><span>Travailler avec SIGNAUX ou le déployer dans votre structure.<br><strong style="color:var(--abricot)">Contacter Cilli Flamand →</strong></span></span><span class="chev" aria-hidden="true">›</span></a></li>
-      <li style="--c:var(--abricot)"><a class="tuile" href="carte.html#contact" style="text-decoration:none;color:inherit"><span class="emo" aria-hidden="true">✉️</span><span class="t"><b>Contact</b><span>Écrire ou appeler Cilli Flamand, pour le projet. Ce n'est pas un service d'écoute ni d'urgence.</span></span><span class="chev" aria-hidden="true">›</span></a></li>
+    <li style="--c:var(--abricot)"><button class="tuile" data-go="apropos"><span class="emo" aria-hidden="true">👩‍⚕️</span><span class="t"><b>À propos de Cilli Flamand</b><span>Qui a conçu SIGNAUX, ses contenus de prévention.</span></span><span class="chev" aria-hidden="true">›</span></button></li>
+    <li style="--c:var(--lilas)"><a class="tuile" href="consultations.html" style="text-decoration:none;color:inherit"><span class="emo" aria-hidden="true">📅</span><span class="t"><b>Consulter Cilli Flamand</b><span>Consultations privées · Tarifs et rendez-vous</span></span><span class="chev" aria-hidden="true">›</span></a></li>
+    <li style="--c:var(--ciel)"><a class="tuile" href="professionnels.html" style="text-decoration:none;color:inherit"><span class="emo" aria-hidden="true">🤝</span><span class="t"><b>Travailler avec SIGNAUX</b><span>Professionnels : déploiement, formation, intervention, campagne.</span></span><span class="chev" aria-hidden="true">›</span></a></li>
+    <li style="--c:var(--menthe)"><a class="tuile" href="carte.html#contact" style="text-decoration:none;color:inherit"><span class="emo" aria-hidden="true">✉️</span><span class="t"><b>Contact</b><span>Contact professionnel. Ce n'est pas un service d'écoute ni d'urgence.</span></span><span class="chev" aria-hidden="true">›</span></a></li>
   </ul>
   <details class="mentions">
     <summary>Mentions légales et confidentialité</summary>
-    <p><strong>Éditrice</strong> : Cilli Flamand, psychologue clinicienne (n° ADELI 839312253), Hyères (Var). SIGNAUX est un prototype à visée de prévention, sans finalité commerciale, présenté au colloque international « Villes et Santé mentale », Nice, novembre 2026.</p>
+    <p><strong>Éditrice</strong> : Cilli Flamand, psychologue clinicienne (RPPS : 10010043544), Hyères (Var). SIGNAUX est un prototype à visée de prévention, gratuit pour ses utilisateurs, présenté au colloque international « Villes et Santé mentale », Nice, novembre 2026.</p>
     <p><strong>Contact</strong> (questions sur le projet, partenariats) : <a href="mailto:cilliflamand4@gmail.com">cilliflamand4@gmail.com</a>. Cette adresse n'est pas un service d'écoute ni d'urgence : en cas de danger, appelez le 15, le 17 ou le 112.</p>
     <p><strong>Hébergement</strong> : GitHub Pages, GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis.</p>
     <p><strong>Données</strong> : aucun compte, aucun formulaire, aucun cookie, aucun outil de mesure d'audience. Rien de ce qui est tapé dans la recherche n'est enregistré ni transmis : elle fonctionne dans le navigateur, sur les textes de cette page. Les messages « à copier » sont copiés sur votre appareil et envoyés par vous, jamais depuis cette page. L'hébergeur peut conserver des journaux techniques de connexion (adresse IP, pages chargées), comme pour tout site web, et les polices d'écriture sont chargées depuis Google Fonts.</p>
@@ -3642,6 +3740,7 @@
 
 <script>
   // Hauteur réelle de la barre « danger » → espace réservé sous le contenu, pour qu'aucune tuile ni aucun focus ne soit masqué.
+  window.addEventListener('load', () => mesurerSos()); window.addEventListener('resize', () => mesurerSos()); window.addEventListener('orientationchange', () => setTimeout(mesurerSos, 250));
   const mesurerSos = () => { const s = document.getElementById('sosbar'); document.documentElement.style.setProperty('--sos-h', (s.hidden ? 0 : s.offsetHeight) + 'px');
     const h = document.getElementById('haut'); if (h) document.documentElement.style.setProperty('--haut-h', h.offsetHeight + 'px'); };
   window.addEventListener('resize', mesurerSos); window.addEventListener('load', mesurerSos); mesurerSos();
@@ -3732,7 +3831,7 @@
     'harcelement': ['harcele', 'harcelee', 'harceler', 'moquer', 'moquerie', 'moqueries', 'humilie', 'insultes', 'insulte', 'rumeur', 'rumeurs', 'exclu', 'exclue', 'cyber', 'cyberharcelement', 'reseaux', 'tiktok', 'insta', 'snap', 'snapchat', 'groupe'],
     'telephone': ['tel', 'portable', 'messages', 'mot de passe', 'mdp', 'compte', 'verifie', 'fouille'],
     'mourir': ['suicide', 'suicider', 'suicidaire', 'se tuer', 'me tuer', 'tuer', 'en finir', 'idees noires', 'adieu', 'disparaitre', 'plus envie de vivre', 'mort', 'mourir', 'desespoir'],
-    'mal': ['scarification', 'scarifie', 'se couper', 'coupe', 'blessure', 'medicaments', 'cachets', 'alcool', 'drogue', 'overdose', 'automutilation', 'automutile', 'mutile', 'mutilation', 'fait du mal', 'se faire du mal'],
+    'mal': ['surdose', 'surdosage', 'intoxication', 'scarification', 'scarifie', 'se couper', 'coupe', 'blessure', 'medicaments', 'cachets', 'alcool', 'drogue', 'overdose', 'automutilation', 'automutile', 'mutile', 'mutilation', 'fait du mal', 'se faire du mal'],
     'maison': ['parents', 'pere', 'mere', 'beau pere', 'belle mere', 'famille', 'frere', 'soeur', 'fugue', 'fuguer', 'partir de chez moi', 'disputes', 'coups'],
     'lycee': ['college', 'ecole', 'cours', 'prof', 'professeur', 'classe', 'cpe', 'ami', 'amis', 'seul', 'seule', 'cantine'],
     'panique': ['crise', 'respirer', 'respiration', 'coeur', 'etouffe', 'tremble', 'malaise', 'en peux plus', 'peux plus', 'craque', 'a bout'],
@@ -3743,7 +3842,7 @@
     'vc': ['violences conjugales', 'violence conjugale', 'conjugale', 'conjugales', 'conjugal', 'couple', 'violences dans le couple', 'partenaire', 'copain', 'copine', 'petit ami', 'petite amie', 'violent', 'violente', 'violences', 'violance', 'violances', 'femme battue'],
     'vcpsy': ['violence psychologique', 'violences psychologiques', 'psychologique', 'psychologiques', 'psycologique', 'psycologiques', 'psichologique', 'verbale', 'verbales', 'humiliation', 'humiliations', 'humilie', 'rabaisse', 'rabaisser', 'insulte', 'insultes', 'devalorise', 'intimidation', 'intimide', 'menace', 'menaces', 'chantage', 'crie', 'hurle'],
     'vccontrole': ['controle coercitif', 'coercitif', 'coercitiv', 'coersitif', 'coercitive', 'coercition', 'controle', 'controler', 'controlant', 'regles', 'interdit', 'interdictions', 'rendre des comptes', 'jalousie', 'jaloux', 'jalouse', 'possessif', 'possessive'],
-    'vcemprise': ['emprise', 'sous emprise', 'manipulation', 'manipule', 'manipuler', 'manipulateur', 'manipulatrice', 'gaslighting', 'culpabilise', 'culpabiliser', 'pervers narcissique', 'pervers', 'narcissique', 'toxique', 'relation toxique', 'emprisometre'],
+    'vcemprise': ['emprise', 'sous emprise', 'manipulation', 'manipule', 'manipuler', 'manipulateur', 'manipulatrice', 'gaslighting', 'culpabilise', 'culpabiliser', 'pervers narcissique', 'pervers', 'narcissique', 'toxique', 'relation toxique'],
     'vcnum': ['telephone surveille', 'surveille mon telephone', 'telephone', 'portable', 'localisation', 'geolocalisation', 'position', 'gps', 'mots de passe', 'mot de passe', 'mdp', 'code', 'fouille', 'verifie', 'repondre tout de suite', 'traceur', 'espionne'],
     'vcisol': ['isolement', 'isole', 'isolee', 'isoler', 'plus d amis', 'coupe de tout', 'sorties', 'ne sort plus', 'eloigne'],
     'vcsex': ['violences sexuelles', 'violence sexuelle', 'sexuel', 'sexuelle', 'sexuelles', 'viol', 'agression sexuelle', 'consentement', 'peur de dire non', 'dire non', 'force', 'forcer', 'insiste', 'pression', 'sexe', 'photos intimes'],
@@ -3754,7 +3853,7 @@
     'vcenfants': ['enfant', 'enfants', 'mineur', 'mineure', 'petit frere', 'petite soeur', 'parents se battent', 'violences a la maison', 'enfant en danger', 'maltraitance', 'maltraite'],
     'vcnumeros': ['numero', 'numeros', 'qui appeler', 'appeler', '3919', '116006', 'france victimes', 'cidff', 'association', 'associations', 'annuaire', 'signaler', 'signalement', 'tchat', 'interlocuteur', 'interlocuteurs'],
     'vctraces': ['preuve', 'preuves', 'traces', 'trace', 'captures', 'capture d ecran', 'screens', 'conserver', 'garder', 'certificat', 'plainte', 'porter plainte', 'temoins', 'memo de vie'],
-    'vcqui': ['medecin', 'docteur', 'psychologue', 'association', 'certificat medical', 'gratuit', 'qui peut m aider', 'juriste', 'cidff', 'consultation'],
+    'vcqui': ['medecin', 'docteur', 'generaliste', 'psychologue', 'psychiatre', 'psychiatrie', 'association', 'certificat medical', 'gratuit', 'qui peut m aider', 'juriste', 'cidff', 'consultation'],
     'apropos': ['cilli', 'flamand', 'cilli flamand', 'rendez vous', 'rdv', 'consultation', 'consultations', 'a propos', 'conceptrice'],
     'santementale': ['sante mentale', 'mental', 'mentale', 'psy', 'psychique', 'trouble', 'troubles', 'trouble psychique', 'maladie mentale', 'maladie', 'diagnostic', 'questions', 'comprendre', 'fou', 'folle', 'folie'],
     'anxiete': ['angoisse', 'angoisses', 'angoisse', 'anxiete', 'anxieux', 'anxieuse', 'stress', 'stresse', 'stressee', 'inquiet', 'inquiete', 'inquietude', 'boule au ventre', 'crise d angoisse', 'crise de panique', 'phobie', 'peur de devenir fou', 'devenir fou', 'devenir folle'],
@@ -3818,7 +3917,7 @@
     {id:'vc-enfants', emo:'🧒', syn:['vcenfants'], titres:T3('Et quand des enfants sont concernés ?', 'Et quand des enfants sont concernés ?'), sous:'Mineur·e à la maison, ou inquiétude pour un enfant'},
     {id:'vc-numeros', emo:'☎️', syn:['vcnumeros'], titres:T3('Quels numéros, quels interlocuteurs ?', 'Quels numéros, quels interlocuteurs ?'), sous:'Urgence, écoute, signalement, rendez-vous'},
     {id:'vc-traces', emo:'🗂️', syn:['vctraces'], titres:T3('Quelles traces conserver ?', 'Quelles traces conserver ?'), sous:'Seulement si c\u2019est possible sans danger'},
-    {id:'vc-qui', emo:'🧑‍⚕️', syn:['vcqui'], titres:T3('Médecin, psychologue, association', 'Médecin, psychologue, association'), sous:'Qui peut aider, et pour quoi'},
+    {id:'vc-qui', emo:'🧑‍⚕️', syn:['vcqui'], titres:T3('Médecin, psychologue, psychiatre, association', 'Médecin, psychologue, psychiatre, association'), sous:'Qui peut aider, et pour quoi'},
     {id:'apropos', emo:'👩‍⚕️', syn:['apropos'], titres:T3('À propos de Cilli Flamand', 'À propos de Cilli Flamand'), sous:'Qui a conçu SIGNAUX, consultations, contact'}
   );
   SMX.forEach(x => { const fiche = document.getElementById(x.id); if (!fiche) return;
@@ -3850,10 +3949,26 @@
     const pri = [];
     const urgVoix = /\b(voix|hallucin\w*)\b/.test(nq) && /\b(tuer|faire du mal|frapper|sauter|suicid\w*|mourir|ordonn\w*|oblig\w*|disent de|dit de|demandent|demande de)\b/.test(nq);
     if (urgVoix) { const fd0 = INDEX.find(f => f.id === 'danger'); if (fd0) pri.push(fd0); const fv = INDEX.find(f => f.id === 'sm-voix' && f.hub === hub); if (fv) pri.push(fv); }
-    const urgViol = /\b(va me tuer|veut me tuer|va la tuer|va le tuer|menace de mort|menaces de mort|m etrangle|etrangl\w*|me frappe maintenant|en train de me frapper|enferme\w*|sequestr\w*|peur de rentrer|arme|couteau)\b/.test(nq);
-    if (urgViol) { const fd1 = INDEX.find(f => f.id === 'danger'); if (fd1 && !pri.includes(fd1)) pri.push(fd1); const fn = INDEX.find(f => f.id === 'vc-numeros' && f.hub === hub); if (fn) pri.push(fn); }
-    if (crise && !urgViol) { const fm = INDEX.find(f => f.id === FICHE_MOURIR[hub]) || INDEX.find(f => f.id === 'mourir'); if (fm && !pri.includes(fm)) pri.push(fm); const fd = INDEX.find(f => f.id === 'danger'); if (fd && !pri.includes(fd)) pri.push(fd); }
-    if (!mots.length) { pri.crise = crise && !urgViol; pri.urgViol = urgViol; return pri; }
+    // v18.1 — qui menace qui ? On ne s'arrête jamais au seul mot « tuer ».
+    const CIBLE = '(me|m|nous|la|le|les|lui|te)', ACTE = '(tuer|buter|frapper|taper|crever|etrangler|egorger|planter|defoncer|massacrer|faire du mal|faire la peau)';
+    const urgViol = new RegExp('\\b(menace\\w*|veut|va|voulait|allait|jure|promet|risque)\\s+(de\\s+)?' + CIBLE + '\\s+' + ACTE + '\\b').test(nq)
+      || /\b(menaces? de mort|menace\w* avec (un|une|son) \w+|etrangl\w*|enferme\w*|sequestr\w*|en train de me frapper|me frappe maintenant|peur de rentrer|peur pour ma vie|arme|couteau)\b/.test(nq);
+    // une autre personne menace de se tuer (souvent un chantage dans la relation)
+    const tiersSuicide = !urgViol && /\b(il|elle|ils|mon ex|mon copain|ma copine|mon mec|ma meuf|mon pote|mon ami|mon amie|mon mari|ma femme|son ex|son copain|sa copine)\b[a-z ]{0,40}\b(menace\w*|dit|veut|va|parle|jure)\b[a-z ]{0,25}\b(se tuer|se suicider|de mourir|se foutre en l air|se faire du mal|en finir|se jeter)\b/.test(nq);
+    const chantage = tiersSuicide && /\b(si je|si on|si tu|si elle|si il|quitte\w*|pars|part|partir|rupture|romp\w*|laisse\w*|largue\w*|revien\w*|separ\w*)\b/.test(nq);
+    // possible intoxication : médicament ou produit + prise + quantité inhabituelle (pas « un doliprane »)
+    const MEDS = /\b(dol+ipran+\w*|para[cs]etamol\w*|dafalgan\w*|efferalgan\w*|ibuprofene\w*|advil\w*|aspirine\w*|medi[ck]am+[ae]n\w*|medoc\w*|cachet\w*|cachet\w*|comprime\w*|pilule\w*|gelule\w*|somnifere\w*|anxiolytique\w*|antidepresseur\w*|neuroleptique\w*|xanax\w*|lexomil\w*|valium\w*|tramadol\w*|codeine\w*|morphine\w*|insuline)\b/.test(nq);
+    const PRISE = /\b(pris|pri|prit|prise|prendre|prend|prends|avale\w*|gobe\w*|bu|boire|boit|ingere\w*|ingurgite\w*|englouti\w*|vide|mange|bouffe|absorbe\w*)\b/.test(nq);
+    const QUANT = /\b([4-9]|\d{2,3}|quatre|cinq|six|sept|huit|neuf|dix|douze|quinze|vingt|trente|quarante|cinquante|plein|plusieurs|beaucoup|trop|tous|toute|toutes|tout|entiere?|boites?|plaquettes?|tube|flacon|bouteille|poignee|paquet)\b/.test(nq);
+    const nonPris = /\b(n ai|n a|ai|a) pas (pris|avale|bu)\b/.test(nq);
+    const intox = !nonPris && ((MEDS && PRISE && QUANT) || /\b(surdos\w*|overdose|intoxi\w*|empoisonn\w*)\b/.test(nq) || (/\b(javel|deboucheur|white spirit|lessive|detergent|produit menager|produits menagers|mort aux rats)\b/.test(nq) && /\b(bu|boire|boit|avale\w*|ingere\w*)\b/.test(nq)));
+    const criseAff = crise && !urgViol && !chantage && !(intox && !CRISE.test(' ' + nq.replace(/overdose/g, ' ') + ' '));
+    const ajouter = (id, h) => { const f = INDEX.find(x => x.id === id && (h === undefined || x.hub === h)) || INDEX.find(x => x.id === id); if (f && !pri.includes(f)) pri.push(f); };
+    if (intox) { ajouter('danger'); ajouter(({accueil:'mal', moi:'m-mal', parents:'p-mal'})[hub]); }
+    if (urgViol) { ajouter('danger'); ajouter('vc-numeros', hub); }
+    if (chantage) { ajouter(hub === 'parents' ? 'p-mourir' : 'mourir'); ajouter('vc-psy', hub); ajouter(({accueil:'relation', moi:'m-relation', parents:'p-relation'})[hub]); }
+    else if (crise && !urgViol) { ajouter(tiersSuicide && hub === 'moi' ? 'mourir' : FICHE_MOURIR[hub]); ajouter('danger'); }
+    if (!mots.length) { pri.crise = criseAff; pri.urgViol = urgViol; pri.intox = intox; pri.chantage = chantage; return pri; }
     const besoin = Math.max(1, Math.ceil(mots.length / 2));
     const classes = INDEX.map(f => {
       let sc = 0, trouves = 0;
@@ -3871,8 +3986,9 @@
     const vus = new Set(pri.map(f => f.id));
     // Voix, perceptions, impression d'être surveillé·e : jamais d'exercice de détente dans les résultats.
     const sansExo = /\b(voix|hallucin\w*|surveill\w*|parano\w*|visions?)\b/.test(nq);
-    const uniques = classes.filter(f => { if (sansExo && (f.id === 'outils' || f.id.startsWith('ex-'))) return false; if (vus.has(f.id)) return false; vus.add(f.id); return true; });
-    const out = [...pri, ...uniques].slice(0, 6); out.crise = crise && !urgViol; out.urgVoix = urgVoix; out.urgViol = urgViol; return out;
+    const veutApropos = /\b(cilli|flamand|rendez vous|rdv|consultations?|a propos|conceptrice|qui a (cree|fait|concu))\b/.test(nq);
+    const uniques = classes.filter(f => { if (f.id === 'apropos' && !veutApropos) return false; if (urgViol && !criseAff && /mourir$/.test(f.id)) return false; if (sansExo && (f.id === 'outils' || f.id.startsWith('ex-'))) return false; if (vus.has(f.id)) return false; vus.add(f.id); return true; });
+    const out = [...pri, ...uniques].slice(0, 6); out.crise = criseAff; out.urgVoix = urgVoix; out.urgViol = urgViol; out.intox = intox; out.chantage = chantage; return out;
   };
   // ---- Index A-Z : mots courants -> fiches existantes, par parcours. Aucun nouveau contenu.
   const AZ = {
@@ -3971,6 +4087,9 @@
         act.append(b1, b2, b3); d.appendChild(act); zone.appendChild(d); return;
       }
       const titre = document.createElement('div'); titre.className = 'titre-res'; titre.textContent = res.length + (res.length > 1 ? ' fiches' : ' fiche') + ' pour « ' + q + ' »'; zone.appendChild(titre);
+      const alerte = (t) => { const c = document.createElement('div'); c.className = 'rien alerte-urg'; c.setAttribute('role', 'alert'); c.textContent = t; zone.appendChild(c); };
+      if (res.intox) alerte(vous ? 'Trop de médicaments, ou un produit avalé : appelez le 15 ou le 112 maintenant, même sans aucun symptôme.' : 'Trop de médicaments, ou un produit avalé : appelle le 15 ou le 112 maintenant, même sans aucun symptôme.');
+      if (res.chantage) alerte(vous ? 'Une menace de se tuer se prend au sérieux : pour cette personne, le 15 ou le 3114. Ce n\u2019est pas à votre enfant ni à vous d\u2019empêcher ce geste, et cette menace n\u2019oblige personne à rester ni à céder.' : 'Une menace de se tuer se prend au sérieux : pour cette personne, le 15 ou le 3114. Ce n\u2019est pas à toi d\u2019empêcher ce geste, et cette menace ne t\u2019oblige ni à rester, ni à céder.');
       if (res.urgVoix) { const c0 = document.createElement('div'); c0.className = 'rien'; c0.textContent = vous ? 'Si des voix demandent de faire du mal, ou s\u2019il y a un danger : appelez le 15 ou le 112 maintenant.' : 'Si des voix demandent de faire du mal, ou s\u2019il y a un danger : appelle le 15 ou le 112 maintenant.'; zone.appendChild(c0); }
       if (res.urgViol) { const c1 = document.createElement('div'); c1.className = 'rien'; c1.textContent = vous ? 'Danger maintenant : appelez le 17 ou le 112. Si vous ne pouvez pas parler : SMS au 114.' : 'Danger maintenant : appelle le 17 ou le 112. Si tu ne peux pas parler : SMS au 114.'; zone.appendChild(c1); }
       if (res.crise) { const c = document.createElement('div'); c.className = 'rien'; c.textContent = vous ? 'Si votre enfant parle de mourir, ou si vous vous inquiétez pour lui/elle : la fiche ci-dessous et le 3114, 24h/24. Danger immédiat : 15 ou 112.' : 'Si tu penses à mourir, ou si tu t\u2019inquiètes pour quelqu\u2019un : la fiche ci-dessous et le 3114, 24h/24. Danger immédiat : 15 ou 112.'; zone.appendChild(c); }
