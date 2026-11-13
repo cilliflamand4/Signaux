@@ -278,14 +278,49 @@
     .screen.on{animation:app .22s ease-out}
     @keyframes app{from{opacity:0;transform:translateX(14px)}to{opacity:1;transform:none}}
   }
+
+  /* v18.0 — blocs selon la porte d'entrée (fiches partagées) */
+  body[data-porte="moi"] .po:not(.po-moi):not(.po-jeune),
+  body[data-porte="ami"] .po:not(.po-ami):not(.po-jeune),
+  body[data-porte="parent"] .po:not(.po-parent){display:none!important}
+  /* v18.0 — nom, slogan, phrase */
+  .slogan{font-family:var(--display);font-weight:800;font-size:25px;line-height:1.12;color:var(--abricot);margin:2px 0 6px}
+  .slogan-exp{margin:0 0 16px;font-size:15.5px;line-height:1.42;font-weight:600;color:var(--papier)}
+  .marque.grand{font-size:17px;letter-spacing:.14em;color:#fff;margin-bottom:6px}
+  .src{margin:26px 0 0;padding-top:12px;border-top:1px solid var(--trait);font-size:13px;line-height:1.45;color:var(--papier-2)}
+  /* v18.0 — exercices de respiration */
+  .souffle{margin:22px 0;padding:18px 16px;border-radius:var(--r);background:var(--nuit-2);border:1px solid color-mix(in srgb,var(--c) 45%,transparent);display:grid;gap:12px;justify-items:center;text-align:center}
+  .souffle .rond{width:150px;height:150px;display:grid;place-items:center}
+  .souffle .rond span{width:150px;height:150px;border-radius:50%;background:color-mix(in srgb,var(--c) 55%,var(--nuit));box-shadow:0 0 0 10px color-mix(in srgb,var(--c) 16%,transparent);transform:scale(.55);transition:transform 1s linear}
+  .souffle.sans-anim .rond{display:none}
+  .souffle .phase{margin:0;font-family:var(--display);font-weight:800;font-size:21px;color:#fff;min-height:1.3em}
+  .souffle .reste{margin:0;font-size:14px;font-weight:700;color:var(--papier-2);min-height:1.2em}
+  .souffle .cmd{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+  .souffle .cmd button{min-height:48px;min-width:112px;padding:10px 18px;border-radius:999px;border:2px solid var(--c);background:transparent;color:#fff;font:inherit;font-weight:800;font-size:16px;cursor:pointer}
+  .souffle .cmd .b-start{background:var(--c);color:var(--nuit)}
+  .souffle .anim{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:700;color:var(--papier-2)}
+  .souffle .anim input{width:20px;height:20px}
+  @media (prefers-reduced-motion:reduce){.souffle .rond span{transition:none}}
+
+  /* v18 — violences dans le couple */
+  .resp{margin:18px 0;padding:14px 16px;border-radius:var(--r);border:2px solid var(--abricot);background:color-mix(in srgb,var(--abricot) 12%,var(--nuit));font-family:var(--display);font-weight:800;font-size:17.5px;line-height:1.3;color:#fff}
+  .outil-cilli .appel{padding-left:10px;padding-right:10px}
+  .outil-cilli .appel span{min-width:0;overflow-wrap:anywhere}
+  .outil-cilli{margin:20px 0;padding:14px 10px;border-radius:var(--r);background:var(--nuit-2);border:1px dashed color-mix(in srgb,var(--c) 60%,transparent)}
+  .outil-cilli p{margin:0 0 10px;font-size:15.5px;line-height:1.45}
+  .tuiles li.avenir .tuile{cursor:default;opacity:.72;border-style:dashed;grid-template-columns:48px 1fr}
+  .tuiles li.avenir .badge{display:inline-block;margin-left:8px;padding:2px 9px;border-radius:999px;background:color-mix(in srgb,var(--c) 35%,var(--nuit));color:#fff;font-family:var(--corps,inherit);font-size:12px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;vertical-align:middle}
+  li.po.po-moi,li.po.po-ami,li.po.po-parent{}
 </style>
 </head>
-<body>
+<body data-porte="ami">
 <main>
 
 <!-- ACCUEIL -->
 <section class="screen on" id="accueil">
-  <div class="marque"><i></i>Signaux</div>
+  <div class="marque grand"><i></i>Signaux</div>
+  <p class="slogan">Ça commence par toi.</p>
+  <p class="slogan-exp">Un doute, une question, une situation qui t'inquiète ? Pour toi ou pour un pote, trouve des repères, des outils et des contacts.</p>
   <div class="portes-titre">Trois portes — choisis la tienne</div>
   <div class="portes" role="group" aria-label="Pour qui ?">
     <button class="porte" data-go="moi"><span class="pe">🫶</span>C'est pour moi</button>
@@ -310,22 +345,26 @@
     <li class="grave" style="--c:var(--alerte)"><button class="tuile" data-go="violence"><span class="emo" aria-hidden="true">🛑</span><span class="t"><b>Quelqu'un lui fait du mal</b><span>Violences psychologiques, physiques ou sexuelles</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--sauge)"><button class="tuile" data-go="lycee"><span class="emo" aria-hidden="true">🏫</span><span class="t"><b>Ça va pas au collège/lycée</b><span>Peur d'y aller, amis, exclusion, problème avec un adulte</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--menthe)"><button class="tuile" data-go="relation"><span class="emo" aria-hidden="true">💬</span><span class="t"><b>Sa relation m'inquiète</b><span>Contrôle, jalousie, isolement, peur de l'autre</span></span><span class="chev" aria-hidden="true">›</span></button></li>
+    <li style="--c:var(--alerte)"><button class="tuile" data-go="vc"><span class="emo" aria-hidden="true">🛑</span><span class="t"><b>Violences dans le couple</b><span>Contrôle, emprise, violences psychologiques.</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--lilas)"><button class="tuile" data-go="retrait"><span class="emo" aria-hidden="true">🔕</span><span class="t"><b>Disparaît</b><span>Ne répond plus, s'isole, ne vient plus en cours</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--ciel)"><button class="tuile" data-go="panique"><span class="emo" aria-hidden="true">😱</span><span class="t"><b>Panique</b><span>Angoisse intense, difficulté à respirer ou à se calmer</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--citron)"><button class="tuile" data-go="doute"><span class="emo" aria-hidden="true">🤔</span><span class="t"><b>Pas sûr·e</b><span>Je ne sais pas ce qui se passe ni si c'est grave</span></span><span class="chev" aria-hidden="true">›</span></button></li>
+    <li style="--c:var(--lilas)"><button class="tuile" data-go="sm"><span class="emo" aria-hidden="true">🧠</span><span class="t"><b>Santé mentale</b><span>Je me pose des questions.</span></span><span class="chev" aria-hidden="true">›</span></button></li>
   </ul>
   <div class="perso">
     <h3 class="perso-titre"><span class="emo">💛</span>Et si c'est pour toi ?</h3>
     <ul class="tuiles petites">
-      <li style="--c:var(--abricot)"><button class="tuile" data-go="moi"><span class="emo" aria-hidden="true">🫶</span><span class="t"><b>C'est moi qui vais mal</b><span>Ouvrir la porte « C'est pour moi » : maison, harcèlement, violences, ma relation, lycée, peur de parler</span></span><span class="chev" aria-hidden="true">›</span></button></li>
+      <li style="--c:var(--abricot)"><button class="tuile" data-go="moi"><span class="emo" aria-hidden="true">🫶</span><span class="t"><b>C'est moi qui vais mal</b><span>Ouvrir la porte « C'est pour moi » : mal-être, harcèlement, relations, famille, substances, santé mentale</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     </ul>
-    <p class="perso-note">Version 17.1 · prototype en cours de validation. Tests avec des jeunes et des parents prévus pour le pilote 2027.</p>
+    <p class="perso-note">Version 18.0 · prototype en cours de validation. Tests avec des jeunes et des parents prévus pour le pilote 2027.</p>
   </div>
 </section>
 
 <!-- ACCUEIL « C'EST POUR MOI » -->
 <section class="screen" id="moi">
-  <div class="marque"><i></i>Signaux</div>
+  <div class="marque grand"><i></i>Signaux</div>
+  <p class="slogan">Ça commence par toi.</p>
+  <p class="slogan-exp">Un doute, une question, une situation qui t'inquiète ? Pour toi ou pour un pote, trouve des repères, des outils et des contacts.</p>
   <div class="portes-titre">Trois portes — choisis la tienne</div>
   <div class="portes" role="group" aria-label="Pour qui ?">
     <button class="porte on" aria-current="page"><span class="pe">🫶</span>C'est pour moi</button>
@@ -349,19 +388,23 @@
     <li style="--c:var(--cyan)"><button class="tuile" data-go="m-harcele"><span class="emo" aria-hidden="true">😥</span><span class="t"><b>On me harcèle</b><span>Au lycée, sur les réseaux, menaces, photo qui circule</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--orchidee)"><button class="tuile" data-go="m-drogue"><span class="emo" aria-hidden="true">🍻</span><span class="t"><b>Alcool, drogues</b><span>Je me sens mal, bad trip, mélanges, questions</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li class="grave" style="--c:var(--alerte)"><button class="tuile" data-go="m-violence"><span class="emo" aria-hidden="true">🛑</span><span class="t"><b>Quelqu'un me fait du mal</b><span>Coups, menaces, contrôle, gestes que je ne veux pas</span></span><span class="chev" aria-hidden="true">›</span></button></li>
-    <li style="--c:var(--menthe)"><button class="tuile" data-go="m-relation"><span class="emo" aria-hidden="true">💬</span><span class="t"><b>Je me pose des questions sur ma relation</b><span>Jalousie, contrôle, pression, peur de dire non…</span></span><span class="chev" aria-hidden="true">›</span></button></li>
+    <li style="--c:var(--menthe)"><button class="tuile" data-go="m-relation"><span class="emo" aria-hidden="true">💬</span><span class="t"><b>Ma relation m'inquiète</b><span>Jalousie, contrôle, pression, peur de dire non…</span></span><span class="chev" aria-hidden="true">›</span></button></li>
+    <li style="--c:var(--alerte)"><button class="tuile" data-go="vc"><span class="emo" aria-hidden="true">🛑</span><span class="t"><b>Violences dans le couple</b><span>Contrôle, emprise, violences psychologiques.</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--sauge)"><button class="tuile" data-go="m-lycee"><span class="emo" aria-hidden="true">🏫</span><span class="t"><b>Ça va pas au collège/lycée</b><span>Peur d'y aller, seul·e, mes amis, un adulte</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--lilas)"><button class="tuile" data-go="peur"><span class="emo" aria-hidden="true">🤐</span><span class="t"><b>J'ai peur de parler</b><span>J'ai peur de ce qui arrivera si j'en parle</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--citron)"><button class="tuile" data-go="oser"><span class="emo" aria-hidden="true">🫣</span><span class="t"><b>Je sais pas comment en parler</b><span>Je vais mal, mais je ne sais pas par où commencer</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--ciel)"><button class="tuile" data-go="apres"><span class="emo" aria-hidden="true">🌙</span><span class="t"><b>J'ai parlé, et ce soir ça va pas</b><span>J'en ai parlé à quelqu'un, je suis rentré·e, et ça ne va pas</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--menthe)"><button class="tuile" data-go="suivi"><span class="emo" aria-hidden="true">👩‍⚕️</span><span class="t"><b>Je suis suivi·e, mais ça va moins bien</b><span>J'ai déjà un psy, mais je n'ose pas le déranger, ou il/elle n'est pas joignable</span></span><span class="chev" aria-hidden="true">›</span></button></li>
+    <li style="--c:var(--lilas)"><button class="tuile" data-go="sm"><span class="emo" aria-hidden="true">🧠</span><span class="t"><b>Santé mentale</b><span>Je me pose des questions.</span></span><span class="chev" aria-hidden="true">›</span></button></li>
   </ul>
-  <p class="perso-note">Version 17.1 · prototype en cours de validation. Cette page ne demande ni compte ni données.</p>
+  <p class="perso-note">Version 18.0 · prototype en cours de validation. Cette page ne demande ni compte ni données.</p>
 </section>
 
 <!-- ACCUEIL PARENTS -->
 <section class="screen" id="parents">
-  <div class="marque"><i></i>Signaux</div>
+  <div class="marque grand"><i></i>Signaux</div>
+  <p class="slogan">Ça commence par toi.</p>
+  <p class="slogan-exp">Un doute, une question, une situation qui vous inquiète ? Pour votre enfant ou pour un proche, trouvez des repères, des outils et des contacts.</p>
   <div class="portes-titre">Trois portes — choisissez la vôtre</div>
   <div class="portes" role="group" aria-label="Pour qui ?">
     <button class="porte" data-go="moi"><span class="pe">🫶</span>C'est pour moi</button>
@@ -380,12 +423,14 @@
   <ul class="tuiles">
     <li class="grave" style="--c:var(--alerte)"><button class="tuile" data-go="p-mourir"><span class="emo" aria-hidden="true">🆘</span><span class="t"><b>Parle de mourir</b><span>Mon ado parle de mourir, d'en finir, ou a écrit quelque chose qui ressemble à un adieu</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li class="grave" style="--c:var(--alerte)"><button class="tuile" data-go="p-mal"><span class="emo" aria-hidden="true">🩸</span><span class="t"><b>S'est fait du mal</b><span>Mon ado s'est fait du mal, j'ai vu des marques, ou on me l'a dit</span></span><span class="chev" aria-hidden="true">›</span></button></li>
-    <li style="--c:var(--menthe)"><button class="tuile" data-go="p-relation"><span class="emo" aria-hidden="true">💬</span><span class="t"><b>Sa relation</b><span>Sa relation amoureuse m'inquiète</span></span><span class="chev" aria-hidden="true">›</span></button></li>
+    <li style="--c:var(--menthe)"><button class="tuile" data-go="p-relation"><span class="emo" aria-hidden="true">💬</span><span class="t"><b>Sa relation m'inquiète</b><span>Contrôle, jalousie, isolement, peur de l'autre</span></span><span class="chev" aria-hidden="true">›</span></button></li>
+    <li style="--c:var(--alerte)"><button class="tuile" data-go="vc"><span class="emo" aria-hidden="true">🛑</span><span class="t"><b>Violences dans le couple</b><span>Contrôle, emprise, violences psychologiques.</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--cyan)"><button class="tuile" data-go="p-harcele"><span class="emo" aria-hidden="true">😥</span><span class="t"><b>On le/la harcèle</b><span>Au collège, au lycée, sur les réseaux : moqueries, exclusion, menaces, photo</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--orchidee)"><button class="tuile" data-go="p-drogue"><span class="emo" aria-hidden="true">🍻</span><span class="t"><b>Alcool, drogues</b><span>Malaise en soirée, consommation qui inquiète, questions</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--lilas)"><button class="tuile" data-go="p-chambre"><span class="emo" aria-hidden="true">🔕</span><span class="t"><b>Ne sort plus</b><span>Mon ado ne sort plus de sa chambre, ne va plus en cours, ne parle plus</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--ciel)"><button class="tuile" data-go="p-panique"><span class="emo" aria-hidden="true">😱</span><span class="t"><b>Panique</b><span>Mon ado panique, n'arrive plus à respirer ou à se calmer</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--citron)"><button class="tuile" data-go="p-doute"><span class="emo" aria-hidden="true">🤔</span><span class="t"><b>Pas sûr·e</b><span>Je ne sais pas si c'est grave</span></span><span class="chev" aria-hidden="true">›</span></button></li>
+    <li style="--c:var(--lilas)"><button class="tuile" data-go="sm"><span class="emo" aria-hidden="true">🧠</span><span class="t"><b>Santé mentale</b><span>Je me pose des questions.</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--abricot)"><button class="tuile" data-go="parent"><span class="emo" aria-hidden="true">📞</span><span class="t"><b>Qui appeler ?</b><span>Je ne sais pas qui contacter, dans quel délai, ni quoi faire si personne ne répond</span></span><span class="chev" aria-hidden="true">›</span></button></li>
   </ul>
   <p class="perso-note">Parcours parents et proches · en test pour le pilote 2027. Il ne remplace ni un médecin, ni le 15. Si votre enfant subit des violences à la maison ou ailleurs, le 119 vous écoute aussi, 24h/24.</p>
@@ -510,6 +555,7 @@
   <button class="retour" data-go="parents">Retour</button>
   <div class="hero"><span class="emo" aria-hidden="true">💬</span><h2>Sa relation vous inquiète</h2>
     <p class="intro">Il/elle a changé depuis cette relation : moins d'amis, le téléphone vérifié, des crises, des excuses pour l'autre. Une menace, un coup, une agression, même une seule fois, c'est déjà grave. Et quand ça revient, s'accumule et se resserre, c'est un signal à ne pas laisser passer.</p></div>
+  <p class="note">Il n'est pas nécessaire de savoir comment cela s'appelle. Pour comprendre et savoir comment aider : <button class="lien" data-go="vc">🛑 Violences dans le couple</button> · <button class="lien" data-go="vc-aider">Comment aider un proche ?</button></p>
 
   <h3><span class="emo">👀</span>Les six signaux</h3>
   <ul class="simple">
@@ -650,6 +696,7 @@
   <div class="toi">
     <p><strong>💛 Et vous ?</strong>Rester calme à côté de quelqu'un qui panique est une vraie compétence, et vous venez de la pratiquer.</p>
   </div>
+  <p class="note">Pour comprendre : <button class="lien" data-go="sm-anx">Angoisse et anxiété</button>.</p>
 </section>
 
 <!-- P-DOUTE -->
@@ -849,6 +896,7 @@
   <div class="toi">
     <p><strong>💛 Et vous ?</strong>Vous n'avez pas à poser le bon diagnostic. Vous avez à faire venir la bonne personne. Et vous avez le droit d'être épuisé·e : parlez-en aussi, pour vous.</p>
   </div>
+  <p class="note">Violences dans une relation, ou enfant exposé à des violences : <button class="lien" data-go="vc-numeros">Quels numéros, quels interlocuteurs ?</button></p>
 </section>
 
 <!-- DANGER -->
@@ -999,6 +1047,7 @@
   <button class="retour" data-go="accueil">Retour</button>
   <div class="hero"><span class="emo" aria-hidden="true">💬</span><h2>Sa relation t'inquiète</h2>
     <p class="intro">« Il vérifie mon téléphone. » « Elle veut plus que je te voie. » « Je sais plus si c'est moi qui exagère. » Une menace, un coup, une agression, même une seule fois, c'est déjà grave. Et quand ça revient, s'accumule et se resserre, c'est un signal à ne pas laisser passer.</p></div>
+  <p class="note">Personne n'a besoin de savoir comment ça s'appelle. Pour comprendre et savoir comment aider : <button class="lien" data-go="vc">🛑 Violences dans le couple</button> · <button class="lien" data-go="vc-aider">Comment aider un ami ou un proche ?</button></p>
 
   <h3><span class="emo">👀</span>Les six signaux</h3>
   <ul class="simple">
@@ -1073,6 +1122,7 @@
     <button class="chip" data-tip="Tu as le droit de t'inquiéter pour quelqu'un qui consomme souvent, même sans malaise. Tu peux en parler avec lui/elle sans jugement, et toi, tu peux appeler Drogues Info Service pour savoir comment t'y prendre.">Sa consommation m'inquiète, en général</button>
   </div>
   <div class="chip-tip" aria-live="polite"></div>
+  <p class="note">Depuis qu'il ou elle a consommé, quelque chose a changé, il ou elle entend ou voit des choses ? <button class="lien" data-go="sm-conso">Depuis qu'il ou elle a consommé, quelque chose m'inquiète</button> · <button class="lien" data-go="sm-voix">Il ou elle entend des voix</button></p>
 
   <h3><span class="emo">⚡</span>Maintenant</h3>
   <ol class="etapes">
@@ -1137,6 +1187,7 @@
     <button class="chip" data-tip="Tu peux en parler sans que ça devienne une affaire. Les Consultations jeunes consommateurs sont gratuites, confidentielles, sans jugement, et on peut y aller juste pour une question. Drogues Info Service répond aussi, par téléphone ou par tchat.">Ma consommation m'inquiète</button>
   </div>
   <div class="chip-tip" aria-live="polite"></div>
+  <p class="note">Les effets continuent, tu te sens bizarre, tu entends ou tu vois des choses ? <button class="lien" data-go="sm-conso">Depuis que j'ai consommé, quelque chose m'inquiète</button> · <button class="lien" data-go="sm-voix">J'entends des voix</button></p>
   <div class="urgence">
     <p>Tu as pris un médicament, de l'alcool ou un autre produit pour te faire du mal ? Appelle le 15 ou le 112 maintenant, même si tu te sens encore bien. N'attends pas les symptômes. Dis ce que tu as pris, si tu le sais, et suis les consignes des secours.</p>
     <a class="appel rouge" href="tel:15"><span class="ic">📞</span><span><b>15</b><small>SAMU, maintenant, même sans symptôme</small></span></a>
@@ -1200,6 +1251,7 @@
     <button class="chip" data-tip="Les Consultations jeunes consommateurs reçoivent les parents, avec ou sans le jeune, gratuitement et confidentiellement. Drogues Info Service répond aussi aux parents, tous les jours (horaires sur drogues-info-service.fr). Vous n'avez pas à gérer seul·e.">Sa consommation m'inquiète</button>
   </div>
   <div class="chip-tip" aria-live="polite"></div>
+  <p class="note">Depuis une consommation, quelque chose a changé, votre enfant entend ou voit des choses ? <button class="lien" data-go="sm-conso">Depuis qu'il ou elle a consommé, quelque chose m'inquiète</button> · <button class="lien" data-go="sm-voix">Il ou elle entend des voix</button></p>
 
   <h3><span class="emo">⚡</span>Maintenant</h3>
   <ol class="etapes">
@@ -1312,6 +1364,7 @@
     <a class="appel" href="tel:0493261092"><span class="ic">🏠</span><span><b>Maison des ados 06</b><small>2A rue Raynardi, Nice — 04 93 26 10 92, lun-ven 9h-17h</small></span></a>
     <a class="appel" href="sms:0785273531"><span class="ic">💬</span><span><b>SMS Maison des ados</b><small>07 85 27 35 31 — SMS uniquement, lun-ven 9h-17h, pas de réponse d'urgence</small></span></a>
   </div>
+  <p class="note">Pour comprendre : <button class="lien" data-go="sm-anx">Angoisse et anxiété</button>.</p>
 </section>
 
 <!-- DOUTE -->
@@ -1413,6 +1466,7 @@
   <div class="toi">
     <p><strong>💛 Et toi ?</strong>Ce qu'il/elle t'a confié peut te tourner dans la tête la nuit. Tu as le droit d'en parler à un adulte, toi aussi. Tu n'es pas responsable de sa famille, et tu as déjà fait beaucoup en l'écoutant.</p>
   </div>
+  <p class="note">Des adultes se font du mal chez lui/elle : <button class="lien" data-go="vc-enfants">Et quand des enfants sont concernés ?</button></p>
 </section>
 
 <!-- HARCÈLEMENT (ami·e) -->
@@ -1565,6 +1619,7 @@
   <div class="toi">
     <p><strong>💛 Et toi ?</strong>Recevoir ça, c'est lourd, surtout si tu connais la personne. Tu as le droit d'en parler pour toi aussi. Tu n'as pas à savoir si c'est « assez grave » : c'est le rôle des adultes que tu appelles.</p>
   </div>
+  <p class="note">Si c'est dans sa relation, ou avec un·e ex : <button class="lien" data-go="vc">🛑 Violences dans le couple</button> · <button class="lien" data-go="vc-aider">Comment aider un ami ou un proche ?</button></p>
 </section>
 
 <!-- LYCÉE (ami·e) -->
@@ -1728,6 +1783,7 @@
   <div class="toi">
     <p><strong>💛 Et toi ?</strong>Tu n'as rien provoqué. Les disputes de tes parents ne sont pas ta responsabilité, et tu n'as pas à protéger tout le monde tout·e seul·e.</p>
   </div>
+  <p class="note">Des adultes se font du mal chez toi, ou quelqu'un te fait du mal : <button class="lien" data-go="vc-enfants">Et quand des enfants sont concernés ?</button></p>
 </section>
 
 <!-- M-HARCÈLEMENT -->
@@ -1878,6 +1934,7 @@
   <div class="toi">
     <p><strong>💛 Et toi ?</strong>Ce que cette personne te fait parle d'elle, pas de toi. Tu as le droit d'être protégé·e, même si tu l'aimes, même si c'est de la famille.</p>
   </div>
+  <p class="note">Si c'est dans ta relation, ou avec un·e ex : <button class="lien" data-go="vc">🛑 Violences dans le couple</button> · <button class="lien" data-go="vc-traces">Quelles traces conserver ?</button> · <button class="lien" data-go="vc-qui">Médecin, psychologue, association</button></p>
 </section>
 
 <!-- M-RELATION (nouveau en v16.4, textes nouveaux à valider) -->
@@ -1885,6 +1942,7 @@
   <button class="retour" data-go="moi">Retour</button>
   <div class="hero"><span class="emo" aria-hidden="true">💬</span><h2>Tu te poses des questions sur ta relation</h2>
     <p class="intro">« Il vérifie mon téléphone. » « Elle veut plus que je voie mes potes. » « Je sais plus si c'est moi qui exagère. » Une menace, un coup, une agression, même une seule fois, c'est déjà grave. Et quand ça revient, s'accumule et se resserre, c'est un signal à ne pas laisser passer.</p></div>
+  <p class="note">Tu n'as pas besoin de savoir comment ça s'appelle. Pour comprendre et savoir quoi faire : <button class="lien" data-go="vc">🛑 Violences dans le couple</button>.</p>
 
   <div class="choix-titre">Qu'est-ce qui te fait te poser la question ?</div>
   <div class="choix">
@@ -2139,6 +2197,7 @@
     <a class="appel" href="tel:0800235236"><span class="ic">📞</span><span><b>Fil Santé Jeunes</b><small>0 800 235 236 — anonyme, gratuit, 9h-23h</small></span></a>
     <a class="appel web" href="https://www.filsantejeunes.com" target="_blank" rel="noopener"><span class="ic">💬</span><span><b>Tchat Fil Santé Jeunes</b><small>Par écrit, sur filsantejeunes.com — 9h-22h</small></span></a>
   </div>
+  <p class="note">Pour comprendre : <button class="lien" data-go="sm-anx">Angoisse et anxiété</button>.</p>
 </section>
 
 <!-- P-HARCÈLEMENT -->
@@ -2189,12 +2248,1375 @@
   </div>
 </section>
 
+<!-- ============ v18.0 · SANTÉ MENTALE + RESSOURCES & EXERCICES · textes nouveaux, à valider (relecture clinique Cilli) ============ -->
+<!-- Fiches partagées entre les trois parcours : les blocs .po (po-moi, po-ami, po-parent, po-jeune = moi + ami) s'affichent selon la porte d'entrée. -->
+
+<!-- SANTÉ MENTALE : accueil de la rubrique -->
+<section class="screen" id="sm" style="--c:var(--lilas)">
+  <button class="retour" data-go="back">Retour</button>
+  <div class="hero"><span class="emo" aria-hidden="true">🧠</span><h2>Santé mentale</h2>
+    <p class="intro po po-jeune">Tu te poses des questions sur ce que tu ressens, ce que vit un proche ou un mot que tu as entendu ? Ici, tu peux trouver des explications et savoir à qui en parler. Tu n'as pas besoin de connaître le nom d'un trouble pour demander de l'aide.</p>
+    <p class="intro po po-parent">Vous vous posez des questions sur ce que vit votre enfant, ou sur un mot entendu chez le médecin ou à l'école ? Vous trouverez ici des explications et des pistes pour savoir à qui en parler. Il n'est pas nécessaire de connaître le nom d'un trouble pour demander de l'aide.</p></div>
+
+  <h3><span class="emo">🧭</span><span class="po po-jeune">Choisis ce qui s'en rapproche</span><span class="po po-parent">Choisissez ce qui s'en rapproche</span></h3>
+  <ul class="tuiles petites">
+    <li style="--c:var(--citron)"><button class="tuile" data-go="sm-flou"><span class="emo" aria-hidden="true">💭</span><span class="t"><b>Je ne sais pas comment l'expliquer</b><span>Quelque chose a changé, sans mot pour le dire</span></span><span class="chev" aria-hidden="true">›</span></button></li>
+    <li style="--c:var(--ciel)"><button class="tuile" data-go="sm-anx"><span class="emo" aria-hidden="true">🌀</span><span class="t"><b>Angoisse et anxiété</b><span>Inquiétude, crise d'angoisse, anxiété qui s'installe</span></span><span class="chev" aria-hidden="true">›</span></button></li>
+    <li style="--c:var(--lilas)"><button class="tuile" data-go="sm-dep"><span class="emo" aria-hidden="true">🌧️</span><span class="t"><b>Déprime ou dépression ?</b><span>Comprendre la différence, sans test</span></span><span class="chev" aria-hidden="true">›</span></button></li>
+    <li style="--c:var(--menthe)"><button class="tuile" data-go="sm-voix"><span class="emo" aria-hidden="true">👂</span><span class="t"><b><span class="po po-moi">J'entends des voix, je perçois des choses inhabituelles</span><span class="po po-ami po-parent">Il ou elle entend des voix ou perçoit des choses inhabituelles</span></b><span>Une expérience qui inquiète, sans nom de maladie</span></span><span class="chev" aria-hidden="true">›</span></button></li>
+    <li style="--c:var(--orchidee)"><button class="tuile" data-go="sm-conso"><span class="emo" aria-hidden="true">🌫️</span><span class="t"><b><span class="po po-moi">Depuis que j'ai consommé, quelque chose m'inquiète</span><span class="po po-ami po-parent">Depuis qu'il ou elle a consommé, quelque chose m'inquiète</span></b><span>Bizarre, angoissé·e, des effets qui continuent</span></span><span class="chev" aria-hidden="true">›</span></button></li>
+    <li style="--c:var(--sauge)"><button class="tuile" data-go="sm-schizo"><span class="emo" aria-hidden="true">📘</span><span class="t"><b>Schizophrénie : comprendre</b><span>Un diagnostic annoncé, des idées reçues à corriger</span></span><span class="chev" aria-hidden="true">›</span></button></li>
+  </ul>
+
+
+  <p class="note">SIGNAUX ne pose pas de diagnostic et ne remplace pas un professionnel. Ces fiches expliquent, donnent des mots et indiquent à qui s'adresser.</p>
+</section>
+
+<!-- JE NE SAIS PAS COMMENT L'EXPLIQUER -->
+<section class="screen" id="sm-flou" style="--c:var(--citron)">
+  <button class="retour" data-go="back">Retour</button>
+  <div class="hero"><span class="emo" aria-hidden="true">💭</span><h2>Je ne sais pas comment l'expliquer</h2>
+    <p class="intro po po-jeune">Pas besoin d'avoir le bon mot, ni de savoir « ce que c'est ». Dire que quelque chose a changé suffit pour demander de l'aide.</p>
+    <p class="intro po po-parent">Vous n'avez pas besoin d'avoir le bon mot, ni de savoir « ce que c'est ». Dire que quelque chose a changé chez votre enfant suffit pour demander un avis.</p></div>
+
+  <div class="choix-titre">Qu'est-ce qui s'en rapproche ?</div>
+  <div class="choix po po-jeune">
+    <button class="chip" data-tip="Ne plus se reconnaître, c'est une raison suffisante pour en parler. Essaie de dire depuis quand, et ce qui est différent : ton sommeil, tes envies, ta façon de réagir. Un médecin généraliste est une bonne première porte.">Je ne me reconnais plus</button>
+    <button class="chip" data-tip="Un changement qui dure mérite un avis, même si tu ne sais pas l'expliquer. Note ce qui a changé et ce que ça t'empêche de faire. Tu pourras le lire à la personne que tu iras voir.">Quelque chose a changé</button>
+    <button class="chip" data-tip="Tu peux lui dire ce que tu as remarqué, sans chercher à mettre un nom dessus : « Je te trouve différent·e ces temps-ci, et je m'inquiète. » Tu peux soutenir et passer le relais à un adulte ou à un professionnel. Tu n'es pas responsable de ses soins.">Un proche m'inquiète</button>
+    <button class="chip" data-tip="Un mot entendu ou lu ne dit pas tout. Tu peux demander à la personne qui l'a prononcé de te l'expliquer, autant de fois qu'il le faut. Les fiches de cette rubrique donnent des repères, et le site de Psycom explique les troubles avec des mots simples.">On m'a parlé d'un trouble et je ne comprends pas</button>
+  </div>
+  <div class="chip-tip po po-jeune" aria-live="polite"></div>
+
+  <div class="choix po po-parent">
+    <button class="chip" data-tip="Ne plus reconnaître son enfant est une raison suffisante pour demander un avis. Notez depuis quand, et ce qui est différent : le sommeil, l'appétit, les envies, les réactions, les fréquentations. Le médecin traitant est une bonne première porte.">Je ne le ou la reconnais plus</button>
+    <button class="chip" data-tip="Un changement qui dure mérite un avis, même si vous ne savez pas l'expliquer. Dites-lui ce que vous avez remarqué, sans chercher à mettre un nom dessus, et proposez d'en parler ensemble à un professionnel.">Quelque chose a changé</button>
+    <button class="chip" data-tip="Un mot entendu en consultation ou à l'école ne dit pas tout. Vous pouvez demander à la personne qui l'a prononcé de vous l'expliquer, autant de fois qu'il le faut. Les fiches de cette rubrique donnent des repères, et le site de Psycom explique les troubles avec des mots simples.">On m'a parlé d'un trouble et je ne comprends pas</button>
+  </div>
+  <div class="chip-tip po po-parent" aria-live="polite"></div>
+
+  <h3><span class="emo">📝</span>Trois questions pour décrire</h3>
+  <ul class="simple">
+    <li>Depuis quand ? Quelques jours, quelques semaines, plus longtemps.</li>
+    <li>Qu'est-ce qui a changé ? Le sommeil, l'envie, l'énergie, la concentration, les relations, la façon de percevoir les choses.</li>
+    <li>Qu'est-ce que ça empêche de faire ? Aller en cours ou au travail, voir du monde, dormir, manger.</li>
+  </ul>
+  <p class="note po po-jeune">Tu peux écrire les réponses sur un papier ou dans tes notes. SIGNAUX n'enregistre rien.</p>
+  <p class="note po po-parent">Vous pouvez écrire les réponses sur un papier. SIGNAUX n'enregistre rien.</p>
+
+  <div class="urgence">
+    <p><span class="po po-jeune">Si tu penses à mourir, si tu as peur de te faire du mal ou de faire du mal à quelqu'un, ou si tu ne sais plus où tu es : n'attends pas.</span><span class="po po-parent">Si votre enfant parle de mourir, risque de se faire du mal ou de faire du mal à quelqu'un, ou semble confus : n'attendez pas.</span></p>
+    <a class="appel rouge" href="tel:15"><span class="ic">📞</span><span><b>15</b><small>SAMU, tout de suite</small></span></a>
+    <a class="appel rouge" href="tel:3114"><span class="ic">📞</span><span><b>3114</b><small>Numéro national de prévention du suicide, 24h/24, gratuit</small></span></a>
+  </div>
+
+  <h3><span class="emo">💬</span>Pour commencer à en parler</h3>
+  <div class="imsg">
+    <div class="top"><div class="av">👤</div><b>Quelqu'un de confiance</b></div>
+    <div class="fil">
+      <div class="date">Aujourd'hui</div>
+      <div class="aide po po-jeune">Messages à copier et à envoyer toi-même</div><div class="aide po po-parent">Messages à copier et à envoyer vous-même</div>
+      <button class="bulle po po-moi"><q>Depuis quelque temps, je ne me sens plus comme d'habitude. Je ne sais pas bien l'expliquer, mais j'aimerais en parler à quelqu'un.</q></button>
+      <button class="bulle po po-ami"><q>Je te trouve différent·e en ce moment. Je ne sais pas ce qui se passe, mais je suis là si tu veux en parler.</q></button>
+      <button class="bulle po po-parent"><q>J'ai l'impression que quelque chose a changé pour toi ces temps-ci. Je ne veux pas te forcer à parler, juste te dire que je suis là.</q></button>
+    </div>
+    <div class="pied">Aucun message n'est envoyé depuis SIGNAUX.</div>
+  </div>
+
+  <h3><span class="emo">🧑‍⚕️</span>À qui s'adresser</h3>
+  <ul class="simple">
+    <li>Un médecin généraliste. C'est souvent la première porte : il écoute, vérifie la santé physique et oriente.</li>
+    <li>L'infirmière ou l'infirmier scolaire, ou le service de santé étudiante.</li>
+    <li>Un·e psychologue. Le dispositif Mon soutien psy rembourse jusqu'à 12 séances par an ; pour un·e mineur·e, l'accord des parents est demandé.</li>
+    <li>La Maison des ados : un accueil sans avance de frais, pour faire le point.</li>
+  </ul>
+  <div class="appels">
+    <a class="appel" href="tel:0493261092"><span class="ic">🏠</span><span><b>Maison des ados 06</b><small>2A rue Raynardi, Nice — 04 93 26 10 92, lun-ven 9h-17h</small></span></a>
+    <a class="appel" href="tel:0800235236"><span class="ic">📞</span><span><b>Fil Santé Jeunes</b><small>0 800 235 236 — anonyme, gratuit, 9h-23h, pour les 12-25 ans</small></span></a>
+    <a class="appel web" href="https://monsoutienpsy.ameli.fr" target="_blank" rel="noopener"><span class="ic">🧑‍⚕️</span><span><b>Mon soutien psy</b><small>Annuaire des psychologues partenaires, sur monsoutienpsy.ameli.fr</small></span></a>
+  </div>
+  <p class="src">Sources : Santé.fr, dossier « Je me sens déprimé·e, dois-je m'inquiéter ? » (ministère de la Santé, Santé publique France, Psycom, HAS) ; info.gouv.fr, « Mon soutien psy ». Vérifié le 13 novembre 2026.</p>
+</section>
+
+<!-- ANGOISSE ET ANXIÉTÉ -->
+<section class="screen" id="sm-anx" style="--c:var(--ciel)">
+  <button class="retour" data-go="back">Retour</button>
+  <div class="hero"><span class="emo" aria-hidden="true">🌀</span><h2>Angoisse et anxiété</h2>
+    <p class="intro">L'anxiété est une émotion normale : elle prévient d'un danger possible et aide à s'y préparer. Elle devient un problème quand elle est trop forte, trop fréquente, ou qu'elle envahit le quotidien.</p></div>
+
+  <div class="urgence">
+    <p><span class="po po-jeune">Douleur dans la poitrine, malaise, grande difficulté à respirer, ou symptôme physique nouveau : on ne met pas ça d'office sur le compte de l'angoisse. On le fait vérifier.</span><span class="po po-parent">Douleur dans la poitrine, malaise, grande difficulté à respirer, ou symptôme physique nouveau : ne le mettez pas d'office sur le compte de l'angoisse. Faites-le vérifier.</span></p>
+    <a class="appel rouge" href="tel:15"><span class="ic">📞</span><span><b>15</b><small>SAMU — on fait vérifier, ce n'est jamais « pour rien »</small></span></a>
+  </div>
+
+  <h3><span class="emo">📖</span>Trois situations différentes</h3>
+  <ul class="simple">
+    <li>Une inquiétude passagère. Avant un contrôle, un rendez-vous, une décision. Elle retombe quand la situation est passée.</li>
+    <li>Une crise d'angoisse, ou attaque de panique. Une peur intense qui monte d'un coup : cœur qui s'emballe, souffle court, tremblements, parfois l'impression de mourir ou de perdre le contrôle. Elle finit par redescendre.</li>
+    <li>Une anxiété qui s'installe. Des inquiétudes presque tous les jours, difficiles à arrêter, qui gênent le sommeil, les cours, les sorties, ou qui font éviter de plus en plus de situations.</li>
+  </ul>
+  <p class="note po po-moi">En pleine crise, là, maintenant ? Va à la fiche <button class="lien" data-go="m-panique">« Je panique »</button>.</p>
+  <p class="note po po-ami">Il ou elle est en pleine crise, là, maintenant ? Va à la fiche <button class="lien" data-go="panique">« Panique »</button>.</p>
+  <p class="note po po-parent">Votre enfant est en pleine crise, là, maintenant ? Allez à la fiche <button class="lien" data-go="p-panique">« Panique »</button>.</p>
+
+  <h3><span class="emo">🔎</span>Par exemple</h3>
+  <ul class="simple">
+    <li>« J'ai la boule au ventre tous les matins avant les cours. »</li>
+    <li>« Je repousse tout ce qui me fait peur, et la liste s'allonge. »</li>
+    <li>« Je n'arrive pas à couper mes pensées le soir. »</li>
+  </ul>
+  <p class="note">Ces exemples aident à mettre des mots. Ils ne servent pas à poser un diagnostic.</p>
+
+  <h3><span class="emo">🚦</span>Quand demander de l'aide</h3>
+  <ul class="simple">
+    <li>Tout de suite, au 15. Douleur dans la poitrine, malaise, grande difficulté à respirer, première crise, ou doute sur ce qui se passe.</li>
+    <li>Dans les jours qui viennent. Les crises reviennent, le sommeil ne tient plus, les situations évitées se multiplient, ou l'alcool et d'autres produits servent à tenir.</li>
+    <li>Sans attendre que ça passe tout seul. Dès que l'anxiété gêne le quotidien. Il n'y a pas de durée minimale à attendre pour consulter.</li>
+  </ul>
+
+  <h3><span class="emo">👣</span>Un premier pas</h3>
+  <p class="note po po-moi">Pendant trois jours, note quand l'angoisse monte et ce qui se passait juste avant. Apporte cette note à la personne que tu iras voir : ça aide à expliquer.</p>
+  <p class="note po po-ami">Demande-lui ce qui l'aide quand ça monte, et propose de l'accompagner voir quelqu'un. Tu peux soutenir et passer le relais. Tu n'es pas responsable de ses soins, et tu n'as pas à tout gérer seul·e.</p>
+  <p class="note po po-parent">Demandez-lui ce qui l'aide quand ça monte, sans minimiser (« ce n'est rien ») ni dramatiser. Proposez de prendre ensemble un rendez-vous chez le médecin. Vous pouvez soutenir et passer le relais : les soins relèvent des professionnels.</p>
+
+  <h3><span class="emo">💬</span>Pour commencer à en parler</h3>
+  <div class="imsg">
+    <div class="top"><div class="av">👤</div><b>Quelqu'un de confiance</b></div>
+    <div class="fil">
+      <div class="date">Aujourd'hui</div>
+      <div class="aide po po-jeune">Messages à copier et à envoyer toi-même</div><div class="aide po po-parent">Messages à copier et à envoyer vous-même</div>
+      <button class="bulle po po-moi"><q>Depuis quelque temps, j'ai des angoisses qui me gênent au quotidien. J'aimerais en parler à quelqu'un.</q></button>
+      <button class="bulle po po-ami"><q>J'ai l'impression que tu stresses beaucoup en ce moment. Tu veux m'en parler ? Je ne suis pas là pour juger.</q></button>
+      <button class="bulle po po-parent"><q>J'ai remarqué que tu avais l'air très inquiet·ète ces temps-ci. Je ne veux pas te mettre la pression, juste comprendre comment t'aider.</q></button>
+    </div>
+    <div class="pied">Aucun message n'est envoyé depuis SIGNAUX.</div>
+  </div>
+
+  <h3><span class="emo">🧑‍⚕️</span>À qui s'adresser</h3>
+  <ul class="simple">
+    <li>Un médecin généraliste, pour faire le point et vérifier la santé physique.</li>
+    <li>Un·e psychologue ou un·e psychiatre. Des psychothérapies aident à faire reculer l'anxiété.</li>
+    <li>L'infirmière ou l'infirmier scolaire, le service de santé étudiante, la Maison des ados.</li>
+  </ul>
+  <div class="appels">
+    <a class="appel" href="tel:0800235236"><span class="ic">📞</span><span><b>Fil Santé Jeunes</b><small>0 800 235 236 — anonyme, gratuit, 9h-23h, pour les 12-25 ans</small></span></a>
+    <a class="appel" href="tel:0493261092"><span class="ic">🏠</span><span><b>Maison des ados 06</b><small>2A rue Raynardi, Nice — 04 93 26 10 92, lun-ven 9h-17h</small></span></a>
+    <a class="appel web" href="https://monsoutienpsy.ameli.fr" target="_blank" rel="noopener"><span class="ic">🧑‍⚕️</span><span><b>Mon soutien psy</b><small>Jusqu'à 12 séances remboursées par an, sur monsoutienpsy.ameli.fr</small></span></a>
+  </div>
+  <p class="src">Sources : Psycom, « Anxiété, phobies et TOC » (publié sur Santé.fr, mis à jour en juillet 2026) ; info.gouv.fr, « Mon soutien psy ». Vérifié le 13 novembre 2026.</p>
+</section>
+
+<!-- DÉPRIME OU DÉPRESSION ? -->
+<section class="screen" id="sm-dep" style="--c:var(--lilas)">
+  <button class="retour" data-go="back">Retour</button>
+  <div class="hero"><span class="emo" aria-hidden="true">🌧️</span><h2>Déprime ou dépression ?</h2>
+    <p class="intro">La déprime est un mal-être passager : elle fait partie de la vie et finit par s'alléger. La dépression est une maladie qui se soigne : le mal-être est là presque toute la journée, presque tous les jours, et il pèse sur le quotidien.</p></div>
+
+  <div class="urgence">
+    <p><span class="po po-moi">Si tu penses à mourir ou à te faire du mal, ne reste pas seul·e avec ça.</span><span class="po po-ami">S'il ou elle parle de mourir ou de se faire du mal, ne garde pas ça pour toi.</span><span class="po po-parent">Si votre enfant parle de mourir ou de se faire du mal, n'attendez pas.</span></p>
+    <a class="appel rouge" href="tel:3114"><span class="ic">📞</span><span><b>3114</b><small>Numéro national de prévention du suicide, 24h/24, gratuit</small></span></a>
+    <a class="appel rouge" href="tel:15"><span class="ic">📞</span><span><b>15</b><small>SAMU, si le danger est immédiat</small></span></a>
+    <div class="ecoute"><p class="po po-moi">La fiche <button class="lien" data-go="m-mourir">« Je pense à mourir »</button> t'aide à trouver les mots.</p><p class="po po-ami">La fiche <button class="lien" data-go="mourir">« Parle de mourir »</button> t'aide à savoir quoi dire.</p><p class="po po-parent">La fiche <button class="lien" data-go="p-mourir">« Parle de mourir »</button> vous aide à savoir quoi dire.</p></div>
+  </div>
+
+  <h3><span class="emo">🔎</span>Par exemple</h3>
+  <ul class="simple">
+    <li>« Plus rien ne me fait envie, même ce que j'aimais. »</li>
+    <li>« Je me sens vide, pas vraiment triste. »</li>
+    <li>« Je m'énerve pour un rien. »</li>
+    <li>« Je suis épuisé·e, même en dormant. »</li>
+    <li>« Mes notes chutent, je ne réponds plus à mes potes. »</li>
+  </ul>
+  <p class="note">Ces exemples aident à mettre des mots. Ils ne sont pas un test, et ne servent pas à poser un diagnostic. Chez les ados et les jeunes adultes, la dépression se voit parfois davantage par de l'irritabilité que par de la tristesse.</p>
+
+  <h3><span class="emo">⏳</span>Et la durée ?</h3>
+  <p class="note">Pour poser un diagnostic, les professionnels regardent notamment si le mal-être dure depuis au moins deux semaines. Ce repère leur sert à eux. Ce n'est pas un délai à attendre : on peut demander de l'aide dès qu'on souffre.</p>
+
+  <h3><span class="emo">🚦</span>Quand demander de l'aide</h3>
+  <ul class="simple">
+    <li>Tout de suite. Des idées de mort ou de suicide : 3114, ou 15 si le danger est immédiat.</li>
+    <li>Dans les jours qui viennent. Le mal-être empêche d'aller en cours ou au travail, de dormir, de manger, ou isole de plus en plus.</li>
+    <li>Sans attendre que ça passe tout seul. Dès que ça pèse. Plus on en parle tôt, plus c'est simple à soigner.</li>
+  </ul>
+
+  <h3><span class="emo">👣</span>Un premier pas</h3>
+  <p class="note po po-moi">Dis-le à une personne aujourd'hui, même en une phrase. Puis prends rendez-vous chez un médecin généraliste : c'est souvent la première porte.</p>
+  <p class="note po po-ami">Dis-lui ce que tu as remarqué, sans juger, et propose de l'accompagner voir quelqu'un. Tu peux soutenir et passer le relais. Tu n'es pas responsable de ses soins, et tu n'as pas à tout porter seul·e.</p>
+  <p class="note po po-parent">Dites-lui ce que vous avez remarqué, sans juger ni chercher de coupable, et proposez de prendre ensemble un rendez-vous chez le médecin. Vous pouvez soutenir et passer le relais : les soins relèvent des professionnels.</p>
+  <p class="note">Si un traitement a été prescrit, on ne le modifie pas et on ne l'arrête pas sans en parler au médecin.</p>
+
+  <h3><span class="emo">💬</span>Pour commencer à en parler</h3>
+  <div class="imsg">
+    <div class="top"><div class="av">👤</div><b>Quelqu'un de confiance</b></div>
+    <div class="fil">
+      <div class="date">Aujourd'hui</div>
+      <div class="aide po po-jeune">Messages à copier et à envoyer toi-même</div><div class="aide po po-parent">Messages à copier et à envoyer vous-même</div>
+      <button class="bulle po po-moi"><q>Depuis quelque temps, je ne me sens plus comme d'habitude. Ça me gêne au quotidien et j'aimerais en parler à quelqu'un.</q></button>
+      <button class="bulle po po-ami"><q>Je te trouve différent·e en ce moment, et je m'inquiète un peu. Je suis là si tu veux en parler, et je peux t'accompagner voir quelqu'un.</q></button>
+      <button class="bulle po po-parent"><q>Je vois que c'est difficile pour toi en ce moment. Je ne te demande pas d'aller mieux tout de suite. J'aimerais qu'on trouve ensemble quelqu'un à qui en parler.</q></button>
+    </div>
+    <div class="pied">Aucun message n'est envoyé depuis SIGNAUX.</div>
+  </div>
+
+  <h3><span class="emo">🧑‍⚕️</span>À qui s'adresser</h3>
+  <ul class="simple">
+    <li>Un médecin généraliste. Il fait le point, écarte une cause physique et oriente.</li>
+    <li>Un·e psychologue, qui pratique la psychothérapie, ou un·e psychiatre, médecin qui peut aussi prescrire un traitement.</li>
+    <li>L'infirmière ou l'infirmier scolaire, le service de santé étudiante, la Maison des ados.</li>
+  </ul>
+  <div class="appels">
+    <a class="appel" href="tel:0800235236"><span class="ic">📞</span><span><b>Fil Santé Jeunes</b><small>0 800 235 236 — anonyme, gratuit, 9h-23h, pour les 12-25 ans</small></span></a>
+    <a class="appel" href="tel:0493261092"><span class="ic">🏠</span><span><b>Maison des ados 06</b><small>2A rue Raynardi, Nice — 04 93 26 10 92, lun-ven 9h-17h</small></span></a>
+    <a class="appel web" href="https://monsoutienpsy.ameli.fr" target="_blank" rel="noopener"><span class="ic">🧑‍⚕️</span><span><b>Mon soutien psy</b><small>Jusqu'à 12 séances remboursées par an, sur monsoutienpsy.ameli.fr</small></span></a>
+  </div>
+  <p class="src">Sources : Santé.fr, dossier « Je me sens déprimé·e, dois-je m'inquiéter ? » (ministère de la Santé, Santé publique France, Psycom, HAS), mis à jour en juillet 2026 ; info.gouv.fr, « Mon soutien psy ». Vérifié le 13 novembre 2026.</p>
+</section>
+
+<!-- J'ENTENDS DES VOIX / JE PERÇOIS DES CHOSES INHABITUELLES -->
+<section class="screen" id="sm-voix" style="--c:var(--menthe)">
+  <button class="retour" data-go="back">Retour</button>
+  <div class="urgence">
+    <p><span class="po po-moi">Tu ne sais plus où tu es, tout s'aggrave très vite, tu as peur de te faire du mal ou de faire du mal à quelqu'un, ou des voix te demandent de le faire : appelle maintenant, ou demande à quelqu'un de le faire.</span><span class="po po-ami">Il ou elle ne sait plus où il/elle est, est très agité·e, tout s'aggrave très vite, il y a un danger pour lui/elle ou pour quelqu'un, ou des voix lui demandent de faire du mal : appelle maintenant et préviens un adulte.</span><span class="po po-parent">Votre enfant est confus, très agité, son état s'aggrave très vite, il y a un danger pour lui ou pour quelqu'un, ou des voix lui demandent de faire du mal : appelez maintenant.</span></p>
+    <a class="appel rouge" href="tel:15"><span class="ic">📞</span><span><b>15</b><small>SAMU, tout de suite</small></span></a>
+    <a class="appel rouge" href="tel:112"><span class="ic">📞</span><span><b>112</b><small>Si le 15 ne passe pas</small></span></a>
+    <div class="ecoute"><p><button class="lien" data-go="danger">Tous les numéros d'urgence</button></p></div>
+  </div>
+  <div class="hero"><span class="emo" aria-hidden="true">👂</span><h2><span class="po po-moi">J'entends des voix, je perçois des choses inhabituelles</span><span class="po po-ami po-parent">Il ou elle entend des voix ou perçoit des choses inhabituelles</span></h2>
+    <p class="intro po po-moi">Entendre des voix ou percevoir des choses que les autres ne perçoivent pas peut être inquiétant. Cela ne signifie pas automatiquement que tu as une schizophrénie. Plusieurs causes sont possibles, notamment des substances, certains médicaments, un manque important de sommeil ou un problème de santé. Un professionnel peut t'aider à comprendre ce qui se passe.</p>
+    <p class="intro po po-ami">Entendre des voix ou percevoir des choses que les autres ne perçoivent pas peut faire peur, à lui ou à elle comme à toi. Cela ne signifie pas automatiquement une schizophrénie. Plusieurs causes sont possibles, notamment des substances, certains médicaments, un manque important de sommeil ou un problème de santé. Un professionnel peut aider à comprendre ce qui se passe.</p>
+    <p class="intro po po-parent">Entendre des voix ou percevoir des choses que les autres ne perçoivent pas peut être inquiétant, pour votre enfant comme pour vous. Cela ne signifie pas automatiquement une schizophrénie. Plusieurs causes sont possibles, notamment des substances, certains médicaments, un manque important de sommeil ou un problème de santé. Un professionnel peut aider à comprendre ce qui se passe.</p></div>
+
+  <h3><span class="emo">📖</span>Trois choses à ne pas confondre</h3>
+  <ul class="simple">
+    <li>L'expérience. Ce qui est entendu, vu ou ressenti. Elle est réelle pour la personne qui la vit.</li>
+    <li>Le contexte. Quand ça arrive : après une consommation, après des nuits presque sans sommeil, avec un traitement, pendant une période très dure.</li>
+    <li>Le diagnostic. Il ne se devine pas : il demande une évaluation par un professionnel, parfois dans la durée.</li>
+  </ul>
+  <p class="note">Une substance et un trouble peuvent exister en même temps. Aucune appli, aucun test en ligne ne peut dire d'où ça vient.</p>
+
+  <h3><span class="emo">🔎</span>Par exemple</h3>
+  <ul class="simple">
+    <li>« J'entends quelqu'un m'appeler alors que je suis seul·e. »</li>
+    <li>« J'ai l'impression qu'on me surveille, ou qu'on parle de moi. »</li>
+    <li>« Je vois ou je sens des choses que les autres ne perçoivent pas. »</li>
+    <li>« Ça a commencé après une soirée, ou après plusieurs nuits sans dormir. »</li>
+  </ul>
+  <p class="note">Ces exemples aident à mettre des mots. Ils ne servent pas à poser un diagnostic.</p>
+
+  <h3><span class="emo">🚦</span>Quand demander de l'aide</h3>
+  <ul class="simple">
+    <li>Maintenant, au 15. Confusion soudaine, agitation très forte, aggravation rapide, danger pour soi ou pour quelqu'un, voix qui demandent de faire du mal.</li>
+    <li>Vite : aujourd'hui ou dans les jours qui viennent. Des voix ou des perceptions nouvelles, ou qui inquiètent, demandent un avis médical rapide, même si tout le reste va bien.</li>
+    <li>Sans attendre que « ça passe ». Même si ça a commencé après une consommation : on n'attend pas que le produit s'élimine pour demander de l'aide.</li>
+  </ul>
+  <p class="note">Un exercice de respiration ou de la musique ne suffisent pas pour cette situation. Ce qu'il faut ici, c'est un avis médical.</p>
+
+  <h3><span class="emo">👣</span>Un premier pas</h3>
+  <ol class="etapes po po-moi">
+    <li>Ne reste pas seul·e avec ça. Dis-le aujourd'hui à une personne de confiance.</li>
+    <li>Demande un avis médical : ton médecin, ou le 15 si tu n'as personne ou si ça t'inquiète beaucoup. Le 15 peut aussi conseiller et orienter.</li>
+    <li>Prépare ce que tu sais. Depuis quand, à quels moments, ton sommeil, les produits ou les médicaments pris, les mélanges. Tu le diras au professionnel, sans crainte d'être jugé·e. SIGNAUX n'enregistre rien.</li>
+  </ol>
+  <ol class="etapes po po-ami">
+    <li>Prends-le ou prends-la au sérieux. Pour lui ou elle, c'est réel. Ne te moque pas, et ne cherche pas à prouver que « c'est faux ».</li>
+    <li>Reste calme et ne reste pas seul·e avec ça. Préviens un adulte de confiance.</li>
+    <li>Propose de l'accompagner demander un avis médical. Tu peux soutenir et passer le relais. Tu n'es pas responsable de ses soins.</li>
+  </ol>
+  <ol class="etapes po po-parent">
+    <li>Prenez ce qu'il ou elle décrit au sérieux. Pour votre enfant, c'est réel. Inutile de débattre de ce qui est « vrai » : dites que vous voyez que c'est difficile.</li>
+    <li>Demandez un avis médical rapide : votre médecin traitant, ou le 15 pour être conseillé et orienté.</li>
+    <li>Notez ce que vous savez. Depuis quand, le sommeil, les traitements, les consommations éventuelles. Vous pouvez soutenir et passer le relais : les soins relèvent des professionnels.</li>
+  </ol>
+
+  <h3><span class="emo">💬</span>Pour demander de l'aide</h3>
+  <div class="imsg">
+    <div class="top"><div class="av">👤</div><b>Un médecin, un adulte de confiance</b></div>
+    <div class="fil">
+      <div class="date">Aujourd'hui</div>
+      <div class="aide po po-jeune">Phrases à copier, à compléter et à dire ou envoyer toi-même</div><div class="aide po po-parent">Phrases à copier, à compléter et à dire ou envoyer vous-même</div>
+      <button class="bulle po po-moi"><q>Depuis [moment], j'entends ou je perçois des choses inhabituelles et ça m'inquiète. J'ai besoin d'un avis médical.</q></button>
+      <button class="bulle po po-moi"><q>Depuis [moment], j'entends ou je perçois des choses inhabituelles. J'ai consommé [produit, si je le connais] et ça m'inquiète. J'ai besoin d'un avis médical.</q></button>
+      <button class="bulle po po-ami"><q>Ce que tu me racontes m'inquiète un peu, et je te crois : pour toi c'est réel. J'aimerais qu'on demande un avis médical. Je peux venir avec toi.</q></button>
+      <button class="bulle po po-parent"><q>Je te crois quand tu me dis ce que tu entends ou ce que tu vois. Ça doit être difficile. On va demander un avis médical ensemble, je reste avec toi.</q></button>
+    </div>
+    <div class="pied">Aucun message n'est envoyé depuis SIGNAUX.</div>
+  </div>
+  <p class="note po po-moi">Ça a commencé après une consommation ? Voir aussi <button class="lien" data-go="sm-conso">« Depuis que j'ai consommé, quelque chose m'inquiète »</button>.</p>
+  <p class="note po po-ami po-parent">Ça a commencé après une consommation ? Voir aussi <button class="lien" data-go="sm-conso">« Depuis qu'il ou elle a consommé, quelque chose m'inquiète »</button>.</p>
+
+  <h3><span class="emo">🧑‍⚕️</span>À qui s'adresser</h3>
+  <ul class="simple">
+    <li>Un médecin généraliste, rapidement. Il évalue, vérifie la santé physique et oriente vers un spécialiste si besoin.</li>
+    <li>Le 15, si aucun rendez-vous rapide n'est possible ou si l'inquiétude est forte.</li>
+    <li>En complément, s'il y a eu consommation : Drogues Info Service et les Consultations jeunes consommateurs. Elles ne remplacent pas une prise en charge urgente.</li>
+  </ul>
+  <div class="appels">
+    <a class="appel rouge" href="tel:15"><span class="ic">📞</span><span><b>15</b><small>SAMU — urgence, conseil et orientation, 24h/24</small></span></a>
+    <a class="appel" href="tel:0800231313"><span class="ic">📞</span><span><b>0 800 23 13 13</b><small>Drogues Info Service — tous les jours, anonyme et gratuit, horaires sur drogues-info-service.fr. Ce n'est pas un numéro d'urgence</small></span></a>
+  </div>
+  <p class="note">Pour comprendre le mot « schizophrénie », s'il a été prononcé : <button class="lien" data-go="sm-schizo">Schizophrénie : comprendre</button>.</p>
+  <p class="src">Sources : Psycom, « Troubles schizophréniques » (publié sur Santé.fr, mis à jour en septembre 2026) ; Drogues Info Service (Santé publique France), réponses sur les effets du cannabis et le bad trip. Vérifié le 13 novembre 2026. Référence médicale institutionnelle sur les causes des hallucinations : à compléter à la relecture.</p>
+</section>
+
+<!-- DEPUIS QUE J'AI CONSOMMÉ, QUELQUE CHOSE M'INQUIÈTE -->
+<section class="screen" id="sm-conso" style="--c:var(--orchidee)">
+  <button class="retour" data-go="back">Retour</button>
+  <div class="urgence">
+    <p><span class="po po-moi">Du mal à respirer, douleur dans la poitrine, tu te sens partir, tu ne sais plus où tu es, tu as peur de te faire du mal ou de faire du mal à quelqu'un : appelle le 15 ou le 112, ou demande à quelqu'un de le faire. Dis ce que tu as pris, si tu le sais.</span><span class="po po-ami">Du mal à respirer, inconscient·e ou impossible à réveiller, convulsions, confusion, très agité·e, danger pour lui/elle ou pour quelqu'un : appelle le 15 ou le 112, et reste à côté. Dis ce qu'il ou elle a pris, si tu le sais.</span><span class="po po-parent">Difficulté à respirer, perte de connaissance, convulsions, confusion, grande agitation, danger pour lui ou pour quelqu'un : appelez le 15 ou le 112, et restez à côté. Dites ce qui a été pris, si vous le savez.</span></p>
+    <a class="appel rouge" href="tel:15"><span class="ic">📞</span><span><b>15</b><small>SAMU, tout de suite. Personne n'est là pour juger</small></span></a>
+    <a class="appel rouge" href="tel:112"><span class="ic">📞</span><span><b>112</b><small>Si le 15 ne passe pas</small></span></a>
+  </div>
+  <div class="hero"><span class="emo" aria-hidden="true">🌫️</span><h2><span class="po po-moi">Depuis que j'ai consommé, quelque chose m'inquiète</span><span class="po po-ami po-parent">Depuis qu'il ou elle a consommé, quelque chose m'inquiète</span></h2>
+    <p class="intro">Après de l'alcool, du cannabis, un autre produit ou un mélange, on peut se sentir bizarre, très angoissé·e, avoir l'impression d'être surveillé·e, entendre ou voir des choses. Ça peut arriver dès une première prise. On ne peut pas savoir, sans avis médical, d'où ça vient ni si c'est grave.</p></div>
+
+  <h3><span class="emo">🚫</span>Trois phrases à ne pas se dire</h3>
+  <ul class="simple">
+    <li>« C'est seulement la drogue. » Peut-être, peut-être pas : une substance et un autre problème peuvent exister en même temps.</li>
+    <li>« Ça va forcément passer. » Souvent ça s'atténue, mais on ne peut pas le promettre. Si ça dure ou si ça inquiète, on demande un avis.</li>
+    <li>« J'ai une maladie mentale. » Une appli ne peut pas le dire, et une seule expérience ne suffit pas à le savoir.</li>
+  </ul>
+
+  <div class="choix-titre">Qu'est-ce qui se passe ?</div>
+  <div class="choix po po-moi">
+    <button class="chip" data-tip="Entendre des voix après avoir fumé demande un avis médical rapide, même si tu te sens à peu près bien par ailleurs. Ne reste pas seul·e, ne reprends rien, et appelle ton médecin ou le 15. Si les voix te demandent de te faire du mal ou de faire du mal à quelqu'un : 15, maintenant.">J'ai fumé et j'entends des voix</button>
+    <button class="chip" data-tip="Se sentir bizarre plusieurs jours après une soirée mérite un avis, sans attendre que ça passe tout seul. Note depuis quand, ce que tu as pris si tu le sais, et comment tu dors. Parles-en à un médecin, ou appelle Drogues Info Service pour faire le point.">Depuis une soirée, je me sens bizarre</button>
+    <button class="chip" data-tip="Cette impression peut être très angoissante. Elle ne veut pas dire que tu es « fou » ou « folle », et elle demande un avis médical rapide. Reste avec une personne de confiance et sobre. Si tu te sens en danger ou si ça s'aggrave : 15.">J'ai l'impression qu'on me surveille</button>
+    <button class="chip" data-tip="Des effets qui continuent alors que le produit devrait être passé : n'attends pas davantage. Demande un avis médical aujourd'hui. Dis ce que tu as pris et quand, si tu le sais. Personne n'est là pour te juger.">Les effets continuent et ça m'inquiète</button>
+  </div>
+  <div class="chip-tip po po-moi" aria-live="polite"></div>
+  <div class="choix po po-ami">
+    <button class="chip" data-tip="Reste avec lui ou elle, au calme, et ne le/la laisse pas seul·e. Pas d'autre produit pour « faire passer ». Appelle le 15 si son état t'inquiète, s'il/elle est confus·e, très agité·e, ou si ça s'aggrave. Dis ce qui a été pris, si tu le sais. Préviens un adulte : tu n'as pas à gérer ça seul·e.">Mon pote a pris quelque chose et il ne va pas bien</button>
+    <button class="chip" data-tip="Prends-le au sérieux, sans te moquer et sans chercher à prouver que c'est faux. Reste avec lui ou elle, préviens un adulte, et demandez un avis médical rapide. Si les voix lui demandent de faire du mal, ou s'il/elle est très agité·e ou confus·e : 15, maintenant.">Il ou elle a fumé et entend des voix</button>
+    <button class="chip" data-tip="Dis-lui ce que tu as remarqué, sans juger : « Depuis la soirée, je te trouve différent·e, et je m'inquiète. » Propose de l'accompagner voir un médecin. Tu peux soutenir et passer le relais. Tu n'es pas responsable de ses soins.">Depuis une soirée, il ou elle est bizarre</button>
+  </div>
+  <div class="chip-tip po po-ami" aria-live="polite"></div>
+  <div class="choix po po-parent">
+    <button class="chip" data-tip="Restez avec lui, au calme, sans reproche pour l'instant : la priorité est sa sécurité. Appelez le 15 si son état vous inquiète, s'il est confus, très agité, ou si cela s'aggrave. Dites ce qui a été pris, si vous le savez.">Mon enfant a pris quelque chose et ne va pas bien</button>
+    <button class="chip" data-tip="Prenez-le au sérieux, sans débattre de ce qui est « vrai ». Demandez un avis médical rapide : votre médecin, ou le 15 pour être conseillé. Si les voix lui demandent de faire du mal, ou s'il est très agité ou confus : 15, maintenant.">Il ou elle a consommé et entend des voix</button>
+    <button class="chip" data-tip="Un changement qui dure après une consommation mérite un avis médical, sans attendre. Dites-lui ce que vous avez remarqué, sans chercher de coupable, et proposez d'y aller ensemble. Les Consultations jeunes consommateurs reçoivent aussi les parents.">Depuis une soirée, il ou elle a changé</button>
+  </div>
+  <div class="chip-tip po po-parent" aria-live="polite"></div>
+
+  <h3><span class="emo">⚡</span>Maintenant</h3>
+  <ol class="etapes po po-jeune">
+    <li>Ne reste pas seul·e. Une personne sobre et de confiance reste à côté.</li>
+    <li>Rien d'autre pour « faire passer ». Pas d'autre produit, pas d'alcool, pas de médicament qui n'a pas été prescrit.</li>
+    <li>N'attends pas que le produit s'élimine pour demander de l'aide. Si ça inquiète, on appelle.</li>
+    <li>Dis ce qui a été pris, si tu le sais. Le produit, les mélanges, le moment, le sommeil, les traitements. Personne n'est là pour juger, et SIGNAUX n'enregistre rien.</li>
+  </ol>
+  <ol class="etapes po po-parent">
+    <li>Restez avec lui ou elle, au calme. La discussion sur la consommation viendra plus tard.</li>
+    <li>Rien d'autre pour « faire passer ». Pas d'alcool, pas de médicament qui ne lui a pas été prescrit.</li>
+    <li>N'attendez pas que le produit s'élimine pour demander un avis.</li>
+    <li>Dites aux soignants ce que vous savez. Le produit, les mélanges, le moment, le sommeil, les traitements. Ces informations servent à soigner.</li>
+  </ol>
+
+  <h3><span class="emo">💬</span>Pour demander de l'aide</h3>
+  <div class="imsg">
+    <div class="top"><div class="av">👤</div><b>Un médecin, un adulte de confiance</b></div>
+    <div class="fil">
+      <div class="date">Aujourd'hui</div>
+      <div class="aide po po-jeune">Phrases à copier, à compléter et à dire ou envoyer toi-même</div><div class="aide po po-parent">Phrases à copier, à compléter et à dire ou envoyer vous-même</div>
+      <button class="bulle po po-moi"><q>Depuis [moment], j'entends ou je perçois des choses inhabituelles. J'ai consommé [produit, si je le connais] et ça m'inquiète. J'ai besoin d'un avis médical.</q></button>
+      <button class="bulle po po-moi"><q>Depuis [moment], je ne me sens pas comme d'habitude. J'ai consommé [produit, si je le connais] et ça m'inquiète. J'ai besoin d'un avis médical.</q></button>
+      <button class="bulle po po-ami"><q>Depuis la soirée, je te trouve différent·e et je m'inquiète. On peut aller voir un médecin ensemble ? Je ne te juge pas.</q></button>
+      <button class="bulle po po-parent"><q>Je ne suis pas là pour te faire la morale. Je vois que ça ne va pas depuis que tu as consommé, et je voudrais qu'on demande un avis médical ensemble.</q></button>
+    </div>
+    <div class="pied">Aucun message n'est envoyé depuis SIGNAUX.</div>
+  </div>
+
+  <h3><span class="emo">🧑‍⚕️</span>À qui s'adresser</h3>
+  <ul class="simple">
+    <li>Un médecin généraliste, ou le 15 pour être conseillé et orienté si l'inquiétude est forte.</li>
+    <li>Drogues Info Service, pour faire le point par téléphone ou par tchat, pour soi ou pour un proche.</li>
+    <li>Les Consultations jeunes consommateurs : gratuites et confidentielles, pour les 12-25 ans et aussi pour les parents. Elles complètent l'accompagnement, sans remplacer une prise en charge urgente.</li>
+  </ul>
+  <div class="appels">
+    <a class="appel" href="tel:0800231313"><span class="ic">📞</span><span><b>0 800 23 13 13</b><small>Drogues Info Service — tous les jours, anonyme et gratuit, horaires sur drogues-info-service.fr. Ce n'est pas un numéro d'urgence</small></span></a>
+    <a class="appel web" href="https://www.drogues-info-service.fr" target="_blank" rel="noopener"><span class="ic">💬</span><span><b>Tchat et adresses</b><small>drogues-info-service.fr — tchat, et la liste des Consultations jeunes consommateurs</small></span></a>
+  </div>
+  <p class="note po po-moi">Voir aussi : <button class="lien" data-go="sm-voix">« J'entends des voix, je perçois des choses inhabituelles »</button> et <button class="lien" data-go="m-drogue">« Alcool, drogues »</button>.</p>
+  <p class="note po po-ami">Voir aussi : <button class="lien" data-go="sm-voix">« Il ou elle entend des voix »</button> et <button class="lien" data-go="drogue">« Alcool, drogues »</button>.</p>
+  <p class="note po po-parent">Voir aussi : <button class="lien" data-go="sm-voix">« Il ou elle entend des voix »</button> et <button class="lien" data-go="p-drogue">« Alcool, drogues »</button>.</p>
+  <p class="src">Sources : Drogues Info Service (Santé publique France), « Peut-on faire un bad trip avec du cannabis ? » et réponses sur les troubles après consommation. Vérifié le 13 novembre 2026.</p>
+</section>
+
+<!-- SCHIZOPHRÉNIE : COMPRENDRE -->
+<section class="screen" id="sm-schizo" style="--c:var(--sauge)">
+  <button class="retour" data-go="back">Retour</button>
+  <div class="hero"><span class="emo" aria-hidden="true">📘</span><h2>Schizophrénie : comprendre</h2>
+    <p class="intro">Cette fiche explique un mot. Elle ne sert pas à savoir si quelqu'un « l'a » : seul un professionnel peut poser ce diagnostic, après une évaluation.</p></div>
+
+  <div class="choix-titre">Deux besoins différents</div>
+  <ul class="tuiles petites">
+    <li style="--c:var(--menthe)"><button class="tuile" data-go="sm-voix"><span class="emo" aria-hidden="true">👂</span><span class="t"><b>Des expériences inhabituelles inquiètent</b><span>Voix, perceptions, impression d'être surveillé·e : aller directement à la fiche d'aide</span></span><span class="chev" aria-hidden="true">›</span></button></li>
+  </ul>
+  <p class="note">Sinon, pour comprendre un diagnostic annoncé par un professionnel, la suite de cette fiche.</p>
+
+  <h3><span class="emo">📖</span>Ce que désigne ce mot</h3>
+  <p class="note">Les troubles schizophréniques modifient la façon de percevoir et de penser. Ils sont très différents d'une personne à l'autre et changent dans le temps : c'est pourquoi on parle aussi des schizophrénies, au pluriel.</p>
+  <ul class="simple">
+    <li>Des choses en plus. Entendre, voir ou ressentir ce que les autres ne perçoivent pas ; avoir des convictions que l'entourage ne partage pas ; des pensées qui s'embrouillent.</li>
+    <li>Des choses en moins. Moins d'envie et d'énergie, un repli sur soi, des émotions plus difficiles à exprimer, une concentration plus fragile.</li>
+  </ul>
+  <p class="note">Vivre une de ces expériences ne veut pas dire avoir une schizophrénie. Elles peuvent avoir d'autres causes.</p>
+
+  <h3><span class="emo">❌</span>Les idées reçues</h3>
+  <ul class="simple">
+    <li>Ce n'est pas un dédoublement de la personnalité. C'est un autre diagnostic, sans rapport.</li>
+    <li>Ce n'est pas synonyme de danger. Les personnes concernées par un trouble psychique sont plus souvent victimes de violences qu'auteures.</li>
+    <li>« Schizo » n'est pas une insulte anodine. Ce mot blesse les personnes concernées et leur complique la vie.</li>
+  </ul>
+
+  <h3><span class="emo">🌱</span>Soins, accompagnement, rétablissement</h3>
+  <ul class="simple">
+    <li>Des médicaments, prescrits et suivis par un·e psychiatre, pour soulager les symptômes.</li>
+    <li>Des psychothérapies, et des programmes pour mieux comprendre le trouble et travailler la mémoire, l'attention, l'organisation.</li>
+    <li>Un accompagnement pour les études, le travail, le logement, et l'entraide entre personnes concernées.</li>
+  </ul>
+  <p class="note">Il est possible de se rétablir : retrouver une vie qui a du sens, des projets et des liens. On ne modifie pas et on n'arrête pas un traitement sans en parler au médecin.</p>
+
+  <h3><span class="emo">🚦</span>Quand demander de l'aide</h3>
+  <ul class="simple">
+    <li>Maintenant, au 15. Danger pour soi ou pour quelqu'un, idées de mourir, grande confusion ou agitation.</li>
+    <li>Vite. Les symptômes reviennent ou s'aggravent, le sommeil disparaît, le traitement est difficile à supporter : on appelle l'équipe qui suit, ou le médecin.</li>
+    <li>Sans attendre. Des questions après l'annonce du diagnostic : on les note et on les pose, autant de fois qu'il le faut.</li>
+  </ul>
+
+  <h3><span class="emo">👣</span>Un premier pas</h3>
+  <p class="note po po-moi">Écris tes trois questions les plus importantes, et pose-les à ton médecin ou à l'équipe qui te suit. Tu as le droit de demander qu'on te réexplique.</p>
+  <p class="note po po-ami">Demande-lui ce qui l'aide, et continue à proposer ce que vous faisiez avant. Un diagnostic ne change pas qui il ou elle est. Tu peux soutenir et passer le relais : tu n'es pas responsable de ses soins.</p>
+  <p class="note po po-parent">Demandez à l'équipe de soins un temps pour vos questions, et renseignez-vous sur les programmes destinés aux proches. Vous pouvez soutenir et passer le relais : vous n'avez pas à devenir le soignant de votre enfant.</p>
+
+  <h3><span class="emo">💬</span>Pour commencer à en parler</h3>
+  <div class="imsg">
+    <div class="top"><div class="av">👤</div><b>Un médecin, un proche</b></div>
+    <div class="fil">
+      <div class="date">Aujourd'hui</div>
+      <div class="aide po po-jeune">Messages à copier et à envoyer toi-même</div><div class="aide po po-parent">Messages à copier et à envoyer vous-même</div>
+      <button class="bulle po po-moi"><q>On m'a parlé de schizophrénie et je ne comprends pas bien ce que ça veut dire pour moi. Vous pouvez me l'expliquer ?</q></button>
+      <button class="bulle po po-ami"><q>Tu m'as dit pour ton diagnostic. Ça ne change pas ce que tu es pour moi. Tu veux m'expliquer ce que tu vis, ou juste qu'on fasse un truc ensemble ?</q></button>
+      <button class="bulle po po-parent"><q>Je ne comprends pas encore tout, mais je suis là. On va chercher les réponses ensemble, avec l'équipe qui te suit.</q></button>
+    </div>
+    <div class="pied">Aucun message n'est envoyé depuis SIGNAUX.</div>
+  </div>
+
+  <h3><span class="emo">🧑‍⚕️</span>À qui s'adresser</h3>
+  <ul class="simple">
+    <li>Le ou la psychiatre et l'équipe qui suivent la personne, pour toute question sur le diagnostic et le traitement.</li>
+    <li>Le médecin généraliste, pour la santé au quotidien et l'orientation.</li>
+    <li>Des associations de personnes concernées et de proches, citées par Psycom : Unafam, Collectif Schizophrénies, Promesses, Réseau sur l'entente de voix (REV). Des programmes existent pour les proches : ProFamille, Bref.</li>
+  </ul>
+  <div class="appels">
+    <a class="appel web" href="https://www.psycom.org" target="_blank" rel="noopener"><span class="ic">📄</span><span><b>Psycom</b><small>psycom.org — information publique sur la santé mentale, brochure « Troubles schizophréniques »</small></span></a>
+  </div>
+  <p class="src">Sources : Psycom, « Troubles schizophréniques » (publié sur Santé.fr, mis à jour en septembre 2026) ; Psycom, « Mythes et réalités : santé mentale et jeunes ». Vérifié le 13 novembre 2026.</p>
+</section>
+
+
+
+
+
+
+<!-- ============ v18 · VIOLENCES DANS LE COUPLE + compléments · textes nouveaux, à valider (relecture clinique Cilli) ============ -->
+<section class="screen" id="vc" style="--c:var(--alerte)">
+  <button class="retour" data-go="back">Retour</button>
+  <div class="hero"><span class="emo" aria-hidden="true">🛑</span><h2>Violences dans le couple</h2>
+    <p class="intro po po-moi">Tu te poses des questions sur une relation ? Quelqu'un te surveille, te rabaisse, te met la pression ou te fait peur ? Tu peux chercher de l'aide, même si tu ne sais pas encore comment nommer ce qui se passe.</p>
+    <p class="intro po po-ami">Tu te poses des questions sur la relation d'un·e ami·e ? Quelqu'un le ou la surveille, le ou la rabaisse, lui met la pression ou lui fait peur ? Tu peux chercher de l'aide, même si personne ne sait encore comment nommer ce qui se passe.</p>
+    <p class="intro po po-parent">Vous vous posez des questions sur la relation de votre enfant ? Quelqu'un le ou la surveille, le ou la rabaisse, lui met la pression ou lui fait peur ? Vous pouvez chercher de l'aide, même si personne ne sait encore comment nommer ce qui se passe.</p></div>
+
+  <p class="note">Cela concerne aussi les premières relations, les couples qui ne vivent pas ensemble, les relations à distance et les situations avec un·e ex.</p>
+
+  <p class="resp"><span class="po po-moi">Tu n'es pas responsable des violences que tu subis. Tu n'as pas à gérer cela seul·e.</span><span class="po po-ami">Il ou elle n'est pas responsable des violences subies. Et toi, tu n'as pas à gérer cela seul·e.</span><span class="po po-parent">Votre enfant n'est pas responsable des violences subies. Vous n'avez pas à gérer cela seul·e.</span></p>
+
+  <h3><span class="emo">🧭</span>Trois questions pour se repérer</h3>
+  <ul class="simple">
+    <li class="po po-moi">Est-ce que je peux dire non sans avoir peur ?</li>
+    <li class="po po-moi">Est-ce que je change mes habitudes pour éviter sa réaction ?</li>
+    <li class="po po-moi">Est-ce que je garde mes liens, mes choix et mon intimité ?</li>
+    <li class="po po-ami">Est-ce qu'il ou elle peut dire non sans avoir peur ?</li>
+    <li class="po po-ami">Est-ce qu'il ou elle change ses habitudes pour éviter la réaction de l'autre ?</li>
+    <li class="po po-ami">Est-ce qu'il ou elle garde ses liens, ses choix et son intimité ?</li>
+    <li class="po po-parent">Est-ce que votre enfant peut dire non sans avoir peur ?</li>
+    <li class="po po-parent">Est-ce qu'il ou elle change ses habitudes pour éviter la réaction de l'autre ?</li>
+    <li class="po po-parent">Est-ce qu'il ou elle garde ses liens, ses choix et son intimité ?</li>
+  </ul>
+  <p class="note">Ce sont des repères, pas un test : il n'y a pas de score, et aucune réponse ne conditionne l'accès à une aide.</p>
+
+  <h3><span class="emo">⚖️</span>Désaccord, conflit ou violences ?</h3>
+  <ul class="simple">
+    <li><strong>Un désaccord, un conflit.</strong> Deux points de vue s'opposent, chacun peut dire ce qu'il pense sans avoir peur de l'autre.</li>
+    <li><strong>Des violences.</strong> L'un prend le pouvoir sur l'autre : il fait peur, rabaisse, contrôle, force ou frappe. L'autre se tait ou s'adapte pour éviter le pire.</li>
+    <li>Il n'y a pas besoin d'attendre que cela se répète, ni qu'il y ait des coups, pour demander de l'aide. Un seul acte peut déjà être grave.</li>
+    <li>La jalousie n'est pas à elle seule une preuve de contrôle. Ce qui compte, ce sont les comportements et ce qu'ils provoquent : la peur, l'isolement, la perte de liberté.</li>
+  </ul>
+
+  <h3><span class="emo">🚪</span><span class="po po-jeune">Par où commencer</span><span class="po po-parent">Par où commencer</span></h3>
+  <ul class="tuiles petites">
+    <li class="po po-moi" style="--c:var(--menthe)"><button class="tuile" data-go="m-relation"><span class="emo" aria-hidden="true">💬</span><span class="t"><b>Ma relation m'inquiète</b><span>Les premiers signaux, sans avoir à mettre un mot dessus</span></span><span class="chev" aria-hidden="true">›</span></button></li>
+    <li class="po po-ami" style="--c:var(--menthe)"><button class="tuile" data-go="relation"><span class="emo" aria-hidden="true">💬</span><span class="t"><b>Sa relation m'inquiète</b><span>Les premiers signaux, sans avoir à mettre un mot dessus</span></span><span class="chev" aria-hidden="true">›</span></button></li>
+    <li class="po po-parent" style="--c:var(--menthe)"><button class="tuile" data-go="p-relation"><span class="emo" aria-hidden="true">💬</span><span class="t"><b>Sa relation m'inquiète</b><span>Les premiers signaux, sans avoir à mettre un mot dessus</span></span><span class="chev" aria-hidden="true">›</span></button></li>
+    <li style="--c:var(--citron)"><button class="tuile" data-go="vc-quoi"><span class="emo" aria-hidden="true">🧭</span><span class="t"><b>Premiers repères : quoi faire ?</b><span>Une action à la fois</span></span><span class="chev" aria-hidden="true">›</span></button></li>
+  </ul>
+
+  <h3><span class="emo">📚</span>Comprendre ce qui se passe</h3>
+  <ul class="tuiles petites">
+    <li style="--c:var(--orchidee)"><button class="tuile" data-go="vc-psy"><span class="emo" aria-hidden="true">🗯️</span><span class="t"><b>Violences psychologiques et verbales</b><span>Humiliations, intimidation, menaces, chantage</span></span><span class="chev" aria-hidden="true">›</span></button></li>
+    <li style="--c:var(--lilas)"><button class="tuile" data-go="vc-controle"><span class="emo" aria-hidden="true">🔗</span><span class="t"><b>Contrôle coercitif</b><span>Des règles, de la peur, moins de liberté</span></span><span class="chev" aria-hidden="true">›</span></button></li>
+    <li style="--c:var(--cyan)"><button class="tuile" data-go="vc-emprise"><span class="emo" aria-hidden="true">🕸️</span><span class="t"><b>Emprise et manipulation</b><span>Perdre peu à peu ses repères</span></span><span class="chev" aria-hidden="true">›</span></button></li>
+    <li style="--c:var(--ciel)"><button class="tuile" data-go="vc-num"><span class="emo" aria-hidden="true">📱</span><span class="t"><b>Contrôle numérique</b><span>Téléphone, mots de passe, localisation</span></span><span class="chev" aria-hidden="true">›</span></button></li>
+    <li style="--c:var(--sauge)"><button class="tuile" data-go="vc-isol"><span class="emo" aria-hidden="true">🚷</span><span class="t"><b>Isolement</b><span>Amis, famille, sorties, études</span></span><span class="chev" aria-hidden="true">›</span></button></li>
+    <li style="--c:var(--abricot)"><button class="tuile" data-go="vc-sex"><span class="emo" aria-hidden="true">✋</span><span class="t"><b>Violences sexuelles et consentement</b><span>Y compris quand on est déjà ensemble</span></span><span class="chev" aria-hidden="true">›</span></button></li>
+    <li style="--c:var(--alerte)"><button class="tuile" data-go="vc-phys"><span class="emo" aria-hidden="true">🩹</span><span class="t"><b>Violences physiques, matérielles, argent</b><span>Coups, objets cassés, argent, papiers, soins</span></span><span class="chev" aria-hidden="true">›</span></button></li>
+    <li style="--c:var(--menthe)"><button class="tuile" data-go="vc-ex"><span class="emo" aria-hidden="true">🔁</span><span class="t"><b>Après la séparation</b><span>Surveillance, harcèlement, menaces d'un·e ex</span></span><span class="chev" aria-hidden="true">›</span></button></li>
+  </ul>
+
+  <h3><span class="emo">🤝</span>Agir, aider, s'orienter</h3>
+  <ul class="tuiles petites">
+    <li style="--c:var(--emeraude)"><button class="tuile" data-go="vc-aider"><span class="emo" aria-hidden="true">🫶</span><span class="t"><b>Comment aider un ami ou un proche ?</b><span>Écouter, proposer, passer le relais</span></span><span class="chev" aria-hidden="true">›</span></button></li>
+    <li style="--c:var(--citron)"><button class="tuile" data-go="vc-enfants"><span class="emo" aria-hidden="true">🧒</span><span class="t"><b>Et quand des enfants sont concernés ?</b><span>Mineur·e à la maison, ou inquiétude pour un enfant</span></span><span class="chev" aria-hidden="true">›</span></button></li>
+    <li style="--c:var(--alerte)"><button class="tuile" data-go="vc-numeros"><span class="emo" aria-hidden="true">☎️</span><span class="t"><b>Quels numéros, quels interlocuteurs ?</b><span>Urgence, écoute, signalement, rendez-vous</span></span><span class="chev" aria-hidden="true">›</span></button></li>
+    <li style="--c:var(--ciel)"><button class="tuile" data-go="vc-traces"><span class="emo" aria-hidden="true">🗂️</span><span class="t"><b>Quelles traces conserver ?</b><span>Seulement si c'est possible sans danger</span></span><span class="chev" aria-hidden="true">›</span></button></li>
+    <li style="--c:var(--lilas)"><button class="tuile" data-go="vc-qui"><span class="emo" aria-hidden="true">🧑‍⚕️</span><span class="t"><b>Médecin, psychologue, association</b><span>Qui peut m'aider, et pour quoi</span></span><span class="chev" aria-hidden="true">›</span></button></li>
+  </ul>
+
+  <div class="urgence">
+    <p><span class="po po-moi">Danger maintenant, menaces, coups, peur de rentrer ou de le/la retrouver :</span><span class="po po-ami">Danger maintenant, menaces, coups, il ou elle a peur de rentrer :</span><span class="po po-parent">Danger maintenant, menaces, coups, votre enfant a peur :</span></p>
+    <a class="appel rouge" href="tel:17"><span class="ic">📞</span><span><b>17</b><small>Police, gendarmerie — danger immédiat</small></span></a>
+    <a class="appel rouge" href="tel:112"><span class="ic">📞</span><span><b>112</b><small>Numéro d'urgence européen</small></span></a>
+    <a class="appel rouge" href="sms:114"><span class="ic">💬</span><span><b>114 par SMS</b><small>Urgence, quand on ne peut pas parler à voix haute — gratuit, 24h/24</small></span></a>
+    <button class="lien" data-go="danger">Tous les numéros d'urgence</button>
+  </div>
+
+  <p class="note">Le bouton « Quitter », en haut, ouvre une page neutre. Il n'efface pas l'historique du téléphone. SIGNAUX n'enregistre aucune réponse.</p>
+  <p class="src">Sources : arretonslesviolences.gouv.fr (MIPROF, dépliant « Violences au sein du couple ») ; service-public.gouv.fr, « Violences conjugales » ; info.gouv.fr. Vérifié le 13 novembre 2026.</p>
+</section>
+
+
+<section class="screen" id="vc-psy" style="--c:var(--orchidee)">
+  <button class="retour" data-go="back">Retour</button>
+  <div class="hero"><span class="emo" aria-hidden="true">🗯️</span><h2>Violences psychologiques et verbales</h2>
+    <p class="intro">Des mots et des attitudes peuvent faire aussi mal que des coups. Quand une personne rabaisse, intimide, menace ou fait du chantage, ce sont des violences, même sans aucune trace sur le corps.</p></div>
+
+  <h3><span class="emo">🔎</span>Par exemple</h3>
+  <ul class="simple">
+    <li>Des humiliations, des moqueries, des insultes, seul·e à seul·e ou devant les autres.</li>
+    <li>Une dévalorisation qui revient : « t'es nul·le », « sans moi t'es rien », « personne d'autre ne voudra de toi ».</li>
+    <li>De l'intimidation : crier, casser des objets, fixer du regard, bloquer le passage.</li>
+    <li>Des menaces : de quitter, de se faire du mal, de diffuser des photos, de s'en prendre à quelqu'un.</li>
+    <li>Du chantage : « si tu m'aimais, tu le ferais », « si tu pars, je… ».</li>
+  </ul>
+  <p class="note">Une menace de se faire du mal est à prendre au sérieux, mais elle n'oblige personne à rester ni à céder : on la confie à un adulte, ou au 15.</p>
+  <p class="note">Les violences psychologiques existent aussi en dehors du couple : <span class="po po-moi"><button class="lien" data-go="m-maison">à la maison</button> · <button class="lien" data-go="m-harcele">au lycée, en ligne</button></span><span class="po po-ami"><button class="lien" data-go="maison">chez lui/elle</button> · <button class="lien" data-go="harcele">au lycée, en ligne</button></span><span class="po po-parent"><button class="lien" data-go="p-harcele">harcèlement</button></span>.</p>
+
+  <h3><span class="emo">⚡</span>Une première action</h3>
+  <ol class="etapes">
+    <li class="po po-moi">Dis-le à une personne de confiance, avec tes mots, sans tout raconter d'un coup.</li>
+    <li class="po po-moi">Si tu as peur de sa réaction, ne le ou la confronte pas seul·e.</li>
+    <li class="po po-ami">Dis-lui ce que tu as vu ou entendu, sans juger : « Ce qu'il/elle te dit, ça me fait mal pour toi. »</li>
+    <li class="po po-ami">Ne va pas voir son ou sa partenaire. Propose plutôt de chercher de l'aide ensemble.</li>
+    <li class="po po-parent">Dites à votre enfant ce que vous avez remarqué, sans attaquer l'autre : « Je t'entends te rabaisser, et ça m'inquiète. »</li>
+    <li class="po po-parent">Ne contactez pas le ou la partenaire. Demandez d'abord conseil à un professionnel.</li>
+  </ol>
+
+  <h3><span class="emo">💬</span>Une phrase pour en parler</h3>
+  <div class="imsg">
+    <div class="top"><div class="av">👤</div><b>Une personne de confiance</b></div>
+    <div class="fil">
+      <div class="date">Aujourd'hui</div>
+      <div class="aide po po-jeune">Messages à copier et à envoyer toi-même</div><div class="aide po po-parent">Messages à copier et à envoyer vous-même</div>
+      <button class="bulle po po-moi"><q>Il y a des choses dans ma relation qui me font peur ou me mettent mal à l'aise. J'aimerais en parler sans être jugé·e.</q></button>
+      <button class="bulle po po-ami"><q>La façon dont il/elle te parle, ce n'est pas normal, et ce n'est pas ta faute. Je suis là.</q></button>
+      <button class="bulle po po-parent"><q>J'ai entendu comment on te parle. Tu ne mérites pas ça, et je suis là quand tu veux en parler.</q></button>
+    </div>
+    <div class="pied">Aucun message n'est envoyé depuis SIGNAUX.</div>
+  </div>
+
+  <p class="resp"><span class="po po-moi">Tu n'es pas responsable des violences que tu subis. Tu n'as pas à gérer cela seul·e.</span><span class="po po-ami">Il ou elle n'est pas responsable des violences subies. Et toi, tu n'as pas à gérer cela seul·e.</span><span class="po po-parent">Votre enfant n'est pas responsable des violences subies. Vous n'avez pas à gérer cela seul·e.</span></p>
+
+  <div class="urgence">
+    <p><span class="po po-moi">Danger maintenant, menaces, coups, peur de rentrer ou de le/la retrouver :</span><span class="po po-ami">Danger maintenant, menaces, coups, il ou elle a peur de rentrer :</span><span class="po po-parent">Danger maintenant, menaces, coups, votre enfant a peur :</span></p>
+    <a class="appel rouge" href="tel:17"><span class="ic">📞</span><span><b>17</b><small>Police, gendarmerie — danger immédiat</small></span></a>
+    <a class="appel rouge" href="tel:112"><span class="ic">📞</span><span><b>112</b><small>Numéro d'urgence européen</small></span></a>
+    <a class="appel rouge" href="sms:114"><span class="ic">💬</span><span><b>114 par SMS</b><small>Urgence, quand on ne peut pas parler à voix haute — gratuit, 24h/24</small></span></a>
+    <button class="lien" data-go="danger">Tous les numéros d'urgence</button>
+  </div>
+
+  <h3><span class="emo">📞</span>Parler à quelqu'un</h3>
+  <div class="appels">
+    <a class="appel" href="tel:3919"><span class="ic">📞</span><span><b>3919</b><small>Écoute, information et orientation pour les femmes victimes de violences et leur entourage — gratuit, anonyme, 24h/24. Ce n'est pas un numéro d'urgence</small></span></a>
+    <a class="appel" href="tel:119"><span class="ic">📞</span><span><b>119</b><small>Enfant ou ado en danger ou en risque de l'être : pour les moins de 18 ans et toute personne inquiète — 24h/24, gratuit</small></span></a>
+    <a class="appel" href="tel:116006"><span class="ic">📞</span><span><b>116 006</b><small>France Victimes : aide et orientation des victimes, tous âges, tous publics — 9h-20h, 7j/7, gratuit</small></span></a>
+  </div>
+  <p class="note"><button class="lien" data-go="vc-numeros">Quels numéros, quels interlocuteurs ?</button> · <button class="lien" data-go="vc-quoi">Premiers repères : quoi faire ?</button></p>
+  <p class="note">Voir aussi : <button class="lien" data-go="vc-controle">Contrôle coercitif</button> · <button class="lien" data-go="vc-emprise">Emprise et manipulation</button></p>
+  <p class="src">Sources : arretonslesviolences.gouv.fr (MIPROF, dépliant « Violences au sein du couple ») ; service-public.gouv.fr, « Violences conjugales » ; info.gouv.fr. Vérifié le 13 novembre 2026.</p>
+</section>
+
+
+<section class="screen" id="vc-controle" style="--c:var(--lilas)">
+  <button class="retour" data-go="back">Retour</button>
+  <div class="hero"><span class="emo" aria-hidden="true">🔗</span><h2>Contrôle coercitif</h2>
+    <p class="intro">On parle de contrôle coercitif quand plusieurs comportements, mis ensemble et dans leur contexte, réduisent la liberté d'une personne : ils imposent des règles, installent la peur ou la dépendance. Pris un par un, ils peuvent sembler « pas si graves ». C'est leur ensemble qui enferme.</p></div>
+
+  <h3><span class="emo">🔎</span>Par exemple</h3>
+  <ul class="simple">
+    <li>Des règles à respecter : comment s'habiller, à qui parler, à quelle heure rentrer.</li>
+    <li>Devoir rendre des comptes : où, avec qui, pourquoi, avec des vérifications.</li>
+    <li>Des « punitions » quand la règle n'est pas suivie : silence, colère, menaces, rupture annoncée.</li>
+    <li>Un quotidien organisé pour éviter la réaction de l'autre.</li>
+    <li>Moins d'amis, moins d'argent à soi, moins de temps à soi.</li>
+  </ul>
+  <p class="note">SIGNAUX ne dit pas si une situation « est » du contrôle coercitif, et ne prédit pas ce qui va se passer. La fiche décrit des comportements et leurs effets, pour aider à en parler.</p>
+
+  <h3><span class="emo">⚡</span>Une première action</h3>
+  <ol class="etapes">
+    <li class="po po-moi">Repère ce que tu ne fais plus, ou ce que tu fais par peur de sa réaction. Tu peux juste y penser, ou le dire à quelqu'un.</li>
+    <li class="po po-moi">Parles-en à une personne de confiance ou à un service d'écoute. Tu n'as pas à être sûr·e pour appeler.</li>
+    <li class="po po-ami">Remarque ce qu'il ou elle ne fait plus depuis cette relation, et dis-le avec douceur, sans accuser.</li>
+    <li class="po po-ami">Reste en lien, même si les réponses se font rares. Le lien compte plus que les arguments.</li>
+    <li class="po po-parent">Notez ce qui a changé dans sa liberté : sorties, amis, téléphone, argent.</li>
+    <li class="po po-parent">Gardez le lien ouvert, sans ultimatum. Demandez conseil au 3919 ou à la Maison des ados avant toute démarche.</li>
+  </ol>
+
+  <h3><span class="emo">💬</span>Une phrase pour en parler</h3>
+  <div class="imsg">
+    <div class="top"><div class="av">👤</div><b>Une personne de confiance</b></div>
+    <div class="fil">
+      <div class="date">Aujourd'hui</div>
+      <div class="aide po po-jeune">Messages à copier et à envoyer toi-même</div><div class="aide po po-parent">Messages à copier et à envoyer vous-même</div>
+      <button class="bulle po po-moi"><q>J'ai l'impression de devoir suivre des règles dans ma relation, et d'avoir peur quand je ne les suis pas. J'aimerais en parler.</q></button>
+      <button class="bulle po po-ami"><q>J'ai l'impression que tu fais attention à tout pour éviter ses réactions. Ça m'inquiète, et je suis là.</q></button>
+      <button class="bulle po po-parent"><q>J'ai l'impression que tu n'es plus libre de tes choix. Je ne te juge pas, je m'inquiète pour toi.</q></button>
+    </div>
+    <div class="pied">Aucun message n'est envoyé depuis SIGNAUX.</div>
+  </div>
+
+  <p class="resp"><span class="po po-moi">Tu n'es pas responsable des violences que tu subis. Tu n'as pas à gérer cela seul·e.</span><span class="po po-ami">Il ou elle n'est pas responsable des violences subies. Et toi, tu n'as pas à gérer cela seul·e.</span><span class="po po-parent">Votre enfant n'est pas responsable des violences subies. Vous n'avez pas à gérer cela seul·e.</span></p>
+
+  <div class="urgence">
+    <p><span class="po po-moi">Danger maintenant, menaces, coups, peur de rentrer ou de le/la retrouver :</span><span class="po po-ami">Danger maintenant, menaces, coups, il ou elle a peur de rentrer :</span><span class="po po-parent">Danger maintenant, menaces, coups, votre enfant a peur :</span></p>
+    <a class="appel rouge" href="tel:17"><span class="ic">📞</span><span><b>17</b><small>Police, gendarmerie — danger immédiat</small></span></a>
+    <a class="appel rouge" href="tel:112"><span class="ic">📞</span><span><b>112</b><small>Numéro d'urgence européen</small></span></a>
+    <a class="appel rouge" href="sms:114"><span class="ic">💬</span><span><b>114 par SMS</b><small>Urgence, quand on ne peut pas parler à voix haute — gratuit, 24h/24</small></span></a>
+    <button class="lien" data-go="danger">Tous les numéros d'urgence</button>
+  </div>
+
+  <h3><span class="emo">📞</span>Parler à quelqu'un</h3>
+  <div class="appels">
+    <a class="appel" href="tel:3919"><span class="ic">📞</span><span><b>3919</b><small>Écoute, information et orientation pour les femmes victimes de violences et leur entourage — gratuit, anonyme, 24h/24. Ce n'est pas un numéro d'urgence</small></span></a>
+    <a class="appel" href="tel:119"><span class="ic">📞</span><span><b>119</b><small>Enfant ou ado en danger ou en risque de l'être : pour les moins de 18 ans et toute personne inquiète — 24h/24, gratuit</small></span></a>
+    <a class="appel" href="tel:116006"><span class="ic">📞</span><span><b>116 006</b><small>France Victimes : aide et orientation des victimes, tous âges, tous publics — 9h-20h, 7j/7, gratuit</small></span></a>
+  </div>
+  <p class="note"><button class="lien" data-go="vc-numeros">Quels numéros, quels interlocuteurs ?</button> · <button class="lien" data-go="vc-quoi">Premiers repères : quoi faire ?</button></p>
+  <p class="note">Voir aussi : <button class="lien" data-go="vc-num">Contrôle numérique</button> · <button class="lien" data-go="vc-isol">Isolement</button> · <button class="lien" data-go="vc-emprise">Emprise et manipulation</button></p>
+  <p class="src">Sources : arretonslesviolences.gouv.fr (MIPROF) ; Haut Conseil à l'Égalité, communiqué du 17 juin 2026 ; info.gouv.fr. La notion fait l'objet de travaux législatifs en cours : aucune qualification juridique n'est affirmée ici. Vérifié le 13 novembre 2026.</p>
+</section>
+
+
+<section class="screen" id="vc-emprise" style="--c:var(--cyan)">
+  <button class="retour" data-go="back">Retour</button>
+  <div class="hero"><span class="emo" aria-hidden="true">🕸️</span><h2>Emprise et manipulation</h2>
+    <p class="intro">L'emprise s'installe peu à peu. À force de pressions, de reproches et de moments où tout va bien, une personne peut perdre ses repères, douter de ce qu'elle ressent et avoir de moins en moins de marge pour décider. Ce n'est ni de la faiblesse, ni un manque d'intelligence : cela peut arriver à tout le monde.</p></div>
+
+  <h3><span class="emo">🔎</span>Par exemple</h3>
+  <ul class="simple">
+    <li>Manipuler, c'est obtenir quelque chose de quelqu'un en le trompant ou en jouant sur ses émotions : culpabiliser, retourner la situation, nier ce qui a été dit ou fait.</li>
+    <li>« Ça ne s'est pas passé comme ça », « tu inventes », « tu es trop sensible » : finir par douter de sa propre mémoire.</li>
+    <li>Des excuses et des promesses après une crise, puis ça recommence.</li>
+    <li>Se sentir responsable de l'humeur de l'autre, et chercher ce qu'on a « mal fait ».</li>
+    <li>Avoir du mal à imaginer décider seul·e, ou partir, même quand ça fait souffrir.</li>
+  </ul>
+  <p class="note">Repérer une manipulation ne suffit pas à dire qu'il y a des violences, et ne dit rien de la personnalité de l'autre. SIGNAUX ne pose aucun diagnostic sur un·e partenaire : on regarde les comportements, leurs conséquences et les aides possibles.</p>
+  <div class="outil-cilli">
+    <p><strong>Un outil facultatif.</strong> L'Emprisomètre est un questionnaire créé par Cilli Flamand, psychologue clinicienne et conceptrice de SIGNAUX. Il aide à explorer ses repères dans une relation.</p>
+    <p>Il ne pose pas de diagnostic, ne constitue pas une preuve en justice et ne remplace pas une aide professionnelle. Un résultat rassurant ne garantit pas l'absence de danger. On peut demander de l'aide sans l'avoir fait.</p>
+    <a class="appel web" href="https://emprisometre.cilliflamand.fr" target="_blank" rel="noopener noreferrer"><span class="ic">🧭</span><span><b>Explorer mes repères avec l'Emprisomètre</b><small>Site externe, créé par Cilli Flamand — aucune réponse donnée dans SIGNAUX n'y est transmise</small></span></a>
+  </div>
+
+  <h3><span class="emo">⚡</span>Une première action</h3>
+  <ol class="etapes">
+    <li class="po po-moi">Fais confiance à ce que tu ressens : la peur, le doute, le malaise sont des informations.</li>
+    <li class="po po-moi">Garde au moins un lien à toi : une personne à qui tu peux parler librement.</li>
+    <li class="po po-ami">Ne lui reproche pas de rester. Rappelle-lui ce que tu vois de lui ou d'elle, en dehors de cette relation.</li>
+    <li class="po po-ami">Dis-lui que tu seras là, quel que soit le moment où il ou elle voudra en parler.</li>
+    <li class="po po-parent">Évitez « tu ne vois pas qu'il/elle te manipule ? » : cela renforce la honte. Dites ce que vous observez, simplement.</li>
+    <li class="po po-parent">Restez disponible dans la durée. Sortir d'une emprise prend du temps et se fait rarement en une fois.</li>
+  </ol>
+
+  <h3><span class="emo">💬</span>Une phrase pour en parler</h3>
+  <div class="imsg">
+    <div class="top"><div class="av">👤</div><b>Une personne de confiance</b></div>
+    <div class="fil">
+      <div class="date">Aujourd'hui</div>
+      <div class="aide po po-jeune">Messages à copier et à envoyer toi-même</div><div class="aide po po-parent">Messages à copier et à envoyer vous-même</div>
+      <button class="bulle po po-moi"><q>Je ne sais plus si ce que je ressens est normal. J'ai besoin d'en parler à quelqu'un qui ne me jugera pas.</q></button>
+      <button class="bulle po po-ami"><q>Tu n'es pas fou/folle et tu n'exagères pas. Ce que tu ressens compte, et je te crois.</q></button>
+      <button class="bulle po po-parent"><q>Je te crois. Tu n'as rien à prouver, et tu n'as pas à décider quoi que ce soit aujourd'hui.</q></button>
+    </div>
+    <div class="pied">Aucun message n'est envoyé depuis SIGNAUX.</div>
+  </div>
+
+  <p class="resp"><span class="po po-moi">Tu n'es pas responsable des violences que tu subis. Tu n'as pas à gérer cela seul·e.</span><span class="po po-ami">Il ou elle n'est pas responsable des violences subies. Et toi, tu n'as pas à gérer cela seul·e.</span><span class="po po-parent">Votre enfant n'est pas responsable des violences subies. Vous n'avez pas à gérer cela seul·e.</span></p>
+
+  <div class="urgence">
+    <p><span class="po po-moi">Danger maintenant, menaces, coups, peur de rentrer ou de le/la retrouver :</span><span class="po po-ami">Danger maintenant, menaces, coups, il ou elle a peur de rentrer :</span><span class="po po-parent">Danger maintenant, menaces, coups, votre enfant a peur :</span></p>
+    <a class="appel rouge" href="tel:17"><span class="ic">📞</span><span><b>17</b><small>Police, gendarmerie — danger immédiat</small></span></a>
+    <a class="appel rouge" href="tel:112"><span class="ic">📞</span><span><b>112</b><small>Numéro d'urgence européen</small></span></a>
+    <a class="appel rouge" href="sms:114"><span class="ic">💬</span><span><b>114 par SMS</b><small>Urgence, quand on ne peut pas parler à voix haute — gratuit, 24h/24</small></span></a>
+    <button class="lien" data-go="danger">Tous les numéros d'urgence</button>
+  </div>
+
+  <h3><span class="emo">📞</span>Parler à quelqu'un</h3>
+  <div class="appels">
+    <a class="appel" href="tel:3919"><span class="ic">📞</span><span><b>3919</b><small>Écoute, information et orientation pour les femmes victimes de violences et leur entourage — gratuit, anonyme, 24h/24. Ce n'est pas un numéro d'urgence</small></span></a>
+    <a class="appel" href="tel:119"><span class="ic">📞</span><span><b>119</b><small>Enfant ou ado en danger ou en risque de l'être : pour les moins de 18 ans et toute personne inquiète — 24h/24, gratuit</small></span></a>
+    <a class="appel" href="tel:116006"><span class="ic">📞</span><span><b>116 006</b><small>France Victimes : aide et orientation des victimes, tous âges, tous publics — 9h-20h, 7j/7, gratuit</small></span></a>
+  </div>
+  <p class="note"><button class="lien" data-go="vc-numeros">Quels numéros, quels interlocuteurs ?</button> · <button class="lien" data-go="vc-quoi">Premiers repères : quoi faire ?</button></p>
+  <p class="note">Voir aussi : <button class="lien" data-go="vc-controle">Contrôle coercitif</button> · <button class="lien" data-go="vc-psy">Violences psychologiques</button> · <button class="lien" data-go="apropos">À propos de Cilli Flamand</button></p>
+  <p class="src">Sources : info.gouv.fr, « Violences conjugales : les aides de l'État pour sortir d'une situation d'emprise » ; arretonslesviolences.gouv.fr (MIPROF). L'Emprisomètre est un outil de Cilli Flamand, sans validation scientifique publiée à ce jour. Vérifié le 13 novembre 2026.</p>
+</section>
+
+
+<section class="screen" id="vc-num" style="--c:var(--ciel)">
+  <button class="retour" data-go="back">Retour</button>
+  <div class="hero"><span class="emo" aria-hidden="true">📱</span><h2>Contrôle numérique</h2>
+    <p class="intro">Le téléphone peut devenir un moyen de surveiller et de contrôler. Dans un couple, chacun garde le droit à une vie privée : ses messages, ses comptes, ses déplacements.</p></div>
+
+  <h3><span class="emo">🔎</span>Par exemple</h3>
+  <ul class="simple">
+    <li>Regarder le téléphone de l'autre, lire ses messages, vérifier ses abonnements.</li>
+    <li>Exiger les mots de passe ou le code de déverrouillage.</li>
+    <li>Imposer le partage de la localisation, ou demander des photos pour « prouver » où l'on est.</li>
+    <li>Exiger une réponse immédiate, et faire une crise au moindre retard.</li>
+    <li>Menacer de diffuser des photos ou des messages intimes.</li>
+  </ul>
+
+  <h3><span class="emo">⚡</span>Une première action</h3>
+  <ol class="etapes">
+    <li class="po po-moi">Parles-en avant de changer quoi que ce soit : le 3018 connaît bien ces situations.</li>
+    <li class="po po-moi">Si ton téléphone est surveillé, ne modifie pas d'un coup tes mots de passe ou ta localisation : cela peut alerter l'autre. Un service spécialisé peut t'aider à choisir quoi faire, et quand.</li>
+    <li class="po po-moi">Pour demander de l'aide, utilise si possible un autre appareil.</li>
+    <li class="po po-ami">Ne lui écris pas de choses sensibles si son téléphone est peut-être surveillé. Parlez-en de vive voix.</li>
+    <li class="po po-ami">Propose-lui d'appeler ou d'écrire au 3018 depuis ton téléphone.</li>
+    <li class="po po-parent">N'exigez pas à votre tour le téléphone de votre enfant : cela ajouterait un contrôle. Proposez d'en parler.</li>
+    <li class="po po-parent">Évitez d'écrire des messages sensibles sur un téléphone peut-être surveillé. Le 3018 conseille aussi les parents.</li>
+  </ol>
+
+  <h3><span class="emo">💬</span>Une phrase pour en parler</h3>
+  <div class="imsg">
+    <div class="top"><div class="av">👤</div><b>Une personne de confiance</b></div>
+    <div class="fil">
+      <div class="date">Aujourd'hui</div>
+      <div class="aide po po-jeune">Messages à copier et à envoyer toi-même</div><div class="aide po po-parent">Messages à copier et à envoyer vous-même</div>
+      <button class="bulle po po-moi"><q>Il/elle veut tout savoir de mon téléphone et de mes déplacements. Je ne sais pas comment réagir sans que ça dégénère.</q></button>
+      <button class="bulle po po-ami"><q>Si tu veux, on appelle le 3018 ensemble depuis mon téléphone. Ils savent quoi faire sans que ça se voie.</q></button>
+      <button class="bulle po po-parent"><q>Ton téléphone, c'est ta vie privée, y compris en couple. Si quelqu'un te le contrôle, on peut demander conseil ensemble.</q></button>
+    </div>
+    <div class="pied">Aucun message n'est envoyé depuis SIGNAUX.</div>
+  </div>
+
+  <p class="resp"><span class="po po-moi">Tu n'es pas responsable des violences que tu subis. Tu n'as pas à gérer cela seul·e.</span><span class="po po-ami">Il ou elle n'est pas responsable des violences subies. Et toi, tu n'as pas à gérer cela seul·e.</span><span class="po po-parent">Votre enfant n'est pas responsable des violences subies. Vous n'avez pas à gérer cela seul·e.</span></p>
+
+  <div class="urgence">
+    <p><span class="po po-moi">Danger maintenant, menaces, coups, peur de rentrer ou de le/la retrouver :</span><span class="po po-ami">Danger maintenant, menaces, coups, il ou elle a peur de rentrer :</span><span class="po po-parent">Danger maintenant, menaces, coups, votre enfant a peur :</span></p>
+    <a class="appel rouge" href="tel:17"><span class="ic">📞</span><span><b>17</b><small>Police, gendarmerie — danger immédiat</small></span></a>
+    <a class="appel rouge" href="tel:112"><span class="ic">📞</span><span><b>112</b><small>Numéro d'urgence européen</small></span></a>
+    <a class="appel rouge" href="sms:114"><span class="ic">💬</span><span><b>114 par SMS</b><small>Urgence, quand on ne peut pas parler à voix haute — gratuit, 24h/24</small></span></a>
+    <button class="lien" data-go="danger">Tous les numéros d'urgence</button>
+  </div>
+
+  <h3><span class="emo">📞</span>Parler à quelqu'un</h3>
+  <div class="appels">
+    <a class="appel" href="tel:3919"><span class="ic">📞</span><span><b>3919</b><small>Écoute, information et orientation pour les femmes victimes de violences et leur entourage — gratuit, anonyme, 24h/24. Ce n'est pas un numéro d'urgence</small></span></a>
+    <a class="appel" href="tel:119"><span class="ic">📞</span><span><b>119</b><small>Enfant ou ado en danger ou en risque de l'être : pour les moins de 18 ans et toute personne inquiète — 24h/24, gratuit</small></span></a>
+    <a class="appel" href="tel:116006"><span class="ic">📞</span><span><b>116 006</b><small>France Victimes : aide et orientation des victimes, tous âges, tous publics — 9h-20h, 7j/7, gratuit</small></span></a>
+    <a class="appel" href="tel:3018"><span class="ic">📱</span><span><b>3018</b><small>Contrôle par le téléphone, harcèlement en ligne, photos qui circulent — 9h-23h, 7j/7</small></span></a>
+  </div>
+  <p class="note"><button class="lien" data-go="vc-numeros">Quels numéros, quels interlocuteurs ?</button> · <button class="lien" data-go="vc-quoi">Premiers repères : quoi faire ?</button></p>
+  <p class="note">Voir aussi : <button class="lien" data-go="vc-controle">Contrôle coercitif</button> · <button class="lien" data-go="vc-traces">Quelles traces conserver ?</button></p>
+  <p class="src">Sources : 3018.fr (e-Enfance) ; arretonslesviolences.gouv.fr (MIPROF) ; info.gouv.fr. Vérifié le 13 novembre 2026.</p>
+</section>
+
+
+<section class="screen" id="vc-isol" style="--c:var(--sauge)">
+  <button class="retour" data-go="back">Retour</button>
+  <div class="hero"><span class="emo" aria-hidden="true">🚷</span><h2>Isolement</h2>
+    <p class="intro">Isoler quelqu'un, c'est réduire peu à peu ses liens et ses activités : il devient alors plus difficile de demander de l'aide ou de se rendre compte de ce qui se passe.</p></div>
+
+  <h3><span class="emo">🔎</span>Par exemple</h3>
+  <ul class="simple">
+    <li>Critiquer les amis ou la famille, jusqu'à ce qu'il devienne plus simple de ne plus les voir.</li>
+    <li>Faire une scène avant ou après chaque sortie.</li>
+    <li>Demander d'arrêter une activité, un sport, un groupe, « pour passer plus de temps ensemble ».</li>
+    <li>Gêner les études ou le travail : retards provoqués, révisions empêchées, reproches.</li>
+    <li>Imposer d'être joignable tout le temps, y compris en cours ou la nuit.</li>
+  </ul>
+
+  <h3><span class="emo">⚡</span>Une première action</h3>
+  <ol class="etapes">
+    <li class="po po-moi">Garde un lien, même petit : un message, un café, une personne à qui tu peux parler librement.</li>
+    <li class="po po-moi">Remarque ce que tu as arrêté depuis cette relation. Tu as le droit de le reprendre.</li>
+    <li class="po po-ami">Continue à l'inviter et à donner des nouvelles, même après plusieurs refus. Ne coupe pas le lien.</li>
+    <li class="po po-ami">Évite les reproches du type « on ne te voit plus ». Préfère « tu me manques, je suis là ».</li>
+    <li class="po po-parent">Gardez la porte ouverte, sans reproche ni ultimatum : l'isolement se nourrit des conflits avec l'entourage.</li>
+    <li class="po po-parent">Maintenez les rituels simples (repas, trajets, messages), même brefs.</li>
+  </ol>
+
+  <h3><span class="emo">💬</span>Une phrase pour en parler</h3>
+  <div class="imsg">
+    <div class="top"><div class="av">👤</div><b>Une personne de confiance</b></div>
+    <div class="fil">
+      <div class="date">Aujourd'hui</div>
+      <div class="aide po po-jeune">Messages à copier et à envoyer toi-même</div><div class="aide po po-parent">Messages à copier et à envoyer vous-même</div>
+      <button class="bulle po po-moi"><q>Je vois moins mes proches depuis que je suis avec lui/elle, et ça me manque. J'aimerais qu'on se revoie.</q></button>
+      <button class="bulle po po-ami"><q>Tu me manques. Pas de pression, je suis là quand tu veux, même pour dix minutes.</q></button>
+      <button class="bulle po po-parent"><q>Je ne te demande pas de choisir. Je veux juste continuer à te voir.</q></button>
+    </div>
+    <div class="pied">Aucun message n'est envoyé depuis SIGNAUX.</div>
+  </div>
+
+  <p class="resp"><span class="po po-moi">Tu n'es pas responsable des violences que tu subis. Tu n'as pas à gérer cela seul·e.</span><span class="po po-ami">Il ou elle n'est pas responsable des violences subies. Et toi, tu n'as pas à gérer cela seul·e.</span><span class="po po-parent">Votre enfant n'est pas responsable des violences subies. Vous n'avez pas à gérer cela seul·e.</span></p>
+
+  <div class="urgence">
+    <p><span class="po po-moi">Danger maintenant, menaces, coups, peur de rentrer ou de le/la retrouver :</span><span class="po po-ami">Danger maintenant, menaces, coups, il ou elle a peur de rentrer :</span><span class="po po-parent">Danger maintenant, menaces, coups, votre enfant a peur :</span></p>
+    <a class="appel rouge" href="tel:17"><span class="ic">📞</span><span><b>17</b><small>Police, gendarmerie — danger immédiat</small></span></a>
+    <a class="appel rouge" href="tel:112"><span class="ic">📞</span><span><b>112</b><small>Numéro d'urgence européen</small></span></a>
+    <a class="appel rouge" href="sms:114"><span class="ic">💬</span><span><b>114 par SMS</b><small>Urgence, quand on ne peut pas parler à voix haute — gratuit, 24h/24</small></span></a>
+    <button class="lien" data-go="danger">Tous les numéros d'urgence</button>
+  </div>
+
+  <h3><span class="emo">📞</span>Parler à quelqu'un</h3>
+  <div class="appels">
+    <a class="appel" href="tel:3919"><span class="ic">📞</span><span><b>3919</b><small>Écoute, information et orientation pour les femmes victimes de violences et leur entourage — gratuit, anonyme, 24h/24. Ce n'est pas un numéro d'urgence</small></span></a>
+    <a class="appel" href="tel:119"><span class="ic">📞</span><span><b>119</b><small>Enfant ou ado en danger ou en risque de l'être : pour les moins de 18 ans et toute personne inquiète — 24h/24, gratuit</small></span></a>
+    <a class="appel" href="tel:116006"><span class="ic">📞</span><span><b>116 006</b><small>France Victimes : aide et orientation des victimes, tous âges, tous publics — 9h-20h, 7j/7, gratuit</small></span></a>
+  </div>
+  <p class="note"><button class="lien" data-go="vc-numeros">Quels numéros, quels interlocuteurs ?</button> · <button class="lien" data-go="vc-quoi">Premiers repères : quoi faire ?</button></p>
+  <p class="note">Voir aussi : <button class="lien" data-go="vc-controle">Contrôle coercitif</button> · <button class="lien" data-go="vc-aider">Comment aider un ami ou un proche ?</button></p>
+  <p class="src">Sources : arretonslesviolences.gouv.fr (MIPROF, dépliant « Violences au sein du couple ») ; service-public.gouv.fr, « Violences conjugales » ; info.gouv.fr. Vérifié le 13 novembre 2026.</p>
+</section>
+
+
+<section class="screen" id="vc-sex" style="--c:var(--abricot)">
+  <button class="retour" data-go="back">Retour</button>
+  <div class="hero"><span class="emo" aria-hidden="true">✋</span><h2>Violences sexuelles et pressions sur le consentement</h2>
+    <p class="intro">Être en couple ne donne aucun droit sur le corps de l'autre. Le consentement se donne librement, à chaque fois, et peut se retirer à tout moment, y compris dans une relation déjà engagée.</p></div>
+
+  <h3><span class="emo">🔎</span>Par exemple</h3>
+  <ul class="simple">
+    <li>Insister, bouder, culpabiliser ou menacer jusqu'à obtenir un « oui ».</li>
+    <li>Imposer un geste, une pratique ou un rapport, y compris pendant le sommeil ou après avoir bu.</li>
+    <li>Refuser ou retirer une protection sans accord.</li>
+    <li>Exiger des photos ou des vidéos intimes, ou menacer de les diffuser.</li>
+    <li>Faire comme si un « oui » donné une fois valait pour toujours.</li>
+  </ul>
+
+  <h3><span class="emo">⚡</span>Une première action</h3>
+  <ol class="etapes">
+    <li class="po po-moi">Si cela vient d'arriver : le 15 ou les urgences, pour être soigné·e. Les soins passent d'abord, que tu veuilles ou non porter plainte.</li>
+    <li class="po po-moi">Sinon, parles-en à une personne de confiance ou à un service d'écoute. Tu n'as pas à trouver le bon mot pour ce que tu as vécu.</li>
+    <li class="po po-ami">Crois-le ou crois-la, sans demander de détails ni de preuves.</li>
+    <li class="po po-ami">Propose une aide précise : appeler ensemble, l'accompagner chez un médecin. Si cela vient d'arriver : le 15.</li>
+    <li class="po po-parent">Croyez votre enfant, sans demander de détails ni chercher qui est en tort.</li>
+    <li class="po po-parent">Si cela vient d'arriver : le 15 ou les urgences. Pour un·e mineur·e, le 119 conseille aussi les parents.</li>
+  </ol>
+
+  <h3><span class="emo">💬</span>Une phrase pour en parler</h3>
+  <div class="imsg">
+    <div class="top"><div class="av">👤</div><b>Une personne de confiance</b></div>
+    <div class="fil">
+      <div class="date">Aujourd'hui</div>
+      <div class="aide po po-jeune">Messages à copier et à envoyer toi-même</div><div class="aide po po-parent">Messages à copier et à envoyer vous-même</div>
+      <button class="bulle po po-moi"><q>Il s'est passé quelque chose que je ne voulais pas. Je ne veux pas tout raconter, mais j'ai besoin d'aide.</q></button>
+      <button class="bulle po po-ami"><q>Je te crois. Ce n'est pas ta faute. On peut chercher de l'aide ensemble, à ton rythme.</q></button>
+      <button class="bulle po po-parent"><q>Je te crois. Ce n'est pas ta faute. On va trouver quelqu'un pour t'aider, et je reste avec toi.</q></button>
+    </div>
+    <div class="pied">Aucun message n'est envoyé depuis SIGNAUX.</div>
+  </div>
+
+  <p class="resp"><span class="po po-moi">Tu n'es pas responsable des violences que tu subis. Tu n'as pas à gérer cela seul·e.</span><span class="po po-ami">Il ou elle n'est pas responsable des violences subies. Et toi, tu n'as pas à gérer cela seul·e.</span><span class="po po-parent">Votre enfant n'est pas responsable des violences subies. Vous n'avez pas à gérer cela seul·e.</span></p>
+
+  <div class="urgence">
+    <p><span class="po po-moi">Danger maintenant, menaces, coups, peur de rentrer ou de le/la retrouver :</span><span class="po po-ami">Danger maintenant, menaces, coups, il ou elle a peur de rentrer :</span><span class="po po-parent">Danger maintenant, menaces, coups, votre enfant a peur :</span></p>
+    <a class="appel rouge" href="tel:17"><span class="ic">📞</span><span><b>17</b><small>Police, gendarmerie — danger immédiat</small></span></a>
+    <a class="appel rouge" href="tel:112"><span class="ic">📞</span><span><b>112</b><small>Numéro d'urgence européen</small></span></a>
+    <a class="appel rouge" href="sms:114"><span class="ic">💬</span><span><b>114 par SMS</b><small>Urgence, quand on ne peut pas parler à voix haute — gratuit, 24h/24</small></span></a>
+    <button class="lien" data-go="danger">Tous les numéros d'urgence</button>
+  </div>
+
+  <h3><span class="emo">📞</span>Parler à quelqu'un</h3>
+  <div class="appels">
+    <a class="appel" href="tel:3919"><span class="ic">📞</span><span><b>3919</b><small>Écoute, information et orientation pour les femmes victimes de violences et leur entourage — gratuit, anonyme, 24h/24. Ce n'est pas un numéro d'urgence</small></span></a>
+    <a class="appel" href="tel:119"><span class="ic">📞</span><span><b>119</b><small>Enfant ou ado en danger ou en risque de l'être : pour les moins de 18 ans et toute personne inquiète — 24h/24, gratuit</small></span></a>
+    <a class="appel" href="tel:116006"><span class="ic">📞</span><span><b>116 006</b><small>France Victimes : aide et orientation des victimes, tous âges, tous publics — 9h-20h, 7j/7, gratuit</small></span></a>
+  </div>
+  <p class="note"><button class="lien" data-go="vc-numeros">Quels numéros, quels interlocuteurs ?</button> · <button class="lien" data-go="vc-quoi">Premiers repères : quoi faire ?</button></p>
+  <p class="note">Voir aussi : <span class="po po-moi"><button class="lien" data-go="m-violence">Quelqu'un me fait du mal</button></span><span class="po po-ami"><button class="lien" data-go="violence">Quelqu'un lui fait du mal</button></span><span class="po po-parent"><button class="lien" data-go="vc-enfants">Et quand des enfants sont concernés ?</button></span> · <button class="lien" data-go="vc-qui">Médecin, psychologue, association</button></p>
+  <p class="src">Sources : arretonslesviolences.gouv.fr (MIPROF, dépliant « Violences au sein du couple ») ; service-public.gouv.fr, « Violences conjugales » ; info.gouv.fr. Vérifié le 13 novembre 2026.</p>
+</section>
+
+
+<section class="screen" id="vc-phys" style="--c:var(--alerte)">
+  <button class="retour" data-go="back">Retour</button>
+  <div class="hero"><span class="emo" aria-hidden="true">🩹</span><h2>Violences physiques, matérielles, contrôle de l'argent</h2>
+    <p class="intro">Les violences ne sont pas seulement des coups. Elles peuvent aussi passer par les objets, l'argent, les papiers ou l'accès aux soins. Un seul geste violent est déjà grave.</p></div>
+
+  <h3><span class="emo">🔎</span>Par exemple</h3>
+  <ul class="simple">
+    <li>Pousser, gifler, serrer, tirer les cheveux, empêcher de sortir d'une pièce.</li>
+    <li>Casser ou jeter des affaires, abîmer un téléphone, s'en prendre à un animal.</li>
+    <li>Contrôler l'argent : confisquer une carte, exiger des comptes, faire payer, empêcher de travailler.</li>
+    <li>Garder ou cacher des papiers : carte d'identité, carte Vitale, titre de transport.</li>
+    <li>Empêcher d'aller chez le médecin, de prendre un traitement ou une contraception.</li>
+  </ul>
+
+  <h3><span class="emo">⚡</span>Une première action</h3>
+  <ol class="etapes">
+    <li class="po po-moi">S'il y a un danger maintenant : 17 ou 112, ou un SMS au 114 si tu ne peux pas parler.</li>
+    <li class="po po-moi">Si tu es blessé·e : le 15 ou un médecin. Il soigne, et peut écrire ce qu'il constate.</li>
+    <li class="po po-moi">Repère un endroit et une personne où aller si ça recommence.</li>
+    <li class="po po-ami">S'il y a un danger maintenant, appelle le 17 ou le 112. Ne t'interpose pas.</li>
+    <li class="po po-ami">Propose de l'accompagner chez un médecin ou d'appeler ensemble un service d'écoute.</li>
+    <li class="po po-parent">S'il y a un danger maintenant : 17 ou 112.</li>
+    <li class="po po-parent">Proposez un rendez-vous médical. Le médecin soigne et peut établir un certificat de ce qu'il constate.</li>
+    <li class="po po-parent">Pour un·e mineur·e, le 119 vous conseille sur les démarches de protection.</li>
+  </ol>
+
+  <h3><span class="emo">💬</span>Une phrase pour en parler</h3>
+  <div class="imsg">
+    <div class="top"><div class="av">👤</div><b>Une personne de confiance</b></div>
+    <div class="fil">
+      <div class="date">Aujourd'hui</div>
+      <div class="aide po po-jeune">Messages à copier et à envoyer toi-même</div><div class="aide po po-parent">Messages à copier et à envoyer vous-même</div>
+      <button class="bulle po po-moi"><q>J'ai peur de quelqu'un avec qui je suis. J'ai besoin d'aide pour être en sécurité.</q></button>
+      <button class="bulle po po-ami"><q>Tu n'es pas responsable de ce qu'on te fait. Si tu veux, je viens avec toi voir un médecin ou appeler quelqu'un.</q></button>
+      <button class="bulle po po-parent"><q>Ta sécurité passe avant tout le reste. Je suis là, et on va demander de l'aide ensemble.</q></button>
+    </div>
+    <div class="pied">Aucun message n'est envoyé depuis SIGNAUX.</div>
+  </div>
+
+  <p class="resp"><span class="po po-moi">Tu n'es pas responsable des violences que tu subis. Tu n'as pas à gérer cela seul·e.</span><span class="po po-ami">Il ou elle n'est pas responsable des violences subies. Et toi, tu n'as pas à gérer cela seul·e.</span><span class="po po-parent">Votre enfant n'est pas responsable des violences subies. Vous n'avez pas à gérer cela seul·e.</span></p>
+
+  <div class="urgence">
+    <p><span class="po po-moi">Danger maintenant, menaces, coups, peur de rentrer ou de le/la retrouver :</span><span class="po po-ami">Danger maintenant, menaces, coups, il ou elle a peur de rentrer :</span><span class="po po-parent">Danger maintenant, menaces, coups, votre enfant a peur :</span></p>
+    <a class="appel rouge" href="tel:17"><span class="ic">📞</span><span><b>17</b><small>Police, gendarmerie — danger immédiat</small></span></a>
+    <a class="appel rouge" href="tel:112"><span class="ic">📞</span><span><b>112</b><small>Numéro d'urgence européen</small></span></a>
+    <a class="appel rouge" href="sms:114"><span class="ic">💬</span><span><b>114 par SMS</b><small>Urgence, quand on ne peut pas parler à voix haute — gratuit, 24h/24</small></span></a>
+    <button class="lien" data-go="danger">Tous les numéros d'urgence</button>
+  </div>
+
+  <h3><span class="emo">📞</span>Parler à quelqu'un</h3>
+  <div class="appels">
+    <a class="appel" href="tel:3919"><span class="ic">📞</span><span><b>3919</b><small>Écoute, information et orientation pour les femmes victimes de violences et leur entourage — gratuit, anonyme, 24h/24. Ce n'est pas un numéro d'urgence</small></span></a>
+    <a class="appel" href="tel:119"><span class="ic">📞</span><span><b>119</b><small>Enfant ou ado en danger ou en risque de l'être : pour les moins de 18 ans et toute personne inquiète — 24h/24, gratuit</small></span></a>
+    <a class="appel" href="tel:116006"><span class="ic">📞</span><span><b>116 006</b><small>France Victimes : aide et orientation des victimes, tous âges, tous publics — 9h-20h, 7j/7, gratuit</small></span></a>
+  </div>
+  <p class="note"><button class="lien" data-go="vc-numeros">Quels numéros, quels interlocuteurs ?</button> · <button class="lien" data-go="vc-quoi">Premiers repères : quoi faire ?</button></p>
+  <p class="note">Voir aussi : <span class="po po-moi"><button class="lien" data-go="m-violence">Quelqu'un me fait du mal</button></span><span class="po po-ami"><button class="lien" data-go="violence">Quelqu'un lui fait du mal</button></span><span class="po po-parent"><button class="lien" data-go="vc-enfants">Et quand des enfants sont concernés ?</button></span> · <button class="lien" data-go="vc-traces">Quelles traces conserver ?</button></p>
+  <p class="src">Sources : arretonslesviolences.gouv.fr (MIPROF, dépliant « Violences au sein du couple ») ; service-public.gouv.fr, « Violences conjugales » ; info.gouv.fr. Vérifié le 13 novembre 2026.</p>
+</section>
+
+
+<section class="screen" id="vc-ex" style="--c:var(--menthe)">
+  <button class="retour" data-go="back">Retour</button>
+  <div class="hero"><span class="emo" aria-hidden="true">🔁</span><h2>Après la séparation</h2>
+    <p class="intro">Une séparation ne met pas toujours fin au contrôle. Il peut continuer, ou commencer, après la rupture. Les violences commises par un·e ex comptent aussi comme des violences dans le couple.</p></div>
+
+  <h3><span class="emo">🔎</span>Par exemple</h3>
+  <ul class="simple">
+    <li>Des messages et des appels en boucle, malgré une demande d'arrêter.</li>
+    <li>Suivre, attendre devant le lycée, le travail ou le domicile.</li>
+    <li>Surveiller les comptes, créer de faux profils, passer par les amis pour avoir des nouvelles.</li>
+    <li>Menacer : de diffuser des photos, de se faire du mal, de s'en prendre à quelqu'un.</li>
+    <li>Utiliser les affaires à rendre, l'argent ou les amis communs pour garder un lien forcé.</li>
+  </ul>
+
+  <h3><span class="emo">⚡</span>Une première action</h3>
+  <ol class="etapes">
+    <li class="po po-moi">Parles-en à quelqu'un : tu n'as pas à gérer seul·e un·e ex qui n'accepte pas la rupture.</li>
+    <li class="po po-moi">Évite les rendez-vous seul·e « pour s'expliquer une dernière fois ». S'il faut rendre des affaires, fais-toi accompagner.</li>
+    <li class="po po-moi">Menaces, ou sentiment d'être suivi·e : 17. Un signalement est aussi possible par tchat avec la police ou la gendarmerie.</li>
+    <li class="po po-ami">Propose de l'accompagner sur ses trajets, ou d'être là quand il faut récupérer des affaires.</li>
+    <li class="po po-ami">Ne donne aucune nouvelle de lui ou d'elle à son ex, même « pour calmer les choses ».</li>
+    <li class="po po-parent">Prenez au sérieux la peur de votre enfant, même si la relation est terminée.</li>
+    <li class="po po-parent">Ne donnez aucune information à l'ex. En cas de menaces ou de harcèlement : 17, ou le tchat police-gendarmerie.</li>
+  </ol>
+
+  <h3><span class="emo">💬</span>Une phrase pour en parler</h3>
+  <div class="imsg">
+    <div class="top"><div class="av">👤</div><b>Une personne de confiance</b></div>
+    <div class="fil">
+      <div class="date">Aujourd'hui</div>
+      <div class="aide po po-jeune">Messages à copier et à envoyer toi-même</div><div class="aide po po-parent">Messages à copier et à envoyer vous-même</div>
+      <button class="bulle po po-moi"><q>Mon ex continue à m'écrire et à me suivre alors que j'ai dit stop. J'ai besoin d'aide.</q></button>
+      <button class="bulle po po-ami"><q>Ce que fait ton ex, ce n'est pas de l'amour, et ce n'est pas à toi de le gérer seul·e. On en parle à qui ?</q></button>
+      <button class="bulle po po-parent"><q>Tu as dit stop, et ça doit suffire. On va demander de l'aide pour que ça s'arrête.</q></button>
+    </div>
+    <div class="pied">Aucun message n'est envoyé depuis SIGNAUX.</div>
+  </div>
+
+  <p class="resp"><span class="po po-moi">Tu n'es pas responsable des violences que tu subis. Tu n'as pas à gérer cela seul·e.</span><span class="po po-ami">Il ou elle n'est pas responsable des violences subies. Et toi, tu n'as pas à gérer cela seul·e.</span><span class="po po-parent">Votre enfant n'est pas responsable des violences subies. Vous n'avez pas à gérer cela seul·e.</span></p>
+
+  <div class="urgence">
+    <p><span class="po po-moi">Danger maintenant, menaces, coups, peur de rentrer ou de le/la retrouver :</span><span class="po po-ami">Danger maintenant, menaces, coups, il ou elle a peur de rentrer :</span><span class="po po-parent">Danger maintenant, menaces, coups, votre enfant a peur :</span></p>
+    <a class="appel rouge" href="tel:17"><span class="ic">📞</span><span><b>17</b><small>Police, gendarmerie — danger immédiat</small></span></a>
+    <a class="appel rouge" href="tel:112"><span class="ic">📞</span><span><b>112</b><small>Numéro d'urgence européen</small></span></a>
+    <a class="appel rouge" href="sms:114"><span class="ic">💬</span><span><b>114 par SMS</b><small>Urgence, quand on ne peut pas parler à voix haute — gratuit, 24h/24</small></span></a>
+    <button class="lien" data-go="danger">Tous les numéros d'urgence</button>
+  </div>
+
+  <h3><span class="emo">📞</span>Parler à quelqu'un</h3>
+  <div class="appels">
+    <a class="appel" href="tel:3919"><span class="ic">📞</span><span><b>3919</b><small>Écoute, information et orientation pour les femmes victimes de violences et leur entourage — gratuit, anonyme, 24h/24. Ce n'est pas un numéro d'urgence</small></span></a>
+    <a class="appel" href="tel:119"><span class="ic">📞</span><span><b>119</b><small>Enfant ou ado en danger ou en risque de l'être : pour les moins de 18 ans et toute personne inquiète — 24h/24, gratuit</small></span></a>
+    <a class="appel" href="tel:116006"><span class="ic">📞</span><span><b>116 006</b><small>France Victimes : aide et orientation des victimes, tous âges, tous publics — 9h-20h, 7j/7, gratuit</small></span></a>
+    <a class="appel" href="tel:3018"><span class="ic">📱</span><span><b>3018</b><small>Contrôle par le téléphone, harcèlement en ligne, photos qui circulent — 9h-23h, 7j/7</small></span></a>
+  </div>
+  <p class="note"><button class="lien" data-go="vc-numeros">Quels numéros, quels interlocuteurs ?</button> · <button class="lien" data-go="vc-quoi">Premiers repères : quoi faire ?</button></p>
+  <p class="note">Voir aussi : <span class="po po-moi"><button class="lien" data-go="m-harcele">On me harcèle</button></span><span class="po po-ami"><button class="lien" data-go="harcele">On le/la harcèle</button></span><span class="po po-parent"><button class="lien" data-go="p-harcele">Votre ado est harcelé·e</button></span> · <button class="lien" data-go="vc-traces">Quelles traces conserver ?</button> · <button class="lien" data-go="vc-numeros">Quels numéros ?</button></p>
+  <p class="src">Sources : service-public.gouv.fr, « Violences conjugales » (violences commises au sein du couple ou par un ancien partenaire) ; arretonslesviolences.gouv.fr ; 3018.fr. Vérifié le 13 novembre 2026.</p>
+</section>
+
+
+<section class="screen" id="vc-quoi" style="--c:var(--citron)">
+  <button class="retour" data-go="back">Retour</button>
+  <div class="hero"><span class="emo" aria-hidden="true">🧭</span><h2>Premiers repères : quoi faire ?</h2>
+    <p class="intro"><span class="po po-jeune">Une seule action suffit pour commencer. Tu n'as pas à tout faire, ni dans l'ordre.</span><span class="po po-parent">Une seule action suffit pour commencer. Il n'y a pas de parcours à suivre en entier, ni d'ordre imposé.</span></p></div>
+
+  <p class="note">Aucun test à finir, aucune preuve à réunir, aucun rendez-vous à prendre avant de demander une aide urgente.</p>
+
+  <div class="urgence">
+    <p><span class="po po-moi">Danger maintenant, menaces, coups, peur de rentrer ou de le/la retrouver :</span><span class="po po-ami">Danger maintenant, menaces, coups, il ou elle a peur de rentrer :</span><span class="po po-parent">Danger maintenant, menaces, coups, votre enfant a peur :</span></p>
+    <a class="appel rouge" href="tel:17"><span class="ic">📞</span><span><b>17</b><small>Police, gendarmerie — danger immédiat</small></span></a>
+    <a class="appel rouge" href="tel:112"><span class="ic">📞</span><span><b>112</b><small>Numéro d'urgence européen</small></span></a>
+    <a class="appel rouge" href="sms:114"><span class="ic">💬</span><span><b>114 par SMS</b><small>Urgence, quand on ne peut pas parler à voix haute — gratuit, 24h/24</small></span></a>
+    <button class="lien" data-go="danger">Tous les numéros d'urgence</button>
+  </div>
+
+  <h3><span class="emo">1️⃣</span>Est-ce qu'il faut de l'aide tout de suite ?</h3>
+  <ul class="simple">
+    <li>Quelqu'un est menacé, frappé, enfermé, ou a peur de rentrer : c'est une urgence, on appelle.</li>
+    <li>Quelqu'un parle de mourir ou de se faire du mal : 15, ou 3114.</li>
+    <li>Sinon, on peut prendre le temps, et choisir une des pistes ci-dessous.</li>
+  </ul>
+
+  <h3><span class="emo">2️⃣</span>Trouver une personne de confiance</h3>
+  <ul class="simple">
+    <li class="po po-moi">Quelqu'un qui t'écoute sans te juger, et qui ne répétera pas à la personne qui te fait du mal.</li>
+    <li class="po po-moi">Un·e ami·e, un adulte de ta famille, l'infirmière scolaire, un·e CPE, un·e prof, un médecin.</li>
+    <li class="po po-ami">Quelqu'un qui écoute sans juger, et qui ne répétera pas à la personne violente.</li>
+    <li class="po po-ami">Tu peux être cette personne. Tu peux aussi l'aider à en trouver une autre : un adulte, l'infirmière scolaire, un médecin.</li>
+    <li class="po po-parent">Votre enfant peut préférer parler à quelqu'un d'autre que vous : ce n'est pas un échec.</li>
+    <li class="po po-parent">Un autre adulte de la famille, l'infirmière scolaire, le médecin traitant, la Maison des ados.</li>
+  </ul>
+
+  <h3><span class="emo">3️⃣</span>Choisir un professionnel ou une association</h3>
+  <ul class="simple">
+    <li>Pour être écouté·e et orienté·e : le 3919, le 119 pour les moins de 18 ans, le 116 006.</li>
+    <li>Pour la santé : un médecin. Pour les démarches et les droits : une association spécialisée.</li>
+  </ul>
+  <p class="note"><button class="lien" data-go="vc-qui">Médecin, psychologue, association : qui peut m'aider ?</button> · <button class="lien" data-go="vc-numeros">Quels numéros, quels interlocuteurs ?</button></p>
+
+  <h3><span class="emo">4️⃣</span>Préparer une première conversation</h3>
+  <ul class="simple">
+    <li class="po po-moi">Une phrase suffit pour commencer. Tu peux la lire, ou l'envoyer.</li>
+    <li class="po po-moi">Tu choisis ce que tu dis, et tu peux t'arrêter quand tu veux.</li>
+    <li class="po po-ami">Choisis un moment calme, sans personne autour, et sans son ou sa partenaire à proximité.</li>
+    <li class="po po-ami">Dis ce que tu as remarqué, puis écoute. Ne force pas la suite.</li>
+    <li class="po po-parent">Choisissez un moment calme, sans témoin. Dites ce que vous avez remarqué, puis écoutez.</li>
+    <li class="po po-parent">N'exigez ni rupture ni explication immédiate.</li>
+  </ul>
+  <div class="imsg">
+    <div class="top"><div class="av">👤</div><b>Une personne de confiance</b></div>
+    <div class="fil">
+      <div class="date">Aujourd'hui</div>
+      <div class="aide po po-jeune">Messages à copier et à envoyer toi-même</div><div class="aide po po-parent">Messages à copier et à envoyer vous-même</div>
+      <button class="bulle po po-moi"><q>Il y a des choses dans ma relation qui me font peur ou me mettent mal à l'aise. J'aimerais en parler sans être jugé·e.</q></button>
+      <button class="bulle po po-ami"><q>Je m'inquiète pour toi. Tu n'es pas obligé·e de me raconter, je veux juste que tu saches que je suis là.</q></button>
+      <button class="bulle po po-parent"><q>Je m'inquiète pour toi. Je ne te demande rien, je veux seulement que tu saches que tu peux me parler.</q></button>
+    </div>
+    <div class="pied">Aucun message n'est envoyé depuis SIGNAUX.</div>
+  </div>
+
+  <p class="resp"><span class="po po-moi">Tu n'es pas responsable des violences que tu subis. Tu n'as pas à gérer cela seul·e.</span><span class="po po-ami">Il ou elle n'est pas responsable des violences subies. Et toi, tu n'as pas à gérer cela seul·e.</span><span class="po po-parent">Votre enfant n'est pas responsable des violences subies. Vous n'avez pas à gérer cela seul·e.</span></p>
+  <p class="note">Personne n'est obligé de partir tout de suite, de confronter l'autre ou de lui annoncer une démarche. Chaque décision se prend à son rythme, avec de l'aide.</p>
+  <p class="src">Sources : arretonslesviolences.gouv.fr (MIPROF, dépliant « Violences au sein du couple ») ; service-public.gouv.fr, « Violences conjugales » ; info.gouv.fr. Vérifié le 13 novembre 2026.</p>
+</section>
+
+
+<section class="screen" id="vc-aider" style="--c:var(--emeraude)">
+  <button class="retour" data-go="back">Retour</button>
+  <div class="hero"><span class="emo" aria-hidden="true">🫶</span><h2>Comment aider un ami ou un proche ?</h2>
+    <p class="intro"><span class="po po-jeune">Tu peux soutenir et passer le relais. Tu n'as pas à assurer seul·e la protection ou les soins de quelqu'un.</span><span class="po po-parent">Vous pouvez soutenir et passer le relais. Vous n'avez pas à assurer seul·e la protection ou les soins.</span></p></div>
+
+  <h3><span class="emo">✅</span>Ce qui aide</h3>
+  <ul class="simple">
+    <li><span class="po po-jeune">Écouter, sans juger et sans minimiser.</span><span class="po po-parent">Écouter, sans juger et sans minimiser.</span></li>
+    <li><span class="po po-jeune">Accueillir ce qu'il ou elle dit, sans mener une enquête ni demander de preuves.</span><span class="po po-parent">Accueillir ce qu'il ou elle dit, sans mener une enquête ni demander de preuves.</span></li>
+    <li><span class="po po-jeune">Proposer une aide précise : appeler ensemble, l'accompagner à un rendez-vous, chercher une association.</span><span class="po po-parent">Proposer une aide précise : appeler ensemble, l'accompagner à un rendez-vous, chercher une association.</span></li>
+    <li><span class="po po-jeune">Respecter ses décisions, même si tu aurais fait autrement.</span><span class="po po-parent">Respecter ses décisions, même si vous auriez fait autrement.</span></li>
+    <li><span class="po po-jeune">Rester en lien dans la durée, même s'il ou elle reste dans la relation.</span><span class="po po-parent">Rester en lien dans la durée, même s'il ou elle reste dans la relation.</span></li>
+  </ul>
+
+  <h3><span class="emo">🚫</span>Ce qui n'aide pas</h3>
+  <ul class="simple nope">
+    <li><span class="po po-jeune">Les reproches : « pourquoi tu restes ? », « je t'avais prévenu·e ».</span><span class="po po-parent">Les reproches : « pourquoi tu restes ? », « je t'avais prévenu·e ».</span></li>
+    <li><span class="po po-jeune">Aller voir la personne violente, la provoquer ou la menacer : tu te mettrais en danger, et ton ami·e aussi.</span><span class="po po-parent">Aller voir la personne violente, la provoquer ou la menacer : vous vous mettriez en danger, et votre proche aussi.</span></li>
+    <li><span class="po po-jeune">Décider à sa place, ou raconter son histoire sans son accord.</span><span class="po po-parent">Décider à sa place, ou raconter son histoire sans son accord.</span></li>
+    <li>Proposer une médiation ou une « discussion à trois » : ce n'est pas une réponse à des violences.</li>
+  </ul>
+
+  <h3><span class="emo">💬</span>Des phrases qui comptent</h3>
+  <div class="imsg">
+    <div class="top"><div class="av">👤</div><b>Un·e ami·e, un proche</b></div>
+    <div class="fil">
+      <div class="date">Aujourd'hui</div>
+      <div class="aide po po-jeune">Messages à copier et à envoyer toi-même</div><div class="aide po po-parent">Messages à copier et à envoyer vous-même</div>
+      <button class="bulle po po-moi"><q>Je te crois.</q></button>
+      <button class="bulle po po-moi"><q>Tu n'es pas responsable de ce qu'on te fait.</q></button>
+      <button class="bulle po po-moi"><q>On peut chercher de l'aide ensemble.</q></button>
+      <button class="bulle po po-ami"><q>Je te crois.</q></button>
+      <button class="bulle po po-ami"><q>Tu n'es pas responsable de ce qu'on te fait.</q></button>
+      <button class="bulle po po-ami"><q>On peut chercher de l'aide ensemble.</q></button>
+      <button class="bulle po po-parent"><q>Je te crois.</q></button>
+      <button class="bulle po po-parent"><q>Tu n'es pas responsable de ce qu'on te fait.</q></button>
+      <button class="bulle po po-parent"><q>On peut chercher de l'aide ensemble.</q></button>
+    </div>
+    <div class="pied">Aucun message n'est envoyé depuis SIGNAUX.</div>
+  </div>
+
+  <h3><span class="emo">⚠️</span>Deux situations où l'on ne garde pas pour soi</h3>
+  <ul class="simple">
+    <li><strong>Un danger immédiat.</strong> Menaces, coups, peur de rentrer : on appelle le 17 ou le 112, même si la personne n'est pas d'accord.</li>
+    <li><strong>Un·e mineur·e en danger.</strong> <span class="po po-jeune">On en parle à un adulte sûr, ou on appelle le 119. Ce n'est pas trahir : c'est protéger.</span><span class="po po-parent">La protection passe avant le secret : le 119 conseille et oriente, 24h/24.</span></li>
+  </ul>
+
+  <div class="urgence">
+    <p><span class="po po-moi">Danger maintenant, menaces, coups, peur de rentrer ou de le/la retrouver :</span><span class="po po-ami">Danger maintenant, menaces, coups, il ou elle a peur de rentrer :</span><span class="po po-parent">Danger maintenant, menaces, coups, votre enfant a peur :</span></p>
+    <a class="appel rouge" href="tel:17"><span class="ic">📞</span><span><b>17</b><small>Police, gendarmerie — danger immédiat</small></span></a>
+    <a class="appel rouge" href="tel:112"><span class="ic">📞</span><span><b>112</b><small>Numéro d'urgence européen</small></span></a>
+    <a class="appel rouge" href="sms:114"><span class="ic">💬</span><span><b>114 par SMS</b><small>Urgence, quand on ne peut pas parler à voix haute — gratuit, 24h/24</small></span></a>
+    <button class="lien" data-go="danger">Tous les numéros d'urgence</button>
+  </div>
+
+  <h3><span class="emo">📞</span>Parler à quelqu'un</h3>
+  <div class="appels">
+    <a class="appel" href="tel:3919"><span class="ic">📞</span><span><b>3919</b><small>Écoute, information et orientation pour les femmes victimes de violences et leur entourage — gratuit, anonyme, 24h/24. Ce n'est pas un numéro d'urgence</small></span></a>
+    <a class="appel" href="tel:119"><span class="ic">📞</span><span><b>119</b><small>Enfant ou ado en danger ou en risque de l'être : pour les moins de 18 ans et toute personne inquiète — 24h/24, gratuit</small></span></a>
+    <a class="appel" href="tel:116006"><span class="ic">📞</span><span><b>116 006</b><small>France Victimes : aide et orientation des victimes, tous âges, tous publics — 9h-20h, 7j/7, gratuit</small></span></a>
+  </div>
+  <p class="note"><button class="lien" data-go="vc-numeros">Quels numéros, quels interlocuteurs ?</button> · <button class="lien" data-go="vc-quoi">Premiers repères : quoi faire ?</button></p>
+  <p class="note">Voir aussi : <span class="po po-moi"><button class="lien" data-go="relation">Sa relation m'inquiète</button></span><span class="po po-ami"><button class="lien" data-go="relation">Sa relation m'inquiète</button></span><span class="po po-parent"><button class="lien" data-go="p-relation">Sa relation vous inquiète</button></span> · <button class="lien" data-go="vc-enfants">Et quand des enfants sont concernés ?</button></p>
+  <p class="note"><span class="po po-jeune">Aider quelqu'un, ça pèse. Tu as le droit d'en parler toi aussi, à un adulte ou à un service d'écoute.</span><span class="po po-parent">Aider quelqu'un, cela pèse. Vous pouvez en parler vous aussi : le 3919 écoute également l'entourage.</span></p>
+  <p class="src">Sources : arretonslesviolences.gouv.fr (MIPROF, dépliant « Violences au sein du couple ») ; service-public.gouv.fr, « Violences conjugales » ; info.gouv.fr. Vérifié le 13 novembre 2026.</p>
+</section>
+
+
+<section class="screen" id="vc-enfants" style="--c:var(--citron)">
+  <button class="retour" data-go="back">Retour</button>
+  <div class="hero"><span class="emo" aria-hidden="true">🧒</span><h2>Et quand des enfants sont concernés ?</h2>
+    <p class="intro">Un enfant ou un ado peut être directement victime de violences. Il peut aussi vivre dans une maison où des adultes se font du mal : voir, entendre ou sentir ces violences, c'est déjà en subir.</p></div>
+
+  <div class="urgence">
+    <p>Un enfant ou un ado en danger maintenant :</p>
+    <a class="appel rouge" href="tel:17"><span class="ic">📞</span><span><b>17</b><small>Police, gendarmerie — danger immédiat</small></span></a>
+    <a class="appel rouge" href="tel:119"><span class="ic">📞</span><span><b>119</b><small>Enfance en danger — 24h/24, gratuit, pour les mineurs et toute personne inquiète</small></span></a>
+    <a class="appel rouge" href="sms:114"><span class="ic">💬</span><span><b>114 par SMS</b><small>Urgence, quand on ne peut pas parler à voix haute</small></span></a>
+  </div>
+
+  <h3><span class="emo">🙋</span>Je suis mineur·e et cela se passe chez moi</h3>
+  <ul class="simple">
+    <li>Ce n'est pas ta faute. Ce qui se passe entre les adultes, ou ce qu'un adulte te fait, n'est jamais de ta responsabilité.</li>
+    <li>Tu n'as pas à t'interposer, à espionner, ni à réunir des preuves. Ton rôle, c'est de te mettre à l'abri.</li>
+    <li>Parles-en à un adulte sûr, qui n'est pas impliqué dans les violences : quelqu'un de ta famille, l'infirmière scolaire, un·e prof, un médecin.</li>
+    <li>Le 119 est fait pour toi : gratuit, 24h/24, et l'appel n'apparaît pas sur les factures de téléphone.</li>
+  </ul>
+  <div class="appels">
+    <a class="appel" href="tel:119"><span class="ic">📞</span><span><b>119</b><small>Pour toi, si tu as moins de 18 ans — 24h/24, gratuit</small></span></a>
+    <a class="appel web" href="https://www.allo119.gouv.fr" target="_blank" rel="noopener noreferrer"><span class="ic">💬</span><span><b>Tchat 119</b><small>Par écrit, sur allo119.gouv.fr — ouvert l'après-midi et le soir, horaires et conditions sur le site</small></span></a>
+  </div>
+  <p class="note po po-jeune">Voir aussi : <button class="lien po po-moi" data-go="m-maison">Ça va pas à la maison</button><button class="lien po po-ami" data-go="maison">Ça va pas chez lui/elle</button></p>
+
+  <h3><span class="emo">👀</span>Je m'inquiète pour un enfant</h3>
+  <ul class="simple">
+    <li>Écouter calmement, et croire ce qu'il dit. Le laisser parler avec ses mots, à son rythme.</li>
+    <li>Ne pas mener d'interrogatoire, ne pas suggérer de réponses, ne pas lui faire répéter.</li>
+    <li>Ne pas minimiser, ne pas mettre sa parole en doute, ne pas le culpabiliser.</li>
+    <li>Ne pas promettre de garder le secret : quand une protection est nécessaire, il faut pouvoir en parler à des professionnels. On peut lui dire : « Je ne peux pas le garder pour moi, parce que je veux qu'on te protège. »</li>
+    <li>Appeler le 119 : des professionnels de l'enfance évaluent la situation avec vous et orientent vers les services de protection.</li>
+  </ul>
+  <div class="imsg">
+    <div class="top"><div class="av">👤</div><b>Un enfant, un ado</b></div>
+    <div class="fil">
+      <div class="date">Aujourd'hui</div>
+      <div class="aide po po-jeune">Messages à copier et à envoyer toi-même</div><div class="aide po po-parent">Messages à copier et à envoyer vous-même</div>
+      <button class="bulle po po-moi"><q>Je te crois. Ce n'est pas ta faute. On va en parler à quelqu'un qui peut te protéger.</q></button>
+      <button class="bulle po po-ami"><q>Je te crois. Ce n'est pas ta faute. On va en parler à quelqu'un qui peut te protéger.</q></button>
+      <button class="bulle po po-parent"><q>Je te crois. Ce n'est pas ta faute. On va en parler à quelqu'un qui peut te protéger.</q></button>
+    </div>
+    <div class="pied">Aucun message n'est envoyé depuis SIGNAUX.</div>
+  </div>
+  <div class="appels">
+    <a class="appel" href="tel:119"><span class="ic">📞</span><span><b>119</b><small>Pour toute personne inquiète pour un enfant — 24h/24, gratuit</small></span></a>
+    <a class="appel web" href="https://www.allo119.gouv.fr" target="_blank" rel="noopener noreferrer"><span class="ic">📝</span><span><b>allo119.gouv.fr</b><small>Informations et formulaire en ligne pour une situation non urgente</small></span></a>
+  </div>
+  <p class="note">Voir aussi : <button class="lien" data-go="vc-numeros">Quels numéros, quels interlocuteurs ?</button> · <button class="lien" data-go="vc-aider">Comment aider un ami ou un proche ?</button></p>
+  <p class="src">Sources : allo119.gouv.fr ; ministère des Solidarités, campagne « Écouter et savoir réagir » (119) ; service-public.gouv.fr, « Enfant en danger : comment le signaler ? ». Vérifié le 13 novembre 2026.</p>
+</section>
+
+
+<section class="screen" id="vc-numeros" style="--c:var(--alerte)">
+  <button class="retour" data-go="back">Retour</button>
+  <div class="hero"><span class="emo" aria-hidden="true">☎️</span><h2>Quels numéros, quels interlocuteurs ?</h2>
+    <p class="intro">Chaque service a un rôle. Urgence, écoute, signalement, rendez-vous : ce ne sont pas les mêmes portes.</p></div>
+
+  <h3><span class="emo">🚨</span>Urgence</h3>
+  <div class="urgence">
+    <a class="appel rouge" href="tel:17"><span class="ic">📞</span><span><b>17</b><small>Police, gendarmerie — danger immédiat</small></span></a>
+    <a class="appel rouge" href="tel:112"><span class="ic">📞</span><span><b>112</b><small>Numéro d'urgence européen</small></span></a>
+    <a class="appel rouge" href="tel:15"><span class="ic">📞</span><span><b>15</b><small>SAMU — urgence médicale, blessure, agression</small></span></a>
+    <a class="appel rouge" href="sms:114"><span class="ic">💬</span><span><b>114 par SMS</b><small>Urgence, notamment quand il est impossible de parler à voix haute — gratuit, 24h/24, 7j/7</small></span></a>
+  </div>
+
+  <h3><span class="emo">💬</span>Parler à quelqu'un</h3>
+  <div class="appels">
+    <a class="appel" href="tel:3919"><span class="ic">📞</span><span><b>3919</b><small>Écoute, information et orientation pour les femmes victimes de violences et leur entourage — gratuit, anonyme, 24h/24. Ce n'est pas un numéro d'urgence</small></span></a>
+    <a class="appel" href="tel:119"><span class="ic">📞</span><span><b>119</b><small>Enfant ou ado en danger ou en risque de l'être : pour les moins de 18 ans et toute personne inquiète — 24h/24, gratuit</small></span></a>
+    <a class="appel" href="tel:116006"><span class="ic">📞</span><span><b>116 006</b><small>France Victimes : aide et orientation des victimes, tous âges, tous publics — 9h-20h, 7j/7, gratuit</small></span></a>
+    <a class="appel" href="tel:3018"><span class="ic">📱</span><span><b>3018</b><small>Contrôle par le téléphone, harcèlement en ligne, photos qui circulent — 9h-23h, 7j/7</small></span></a>
+  </div>
+  <p class="note">Le 3919 s'adresse aux femmes victimes de violences et à leur entourage. Le 116 006 accueille toutes les victimes, quel que soit leur genre.</p>
+
+  <h3><span class="emo">🛡️</span>Signaler</h3>
+  <div class="appels">
+    <a class="appel web" href="https://arretonslesviolences.gouv.fr" target="_blank" rel="noopener noreferrer"><span class="ic">🛡️</span><span><b>Tchat avec la police ou la gendarmerie</b><small>Sur arretonslesviolences.gouv.fr — gratuit, anonyme, 24h/24 et 7j/7. Pas pour une urgence : dans ce cas, 17 ou 112</small></span></a>
+    <a class="appel" href="tel:119"><span class="ic">📞</span><span><b>119</b><small>Pour signaler la situation d'un enfant en danger ou en risque de l'être</small></span></a>
+  </div>
+
+  <h3><span class="emo">📅</span>Trouver un accompagnement, prendre rendez-vous</h3>
+  <div class="appels">
+    <a class="appel web" href="https://arretonslesviolences.gouv.fr" target="_blank" rel="noopener noreferrer"><span class="ic">🗺️</span><span><b>Associations spécialisées</b><small>Annuaire officiel sur arretonslesviolences.gouv.fr</small></span></a>
+    <a class="appel web" href="https://www.france-victimes.fr" target="_blank" rel="noopener noreferrer"><span class="ic">🤝</span><span><b>France Victimes</b><small>Associations d'aide aux victimes près de chez soi, sur france-victimes.fr — gratuit</small></span></a>
+    <a class="appel web" href="https://fncidff.info" target="_blank" rel="noopener noreferrer"><span class="ic">⚖️</span><span><b>CIDFF</b><small>Information juridique gratuite et confidentielle, sur fncidff.info</small></span></a>
+    <a class="appel" href="tel:0493261092"><span class="ic">🏠</span><span><b>Maison des ados 06</b><small>2A rue Raynardi, Nice — 04 93 26 10 92, lun-ven 9h-17h</small></span></a>
+  </div>
+  <p class="note">Les autres aides déjà présentes dans SIGNAUX restent disponibles : <button class="lien" data-go="danger">tous les numéros d'urgence</button>.</p>
+  <p class="src">Sources : service-public.gouv.fr, « Violences conjugales » (17, 112, 114, 3919) ; info.gouv.fr (3919, 114, tchat 24h/24) ; justice.fr, « Être écouté au 116 006 » (9h-20h, 7j/7) ; allo119.gouv.fr ; arretonslesviolences.gouv.fr ; fncidff.info ; 3018.fr. Vérifié le 13 novembre 2026.</p>
+</section>
+
+
+<section class="screen" id="vc-traces" style="--c:var(--ciel)">
+  <button class="retour" data-go="back">Retour</button>
+  <div class="hero"><span class="emo" aria-hidden="true">🗂️</span><h2>Quelles traces conserver, si c'est possible sans danger ?</h2>
+    <p class="intro"><span class="po po-jeune">Tu peux demander de l'aide même si tu n'as pas conservé de traces.</span><span class="po po-parent">On peut demander de l'aide même sans avoir conservé de traces.</span> La sécurité passe toujours avant la collecte.</p></div>
+
+  <h3><span class="emo">📎</span>Ce qu'il est possible de garder</h3>
+  <ul class="simple">
+    <li>Les messages, courriels et messages vocaux déjà reçus.</li>
+    <li>Des captures d'écran qui montrent le contexte, la date et le nom du compte.</li>
+    <li>Un récit simple et daté de ce qui s'est passé : quoi, quand, où.</li>
+    <li>Les photos qui existent déjà : blessures, objets cassés.</li>
+    <li>Les documents médicaux, et le nom de personnes qui ont vu ou entendu.</li>
+  </ul>
+  <p class="note">Quand c'est possible, on garde les originaux tels quels, sans les modifier ni les recadrer.</p>
+
+  <h3><span class="emo">🛟</span>La sécurité d'abord</h3>
+  <ul class="simple nope">
+    <li>Ne jamais provoquer une nouvelle situation pour obtenir une preuve.</li>
+    <li>Ne rien publier sur les réseaux.</li>
+    <li>Ne pas stocker ces éléments sur un téléphone, un ordinateur ou un compte partagé, ou que l'autre peut surveiller.</li>
+    <li>Ne pas chercher seul·e la « bonne » façon de faire : une association peut aider à choisir une conservation adaptée.</li>
+  </ul>
+
+  <p class="note">SIGNAUX ne conserve rien et ne propose pas de coffre-fort. France Victimes propose un outil gratuit prévu pour cela, Mémo de Vie : il demande de créer un compte, à choisir avec l'aide d'une association si le téléphone est surveillé.</p>
+  <div class="appels">
+    <a class="appel" href="tel:116006"><span class="ic">📞</span><span><b>116 006</b><small>France Victimes : aide et orientation des victimes, tous âges, tous publics — 9h-20h, 7j/7, gratuit</small></span></a>
+    <a class="appel web" href="https://memo-de-vie.org" target="_blank" rel="noopener noreferrer"><span class="ic">🗂️</span><span><b>Mémo de Vie</b><small>Plateforme de France Victimes, sur memo-de-vie.org — site externe, gratuit</small></span></a>
+  </div>
+  <div class="urgence">
+    <p><span class="po po-moi">Danger maintenant, menaces, coups, peur de rentrer ou de le/la retrouver :</span><span class="po po-ami">Danger maintenant, menaces, coups, il ou elle a peur de rentrer :</span><span class="po po-parent">Danger maintenant, menaces, coups, votre enfant a peur :</span></p>
+    <a class="appel rouge" href="tel:17"><span class="ic">📞</span><span><b>17</b><small>Police, gendarmerie — danger immédiat</small></span></a>
+    <a class="appel rouge" href="tel:112"><span class="ic">📞</span><span><b>112</b><small>Numéro d'urgence européen</small></span></a>
+    <a class="appel rouge" href="sms:114"><span class="ic">💬</span><span><b>114 par SMS</b><small>Urgence, quand on ne peut pas parler à voix haute — gratuit, 24h/24</small></span></a>
+    <button class="lien" data-go="danger">Tous les numéros d'urgence</button>
+  </div>
+  <p class="note">Voir aussi : <button class="lien" data-go="vc-qui">Médecin, psychologue, association</button> · <button class="lien" data-go="vc-num">Contrôle numérique</button></p>
+  <p class="src">Sources : France Victimes, « Mémo de Vie » ; info.gouv.fr, « Violences conjugales : les aides de l'État pour sortir d'une situation d'emprise » ; arretonslesviolences.gouv.fr. Vérifié le 13 novembre 2026.</p>
+</section>
+
+
+<section class="screen" id="vc-qui" style="--c:var(--lilas)">
+  <button class="retour" data-go="back">Retour</button>
+  <div class="hero"><span class="emo" aria-hidden="true">🧑‍⚕️</span><h2>Médecin, psychologue, association : qui peut m'aider ?</h2>
+    <p class="intro">Leurs rôles se complètent. On peut commencer par n'importe laquelle de ces portes.</p></div>
+
+  <ul class="simple">
+    <li><strong>Le médecin</strong> évalue la santé, soigne, et peut établir un certificat médical qui décrit ce qu'il constate.</li>
+    <li><strong>Le ou la psychologue</strong> accompagne les conséquences psychologiques et la reconstruction. Ses écrits professionnels ne sont pas un certificat médical.</li>
+    <li><strong>Les associations</strong> accompagnent les démarches, les droits, la protection et l'accès aux ressources. Leur accueil est le plus souvent gratuit et confidentiel.</li>
+  </ul>
+  <p class="note">Il n'est pas nécessaire de porter plainte pour être soigné·e, écouté·e ou accompagné·e. Une médiation de couple n'est pas une réponse à des violences.</p>
+
+  <div class="urgence">
+    <p><span class="po po-moi">Danger maintenant, menaces, coups, peur de rentrer ou de le/la retrouver :</span><span class="po po-ami">Danger maintenant, menaces, coups, il ou elle a peur de rentrer :</span><span class="po po-parent">Danger maintenant, menaces, coups, votre enfant a peur :</span></p>
+    <a class="appel rouge" href="tel:17"><span class="ic">📞</span><span><b>17</b><small>Police, gendarmerie — danger immédiat</small></span></a>
+    <a class="appel rouge" href="tel:112"><span class="ic">📞</span><span><b>112</b><small>Numéro d'urgence européen</small></span></a>
+    <a class="appel rouge" href="sms:114"><span class="ic">💬</span><span><b>114 par SMS</b><small>Urgence, quand on ne peut pas parler à voix haute — gratuit, 24h/24</small></span></a>
+    <button class="lien" data-go="danger">Tous les numéros d'urgence</button>
+  </div>
+
+  <h3><span class="emo">🆓</span>Des possibilités gratuites ou publiques</h3>
+  <div class="appels">
+    <a class="appel web" href="https://fncidff.info" target="_blank" rel="noopener noreferrer"><span class="ic">⚖️</span><span><b>CIDFF</b><small>Information juridique gratuite et confidentielle — coordonnées sur fncidff.info</small></span></a>
+    <a class="appel web" href="https://www.france-victimes.fr" target="_blank" rel="noopener noreferrer"><span class="ic">🤝</span><span><b>France Victimes</b><small>Aide aux victimes, gratuite — associations locales sur france-victimes.fr, ou 116 006</small></span></a>
+    <a class="appel web" href="https://arretonslesviolences.gouv.fr" target="_blank" rel="noopener noreferrer"><span class="ic">🗺️</span><span><b>Associations spécialisées</b><small>Annuaire officiel sur arretonslesviolences.gouv.fr</small></span></a>
+    <a class="appel" href="tel:0493261092"><span class="ic">🏠</span><span><b>Maison des ados 06</b><small>2A rue Raynardi, Nice — 04 93 26 10 92, lun-ven 9h-17h</small></span></a>
+    <a class="appel web" href="https://monsoutienpsy.ameli.fr" target="_blank" rel="noopener noreferrer"><span class="ic">🧑‍⚕️</span><span><b>Mon soutien psy</b><small>Séances remboursées chez un·e psychologue partenaire — conditions sur monsoutienpsy.ameli.fr</small></span></a>
+  </div>
+
+  <h3><span class="emo">👩‍⚕️</span>Une possibilité parmi d'autres</h3>
+  <p class="note">Cilli Flamand, psychologue clinicienne et conceptrice de SIGNAUX, reçoit en consultation. Ces consultations sont payantes et facultatives : elles ne remplacent pas les ressources gratuites, associatives et publiques ci-dessus. <button class="lien" data-go="apropos">À propos de Cilli Flamand</button></p>
+  <p class="note">Voir aussi : <button class="lien" data-go="vc-numeros">Quels numéros, quels interlocuteurs ?</button> · <button class="lien" data-go="vc-traces">Quelles traces conserver ?</button></p>
+  <p class="src">Sources : arretonslesviolences.gouv.fr (MIPROF, « Les écrits professionnels ») ; HAS, « Repérage des femmes victimes de violences au sein du couple » (2019) ; fncidff.info ; justice.fr (116 006) ; info.gouv.fr, « Mon soutien psy ». Vérifié le 13 novembre 2026.</p>
+</section>
+
+
+<section class="screen" id="apropos" style="--c:var(--abricot)">
+  <button class="retour" data-go="back">Retour</button>
+  <div class="hero"><span class="emo" aria-hidden="true">👩‍⚕️</span><h2>À propos de Cilli Flamand</h2>
+    <p class="intro">Cilli Flamand est psychologue clinicienne à Hyères (Var), installée en libéral depuis 2020. Elle accompagne des femmes, des adolescents et de jeunes adultes, notamment autour des violences psychologiques, de l'emprise et du contrôle coercitif. Elle a conçu SIGNAUX et l'Emprisomètre.</p></div>
+
+  <h3><span class="emo">📅</span>Consultations</h3>
+  <ul class="simple">
+    <li>Les consultations sont <strong>payantes</strong> et facultatives. Le tarif et les modalités sont précisés en réponse à la demande.</li>
+    <li>Elles ne sont ni un service d'urgence, ni l'orientation par défaut : les ressources gratuites, associatives et publiques restent la première porte.</li>
+  </ul>
+  <div class="appels">
+    <a class="appel web" href="mailto:cilliflamand4@gmail.com?subject=Demande%20de%20rendez-vous"><span class="ic">✉️</span><span><b>Prendre rendez-vous avec Cilli Flamand</b><small>Par e-mail — pas de détails sensibles dans ce premier message. Réponse non immédiate</small></span></a>
+    <a class="appel web" href="carte.html"><span class="ic">🪪</span><span><b>Fiche de contact</b><small>Projet, interventions, formations, collaborations</small></span></a>
+  </div>
+
+  <!-- Réseaux sociaux : aucun lien affiché tant que les URL exactes ne sont pas fournies par Cilli Flamand. -->
+  <p class="note">Les messages privés sur les réseaux sociaux ne sont pas un service d'urgence, et une réponse immédiate n'est pas garantie. Aucun abonnement à un réseau n'est nécessaire pour accéder aux informations de SIGNAUX.</p>
+
+  <div class="urgence">
+    <p>En cas de danger, on n'écrit pas : on appelle.</p>
+    <a class="appel rouge" href="tel:17"><span class="ic">📞</span><span><b>17</b><small>Police, gendarmerie</small></span></a>
+    <a class="appel rouge" href="tel:15"><span class="ic">📞</span><span><b>15</b><small>SAMU</small></span></a>
+  </div>
+  <p class="note">Des aides gratuites : <button class="lien" data-go="vc-numeros">Quels numéros, quels interlocuteurs ?</button> · <button class="lien" data-go="vc-qui">Médecin, psychologue, association</button></p>
+</section>
+
 <footer>
   <p>Cette page n'est pas un service d'urgence et ne remplace pas une personne. Elle ne demande ni compte ni données, et n'enregistre rien de ce que tu choisis. La recherche « Tape un mot » se fait entièrement sur ton appareil, dans les textes de cette page : les mots tapés ne sont ni envoyés, ni conservés. Comme pour tout site, l'hébergeur peut garder des traces techniques.</p>
   <p>« Quitter », en haut, ouvre une page neutre. Ça n'efface pas toutes les traces de ta visite. Si ton téléphone est surveillé, utilise si possible un appareil auquel cette personne n'a pas accès. Évite de changer des réglages ou d'effacer des traces si ça risque d'attirer son attention. Un message copié ou envoyé peut aussi laisser une trace.</p>
   <p>SIGNAUX — prototype, Nice, 2026. Conçu par <strong>Cilli Flamand</strong>, psychologue clinicienne, à partir de retours de jeunes du territoire.</p>
   <p>© 2026 Cilli Flamand — textes, parcours et design. Tous droits réservés. Reproduction et adaptation interdites sans accord écrit.</p>
   <ul class="tuiles petites pro-tuile" style="margin:18px 0 14px">
+    <li style="--c:var(--abricot)"><button class="tuile" data-go="apropos"><span class="emo" aria-hidden="true">👩‍⚕️</span><span class="t"><b>À propos de Cilli Flamand</b><span>Qui a conçu SIGNAUX, consultations, contact.</span></span><span class="chev" aria-hidden="true">›</span></button></li>
     <li style="--c:var(--ciel)"><a class="tuile" href="carte.html#travailler" style="text-decoration:none;color:inherit"><span class="emo" aria-hidden="true">🤝</span><span class="t"><b>Vous êtes un·e professionnel·le ?</b><span>Travailler avec SIGNAUX ou le déployer dans votre structure.<br><strong style="color:var(--abricot)">Contacter Cilli Flamand →</strong></span></span><span class="chev" aria-hidden="true">›</span></a></li>
       <li style="--c:var(--abricot)"><a class="tuile" href="carte.html#contact" style="text-decoration:none;color:inherit"><span class="emo" aria-hidden="true">✉️</span><span class="t"><b>Contact</b><span>Écrire ou appeler Cilli Flamand, pour le projet. Ce n'est pas un service d'écoute ni d'urgence.</span></span><span class="chev" aria-hidden="true">›</span></a></li>
   </ul>
@@ -2236,6 +3658,7 @@
     cible.classList.add('on');
     document.getElementById('sosbar').hidden = (cible.id === 'danger');
     document.body.classList.toggle('sur-accueil', ACCUEILS.includes(cible.id));
+    if (ACCUEILS.includes(cible.id)) document.body.dataset.porte = ({accueil:'ami', moi:'moi', parents:'parent'})[cible.id];
     retourFixe.hidden = (cur <= 0 && ACCUEILS.includes(cible.id));
     mesurerSos();
     return cible;
@@ -2317,7 +3740,31 @@
     'parler': ['dire', 'raconter', 'avouer', 'oser', 'secret', 'honte', 'psy', 'suivi', 'medecin', 'depression', 'deprime', 'deprimee', 'mal etre', 'mal dans ma peau', 'triste', 'tristesse', 'vide', 'envie de rien', 'a bout', 'en peux plus', 'peux plus', 'moral', 'va pas'],
     'violence': ['frappe', 'tape', 'gifle', 'coup', 'coups', 'agression', 'agresse', 'viol', 'touche', 'attouchement', 'inceste'],
     'danger': ['urgence', 'urgent', 'tout de suite', 'maintenant', '15', '17', '112', '114', 'samu', 'police', 'pompiers', '3114', '119', '3018'],
-    'drogue': ['drogues', 'substance', 'substances', 'alcool', 'alcoolise', 'bourre', 'ivre', 'saoul', 'bu', 'boit', 'boire', 'bieres', 'biere', 'vodka', 'defonce', 'defoncee', 'stone', 'perche', 'soiree', 'teuf', 'fete', 'cannabis', 'shit', 'beuh', 'weed', 'joint', 'ecstasy', 'ecsta', 'mdma', 'taz', 'cocaine', 'coke', 'keta', 'ketamine', 'protoxyde', 'proto', 'ballon', 'melange', 'melanges', 'malaise', 'bad trip', 'badtrip', 'overdose', 'cuver', 'vomit', 'vomi', 'consommation', 'consomme', 'rdr', 'reduction des risques']
+    'vc': ['violences conjugales', 'violence conjugale', 'conjugale', 'conjugales', 'conjugal', 'couple', 'violences dans le couple', 'partenaire', 'copain', 'copine', 'petit ami', 'petite amie', 'violent', 'violente', 'violences', 'violance', 'violances', 'femme battue'],
+    'vcpsy': ['violence psychologique', 'violences psychologiques', 'psychologique', 'psychologiques', 'psycologique', 'psycologiques', 'psichologique', 'verbale', 'verbales', 'humiliation', 'humiliations', 'humilie', 'rabaisse', 'rabaisser', 'insulte', 'insultes', 'devalorise', 'intimidation', 'intimide', 'menace', 'menaces', 'chantage', 'crie', 'hurle'],
+    'vccontrole': ['controle coercitif', 'coercitif', 'coercitiv', 'coersitif', 'coercitive', 'coercition', 'controle', 'controler', 'controlant', 'regles', 'interdit', 'interdictions', 'rendre des comptes', 'jalousie', 'jaloux', 'jalouse', 'possessif', 'possessive'],
+    'vcemprise': ['emprise', 'sous emprise', 'manipulation', 'manipule', 'manipuler', 'manipulateur', 'manipulatrice', 'gaslighting', 'culpabilise', 'culpabiliser', 'pervers narcissique', 'pervers', 'narcissique', 'toxique', 'relation toxique', 'emprisometre'],
+    'vcnum': ['telephone surveille', 'surveille mon telephone', 'telephone', 'portable', 'localisation', 'geolocalisation', 'position', 'gps', 'mots de passe', 'mot de passe', 'mdp', 'code', 'fouille', 'verifie', 'repondre tout de suite', 'traceur', 'espionne'],
+    'vcisol': ['isolement', 'isole', 'isolee', 'isoler', 'plus d amis', 'coupe de tout', 'sorties', 'ne sort plus', 'eloigne'],
+    'vcsex': ['violences sexuelles', 'violence sexuelle', 'sexuel', 'sexuelle', 'sexuelles', 'viol', 'agression sexuelle', 'consentement', 'peur de dire non', 'dire non', 'force', 'forcer', 'insiste', 'pression', 'sexe', 'photos intimes'],
+    'vcphys': ['violence physique', 'violences physiques', 'coups', 'coup', 'frappe', 'gifle', 'pousse', 'casse', 'argent', 'carte bancaire', 'papiers', 'documents', 'contraception'],
+    'vcex': ['mon ex', 'ex qui me harcele', 'ex', 'separation', 'rupture', 'quitte', 'largue', 'apres la rupture', 'me suit', 'stalke', 'stalker'],
+    'vcquoi': ['quoi faire', 'que faire', 'comment faire', 'premiers reperes', 'reperes', 'par ou commencer', 'besoin d aide'],
+    'vcaider': ['aider', 'aider un ami', 'aider une amie', 'comment aider', 'temoin', 'soutenir', 'ami victime', 'proche victime'],
+    'vcenfants': ['enfant', 'enfants', 'mineur', 'mineure', 'petit frere', 'petite soeur', 'parents se battent', 'violences a la maison', 'enfant en danger', 'maltraitance', 'maltraite'],
+    'vcnumeros': ['numero', 'numeros', 'qui appeler', 'appeler', '3919', '116006', 'france victimes', 'cidff', 'association', 'associations', 'annuaire', 'signaler', 'signalement', 'tchat', 'interlocuteur', 'interlocuteurs'],
+    'vctraces': ['preuve', 'preuves', 'traces', 'trace', 'captures', 'capture d ecran', 'screens', 'conserver', 'garder', 'certificat', 'plainte', 'porter plainte', 'temoins', 'memo de vie'],
+    'vcqui': ['medecin', 'docteur', 'psychologue', 'association', 'certificat medical', 'gratuit', 'qui peut m aider', 'juriste', 'cidff', 'consultation'],
+    'apropos': ['cilli', 'flamand', 'cilli flamand', 'rendez vous', 'rdv', 'consultation', 'consultations', 'a propos', 'conceptrice'],
+    'santementale': ['sante mentale', 'mental', 'mentale', 'psy', 'psychique', 'trouble', 'troubles', 'trouble psychique', 'maladie mentale', 'maladie', 'diagnostic', 'questions', 'comprendre', 'fou', 'folle', 'folie'],
+    'anxiete': ['angoisse', 'angoisses', 'angoisse', 'anxiete', 'anxieux', 'anxieuse', 'stress', 'stresse', 'stressee', 'inquiet', 'inquiete', 'inquietude', 'boule au ventre', 'crise d angoisse', 'crise de panique', 'phobie', 'peur de devenir fou', 'devenir fou', 'devenir folle'],
+    'depression': ['deprime', 'deprimee', 'depression', 'depressif', 'depressive', 'triste', 'tristesse', 'vide', 'envie de rien', 'plus envie', 'fatigue', 'epuise', 'epuisee', 'irritable', 'moral', 'mal etre', 'burn out', 'burnout'],
+    'schizo': ['schizophrenie', 'schizophrenies', 'schizofrenie', 'skizophrenie', 'schyzophrenie', 'schizophrene', 'schizo', 'skizo', 'psychose', 'psychotique', 'dedoublement', 'personnalite', 'maladie mentale', 'trouble psychique'],
+    'voix': ['voix', 'entendre des voix', 'entends des voix', 'entend des voix', 'j entends', 'hallucination', 'hallucinations', 'hallucine', 'halluciner', 'vois des choses', 'voit des choses', 'visions', 'perception', 'perceptions', 'inhabituel', 'inhabituelles', 'bizarre', 'parano', 'paranoia', 'paranoiaque', 'surveille', 'on me surveille', 'on me suit', 'espionne', 'devenir fou', 'devenir folle', 'peur de devenir fou', 'fou', 'folle', 'maladie mentale', 'trouble psychique'],
+    'conso': ['consomme', 'consommation', 'depuis que j ai consomme', 'j ai fume', 'fume', 'fumer', 'joint', 'cannabis', 'shit', 'beuh', 'weed', 'soiree', 'depuis une soiree', 'effets', 'les effets continuent', 'redescends pas', 'redescend pas', 'bizarre', 'perche', 'bloque', 'reste perche', 'pris quelque chose', 'bad trip', 'badtrip', 'voix', 'parano', 'surveille', 'on me surveille'],
+    'flou': ['je ne me reconnais plus', 'reconnais plus', 'plus moi meme', 'change', 'quelque chose a change', 'bizarre', 'je sais pas', 'sais pas expliquer', 'expliquer', 'comprends pas', 'diagnostic', 'trouble', 'proche m inquiete', 'devenir fou', 'devenir folle', 'peur de devenir fou', 'maladie mentale', 'trouble psychique'],
+    'outils': ['exercice', 'exercices', 'respiration', 'respirer', 'respire', 'souffler', 'souffle', 'coherence cardiaque', 'coherence', 'calmer', 'me calmer', 'detente', 'detendre', 'relaxation', 'relaxer', 'ancrage', 'present', 'meditation', 'mediter', 'ressources', 'outils', 'apaiser', 'zen'],
+    'drogue': ['pris quelque chose', 'a pris', 'drogues', 'substance', 'substances', 'alcool', 'alcoolise', 'bourre', 'ivre', 'saoul', 'bu', 'boit', 'boire', 'bieres', 'biere', 'vodka', 'defonce', 'defoncee', 'stone', 'perche', 'soiree', 'teuf', 'fete', 'cannabis', 'shit', 'beuh', 'weed', 'joint', 'ecstasy', 'ecsta', 'mdma', 'taz', 'cocaine', 'coke', 'keta', 'ketamine', 'protoxyde', 'proto', 'ballon', 'melange', 'melanges', 'malaise', 'bad trip', 'badtrip', 'overdose', 'cuver', 'vomit', 'vomi', 'consommation', 'consomme', 'rdr', 'reduction des risques']
   };
   const EXTRA = {
     'm-relation': ['localisation', 'jalousie', 'il insiste', 'telephone', 'peur'], 'relation': ['localisation', 'jalousie', 'il insiste', 'telephone'], 'p-relation': ['localisation', 'jalousie', 'telephone'],
@@ -2330,6 +3777,7 @@
     'lycee': ['lycee', 'harcelement'], 'm-lycee': ['lycee', 'harcelement'],
     'panique': ['panique', 'peur'], 'm-panique': ['panique', 'peur'], 'p-panique': ['panique', 'peur'],
     'retrait': ['retrait'], 'p-chambre': ['retrait'],
+    'sm': ['santementale'], 'outils': ['outils'],
     'peur': ['parler', 'peur'], 'oser': ['parler'], 'apres': ['parler'], 'suivi': ['parler'], 'parent': ['danger', 'parler'], 'doute': ['peur'], 'p-doute': ['peur']
   };
   const INDEX = [];
@@ -2341,6 +3789,42 @@
     const syn = (EXTRA[id] || []).flatMap(k => [k, ...(SYNO[k] || [])]).join(' ');
     INDEX.push({id, hub, emo, titre, sous, t: norm(titre + ' ' + sous), s: norm(syn), c: norm(corps)});
   }));
+  // v18.0 — fiches partagées (rubriques Santé mentale et Ressources) : une entrée par parcours, formulée pour ce parcours.
+  const SMX = [
+    {id:'sm-anx', emo:'🌀', syn:['anxiete', 'panique'], titres:{accueil:'Angoisse et anxiété', moi:'Angoisse et anxiété', parents:'Angoisse et anxiété'}, sous:'Inquiétude, crise d\u2019angoisse, anxiété qui s\u2019installe'},
+    {id:'sm-dep', emo:'🌧️', syn:['depression'], titres:{accueil:'Déprime ou dépression ?', moi:'Déprime ou dépression ?', parents:'Déprime ou dépression ?'}, sous:'Comprendre la différence, sans test'},
+    {id:'sm-voix', emo:'👂', syn:['voix'], titres:{accueil:'Il ou elle entend des voix ou perçoit des choses inhabituelles', moi:'J\u2019entends des voix, je perçois des choses inhabituelles', parents:'Il ou elle entend des voix ou perçoit des choses inhabituelles'}, sous:'Une expérience qui inquiète, sans nom de maladie'},
+    {id:'sm-conso', emo:'🌫️', syn:['conso'], titres:{accueil:'Depuis qu\u2019il ou elle a consommé, quelque chose m\u2019inquiète', moi:'Depuis que j\u2019ai consommé, quelque chose m\u2019inquiète', parents:'Depuis qu\u2019il ou elle a consommé, quelque chose m\u2019inquiète'}, sous:'Bizarre, angoissé·e, des effets qui continuent'},
+    {id:'sm-schizo', emo:'📘', syn:['schizo'], titres:{accueil:'Schizophrénie : comprendre', moi:'Schizophrénie : comprendre', parents:'Schizophrénie : comprendre'}, sous:'Un diagnostic annoncé, des idées reçues à corriger'},
+    {id:'sm-flou', emo:'💭', syn:['flou'], titres:{accueil:'Je ne sais pas comment l\u2019expliquer', moi:'Je ne sais pas comment l\u2019expliquer', parents:'Je ne sais pas comment l\u2019expliquer'}, sous:'Quelque chose a changé, sans mot pour le dire'},
+    {id:'ex-resp', emo:'🌬️', syn:['outils'], titres:{accueil:'Respirer', moi:'Respirer', parents:'Respirer'}, sous:'Exercice : une respiration douce, guidée, 2 minutes'},
+    {id:'ex-cc', emo:'💚', syn:['outils'], titres:{accueil:'Cohérence cardiaque', moi:'Cohérence cardiaque', parents:'Cohérence cardiaque'}, sous:'Exercice : une respiration régulière, 5 minutes'},
+    {id:'ex-present', emo:'👀', syn:['outils'], titres:{accueil:'Revenir au présent', moi:'Revenir au présent', parents:'Revenir au présent'}, sous:'Exercice : les yeux ouverts, sans se concentrer sur le souffle'}
+  ];
+  // v18 — rubrique « Violences dans le couple » et compléments
+  const T3 = (a, b, c) => ({accueil: b, moi: a, parents: c === undefined ? b : c});
+  SMX.push(
+    {id:'vc', emo:'🛑', syn:['vc', 'vccontrole', 'vcemprise'], titres:T3('Violences dans le couple', 'Violences dans le couple'), sous:'Contrôle, emprise, violences psychologiques'},
+    {id:'vc-psy', emo:'🗯️', syn:['vcpsy'], titres:T3('Violences psychologiques et verbales', 'Violences psychologiques et verbales'), sous:'Humiliations, intimidation, menaces, chantage'},
+    {id:'vc-controle', emo:'🔗', syn:['vccontrole'], titres:T3('Contrôle coercitif', 'Contrôle coercitif'), sous:'Des règles, de la peur, moins de liberté'},
+    {id:'vc-emprise', emo:'🕸️', syn:['vcemprise'], titres:T3('Emprise et manipulation', 'Emprise et manipulation'), sous:'Perdre peu à peu ses repères'},
+    {id:'vc-num', emo:'📱', syn:['vcnum'], titres:T3('Contrôle numérique', 'Contrôle numérique'), sous:'Téléphone, mots de passe, localisation'},
+    {id:'vc-isol', emo:'🚷', syn:['vcisol'], titres:T3('Isolement', 'Isolement'), sous:'Amis, famille, sorties, études'},
+    {id:'vc-sex', emo:'✋', syn:['vcsex'], titres:T3('Violences sexuelles et consentement', 'Violences sexuelles et consentement'), sous:'Y compris quand on est déjà ensemble'},
+    {id:'vc-phys', emo:'🩹', syn:['vcphys'], titres:T3('Violences physiques, matérielles, argent', 'Violences physiques, matérielles, argent'), sous:'Coups, objets cassés, argent, papiers, soins'},
+    {id:'vc-ex', emo:'🔁', syn:['vcex'], titres:T3('Après la séparation', 'Après la séparation'), sous:'Un·e ex qui surveille, insiste ou menace'},
+    {id:'vc-quoi', emo:'🧭', syn:['vcquoi'], titres:T3('Premiers repères : quoi faire ?', 'Premiers repères : quoi faire ?'), sous:'Une action à la fois'},
+    {id:'vc-aider', emo:'🫶', syn:['vcaider'], titres:T3('Comment aider un ami ou un proche ?', 'Comment aider un ami ou un proche ?'), sous:'Écouter, proposer, passer le relais'},
+    {id:'vc-enfants', emo:'🧒', syn:['vcenfants'], titres:T3('Et quand des enfants sont concernés ?', 'Et quand des enfants sont concernés ?'), sous:'Mineur·e à la maison, ou inquiétude pour un enfant'},
+    {id:'vc-numeros', emo:'☎️', syn:['vcnumeros'], titres:T3('Quels numéros, quels interlocuteurs ?', 'Quels numéros, quels interlocuteurs ?'), sous:'Urgence, écoute, signalement, rendez-vous'},
+    {id:'vc-traces', emo:'🗂️', syn:['vctraces'], titres:T3('Quelles traces conserver ?', 'Quelles traces conserver ?'), sous:'Seulement si c\u2019est possible sans danger'},
+    {id:'vc-qui', emo:'🧑‍⚕️', syn:['vcqui'], titres:T3('Médecin, psychologue, association', 'Médecin, psychologue, association'), sous:'Qui peut aider, et pour quoi'},
+    {id:'apropos', emo:'👩‍⚕️', syn:['apropos'], titres:T3('À propos de Cilli Flamand', 'À propos de Cilli Flamand'), sous:'Qui a conçu SIGNAUX, consultations, contact'}
+  );
+  SMX.forEach(x => { const fiche = document.getElementById(x.id); if (!fiche) return;
+    const corps = [...fiche.querySelectorAll('.intro, .chip, ul.simple li, ol.etapes li, .choix-titre, h3, .note')].map(e => e.textContent).concat([...fiche.querySelectorAll('[data-tip]')].map(e => e.dataset.tip)).join(' ');
+    const syn = x.syn.flatMap(k => [k, ...(SYNO[k] || [])]).join(' ');
+    HUBS.forEach(hub => INDEX.push({id:x.id, hub, emo:x.emo, titre:x.titres[hub], sous:x.sous, t:norm(x.titres[hub] + ' ' + x.sous), s:norm(syn), c:norm(corps), c0:fiche.style.getPropertyValue('--c')})); });
   INDEX.push({id:'danger', hub:'accueil', emo:'🚨', titre:'Il y a peut-être un danger maintenant', sous:'Les numéros, tout de suite', t:norm('danger urgence maintenant'), s:norm(['danger', ...SYNO.danger, 'mourir', ...SYNO.mourir].join(' ')), c:''});
   // Formulations de crise : traitées AVANT le classement ordinaire. Orientation neutre (la fiche « mourir » du parcours + les urgences), sans affirmer que la personne est en crise.
   const CRISE = /\b(suicid\w*|mourir|me tuer|se tuer|te tuer|en finir|idees? noires?|plus envie de vivre|envie de mourir|disparaitre pour de bon|me faire du mal|me faire mal|me scarifi\w*|overdose)\b/;
@@ -2348,7 +3832,7 @@
   const VIDES = new Set(['il','elle','ils','elles','je','j','tu','on','me','te','se','mon','ma','mes','ton','ta','tes','son','sa','ses','le','la','les','l','un','une','des','de','du','d','et','ou','que','qui','est','ce','c','ca','en','pas','ne','n','plus','pour','avec','dans','sur','moi','toi','lui','mais','quand','tout','tous','toute','trop','tres','vraiment','veux','veut','voudrais','voudrait','vais','va','peux','peut','pense','sais','sait','crois','arrive','arrive','encore','jamais','toujours','faire','fait','suis','es','sommes','etes','sont','ai','as','a','avons','avez','ont','y','au','aux','si','comme','donc','alors','juste','bien','mal','rien','quelque','chose','quelqu','quelquun','mes','ils']);
   const CREUX_UTILES = new Set(['mal']); // « mal » est un mot creux sauf s'il est seul
   // Expressions de plusieurs mots reconnues telles quelles (sinon leurs mots, creux, seraient ignorés).
-  const PHRASES = ['en peux plus', 'peux plus', 'a bout', 'mal etre', 'mal dans ma peau', 'va pas', 'idees noires', 'plus envie de vivre', 'envie de rien', 'controle coercitif', 'sous emprise', 'il insiste', 'faire l amour', 'mot de passe', 'repond plus', 'sort plus', 'partir de chez moi', 'ou je suis', 'tout de suite', 'me fait du mal', 'lui fait du mal', 'fait du mal', 'se faire du mal', 'me faire du mal', 'fais du mal'];
+  const PHRASES = ['violence psychologique', 'violences psychologiques', 'violences conjugales', 'violence conjugale', 'controle coercitif', 'telephone surveille', 'mots de passe', 'mot de passe', 'peur de dire non', 'dire non', 'ex qui me harcele', 'mon ex', 'quoi faire', 'que faire', 'porter plainte', 'certificat medical', 'rendez vous', 'memo de vie', 'pervers narcissique', 'sous emprise', 'aider un ami', 'pris quelque chose', 'a consomme', 'effets continuent', 'entendre des voix', 'entends des voix', 'entend des voix', 'devenir fou', 'devenir folle', 'maladie mentale', 'trouble psychique', 'sante mentale', 'on me surveille', 'coherence cardiaque', 'j ai fume', 'boule au ventre', 'reconnais plus', 'bad trip', 'en peux plus', 'peux plus', 'a bout', 'mal etre', 'mal dans ma peau', 'va pas', 'idees noires', 'plus envie de vivre', 'envie de rien', 'controle coercitif', 'sous emprise', 'il insiste', 'faire l amour', 'mot de passe', 'repond plus', 'sort plus', 'partir de chez moi', 'ou je suis', 'tout de suite', 'me fait du mal', 'lui fait du mal', 'fait du mal', 'se faire du mal', 'me faire du mal', 'fais du mal'];
   const NEGATION = /\b(ne|n) ?(veux|veut|voudrais|vais|pense|penses|suis|a|ai) (pas|plus|jamais)\b/;
   const variantes = (m) => {
     const v = new Set([m]);
@@ -2364,8 +3848,12 @@
     if (!mots.length && CREUX_UTILES.has(nq)) mots = [nq];
     const crise = CRISE.test(' ' + nq + ' ') && !NEGATION.test(nq);
     const pri = [];
-    if (crise) { const fm = INDEX.find(f => f.id === FICHE_MOURIR[hub]) || INDEX.find(f => f.id === 'mourir'); if (fm) pri.push(fm); const fd = INDEX.find(f => f.id === 'danger'); if (fd) pri.push(fd); }
-    if (!mots.length) { pri.crise = crise; return pri; }
+    const urgVoix = /\b(voix|hallucin\w*)\b/.test(nq) && /\b(tuer|faire du mal|frapper|sauter|suicid\w*|mourir|ordonn\w*|oblig\w*|disent de|dit de|demandent|demande de)\b/.test(nq);
+    if (urgVoix) { const fd0 = INDEX.find(f => f.id === 'danger'); if (fd0) pri.push(fd0); const fv = INDEX.find(f => f.id === 'sm-voix' && f.hub === hub); if (fv) pri.push(fv); }
+    const urgViol = /\b(va me tuer|veut me tuer|va la tuer|va le tuer|menace de mort|menaces de mort|m etrangle|etrangl\w*|me frappe maintenant|en train de me frapper|enferme\w*|sequestr\w*|peur de rentrer|arme|couteau)\b/.test(nq);
+    if (urgViol) { const fd1 = INDEX.find(f => f.id === 'danger'); if (fd1 && !pri.includes(fd1)) pri.push(fd1); const fn = INDEX.find(f => f.id === 'vc-numeros' && f.hub === hub); if (fn) pri.push(fn); }
+    if (crise && !urgViol) { const fm = INDEX.find(f => f.id === FICHE_MOURIR[hub]) || INDEX.find(f => f.id === 'mourir'); if (fm && !pri.includes(fm)) pri.push(fm); const fd = INDEX.find(f => f.id === 'danger'); if (fd && !pri.includes(fd)) pri.push(fd); }
+    if (!mots.length) { pri.crise = crise && !urgViol; pri.urgViol = urgViol; return pri; }
     const besoin = Math.max(1, Math.ceil(mots.length / 2));
     const classes = INDEX.map(f => {
       let sc = 0, trouves = 0;
@@ -2381,11 +3869,16 @@
       return {f, sc};
     }).filter(Boolean).sort((a, b) => b.sc - a.sc).map(x => x.f);
     const vus = new Set(pri.map(f => f.id));
-    const out = [...pri, ...classes.filter(f => !vus.has(f.id))].slice(0, 6); out.crise = crise; return out;
+    // Voix, perceptions, impression d'être surveillé·e : jamais d'exercice de détente dans les résultats.
+    const sansExo = /\b(voix|hallucin\w*|surveill\w*|parano\w*|visions?)\b/.test(nq);
+    const uniques = classes.filter(f => { if (sansExo && (f.id === 'outils' || f.id.startsWith('ex-'))) return false; if (vus.has(f.id)) return false; vus.add(f.id); return true; });
+    const out = [...pri, ...uniques].slice(0, 6); out.crise = crise && !urgViol; out.urgVoix = urgVoix; out.urgViol = urgViol; return out;
   };
   // ---- Index A-Z : mots courants -> fiches existantes, par parcours. Aucun nouveau contenu.
   const AZ = {
     accueil: {
+      'Aider un·e ami·e, un proche': ['vc-aider'], 'Contrôle coercitif': ['vc-controle'], 'Emprise, manipulation': ['vc-emprise'], 'Enfants concernés': ['vc-enfants'], 'Ex (après la séparation)': ['vc-ex'], 'Numéros, interlocuteurs': ['vc-numeros'], 'Preuves, traces': ['vc-traces'], 'Violences dans le couple': ['vc'], 'Violences psychologiques': ['vc-psy'], 'Violences sexuelles, consentement': ['vc-sex'],
+      'Anxiété': ['sm-anx', 'panique'], 'Après avoir consommé': ['sm-conso'], 'Dépression, déprime': ['sm-dep'], 'Santé mentale': ['sm'], 'Schizophrénie': ['sm-schizo'], 'Voix (entendre des)': ['sm-voix'],
       'Adieu': ['mourir'], 'Alcool': ['drogue'], 'Angoisse': ['panique'], 'Automutilation': ['mal'],
       'Chantage': ['violence', 'harcele'], 'Collège': ['lycee'], 'Contrôle': ['relation'], 'Coups': ['violence', 'maison'],
       'Cours (n\u2019y va plus)': ['retrait', 'lycee'], 'Disputes à la maison': ['maison'], 'Doute': ['doute'],
@@ -2397,6 +3890,8 @@
       'Silence': ['retrait'], 'Suicide': ['mourir'], 'Téléphone surveillé': ['relation'], 'Violences': ['violence']
     },
     moi: {
+      'Aider un·e ami·e, un proche': ['vc-aider'], 'Contrôle coercitif': ['vc-controle'], 'Emprise, manipulation': ['vc-emprise'], 'Enfants concernés': ['vc-enfants'], 'Ex (après la séparation)': ['vc-ex'], 'Numéros, interlocuteurs': ['vc-numeros'], 'Preuves, traces': ['vc-traces'], 'Violences dans le couple': ['vc'], 'Violences psychologiques': ['vc-psy'], 'Violences sexuelles, consentement': ['vc-sex'],
+      'Anxiété': ['sm-anx', 'm-panique'], 'Après avoir consommé': ['sm-conso'], 'Dépression, déprime': ['sm-dep'], 'Santé mentale': ['sm'], 'Schizophrénie': ['sm-schizo'], 'Voix (entendre des)': ['sm-voix'],
       'Adieu': ['m-mourir'], 'Alcool': ['m-drogue'], 'Amis qui m\u2019excluent': ['m-lycee'], 'Angoisse': ['m-panique'],
       'Automutilation': ['m-mal'], 'Chantage': ['m-violence', 'm-harcele'], 'Collège': ['m-lycee'], 'Contrôle': ['m-relation'],
       'Copain, copine': ['m-relation'], 'Coups': ['m-violence', 'm-maison'], 'Disputes à la maison': ['m-maison'],
@@ -2410,6 +3905,8 @@
       'Après en avoir parlé': ['apres']
     },
     parents: {
+      'Aider un·e ami·e, un proche': ['vc-aider'], 'Contrôle coercitif': ['vc-controle'], 'Emprise, manipulation': ['vc-emprise'], 'Enfants concernés': ['vc-enfants'], 'Ex (après la séparation)': ['vc-ex'], 'Numéros, interlocuteurs': ['vc-numeros'], 'Preuves, traces': ['vc-traces'], 'Violences dans le couple': ['vc'], 'Violences psychologiques': ['vc-psy'], 'Violences sexuelles, consentement': ['vc-sex'],
+      'Anxiété': ['sm-anx', 'p-panique'], 'Après une consommation': ['sm-conso'], 'Dépression, déprime': ['sm-dep'], 'Santé mentale': ['sm'], 'Schizophrénie': ['sm-schizo'], 'Voix (entendre des)': ['sm-voix'],
       'Adieu': ['p-mourir'], 'Alcool': ['p-drogue'], 'Angoisse': ['p-panique'], 'Automutilation': ['p-mal'], 'Chambre (ne sort plus)': ['p-chambre'],
       'Collège, lycée': ['p-harcele', 'p-chambre'], 'Contrôle': ['p-relation'], 'Cours (n\u2019y va plus)': ['p-chambre'],
       'Doute': ['p-doute'], 'Harcèlement': ['p-harcele'], 'Idées noires': ['p-mourir'], 'Isolement': ['p-chambre', 'p-relation'],
@@ -2419,7 +3916,8 @@
       'Réseaux': ['p-harcele'], 'Scarification': ['p-mal'], 'Suicide': ['p-mourir'], 'Urgence': ['parent']
     }
   };
-  const titreTuile = (hub, id) => { const t = document.querySelector('#' + hub + ' .tuile[data-go="' + id + '"]') || document.querySelector('.tuile[data-go="' + id + '"]'); return t ? {titre: t.querySelector('b').textContent.trim(), emo: t.querySelector('.emo').textContent, li: t.closest('li')} : null; };
+  const titreTuile = (hub, id) => { const x = INDEX.find(f => f.id === id && f.hub === hub && f.c0 !== undefined); if (x) return {titre: x.titre, emo: x.emo, li: null};
+    const t = document.querySelector('#' + hub + ' .tuile[data-go="' + id + '"]') || document.querySelector('.tuile[data-go="' + id + '"]'); return t ? {titre: t.querySelector('b').textContent.trim(), emo: t.querySelector('.emo').textContent, li: t.closest('li')} : null; };
   const construireAZ = (form, hub, vous) => {
     const box = form.querySelector('.az'); if (box.dataset.ok) return; box.dataset.ok = '1';
     const parLettre = {};
@@ -2473,11 +3971,13 @@
         act.append(b1, b2, b3); d.appendChild(act); zone.appendChild(d); return;
       }
       const titre = document.createElement('div'); titre.className = 'titre-res'; titre.textContent = res.length + (res.length > 1 ? ' fiches' : ' fiche') + ' pour « ' + q + ' »'; zone.appendChild(titre);
+      if (res.urgVoix) { const c0 = document.createElement('div'); c0.className = 'rien'; c0.textContent = vous ? 'Si des voix demandent de faire du mal, ou s\u2019il y a un danger : appelez le 15 ou le 112 maintenant.' : 'Si des voix demandent de faire du mal, ou s\u2019il y a un danger : appelle le 15 ou le 112 maintenant.'; zone.appendChild(c0); }
+      if (res.urgViol) { const c1 = document.createElement('div'); c1.className = 'rien'; c1.textContent = vous ? 'Danger maintenant : appelez le 17 ou le 112. Si vous ne pouvez pas parler : SMS au 114.' : 'Danger maintenant : appelle le 17 ou le 112. Si tu ne peux pas parler : SMS au 114.'; zone.appendChild(c1); }
       if (res.crise) { const c = document.createElement('div'); c.className = 'rien'; c.textContent = vous ? 'Si votre enfant parle de mourir, ou si vous vous inquiétez pour lui/elle : la fiche ci-dessous et le 3114, 24h/24. Danger immédiat : 15 ou 112.' : 'Si tu penses à mourir, ou si tu t\u2019inquiètes pour quelqu\u2019un : la fiche ci-dessous et le 3114, 24h/24. Danger immédiat : 15 ou 112.'; zone.appendChild(c); }
       res.forEach(f => {
         const b = document.createElement('button'); b.type = 'button'; b.className = 'res' + (f.id === 'danger' ? ' danger' : '');
         const li = document.querySelector('#' + f.hub + ' .tuile[data-go="' + f.id + '"]')?.closest('li');
-        if (li && li.style.getPropertyValue('--c')) b.style.setProperty('--c', li.style.getPropertyValue('--c'));
+        if (li && li.style.getPropertyValue('--c')) b.style.setProperty('--c', li.style.getPropertyValue('--c')); else if (f.c0) b.style.setProperty('--c', f.c0);
         b.innerHTML = '<span class="emo" aria-hidden="true"></span><span><b></b><small></small></span>';
         b.querySelector('.emo').textContent = f.emo; b.querySelector('b').textContent = f.titre;
         b.querySelector('small').textContent = (f.id === 'danger' ? 'Numéros d\u2019urgence' : 'Parcours « ' + PARCOURS[f.hub] + ' »') + ' · ' + f.sous;
@@ -2511,6 +4011,39 @@
       if (etait) { tip.classList.remove('on'); return; }
       ch.classList.add('on'); ch.setAttribute('aria-pressed', 'true'); tip.textContent = ch.dataset.tip; tip.classList.add('on');
     }); });
+  });
+
+
+  // ---- v18.0 · Exercices de respiration : aucune donnée, aucun son, rien ne démarre seul. Démarrer / Pause / Arrêter.
+  const fmt = (sec) => Math.floor(sec / 60) + ':' + String(Math.floor(sec % 60)).padStart(2, '0');
+  document.querySelectorAll('.souffle').forEach(box => {
+    const tin = +box.dataset.in, tout = +box.dataset.out, total = +box.dataset.total;
+    const rond = box.querySelector('.rond span'), phase = box.querySelector('.phase'), reste = box.querySelector('.reste');
+    const bS = box.querySelector('.b-start'), bP = box.querySelector('.b-pause'), bX = box.querySelector('.b-stop'), bA = box.querySelector('.b-anim');
+    const calme = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (calme) { bA.checked = false; box.classList.add('sans-anim'); }
+    let timer = null, t = 0, enPause = false, dernier = '';
+    const dessiner = () => {
+      const dans = t % (tin + tout), inspire = dans < tin;
+      const etat = inspire ? 'Inspire doucement' : 'Souffle doucement';
+      if (etat !== dernier) { phase.textContent = etat; dernier = etat;
+        rond.style.transitionDuration = (inspire ? tin : tout) + 's'; rond.style.transform = inspire ? 'scale(1)' : 'scale(.55)'; }
+      reste.textContent = 'Encore ' + fmt(total - t);
+    };
+    const finir = (msg) => { clearInterval(timer); timer = null; t = 0; enPause = false; dernier = '';
+      rond.style.transitionDuration = '.6s'; rond.style.transform = 'scale(.55)';
+      phase.textContent = msg; reste.textContent = ''; bS.hidden = false; bS.textContent = 'Démarrer'; bP.hidden = true; bX.hidden = true; };
+    const tic = () => { t += 1; if (t >= total) { finir('C’est fini. Reprends ta respiration naturelle.'); return; } dessiner(); };
+    bS.addEventListener('click', () => { if (timer) return; enPause = false; bS.hidden = true; bP.hidden = false; bP.textContent = 'Pause'; bX.hidden = false; dernier = ''; dessiner(); timer = setInterval(tic, 1000); bP.focus(); });
+    bP.addEventListener('click', () => {
+      if (!enPause) { clearInterval(timer); timer = null; enPause = true; bP.textContent = 'Reprendre'; phase.textContent = 'En pause. Respire à ton rythme.'; dernier = ''; rond.style.transitionDuration = '.6s'; }
+      else { enPause = false; bP.textContent = 'Pause'; dessiner(); timer = setInterval(tic, 1000); }
+    });
+    bX.addEventListener('click', () => { finir('Arrêté. Reprends ta respiration naturelle.'); bS.focus(); });
+    bA.addEventListener('change', () => box.classList.toggle('sans-anim', !bA.checked));
+    // Quitter la fiche arrête l'exercice.
+    document.querySelectorAll('[data-go], #retour-fixe').forEach(b => b.addEventListener('click', () => { if (timer || enPause) finir('Prêt·e ? Appuie sur Démarrer.'); }));
+    window.addEventListener('popstate', () => { if (timer || enPause) finir('Prêt·e ? Appuie sur Démarrer.'); });
   });
 
   // Sortie rapide : page neutre. N'efface pas l'historique (dit en bas de page).
